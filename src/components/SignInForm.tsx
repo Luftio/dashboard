@@ -1,31 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import "../i18n";
 import { useTranslation } from "react-i18next";
 import { InputItem } from "../../styles/InputItem";
-import { Password, PasswordLabel } from "../../styles/PasswordItem";
 import { Button } from "../../styles/Button";
 import { HaveAccount } from "../../styles/HaveAccount";
 import { Error } from "../../styles/Error";
-
-const eva = require("eva-icons");
+import { Icon } from "ts-react-feather-icons";
 
 const ForgotPassword = styled.a`
-  color: #afb8bf;
-  font-size: 0.875rem;
-  text-align: center;
+  display: inline-block;
+  color: ${(props) => props.theme.color_secondary};
+  font-size: ${(props) => props.theme.font_size_secondary};
   text-decoration: underline;
   cursor: pointer;
   position: relative;
-  width: 200px;
-  text-align: right;
   top: -10px;
-  text-align: right;
 
   &:hover {
-    color: #031846;
+    color: ${(props) => props.theme.color_brand};
   }
 `;
 
@@ -41,12 +36,6 @@ const SignUpForm: React.FC = () => {
   const onSubmit = handleSubmit(({ email, password }) => {
     console.log(email, password);
   });
-
-  console.log(visibility);
-
-  useEffect(() => {
-    eva.replace();
-  }, []);
 
   return (
     <div>
@@ -69,8 +58,8 @@ const SignUpForm: React.FC = () => {
         {errors.email && errors.email.type === "pattern" && (
           <Error>{t("msg_invalid_email")}</Error>
         )}
-        <PasswordLabel>{t("pass_input_label")}</PasswordLabel>
-        <Password>
+        <InputItem>
+          <label>{t("pass_input_label")}</label>
           <input
             type={visibility ? "text" : "password"}
             placeholder={t("pass_input_placeholder")}
@@ -80,21 +69,22 @@ const SignUpForm: React.FC = () => {
             })}
           />
           <p onClick={() => setVisibility(!visibility)}>
-            <i
-              data-eva={visibility ? "eye-outline" : "eye-off-outline"}
-              data-eva-fill="#E1E6EA"
-            ></i>
+            <Icon
+              name={visibility ? "eye-off" : "eye"}
+              size="22"
+              color="#E1E6EA"
+            />
           </p>
-        </Password>
+        </InputItem>
+        <Link href="/password/request-change">
+          <ForgotPassword>{t("forgot_password")}</ForgotPassword>
+        </Link>
         {errors.password && errors.password.type === "required" && (
           <Error>{t("msg_required")}</Error>
         )}
         {errors.password && errors.password.type === "pattern" && (
           <Error>{t("msg_invalid_password")}</Error>
         )}
-        <Link href="/password/request-change">
-          <ForgotPassword>{t("forgot_password")}</ForgotPassword>
-        </Link>
         <Button type="submit">{t("sign_in")}</Button>
       </form>
       <HaveAccount>

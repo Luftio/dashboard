@@ -3,9 +3,18 @@ import styled from "styled-components";
 export const InputItem = styled.div`
   > label {
     display: flex;
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: #afb8bf;
+    font-size: ${(props) => props.theme.font_size_secondary};
+    font-weight: ${(props) => props.theme.font_weight_primary};
+    color: ${(props) => props.theme.color_secondary};
+  }
+
+  > p {
+    position: absolute;
+    margin: -47px 0 0 357px;
+    background: #fff;
+    width: 30px;
+    display: flex;
+    justify-content: center;
   }
 
   > input {
@@ -14,28 +23,28 @@ export const InputItem = styled.div`
     height: 45px;
     padding: 15px;
     margin: 5px 0 15px 0;
-    border: 1px solid #e1e6ea;
-    border-radius: 4px;
-    font-family: "Montserrat", "DejaVu Sans", Verdana, sans-serif;
-    font-size: 0.875rem;
-    font-weight: 400;
+    border: ${(props) => props.theme.border_primary};
+    border-radius: ${(props) => props.theme.border_radius_primary};
+    font-family: inherit;
+    font-size: ${(props) => props.theme.font_size_secondary};
+    position: relative;
 
     &:focus {
-      border: 1px solid rgba(3, 24, 70, 0.6);
-      box-shadow: 0px 0px 2px rgba(3, 24, 70, 0.3);
+      border: ${(props) => props.theme.color_input_focus};
+      box-shadow: ${(props) => props.theme.color_input_box_shadow};
     }
 
     ::placeholder {
-      color: #e1e6ea;
+      color: ${(props) => props.theme.color_placeholder};
       opacity: 1;
     }
 
     :-ms-input-placeholder {
-      color: #e1e6ea;
+      color: ${(props) => props.theme.color_placeholder};
     }
 
     ::-ms-input-placeholder {
-      color: #e1e6ea;
+      color: ${(props) => props.theme.color_placeholder};
     }
 
     @media only screen and (max-width: 970px) {

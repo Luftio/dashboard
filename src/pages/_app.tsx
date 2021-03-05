@@ -1,13 +1,15 @@
 import { AppProps } from "next/app";
 import Head from "next/head";
 import GlobalStyle from "../../styles/Global";
+import { ThemeProvider } from "styled-components";
+import theme from "../../styles/Theme";
 
 const App = ({ Component, pageProps }: AppProps) => (
   <>
     <Head>
       <meta name="viewport" content="width=device-width initial-scale=1" />
       <meta name="theme-color" content="#000000" />
-      <link rel="icon" href="/static/favicon.png" />
+      <link rel="icon" href="/static/favicon.ico" />
       <link rel="preconnect" href="https://fonts.gstatic.com"></link>
       <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap"
@@ -30,8 +32,10 @@ const App = ({ Component, pageProps }: AppProps) => (
         content="SEM PAK DÁMEE NĚJAKOU HEZKOU GRAFIKU"
       ></meta>
     </Head>
-    <GlobalStyle />
-    <Component {...pageProps} />
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <Component {...pageProps} />
+    </ThemeProvider>
   </>
 );
 

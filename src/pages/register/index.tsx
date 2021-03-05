@@ -26,6 +26,7 @@ const LeftSide = styled.div`
 
   @media only screen and (max-width: 1250px) {
     flex: 0.8;
+    overflow: visible;
   }
 `;
 

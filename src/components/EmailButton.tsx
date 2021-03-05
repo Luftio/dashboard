@@ -13,21 +13,21 @@ const Button = styled.a`
   align-items: center;
   padding: 0 20px;
   margin: 0 20px 15px 0;
-  font-weight: 600;
-  font-size: 14px;
-  color: #afb8bf;
+  font-weight: ${(props) => props.theme.font_weight_secondary};
+  font-size: ${(props) => props.theme.font_size_secondary};
+  color: ${(props) => props.theme.color_secondary};
   height: 45px;
-  border: 1px solid #e1e6ea;
-  border-radius: 4px;
-  cursor: pointer;
+  border: ${(props) => props.theme.border_primary};
+  border-radius: ${(props) => props.theme.border_radius_primary};
   text-decoration: none;
 
   &:hover {
-    background: #fafafa;
+    background: ${(props) => props.theme.color_button_hover};
   }
 
   &:active {
-    background: #e8e8e8;
+    background: ${(props) => props.theme.color_button_active};
+    border: ${(props) => props.theme.border_active};
   }
 `;
 
@@ -35,14 +35,15 @@ interface Props {
   text: string;
   imageUrl: string;
   href: string;
+  altText: string;
 }
 
-const EmailButton: React.FC<Props> = ({ text, imageUrl, href }) => {
+const EmailButton: React.FC<Props> = ({ text, imageUrl, href, altText }) => {
   return (
     <Div>
       <Link href={href}>
         <Button href={href}>
-          <Image src={imageUrl} alt="Luftio logo" width={21} height={29} />
+          <Image src={imageUrl} alt={altText} width={21} height={29} />
           &nbsp;&nbsp;&nbsp;{text}
         </Button>
       </Link>

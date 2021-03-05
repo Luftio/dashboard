@@ -6,7 +6,7 @@ const Div = styled.div`
   display: flex;
   flex: 0.4;
   justify-content: center;
-  background-color: #031846;
+  background-color: ${(props) => props.theme.color_brand};
 
   @media only screen and (max-width: 1250px) {
     flex: 0.2;

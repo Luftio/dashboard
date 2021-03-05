@@ -4,17 +4,17 @@ export const HaveAccount = styled.div`
   display: flex;
   align-items: center;
   > p {
-    color: #afb8bf;
-    font-size: 0.875rem;
-    margin: 30px 0 30px 0;
+    color: ${(props) => props.theme.color_secondary};
+    font-size: ${(props) => props.theme.font_size_secondary};
+    margin: 30px 0;
   }
 
   > a {
     text-decoration: underline;
-    font-size: 0.875rem;
-    color: #afb8bf;
+    font-size: ${(props) => props.theme.font_size_secondary};
+    color: ${(props) => props.theme.color_secondary};
     &:hover {
-      color: #031846;
+      color: ${(props) => props.theme.color_brand};
     }
   }
 `;

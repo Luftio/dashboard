@@ -3,7 +3,6 @@ import Head from "next/head";
 import Header from "../components/Header";
 import SignInForm from "../components/SignInForm";
 import Banner from "../components/Banner";
-import Alert from "../components/Alert";
 import "../i18n";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";

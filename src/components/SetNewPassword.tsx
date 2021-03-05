@@ -1,29 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import styled from "styled-components";
+import { InputItem } from "../../styles/InputItem";
 import "../i18n";
 import { useTranslation } from "react-i18next";
-import { Password, PasswordLabel } from "../../styles/PasswordItem";
 import { Button } from "../../styles/Button";
 import { Error } from "../../styles/Error";
+import { Icon } from "ts-react-feather-icons";
 
-const eva = require("eva-icons");
-
-const PasswordRequirements = styled.a`
-  color: #afb8bf;
-  font-size: 0.875rem;
-  text-align: center;
+const PasswordRequirements = styled.p`
+  color: ${(props) => props.theme.color_secondary};
+  font-size: ${(props) => props.theme.font_size_secondary};
   padding-bottom: 15px;
-  cursor: pointer;
-  position: relative;
-  width: 200px;
-  text-align: right;
-  top: -10px;
-
-  &:hover {
-    color: #031846;
-  }
 `;
 
 type Formdata = {
@@ -41,58 +30,52 @@ const SetNewPassword: React.FC = () => {
     router.replace("/");
   });
 
-  console.log(errors);
-
-  useEffect(() => {
-    eva.replace();
-  }, []);
-
   return (
     <div>
       <form onSubmit={onSubmit}>
-        <PasswordLabel>{t("new_pass_input_label")}</PasswordLabel>
-        <Password>
+        <InputItem>
+          <label>{t("new_pass_input_label")}</label>
           <input
             type={visibility ? "text" : "password"}
             placeholder={t("new_pass_input_placeholder")}
             name="password"
             ref={register({
               required: true,
-              pattern: /(?=.*[a-z])(?=.*[A-Z]).{12,}/,
             })}
           />
           <p onClick={() => setVisibility(!visibility)}>
-            <i
-              data-eva={visibility ? "eye-off-outline" : "eye-outline"}
-              data-eva-fill="#E1E6EA"
-            ></i>
+            <Icon
+              name={visibility ? "eye-off" : "eye"}
+              size="22"
+              color="#E1E6EA"
+            />
           </p>
-        </Password>
+        </InputItem>
+        <PasswordRequirements>{t("msg_invalid_password")}</PasswordRequirements>
         {errors.password && errors.password.type === "required" && (
           <Error>{t("msg_required")}</Error>
         )}
         {errors.password && errors.password.type === "pattern" && (
           <Error>{t("msg_invalid_password")}</Error>
         )}
-        <PasswordRequirements>{t("msg_invalid_password")}</PasswordRequirements>
-        <PasswordLabel>{t("repeat_new_pass_input_label")}</PasswordLabel>
-        <Password>
+        <InputItem>
+          <label>{t("repeat_new_pass_input_label")}</label>
           <input
             type={visibility ? "text" : "password"}
             placeholder={t("repeat_new_pass_input_placeholder")}
             name="password"
             ref={register({
               required: true,
-              pattern: /(?=.*[a-z])(?=.*[A-Z]).{12,}/,
             })}
           />
           <p onClick={() => setVisibility(!visibility)}>
-            <i
-              data-eva={visibility ? "eye-off-outline" : "eye-outline"}
-              data-eva-fill="#E1E6EA"
-            ></i>
+            <Icon
+              name={visibility ? "eye-off" : "eye"}
+              size="22"
+              color="#E1E6EA"
+            />
           </p>
-        </Password>
+        </InputItem>
         {errors.password && errors.password.type === "required" && (
           <Error>{t("msg_required")}</Error>
         )}

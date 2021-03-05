@@ -1,30 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
-import styled from "styled-components";
 import "../i18n";
 import { useTranslation } from "react-i18next";
 import { InputItem } from "../../styles/InputItem";
 import { Button } from "../../styles/Button";
 import { Error } from "../../styles/Error";
-
-const eva = require("eva-icons");
-
-const ForgotPassword = styled.a`
-  color: #afb8bf;
-  font-size: 0.875rem;
-  text-align: center;
-  text-decoration: underline;
-  cursor: pointer;
-  position: relative;
-  width: 200px;
-  text-align: right;
-  top: -10px;
-
-  &:hover {
-    color: #031846;
-  }
-`;
 
 type Formdata = {
   email: string;
@@ -38,12 +19,6 @@ const SendIntructions: React.FC = () => {
     console.log(email);
     router.replace("/password/send-instructions");
   });
-
-  console.log(errors);
-
-  useEffect(() => {
-    eva.replace();
-  }, []);
 
   return (
     <div>

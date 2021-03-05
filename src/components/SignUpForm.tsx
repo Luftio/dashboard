@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
@@ -6,33 +6,30 @@ import "../i18n";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 import { InputItem } from "../../styles/InputItem";
-import { Password, PasswordLabel } from "../../styles/PasswordItem";
 import { Button } from "../../styles/Button";
 import { HaveAccount } from "../../styles/HaveAccount";
 import { Error } from "../../styles/Error";
-
-const eva = require("eva-icons");
+import { Icon } from "ts-react-feather-icons";
 
 const Checkbox = styled.div`
   display: flex;
   align-items: center;
+  margin-bottom: 15px;
 
   > input {
     opacity: 0;
   }
 
   > label {
-    color: #afb8bf;
-    font-size: 0.875rem;
-    font-weight: 400;
-    display: inline-block;
+    color: ${(props) => props.theme.color_secondary};
+    font-size: ${(props) => props.theme.font_size_secondary};
     margin: 0 0 0 15px;
     position: relative;
 
     &::after {
       content: "";
-      border: 1px solid #e1e6ea;
-      border-radius: 2px;
+      border: ${(props) => props.theme.border_primary};
+      border-radius: ${(props) => props.theme.border_radius_checkbox};
       width: 17px;
       height: 17px;
       position: absolute;
@@ -41,12 +38,12 @@ const Checkbox = styled.div`
   }
 
   > a {
-    color: #afb8bf;
-    font-size: 0.875rem;
+    color: ${(props) => props.theme.color_secondary};
+    font-size: ${(props) => props.theme.font_size_secondary};
     text-decoration: underline;
 
     &:hover {
-      color: #031846;
+      color: ${(props) => props.theme.color_brand};
     }
   }
 `;
@@ -68,10 +65,6 @@ const SignUpForm: React.FC = () => {
     console.log(name, surname, email, password, check);
     router.replace("/verify-email");
   });
-
-  useEffect(() => {
-    eva.replace();
-  }, []);
 
   return (
     <div>
@@ -118,8 +111,8 @@ const SignUpForm: React.FC = () => {
         {errors.email && errors.email.type === "pattern" && (
           <Error>{t("msg_invalid_email")}</Error>
         )}
-        <PasswordLabel>{t("pass_input_label")}</PasswordLabel>
-        <Password>
+        <InputItem>
+          <label>{t("pass_input_label")}</label>
           <input
             type={visibility ? "text" : "password"}
             placeholder={t("pass_input_placeholder")}
@@ -130,12 +123,13 @@ const SignUpForm: React.FC = () => {
             })}
           />
           <p onClick={() => setVisibility(!visibility)}>
-            <i
-              data-eva={visibility ? "eye-off-outline" : "eye-outline"}
-              data-eva-fill="#E1E6EA"
-            ></i>
+            <Icon
+              name={visibility ? "eye-off" : "eye"}
+              size="22"
+              color="#E1E6EA"
+            />
           </p>
-        </Password>
+        </InputItem>
         {errors.password && errors.password.type === "required" && (
           <Error>{t("msg_required")}</Error>
         )}

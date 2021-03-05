@@ -65,16 +65,19 @@ const VerifyEmail: React.FC = () => {
           <EmailButtons>
             <EmailButton
               text={t("open_gmail")}
+              altText="Gmail logo"
               imageUrl="/static/gmail.svg"
               href="https://mail.google.com/"
             />
             <EmailButton
               text={t("open_outlook")}
+              altText="Outlook logo"
               imageUrl="/static/outlook.svg"
               href="https://outlook.live.com/mail"
             />
             <EmailButton
               text={t("open_seznam")}
+              altText="Seznam logo"
               imageUrl="/static/seznam.svg"
               href="https://email.seznam.cz/"
             />
