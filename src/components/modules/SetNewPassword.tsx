@@ -1,19 +1,16 @@
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
-import styled from "styled-components";
-import { InputItem } from "../../styles/InputItem";
-import "../i18n";
-import { useTranslation } from "react-i18next";
-import { Button } from "../../styles/Button";
-import { Error } from "../../styles/Error";
-import { Icon } from "ts-react-feather-icons";
+import { useForm } from "react-hook-form";
 
-const PasswordRequirements = styled.p`
-  color: ${(props) => props.theme.color_secondary};
-  font-size: ${(props) => props.theme.font_size_secondary};
-  padding-bottom: 15px;
-`;
+import "../../i18n/i18n";
+import { useTranslation } from "react-i18next";
+
+import { InputItem } from "../elements/InputItem";
+import { Button } from "../elements/Button";
+import { Error } from "../elements/Error";
+import { PasswordRequirements } from "../elements/PasswordRequirements";
+
+import { Icon } from "ts-react-feather-icons";
 
 type Formdata = {
   password: string;
@@ -82,7 +79,9 @@ const SetNewPassword: React.FC = () => {
         {errors.password && errors.password.type === "pattern" && (
           <Error>{t("msg_invalid_password")}</Error>
         )}
-        <Button type="submit">{t("change_password")}</Button>
+        <Button primary type="submit">
+          {t("change_password")}
+        </Button>
       </form>
     </div>
   );

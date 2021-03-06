@@ -1,28 +1,17 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
-import styled from "styled-components";
-import "../i18n";
+
+import "../../i18n/i18n";
 import { useTranslation } from "react-i18next";
-import { InputItem } from "../../styles/InputItem";
-import { Button } from "../../styles/Button";
-import { HaveAccount } from "../../styles/HaveAccount";
-import { Error } from "../../styles/Error";
+
+import { InputItem } from "../elements/InputItem";
+import { Button } from "../elements/Button";
+import { HaveAccount } from "../elements/HaveAccount";
+import { Error } from "../elements/Error";
+import { ForgotPassword } from "../elements/ForgotPassword";
+
 import { Icon } from "ts-react-feather-icons";
-
-const ForgotPassword = styled.a`
-  display: inline-block;
-  color: ${(props) => props.theme.color_secondary};
-  font-size: ${(props) => props.theme.font_size_secondary};
-  text-decoration: underline;
-  cursor: pointer;
-  position: relative;
-  top: -10px;
-
-  &:hover {
-    color: ${(props) => props.theme.color_brand};
-  }
-`;
 
 type Formdata = {
   email: string;
@@ -85,7 +74,9 @@ const SignUpForm: React.FC = () => {
         {errors.password && errors.password.type === "pattern" && (
           <Error>{t("msg_invalid_password")}</Error>
         )}
-        <Button type="submit">{t("sign_in")}</Button>
+        <Button primary type="submit">
+          {t("sign_in")}
+        </Button>
       </form>
       <HaveAccount>
         <p>{t("dont_have_account")}&nbsp;</p>

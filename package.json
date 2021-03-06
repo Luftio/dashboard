@@ -9,18 +9,15 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "export": "npm run build && next export",
-    "prettier": "prettier  --write **/*.{ts,tsx,js}"
+    "export": "npm run build && next export"
   },
   "dependencies": {
     "axios": "^0.21.1",
     "class-transformer": "^0.4.0",
     "class-validator": "^0.13.1",
-    "eva-icons": "^1.1.3",
     "i18next": "^19.9.1",
     "next": "10.0.7",
     "react": "17.0.1",
-    "react-bootstrap": "^1.5.0",
     "react-dom": "17.0.1",
     "react-hook-form": "^6.15.4",
     "react-i18next": "^11.8.8",

@@ -30,7 +30,7 @@ export const InputItem = styled.div`
     position: relative;
 
     &:focus {
-      border: ${(props) => props.theme.color_input_focus};
+      border: ${(props) => props.theme.border_focus};
       box-shadow: ${(props) => props.theme.color_input_box_shadow};
     }
 

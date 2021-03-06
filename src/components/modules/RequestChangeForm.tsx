@@ -1,11 +1,13 @@
 import React from "react";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
-import "../i18n";
+
+import "../../i18n/i18n";
 import { useTranslation } from "react-i18next";
-import { InputItem } from "../../styles/InputItem";
-import { Button } from "../../styles/Button";
-import { Error } from "../../styles/Error";
+
+import { InputItem } from "../elements/InputItem";
+import { Button } from "../elements/Button";
+import { Error } from "../elements/Error";
 
 type Formdata = {
   email: string;
@@ -41,7 +43,9 @@ const SendIntructions: React.FC = () => {
         {errors.email && errors.email.type === "pattern" && (
           <Error>{t("msg_invalid_email")}</Error>
         )}
-        <Button type="submit">{t("send_instruction")}</Button>
+        <Button primary type="submit">
+          {t("send_instruction")}
+        </Button>
       </form>
     </div>
   );

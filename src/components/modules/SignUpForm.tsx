@@ -2,51 +2,16 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
-import "../i18n";
+
+import "../../i18n/i18n";
 import { useTranslation } from "react-i18next";
-import styled from "styled-components";
-import { InputItem } from "../../styles/InputItem";
-import { Button } from "../../styles/Button";
-import { HaveAccount } from "../../styles/HaveAccount";
-import { Error } from "../../styles/Error";
+
+import { InputItem } from "../elements/InputItem";
+import { Button } from "../elements/Button";
+import { HaveAccount } from "../elements/HaveAccount";
+import { Error } from "../elements/Error";
 import { Icon } from "ts-react-feather-icons";
-
-const Checkbox = styled.div`
-  display: flex;
-  align-items: center;
-  margin-bottom: 15px;
-
-  > input {
-    opacity: 0;
-  }
-
-  > label {
-    color: ${(props) => props.theme.color_secondary};
-    font-size: ${(props) => props.theme.font_size_secondary};
-    margin: 0 0 0 15px;
-    position: relative;
-
-    &::after {
-      content: "";
-      border: ${(props) => props.theme.border_primary};
-      border-radius: ${(props) => props.theme.border_radius_checkbox};
-      width: 17px;
-      height: 17px;
-      position: absolute;
-      left: -27px;
-    }
-  }
-
-  > a {
-    color: ${(props) => props.theme.color_secondary};
-    font-size: ${(props) => props.theme.font_size_secondary};
-    text-decoration: underline;
-
-    &:hover {
-      color: ${(props) => props.theme.color_brand};
-    }
-  }
-`;
+import { Checkbox } from "../elements/Checkbox";
 
 type Formdata = {
   name: string;
@@ -150,7 +115,9 @@ const SignUpForm: React.FC = () => {
           </Link>
         </Checkbox>
         {errors.check && <Error>{t("msg_required")}</Error>}
-        <Button type="submit">{t("create_account")}</Button>
+        <Button primary type="submit">
+          {t("create_account")}
+        </Button>
       </form>
       <HaveAccount>
         <p>{t("have_account")}&nbsp;</p>

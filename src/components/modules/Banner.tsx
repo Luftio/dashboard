@@ -1,5 +1,5 @@
-import Image from "next/image";
 import React from "react";
+import Image from "next/image";
 import styled from "styled-components";
 
 const Div = styled.div`
