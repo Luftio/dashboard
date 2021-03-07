@@ -1,0 +1,21 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import Subheading from "./Subheading";
+
+<Meta title="Elements/Subheading" component={Subheading} />
+
+# Subheading
+
+This is a simple subheading that is dispaled under heading in sign in and onboarding process.
+
+export const Component = (args) => <Subheading>{args.text}</Subheading>;
+
+<Canvas>
+  <Story
+    name="Subheading"
+    args={{
+      text: "Join other companies that care about employees and their health.",
+    }}
+  >
+    {Component.bind({})}
+  </Story>
+</Canvas>

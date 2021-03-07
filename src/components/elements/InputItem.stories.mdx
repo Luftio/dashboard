@@ -1,0 +1,27 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import InputItem from "./InputItem";
+
+<Meta title="Elements/InputItem" component={InputItem} />
+
+# Input Item
+
+This is a simple input item that is used in forms.
+
+export const Component = (args) => (
+  <InputItem>
+    <label>{args.text}</label>
+    <input type="text" placeholder={args.placeholder} name="name" />
+  </InputItem>
+);
+
+<Canvas>
+  <Story
+    name="InputItem"
+    args={{
+      text: "Name",
+      placeholder: "John",
+    }}
+  >
+    {Component.bind({})}
+  </Story>
+</Canvas>

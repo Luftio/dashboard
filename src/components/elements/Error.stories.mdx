@@ -1,0 +1,21 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import Error from "./Error";
+
+<Meta title="Elements/Error" component={Error} />
+
+# Error
+
+This is a simple text that is display under a input, if its content don`t match the requirements (e.g. it is required or it has some pattern).
+
+export const Component = (args) => <Error>{args.text}</Error>;
+
+<Canvas>
+  <Story
+    name="Error"
+    args={{
+      text: "I`m an error message.",
+    }}
+  >
+    {Component.bind({})}
+  </Story>
+</Canvas>

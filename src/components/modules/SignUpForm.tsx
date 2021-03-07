@@ -6,12 +6,13 @@ import { useForm } from "react-hook-form";
 import "../../i18n/i18n";
 import { useTranslation } from "react-i18next";
 
-import { InputItem } from "../elements/InputItem";
-import { Button } from "../elements/Button";
-import { HaveAccount } from "../elements/HaveAccount";
-import { Error } from "../elements/Error";
+import InputItem from "../elements/InputItem";
+import Button from "../elements/Button";
+import HaveAccount from "../elements/HaveAccount";
+import Error from "../elements/Error";
+import Checkbox from "../elements/Checkbox";
+
 import { Icon } from "ts-react-feather-icons";
-import { Checkbox } from "../elements/Checkbox";
 
 type Formdata = {
   name: string;

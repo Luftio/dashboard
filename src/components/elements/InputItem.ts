@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const InputItem = styled.div`
+const InputItem = styled.div`
   > label {
     display: flex;
     font-size: ${(props) => props.theme.font_size_secondary};
@@ -52,3 +52,5 @@ export const InputItem = styled.div`
     }
   }
 `;
+
+export default InputItem;

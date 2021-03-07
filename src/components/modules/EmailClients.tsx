@@ -6,7 +6,7 @@ import styled from "styled-components";
 import "../../i18n/i18n";
 import { useTranslation } from "react-i18next";
 
-import { Button } from "../elements/Button";
+import Button from "../elements/Button";
 
 const Div = styled.div`
   display: flex;

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const HaveAccount = styled.div`
+const HaveAccount = styled.div`
   display: flex;
   align-items: center;
   > p {
@@ -18,3 +18,5 @@ export const HaveAccount = styled.div`
     }
   }
 `;
+
+export default HaveAccount;

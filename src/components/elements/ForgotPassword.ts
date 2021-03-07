@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ForgotPassword = styled.a`
+const ForgotPassword = styled.a`
   display: inline-block;
   color: ${(props) => props.theme.color_secondary};
   font-size: ${(props) => props.theme.font_size_secondary};
@@ -13,3 +13,5 @@ export const ForgotPassword = styled.a`
     color: ${(props) => props.theme.color_brand};
   }
 `;
+
+export default ForgotPassword;

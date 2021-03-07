@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-export const Button = styled.button<{ primary?: boolean; email?: boolean }>`
+const Button = styled.button<{ primary?: boolean; email?: boolean }>`
   font-family: inherit;
   border: none;
   cursor: pointer;
@@ -64,3 +64,5 @@ export const Button = styled.button<{ primary?: boolean; email?: boolean }>`
       }
     `}
 `;
+
+export default Button;

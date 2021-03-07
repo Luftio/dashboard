@@ -1,0 +1,21 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import Alert from "./Alert.tsx";
+
+<Meta title="Modules/Alert" component={Alert} />
+
+# Alert
+
+This components is displayed if user have visited exprired link for e.g. instructions for changing password, activation email etc.
+
+export const Component = (args) => <Alert {...args} />;
+
+<Canvas>
+  <Story
+    name="Alert"
+    args={{
+      alertText: "I`m an alert.",
+    }}
+  >
+    {Component.bind({})}
+  </Story>
+</Canvas>

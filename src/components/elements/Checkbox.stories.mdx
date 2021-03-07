@@ -1,0 +1,28 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import Checkbox from "./Checkbox.ts";
+
+<Meta title="Elements/Checkbox" component={Checkbox} />
+
+# Checkbox
+
+This is a simple checkbox that is used in sign up process to ensure that user agrees with our terms of service.
+
+export const Component = (args) => (
+  <Checkbox>
+    <input type="checkbox" />
+    <label>{args.text}&nbsp;</label>
+    <a>{args.link}</a>
+  </Checkbox>
+);
+
+<Canvas>
+  <Story
+    name="Checkbox"
+    args={{
+      text: "I agree with",
+      link: "Terms of service",
+    }}
+  >
+    {Component}
+  </Story>
+</Canvas>

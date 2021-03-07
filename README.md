@@ -18,6 +18,9 @@ $ npm start
 ## Other
 
 ```bash
+# storybook
+$ npm run storybook
+
 # build and export
 $ npm run build && next export
 ```

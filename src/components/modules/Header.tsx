@@ -2,8 +2,8 @@ import React from "react";
 import Image from "next/image";
 import styled from "styled-components";
 
-import { Heading } from "../elements/Heading";
-import { Subheading } from "../elements/Subheading";
+import Heading from "../elements/Heading";
+import Subheading from "../elements/Subheading";
 
 const Div = styled.div`
   margin: 50px 0 40px 0;

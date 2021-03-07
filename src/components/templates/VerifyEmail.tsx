@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import Header from "../modules/Header";
 import EmailClients from "../modules/EmailClients";
 
-const SignIn: React.FC = () => {
+const VerifyEmail: React.FC = () => {
   const { t } = useTranslation();
   return (
     <>
@@ -19,4 +19,4 @@ const SignIn: React.FC = () => {
   );
 };
 
-export default SignIn;
+export default VerifyEmail;

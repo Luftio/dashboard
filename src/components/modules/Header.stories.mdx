@@ -1,0 +1,23 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import Header from "./Header";
+
+<Meta title="Modules/Header" component={Header} />
+
+# Header
+
+Simple header components display on all pages with default layout. It contains our logo, some heading and some subheading.
+
+export const Component = (args) => <Header {...args} />;
+
+<Canvas>
+  <Story
+    name="Header"
+    args={{
+      heading: "Start to improve your work environment!",
+      subheading:
+        "Join other companies that care about employees and their health.",
+    }}
+  >
+    {Component.bind({})}
+  </Story>
+</Canvas>

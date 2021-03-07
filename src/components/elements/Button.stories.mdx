@@ -1,0 +1,46 @@
+import Image from "next/image";
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import Button from "./Button";
+
+<Meta title="Elements/Button" component={Button} />
+
+# Buttons
+
+In our low-level design system, we have currently 3 types of buttons.
+
+1. Default that is used the most through our entire application.
+2. Primary button that is used when submitting forms and to confirm steps in "danger zone".
+3. Email button that is used with email clients".
+
+You can see the examples right under this text.
+
+export const Component = (args) => <Button>{args.text}</Button>;
+export const ComponentButton = (args) => <Button primary>{args.text}</Button>;
+export const ComponentEmail = (args) => <Button email>{args.text}</Button>;
+
+<Canvas>
+  <Story
+    name="Default"
+    args={{
+      text: "I`m default",
+    }}
+  >
+    {Component}
+  </Story>
+  <Story
+    name="Primary"
+    args={{
+      text: "I`m primary",
+    }}
+  >
+    {ComponentButton}
+  </Story>
+  <Story
+    name="Email"
+    args={{
+      text: "I`m email",
+    }}
+  >
+    {ComponentEmail}
+  </Story>
+</Canvas>

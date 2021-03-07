@@ -1,0 +1,22 @@
+import React from "react";
+import * as nextImage from "next/image";
+
+import { ThemeProvider } from "styled-components";
+import GlobalStyle from "../shared/Global";
+import theme from "../config/theme";
+
+Object.defineProperty(nextImage, "default", {
+  configurable: true,
+  value: (props) => {
+    return <img {...props} />;
+  },
+});
+
+export const decorators = [
+  (Story) => (
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <Story />
+    </ThemeProvider>
+  ),
+];

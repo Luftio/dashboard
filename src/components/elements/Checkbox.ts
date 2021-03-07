@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Checkbox = styled.div`
+const Checkbox = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 15px;
@@ -36,3 +36,5 @@ export const Checkbox = styled.div`
     }
   }
 `;
+
+export default Checkbox;

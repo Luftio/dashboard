@@ -1,0 +1,14 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import EmailClients from "./EmailClients.tsx";
+
+<Meta title="Modules/Email Clients" component={EmailClients} />
+
+# Email Clients
+
+We did a research and find that these three email clients are the most used ones in Czech Republic. So when sending an activation email or instructions for changing password, there is a good change that the user can have one from this three.
+
+export const Component = () => <EmailClients />;
+
+<Canvas>
+  <Story name="Email Clients">{Component}</Story>
+</Canvas>

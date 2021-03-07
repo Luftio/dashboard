@@ -1,0 +1,14 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import Default from "./Default.tsx";
+
+<Meta title="Layouts/Default" component={Default} />
+
+# Default layout
+
+This layout is used for entire sign in and onboarding process. It is fully responsive and consist of left side where a content (e.g. a form or header) is displayed. On left side, there is a banner that has smart buildings image (only bigger screens).
+
+export const Component = () => <Default />;
+
+<Canvas>
+  <Story name="Default">{Component}</Story>
+</Canvas>

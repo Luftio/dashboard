@@ -1,0 +1,14 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import RequestChangeForm from "./RequestChangeForm.tsx";
+
+<Meta title="Modules/Request Change Form" component={RequestChangeForm} />
+
+# Request Change Form
+
+If user created an account and then wants to sign in and finds out that he forgets his password, he will then request a change. He must provide us with an email adress, to what we can send this email. If account exists, we will then send an email with link to change his password.
+
+export const Component = () => <RequestChangeForm />;
+
+<Canvas>
+  <Story name="Request Change Form">{Component}</Story>
+</Canvas>

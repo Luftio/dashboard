@@ -5,11 +5,11 @@ import { useForm } from "react-hook-form";
 import "../../i18n/i18n";
 import { useTranslation } from "react-i18next";
 
-import { InputItem } from "../elements/InputItem";
-import { Button } from "../elements/Button";
-import { HaveAccount } from "../elements/HaveAccount";
-import { Error } from "../elements/Error";
-import { ForgotPassword } from "../elements/ForgotPassword";
+import InputItem from "../elements/InputItem";
+import Button from "../elements/Button";
+import HaveAccount from "../elements/HaveAccount";
+import Error from "../elements/Error";
+import ForgotPassword from "../elements/ForgotPassword";
 
 import { Icon } from "ts-react-feather-icons";
 

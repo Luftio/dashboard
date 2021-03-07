@@ -1,0 +1,16 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import SignInForm from "./SignInForm.tsx";
+
+<Meta title="Modules/Sign In Form" component={SignInForm} />
+
+# Sign In Form
+
+This is our Sign In form. User provides the email and password and then he can go right to the dashboard. If user accidentaly forgets his password, he can request change.
+
+If they find out that they don`t have Luftio account already, they can go to Sign Un page.
+
+export const Component = () => <SignInForm />;
+
+<Canvas>
+  <Story name="Sign In Form">{Component}</Story>
+</Canvas>
