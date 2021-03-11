@@ -1,5 +1,6 @@
 import React from "react";
 import * as nextImage from "next/image";
+import { withNextRouter } from "storybook-addon-next-router";
 
 import { ThemeProvider } from "styled-components";
 import GlobalStyle from "../shared/Global";
@@ -20,3 +21,4 @@ export const decorators = [
     </ThemeProvider>
   ),
 ];
+[withNextRouter()];

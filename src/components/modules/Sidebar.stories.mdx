@@ -1,0 +1,19 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import Sidebar from "./Sidebar.tsx";
+
+<Meta title="Modules/Sidebar" component={Sidebar} />
+
+# Sidebar
+
+This is our Sidebar. It has four areas:
+
+1. Menu - place where all inportant pages live. Think of it as a go to part of sidebar.
+1. Account - place where user manages his account.
+1. Others - Mix of thing that doesn't fit into any other area of sidebar
+1. Sign Out - This is more "hidden" becauase it's much lower then other areas and user won't used that often.
+
+export const Component = () => <Sidebar />;
+
+<Canvas>
+  <Story name="Sidebar">{Component}</Story>
+</Canvas>

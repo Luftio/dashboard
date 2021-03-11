@@ -10,13 +10,15 @@ In our low-level design system, we have currently 3 types of buttons.
 
 1. Default that is used the most through our entire application.
 2. Primary button that is used when submitting forms and to confirm steps in "danger zone".
-3. Email button that is used with email clients".
+3. Email button that is used with email clients.
+4. Sign Me back button is used after user signs out (the styling is white so set your backgorund in Storybook to something more dareker to see it properly).
 
 You can see the examples right under this text.
 
 export const Component = (args) => <Button>{args.text}</Button>;
 export const ComponentButton = (args) => <Button primary>{args.text}</Button>;
 export const ComponentEmail = (args) => <Button email>{args.text}</Button>;
+export const ComponentSignMeBack = (args) => <Button signout>{args.text}</Button>;
 
 <Canvas>
   <Story
@@ -42,5 +44,13 @@ export const ComponentEmail = (args) => <Button email>{args.text}</Button>;
     }}
   >
     {ComponentEmail}
+  </Story>
+  <Story
+    name="Sign me back"
+    args={{
+      text: "Sig me back",
+    }}
+  >
+    {ComponentSignMeBack}
   </Story>
 </Canvas>

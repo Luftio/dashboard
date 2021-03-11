@@ -1,0 +1,23 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import ContentBlockItem from "./ContentBlockItem";
+
+<Meta title="Modules/Content Block Item" component={ContentBlockItem} />
+
+# Content block item
+
+It contains subheading, button and text which serves like description. It is building block for more administration pages.
+
+export const Component = (args) => <ContentBlockItem {...args} />;
+
+<Canvas>
+  <Story
+    name="Content Block Item"
+    args={{
+      subheading: "Support via online chat",
+      text: "You need advice as soon as possible? Our customer support is always close to you.",
+      buttonText: "Open Chat",
+    }}
+  >
+    {Component}
+  </Story>
+</Canvas>

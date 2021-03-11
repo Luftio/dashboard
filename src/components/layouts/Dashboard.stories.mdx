@@ -1,0 +1,14 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import Dashboard from "./Dashboard";
+
+<Meta title="Layouts/Dashboard" component={Dashboard} />
+
+# Dashboard layout
+
+This layout is used for dashboard and all the administration enviroment that we provide to our business customers. It consist of the sidebar menu on the left. On the right side, there is always the content of the specif page that you now on.
+
+export const Component = () => <Dashboard />;
+
+<Canvas>
+  <Story name="Dashboard">{Component}</Story>
+</Canvas>

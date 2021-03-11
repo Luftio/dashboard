@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 
 import "../../i18n/i18n";
@@ -20,10 +21,13 @@ type Formdata = {
 
 const SignUpForm: React.FC = () => {
   const { t } = useTranslation<string>();
+  const router = useRouter();
   const [visibility, setVisibility] = useState<boolean>(false);
+
   const { register, handleSubmit, errors } = useForm<Formdata>();
   const onSubmit = handleSubmit(({ email, password }) => {
     console.log(email, password);
+    router.replace("/dashboard");
   });
 
   return (
@@ -41,12 +45,8 @@ const SignUpForm: React.FC = () => {
             })}
           />
         </InputItem>
-        {errors.email && errors.email.type === "required" && (
-          <Error>{t("msg_required")}</Error>
-        )}
-        {errors.email && errors.email.type === "pattern" && (
-          <Error>{t("msg_invalid_email")}</Error>
-        )}
+        {errors.email && errors.email.type === "required" && <Error>{t("msg_required")}</Error>}
+        {errors.email && errors.email.type === "pattern" && <Error>{t("msg_invalid_email")}</Error>}
         <InputItem>
           <label>{t("pass_input_label")}</label>
           <input
@@ -58,11 +58,7 @@ const SignUpForm: React.FC = () => {
             })}
           />
           <p onClick={() => setVisibility(!visibility)}>
-            <Icon
-              name={visibility ? "eye-off" : "eye"}
-              size="22"
-              color="#E1E6EA"
-            />
+            <Icon name={visibility ? "eye-off" : "eye"} size="22" color="#E1E6EA" />
           </p>
         </InputItem>
         <Link href="/password/request-change">

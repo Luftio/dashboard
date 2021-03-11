@@ -5,17 +5,49 @@ import Heading from "./Heading";
 
 # Heading
 
-This is a simple subheading that is dispaled above subheading in sign in and onboarding process.
+We have more types of headings:
+
+1. Simple heading that is dispplayed above subheading in sign in and onboarding process.
+2. Simple heading that is dispaled above sidebar items that are in the same area.
+3. Simple heading of each dashboard page.
+4. Simple heading that is dispaled on after action pages. It is white so turn the background here in Storybook to dark.
 
 export const Component = (args) => <Heading>{args.text}</Heading>;
+export const ComponentSidebarheading = (args) => <Heading sidebar>{args.text}</Heading>;
+export const ComponentDashboardHeading = (args) => <Heading dashboard>{args.text}</Heading>;
+export const ComponentSignMeBack = (args) => <Heading afterAction>{args.text}</Heading>;
 
 <Canvas>
   <Story
-    name="Heading"
+    name="Default"
     args={{
       text: "Start to improve your work environment!",
     }}
   >
     {Component.bind({})}
+  </Story>
+  <Story
+    name="Sidebar"
+    args={{
+      text: "Menu",
+    }}
+  >
+    {ComponentSidebarheading.bind({})}
+  </Story>
+  <Story
+    name="Dashboard"
+    args={{
+      text: "Dashboard",
+    }}
+  >
+    {ComponentDashboardHeading.bind({})}
+  </Story>
+  <Story
+    name="After Action"
+    args={{
+      text: "We will look forward to seeing you again sometime... 👋",
+    }}
+  >
+    {ComponentSignMeBack.bind({})}
   </Story>
 </Canvas>

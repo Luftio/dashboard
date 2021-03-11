@@ -1,0 +1,16 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import AfterAction from "./AfterActions.tsx";
+
+<Meta title="Layouts/AfterAction" component={AfterAction} />
+
+# After action layout
+
+This is a simple layout for our sign out page, where user can also sign back in.
+
+export const Component = () => <AfterAction />;
+export const ComponentAfterDelete = () => <AfterAction afterdelete />;
+
+<Canvas>
+  <Story name="Sign Out">{Component}</Story>
+  <Story name="After Delete">{ComponentAfterDelete}</Story>
+</Canvas>

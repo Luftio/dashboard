@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-const Button = styled.button<{ primary?: boolean; email?: boolean }>`
+const Button = styled.button<{ primary?: boolean; email?: boolean; signout?: boolean }>`
   font-family: inherit;
   border: none;
   cursor: pointer;
@@ -61,6 +61,28 @@ const Button = styled.button<{ primary?: boolean; email?: boolean }>`
       &:active {
         background: ${(props) => props.theme.color_button_active};
         border: ${(props) => props.theme.border_active};
+      }
+    `}
+
+  ${(props) =>
+    props.signout &&
+    css`
+      background: rgba(255, 255, 255, 0.4);
+      border: 2px solid #ffffff;
+      border-radius: ${(props) => props.theme.border_radius_secondary};
+      font-size: ${(props) => props.theme.font_size_primary};
+      color: #ffffff;
+      width: 200px;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transition: all 0.3s linear;
+      }
+
+      &:active {
+        background: ${(props) => props.theme.color_button_active};
+        border: 2px solid #ffffff;
+        background: rgba(255, 255, 255, 0.4);
       }
     `}
 `;

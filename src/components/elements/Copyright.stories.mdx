@@ -1,0 +1,21 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import Copyright from "./Copyright";
+
+<Meta title="Elements/Copyright" component={Copyright} />
+
+# Copyright
+
+This is a simple copyright text on our sign out page. It is white so turn the backhround here in Storybook to dark.
+
+export const Component = (args) => <Copyright>{args.text}</Copyright>;
+
+<Canvas>
+  <Story
+    name="Copyright"
+    args={{
+      text: "Copyright © 2021 Luftio. All rights reserved.",
+    }}
+  >
+    {Component.bind({})}
+  </Story>
+</Canvas>

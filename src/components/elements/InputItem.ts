@@ -15,6 +15,10 @@ const InputItem = styled.div`
     width: 30px;
     display: flex;
     justify-content: center;
+
+    @media only screen and (max-width: 970px) {
+      margin: -47px 0 0 407px;
+    }
   }
 
   > input {

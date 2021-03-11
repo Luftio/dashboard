@@ -1,0 +1,35 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import SidebarItem from "./SidebarItem";
+
+<Meta title="Elements/Sidebar Item" component={SidebarItem} />
+
+# Sidebar Item
+
+This is a simple sidebar item. It has an icon from [feather icons pack](https://feathericons.com/) and a text.
+
+export const Component = (args) => <SidebarItem {...args}></SidebarItem>;
+
+export const ComponentSignOut = (args) => <SidebarItem {...args} type></SidebarItem>;
+
+<Canvas>
+  <Story
+    name="Default"
+    args={{
+      icon: "pie-chart",
+      text: "Dasboard",
+      url: "/dashboard",
+    }}
+  >
+    {Component.bind({})}
+  </Story>
+  <Story
+    name="Sign Out"
+    args={{
+      icon: "log-out",
+      text: "Sign Out",
+      url: "/dashboard",
+    }}
+  >
+    {ComponentSignOut.bind({})}
+  </Story>
+</Canvas>

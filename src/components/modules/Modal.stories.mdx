@@ -1,0 +1,23 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import Modal from "./Modal";
+
+<Meta title="Modules/Modal" component={Modal} />
+
+# Modal
+
+It contains subheading, button and text which serves like description. It is building block for more administration pages.
+
+export const Component = (args) => <Modal showModal={true} {...args} />;
+
+<Canvas>
+  <Story
+    name="Modal"
+    args={{
+      subheading: "Support via online chat",
+      text: "You need advice as soon as possible? Our customer support is always close to you.",
+      buttonText: "Open Chat",
+    }}
+  >
+    {Component}
+  </Story>
+</Canvas>

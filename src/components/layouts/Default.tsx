@@ -75,7 +75,7 @@ const Default: React.FC<Props> = ({ children }) => {
     <>
       <Head>
         <title>{t("title_welcome")}</title>
-        <meta name="description" content={t("title_description")} />
+        <meta name="description" content={t("description_welcome")} />
       </Head>
       <Layout>
         <LeftSide>
@@ -85,7 +85,7 @@ const Default: React.FC<Props> = ({ children }) => {
           <ImageDiv>
             <Image
               src="/static/smart-buildings.svg"
-              alt="Luftio logo"
+              alt="Smart buildings"
               width={404}
               height={542}
             />

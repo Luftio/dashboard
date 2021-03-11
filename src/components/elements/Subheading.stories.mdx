@@ -5,17 +5,39 @@ import Subheading from "./Subheading";
 
 # Subheading
 
-This is a simple subheading that is dispaled under heading in sign in and onboarding process.
+We have more types of subheadings:
+
+1. Simple subheading that is dispaled under heading in sign in and onboarding process.
+2. Simple subheading that is dispaled on after action pages. It is white so turn the background here in Storybook to dark.
+3. Simple heading of each dashboard page.
 
 export const Component = (args) => <Subheading>{args.text}</Subheading>;
+export const ComponentSignOut = (args) => <Subheading afterAction>{args.text}</Subheading>;
+export const ComponentDashboard = (args) => <Subheading dashboard>{args.text}</Subheading>;
 
 <Canvas>
   <Story
-    name="Subheading"
+    name="Default"
     args={{
       text: "Join other companies that care about employees and their health.",
     }}
   >
     {Component.bind({})}
+  </Story>
+  <Story
+    name="After Action"
+    args={{
+      text: "We will look forward to seeing you again sometime... 👋",
+    }}
+  >
+    {ComponentSignOut.bind({})}
+  </Story>
+  <Story
+    name="Dashboard"
+    args={{
+      text: "Dashboard",
+    }}
+  >
+    {ComponentDashboard.bind({})}
   </Story>
 </Canvas>

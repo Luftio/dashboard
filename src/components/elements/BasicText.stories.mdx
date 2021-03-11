@@ -1,0 +1,21 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import BasicText from "./BasicText";
+
+<Meta title="Elements/BasicText" component={BasicText} />
+
+# Basic text
+
+This is a simple basic text used thought out our dashboard.
+
+export const Component = (args) => <BasicText>{args.text}</BasicText>;
+
+<Canvas>
+  <Story
+    name="BasicText"
+    args={{
+      text: "I`m an basic text.",
+    }}
+  >
+    {Component.bind({})}
+  </Story>
+</Canvas>
