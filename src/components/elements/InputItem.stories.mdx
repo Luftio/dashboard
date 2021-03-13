@@ -1,11 +1,15 @@
 import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
 import InputItem from "./InputItem";
 
-<Meta title="Elements/InputItem" component={InputItem} />
+<Meta title="Elements/Input Item" component={InputItem} />
 
 # Input Item
 
-This is a simple input item that is used in forms.
+We have 3 types of inout items:
+
+1. Defaul input item that is used in forms.
+2. Input item when validation fails.
+3. Input item used in the dashboard section.
 
 export const Component = (args) => (
   <InputItem>
@@ -14,14 +18,46 @@ export const Component = (args) => (
   </InputItem>
 );
 
+export const ComponentFail = (args) => (
+  <InputItem fail>
+    <label>{args.text}</label>
+    <input type="text" placeholder={args.placeholder} name="name" />
+  </InputItem>
+);
+
+export const ComponentExpand = (args) => (
+  <InputItem expand>
+    <label>{args.text}</label>
+    <input type="text" placeholder={args.placeholder} name="name" />
+  </InputItem>
+);
+
 <Canvas>
   <Story
-    name="InputItem"
+    name="Default"
     args={{
       text: "Name",
       placeholder: "John",
     }}
   >
     {Component.bind({})}
+  </Story>
+  <Story
+    name="Fail"
+    args={{
+      text: "Name",
+      placeholder: "John",
+    }}
+  >
+    {ComponentFail.bind({})}
+  </Story>
+  <Story
+    name="Expand"
+    args={{
+      text: "First name",
+      placeholder: "John",
+    }}
+  >
+    {ComponentExpand.bind({})}
   </Story>
 </Canvas>

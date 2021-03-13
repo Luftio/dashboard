@@ -25,7 +25,7 @@ const SendIntructions: React.FC = () => {
   return (
     <div>
       <form onSubmit={onSubmit}>
-        <InputItem>
+        <InputItem fail={errors.email && true}>
           <label>{t("email_input_label")}</label>
           <input
             type="text"
@@ -33,16 +33,12 @@ const SendIntructions: React.FC = () => {
             name="email"
             ref={register({
               required: true,
-              pattern: /[^]@[^]/,
+              pattern: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
             })}
           />
         </InputItem>
-        {errors.email && errors.email.type === "required" && (
-          <Error>{t("msg_required")}</Error>
-        )}
-        {errors.email && errors.email.type === "pattern" && (
-          <Error>{t("msg_invalid_email")}</Error>
-        )}
+        {errors.email && errors.email.type === "required" && <Error>{t("msg_required")}</Error>}
+        {errors.email && errors.email.type === "pattern" && <Error>{t("msg_invalid_email")}</Error>}
         <Button primary type="submit">
           {t("send_instruction")}
         </Button>

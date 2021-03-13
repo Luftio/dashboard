@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
 import styled from "styled-components";
 
@@ -14,7 +14,7 @@ const Item = styled.div`
   margin: 0 auto;
   border-bottom: ${(props) => props.theme.divider};
 
-  &:last-child {
+  &:last-of-type {
     border-bottom: none;
   }
 `;
@@ -30,41 +30,35 @@ const TopRow = styled.div`
 interface Props {
   subheading: string;
   buttonText: string;
-  text: string;
+  text?: string;
   url: string;
   target?: string;
   link?: boolean;
-  onClick: React.MouseEventHandler<HTMLButtonElement>;
+  opacity?: false | "0";
+  cursor?: false | "none";
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-const ContentBlock: React.FC<Props> = ({
-  subheading,
-  buttonText,
-  text,
-  url,
-  target,
-  link,
-  onClick,
-}) => {
+const ContentBlockItem: React.FC<Props> = ({ subheading, buttonText, text, url, target, link, opacity, cursor, onClick }) => {
   return (
-    <>
-      <Item>
-        <TopRow>
-          <Subheading dashboard>{subheading}</Subheading>
-          {link ? (
-            <Link href={url}>
-              <a target={target}>
-                <Button onClick={onClick}>{buttonText}</Button>
-              </a>
-            </Link>
-          ) : (
-            <Button onClick={onClick}>{buttonText}</Button>
-          )}
-        </TopRow>
-        <BasicText>{text}</BasicText>
-      </Item>
-    </>
+    <Item>
+      <TopRow>
+        <Subheading dashboard>{subheading}</Subheading>
+        {link ? (
+          <Link href={url}>
+            <a target={target}>
+              <Button onClick={onClick}>{buttonText}</Button>
+            </a>
+          </Link>
+        ) : (
+          <Button opacity={opacity} cursor={cursor} onClick={onClick}>
+            {buttonText}
+          </Button>
+        )}
+      </TopRow>
+      <BasicText>{text}</BasicText>
+    </Item>
   );
 };
 
-export default ContentBlock;
+export default ContentBlockItem;

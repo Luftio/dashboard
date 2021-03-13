@@ -33,7 +33,7 @@ const SignUpForm: React.FC = () => {
   return (
     <div>
       <form onSubmit={onSubmit}>
-        <InputItem>
+        <InputItem fail={errors.email && true}>
           <label>{t("email_input_label")}</label>
           <input
             type="text"
@@ -41,13 +41,13 @@ const SignUpForm: React.FC = () => {
             name="email"
             ref={register({
               required: true,
-              pattern: /[^]@[^]/,
+              pattern: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
             })}
           />
         </InputItem>
         {errors.email && errors.email.type === "required" && <Error>{t("msg_required")}</Error>}
         {errors.email && errors.email.type === "pattern" && <Error>{t("msg_invalid_email")}</Error>}
-        <InputItem>
+        <InputItem fail={errors.password && true}>
           <label>{t("pass_input_label")}</label>
           <input
             type={visibility ? "text" : "password"}
@@ -64,12 +64,7 @@ const SignUpForm: React.FC = () => {
         <Link href="/password/request-change">
           <ForgotPassword>{t("forgot_password")}</ForgotPassword>
         </Link>
-        {errors.password && errors.password.type === "required" && (
-          <Error>{t("msg_required")}</Error>
-        )}
-        {errors.password && errors.password.type === "pattern" && (
-          <Error>{t("msg_invalid_password")}</Error>
-        )}
+        {errors.password && errors.password.type === "required" && <Error>{t("msg_required")}</Error>}
         <Button primary type="submit">
           {t("sign_in")}
         </Button>

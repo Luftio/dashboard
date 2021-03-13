@@ -2,7 +2,7 @@ import React from "react";
 import AfterAction from "../components/layouts/AfterActions";
 import DeletedAccount from "../components/templates/DeletedAccount";
 
-const SignOutPage: React.FC = () => {
+const AfterDeletePage: React.FC = () => {
   return (
     <AfterAction afterdelete>
       <DeletedAccount />
@@ -10,4 +10,4 @@ const SignOutPage: React.FC = () => {
   );
 };
 
-export default SignOutPage;
+export default AfterDeletePage;

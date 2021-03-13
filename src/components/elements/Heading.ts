@@ -27,7 +27,7 @@ const Heading = styled.h1<{ sidebar?: boolean; afterAction?: boolean; dashboard?
     ${(props) =>
     props.dashboard &&
     css`
-      margin: 0 0 30px 0;
+      margin: 40px 0 30px 0;
       width: 100%;
     `}
 `;

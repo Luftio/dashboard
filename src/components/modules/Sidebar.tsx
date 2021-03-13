@@ -38,26 +38,26 @@ const Dashboard: React.FC = ({}) => {
         text={t("sidebar_menu_item_1")}
       ></SidebarItem>
       <SidebarItem
-        url="/dashboard"
+        url="/events"
         active={router.pathname === "/events" && "active"}
         icon="bell"
         text={t("sidebar_menu_item_2")}
       ></SidebarItem>
       <SidebarItem
-        url="/dashboard"
-        active={router.pathname === "/suggestions" && "active"}
+        url="/feedback"
+        active={router.pathname === "/feedback" && "active"}
         icon="file"
         text={t("sidebar_menu_item_3")}
       ></SidebarItem>
       <SidebarItem
-        url="/dashboard"
+        url="//feedback"
         active={router.pathname === "/feedback" && "active"}
         icon="archive"
         text={t("sidebar_menu_item_4")}
       ></SidebarItem>
       <Heading sidebar>{t("sidebar_account_heading")}</Heading>
       <SidebarItem
-        url="/dashboard"
+        url="/profile"
         active={router.pathname === "/profile" && "active"}
         icon="user"
         text={t("sidebar_account_item_1")}

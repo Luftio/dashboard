@@ -1,6 +1,7 @@
 import React from "react";
 import * as nextImage from "next/image";
 import { withNextRouter } from "storybook-addon-next-router";
+import { addDecorator } from "@storybook/react";
 
 import { ThemeProvider } from "styled-components";
 import GlobalStyle from "../shared/Global";
@@ -21,4 +22,12 @@ export const decorators = [
     </ThemeProvider>
   ),
 ];
-[withNextRouter()];
+
+addDecorator(
+  withNextRouter({
+    path: "/",
+    asPath: "/",
+    query: {},
+    push() {},
+  }),
+);

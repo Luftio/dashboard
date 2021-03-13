@@ -35,31 +35,17 @@ const SignUpForm: React.FC = () => {
   return (
     <div>
       <form onSubmit={onSubmit}>
-        <InputItem>
+        <InputItem fail={errors.name && true}>
           <label>{t("name_input_label")}</label>
-          <input
-            type="text"
-            placeholder={t("name_input_placeholder")}
-            name="name"
-            ref={register({ required: true })}
-          />
+          <input type="text" placeholder={t("name_input_placeholder")} name="name" ref={register({ required: true })} />
         </InputItem>
-        {errors.name && errors.name.type === "required" && (
-          <Error>{t("msg_required")}</Error>
-        )}
-        <InputItem>
+        {errors.name && errors.name.type === "required" && <Error>{t("msg_required")}</Error>}
+        <InputItem fail={errors.surname && true}>
           <label>{t("surname_input_label")}</label>
-          <input
-            type="text"
-            placeholder={t("surname_input_placeholder")}
-            name="surname"
-            ref={register({ required: true })}
-          />
+          <input type="text" placeholder={t("surname_input_placeholder")} name="surname" ref={register({ required: true })} />
         </InputItem>
-        {errors.surname && errors.surname.type === "required" && (
-          <Error>{t("msg_required")}</Error>
-        )}
-        <InputItem>
+        {errors.surname && errors.surname.type === "required" && <Error>{t("msg_required")}</Error>}
+        <InputItem fail={errors.email && true}>
           <label>{t("email_input_label")}</label>
           <input
             type="text"
@@ -67,17 +53,13 @@ const SignUpForm: React.FC = () => {
             name="email"
             ref={register({
               required: true,
-              pattern: /[^]@[^]/,
+              pattern: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
             })}
           />
         </InputItem>
-        {errors.email && errors.email.type === "required" && (
-          <Error>{t("msg_required")}</Error>
-        )}
-        {errors.email && errors.email.type === "pattern" && (
-          <Error>{t("msg_invalid_email")}</Error>
-        )}
-        <InputItem>
+        {errors.email && errors.email.type === "required" && <Error>{t("msg_required")}</Error>}
+        {errors.email && errors.email.type === "pattern" && <Error>{t("msg_invalid_email")}</Error>}
+        <InputItem fail={errors.password && true}>
           <label>{t("pass_input_label")}</label>
           <input
             type={visibility ? "text" : "password"}
@@ -89,19 +71,11 @@ const SignUpForm: React.FC = () => {
             })}
           />
           <p onClick={() => setVisibility(!visibility)}>
-            <Icon
-              name={visibility ? "eye-off" : "eye"}
-              size="22"
-              color="#E1E6EA"
-            />
+            <Icon name={visibility ? "eye-off" : "eye"} size="22" color="#E1E6EA" />
           </p>
         </InputItem>
-        {errors.password && errors.password.type === "required" && (
-          <Error>{t("msg_required")}</Error>
-        )}
-        {errors.password && errors.password.type === "pattern" && (
-          <Error>{t("msg_invalid_password")}</Error>
-        )}
+        {errors.password && errors.password.type === "required" && <Error>{t("msg_required")}</Error>}
+        {errors.password && errors.password.type === "pattern" && <Error>{t("msg_invalid_password")}</Error>}
         <Checkbox>
           <input
             type="checkbox"
@@ -111,7 +85,7 @@ const SignUpForm: React.FC = () => {
             })}
           />
           <label>{t("agree_with")}&nbsp;</label>
-          <Link href="https://luftio.cz/zasady-ochrany-osobnich-udaju/">
+          <Link href={t("terms_url")}>
             <a target="_blank">{t("terms")}</a>
           </Link>
         </Checkbox>

@@ -1,9 +1,20 @@
+import React from "react";
 import { AppProps } from "next/app";
 import Head from "next/head";
 import { ThemeProvider } from "styled-components";
+import * as Sentry from "@sentry/react";
+import { Integrations } from "@sentry/tracing";
 
 import GlobalStyle from "../../shared/Global";
 import theme from "../../config/theme";
+
+Sentry.init({
+  dsn: "https://cad8d186d4894cefa24e91776672611c@o550006.ingest.sentry.io/5673158",
+  integrations: [new Integrations.BrowserTracing()],
+  tracesSampleRate: 1.0,
+  release: "luftio-dashboard@" + process.env.npm_package_version,
+  environment: "production",
+});
 
 const App = ({ Component, pageProps }: AppProps) => (
   <>
@@ -20,18 +31,12 @@ const App = ({ Component, pageProps }: AppProps) => (
       <meta property="og:url" content="https://app.luftio.com/" />
       <meta property="og:title" content="Lorem ipsum" />
       <meta property="og:description" content="Lorem ipsum" />
-      <meta
-        property="og:image"
-        content="SEM PAK DÁMEE NĚJAKOU HEZKOU GRAFIKU"
-      />
+      <meta property="og:image" content="SEM PAK DÁMEE NĚJAKOU HEZKOU GRAFIKU" />
       <meta property="twitter:card" content="summary_large_image" />
       <meta property="twitter:url" content="https://app.luftio.com" />
       <meta property="twitter:title" content="Lorem ipsum" />
       <meta property="twitter:description" content="Lorem ipsum" />
-      <meta
-        property="twitter:image"
-        content="SEM PAK DÁMEE NĚJAKOU HEZKOU GRAFIKU"
-      ></meta>
+      <meta property="twitter:image" content="SEM PAK DÁMEE NĚJAKOU HEZKOU GRAFIKU"></meta>
     </Head>
     <ThemeProvider theme={theme}>
       <GlobalStyle />

@@ -25,6 +25,12 @@ const Item = styled.a<{ signout?: boolean; active?: false | "active" }>`
     }
   }
 
+  @media only screen and (max-width: 900px) {
+    span {
+      display: none;
+    }
+  }
+
   ${(props) =>
     props.signout &&
     css`

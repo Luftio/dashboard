@@ -1,0 +1,22 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import DeviceCard from "./DeviceCard";
+
+<Meta title="Modules/Device card" component={DeviceCard} />
+
+# Device card
+
+This is a card for each device that user owns. he can changle only the name, not the pairing code.
+
+export const Component = (args) => <DeviceCard {...args} />;
+
+<Canvas>
+  <Story
+    name="Device card"
+    args={{
+      name: "Meeting room",
+      label: "L0135C1L",
+    }}
+  >
+    {Component}
+  </Story>
+</Canvas>

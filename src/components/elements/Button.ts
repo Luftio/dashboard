@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-const Button = styled.button<{ primary?: boolean; email?: boolean; signout?: boolean }>`
+const Button = styled.button<{ primary?: boolean; email?: boolean; signout?: boolean; opacity?: false | string; savechanges?: boolean; background?: string | false | undefined; cursor?: string | false | undefined }>`
   font-family: inherit;
   border: none;
   cursor: pointer;
@@ -11,9 +11,12 @@ const Button = styled.button<{ primary?: boolean; email?: boolean; signout?: boo
   font-size: ${(props) => props.theme.font_size_secondary};
   color: ${(props) => props.theme.color_secondary};
   padding: 10px 25px;
+  opacity: ${(props) => props.opacity || 1};
+  pointer-events: ${(props) => props.cursor};
 
   &:hover {
     background: ${(props) => props.theme.color_button_hover};
+    pointer-events: ${(props) => props.cursor};
   }
 
   &:active {
@@ -31,6 +34,7 @@ const Button = styled.button<{ primary?: boolean; email?: boolean; signout?: boo
       height: 45px;
       margin-top: 30px;
       color: #fff;
+      border: none;
 
       &:hover {
         background: ${(props) => props.theme.color_brand_hover};
@@ -38,6 +42,7 @@ const Button = styled.button<{ primary?: boolean; email?: boolean; signout?: boo
 
       &:active {
         background: ${(props) => props.theme.color_brand};
+        border: none;
       }
 
       @media only screen and (max-width: 970px) {
@@ -83,6 +88,28 @@ const Button = styled.button<{ primary?: boolean; email?: boolean; signout?: boo
         background: ${(props) => props.theme.color_button_active};
         border: 2px solid #ffffff;
         background: rgba(255, 255, 255, 0.4);
+      }
+    `}
+
+    ${(props) =>
+    props.savechanges &&
+    css`
+      background-color: ${(props) => props.theme.color_brand};
+      background: ${(props) => props.background};
+      pointer-events: ${(props) => props.cursor};
+      color: #fff;
+      margin-right: 20px;
+      border: none;
+
+      &:hover {
+        background-color: ${(props) => props.theme.color_brand_hover};
+        background: ${(props) => props.background};
+        pointer-events: ${(props) => props.cursor};
+      }
+
+      &:active {
+        background: ${(props) => props.theme.color_brand};
+        border: none;
       }
     `}
 `;

@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-const InputItem = styled.div`
+const InputItem = styled.div<{ expand?: boolean; profile?: boolean; fail?: boolean; device?: boolean }>`
   > label {
     display: flex;
     font-size: ${(props) => props.theme.font_size_secondary};
@@ -55,6 +55,67 @@ const InputItem = styled.div`
       width: 450px;
     }
   }
+
+  ${(props) =>
+    props.expand &&
+    css`
+      display: flex;
+      align-items: center;
+
+      > label {
+        padding-bottom: 8px;
+        width: 125px;
+      }
+
+      > input {
+        height: 35px;
+        margin: 0px 0 10px 0;
+      }
+    `}
+
+  ${(props) =>
+    props.profile &&
+    css`
+      display: flex;
+      align-items: center;
+
+      > label {
+        padding-bottom: 8px;
+        width: 125px;
+      }
+
+      > input {
+        height: 35px;
+        margin: 0px 0 10px 0;
+        border: 1px solid transparent;
+        pointer-events: none;
+      }
+    `}
+
+    ${(props) =>
+    props.fail &&
+    css`
+      > label {
+        color: ${(props) => props.theme.color_fail};
+      }
+      > input {
+        border: 1px solid ${(props) => props.theme.color_fail};
+
+        &:focus {
+          border: 1px solid ${(props) => props.theme.color_fail};
+          box-shadow: none;
+        }
+      }
+    `}
+
+    ${(props) =>
+    props.device &&
+    css`
+      > input {
+        width: 175px;
+        height: 35px;
+      }
+    `}
 `;
 
 export default InputItem;

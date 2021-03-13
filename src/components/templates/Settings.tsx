@@ -10,8 +10,9 @@ import ContentBlockItem from "../modules/ContentBlockItem";
 import Modal from "../modules/Modal";
 
 const Div = styled.div`
-  margin: 40px 0 0 5%;
+  margin: 0 0 0 5%;
   width: 100%;
+  overflow: scroll;
 `;
 
 const Block = styled.div`
@@ -40,22 +41,10 @@ const Settings: React.FC = () => {
       <Div>
         <Heading dashboard>{t("settings_page_heading")}</Heading>
         <Block>
-          <ContentBlockItem
-            subheading={t("settings_delete_subheading")}
-            buttonText={t("settings_delete_button_text")}
-            text={t("settings_delete_text")}
-            url=""
-            onClick={openModal}
-          />
+          <ContentBlockItem subheading={t("settings_delete_subheading")} buttonText={t("settings_delete_button_text")} text={t("settings_delete_text")} url="" onClick={openModal} />
         </Block>
       </Div>
-      <Modal
-        showModal={showModal}
-        setShowModal={setShowModal}
-        subheading={t("modal_subheading")}
-        text={t("modal_text")}
-        buttonText={t("modal_button_text")}
-      />
+      <Modal showModal={showModal} setShowModal={setShowModal} subheading={t("modal_subheading")} text={t("modal_text")} buttonText={t("modal_button_text")} />
     </>
   );
 };

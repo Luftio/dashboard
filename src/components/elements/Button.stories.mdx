@@ -6,12 +6,13 @@ import Button from "./Button";
 
 # Buttons
 
-In our low-level design system, we have currently 3 types of buttons.
+In our low-level design system, we have currently 4 types of buttons.
 
 1. Default that is used the most through our entire application.
 2. Primary button that is used when submitting forms and to confirm steps in "danger zone".
 3. Email button that is used with email clients.
 4. Sign Me back button is used after user signs out (the styling is white so set your backgorund in Storybook to something more dareker to see it properly).
+5. Save changes button that is used in forms that are in the dashboard section.
 
 You can see the examples right under this text.
 
@@ -19,6 +20,7 @@ export const Component = (args) => <Button>{args.text}</Button>;
 export const ComponentButton = (args) => <Button primary>{args.text}</Button>;
 export const ComponentEmail = (args) => <Button email>{args.text}</Button>;
 export const ComponentSignMeBack = (args) => <Button signout>{args.text}</Button>;
+export const ComponentSaveChanges = (args) => <Button savechanges>{args.text}</Button>;
 
 <Canvas>
   <Story
@@ -52,5 +54,13 @@ export const ComponentSignMeBack = (args) => <Button signout>{args.text}</Button
     }}
   >
     {ComponentSignMeBack}
+  </Story>
+  <Story
+    name="Save changes"
+    args={{
+      text: "Save changes",
+    }}
+  >
+    {ComponentSaveChanges}
   </Story>
 </Canvas>

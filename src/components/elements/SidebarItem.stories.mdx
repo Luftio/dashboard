@@ -1,7 +1,8 @@
 import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
 import SidebarItem from "./SidebarItem";
+import { withNextRouter } from "storybook-addon-next-router";
 
-<Meta title="Elements/Sidebar Item" component={SidebarItem} />
+<Meta title="Elements/Sidebar Item" component={SidebarItem} decorators={[withNextRouter]} />
 
 # Sidebar Item
 
@@ -11,6 +12,15 @@ export const Component = (args) => <SidebarItem {...args}></SidebarItem>;
 
 export const ComponentSignOut = (args) => <SidebarItem {...args} type></SidebarItem>;
 
+Component.story = {
+parameters: {
+nextRouter: {
+path: '/dashboard',
+asPath: '/dashboard',
+},
+},
+};
+
 <Canvas>
   <Story
     name="Default"
@@ -19,6 +29,7 @@ export const ComponentSignOut = (args) => <SidebarItem {...args} type></SidebarI
       text: "Dasboard",
       url: "/dashboard",
     }}
+    decorators={[withNextRouter]}
   >
     {Component.bind({})}
   </Story>
@@ -29,6 +40,7 @@ export const ComponentSignOut = (args) => <SidebarItem {...args} type></SidebarI
       text: "Sign Out",
       url: "/dashboard",
     }}
+    decorators={[withNextRouter]}
   >
     {ComponentSignOut.bind({})}
   </Story>

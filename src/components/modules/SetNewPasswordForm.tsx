@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 
@@ -8,7 +8,6 @@ import { useTranslation } from "react-i18next";
 import InputItem from "../elements/InputItem";
 import Button from "../elements/Button";
 import Error from "../elements/Error";
-import PasswordRequirements from "../elements/PasswordRequirements";
 
 import { Icon } from "ts-react-feather-icons";
 
@@ -21,16 +20,19 @@ const SetNewPassword: React.FC = () => {
   const { t } = useTranslation<string>();
   const router = useRouter();
   const [visibility, setVisibility] = useState<boolean>(false);
-  const { register, handleSubmit, errors } = useForm<Formdata>();
+  const { register, handleSubmit, errors, watch } = useForm<Formdata>();
   const onSubmit = handleSubmit(({ password, repeat }) => {
     console.log(password, repeat);
     router.replace("/");
   });
 
+  const password = useRef({});
+  password.current = watch("password", "");
+
   return (
     <div>
       <form onSubmit={onSubmit}>
-        <InputItem>
+        <InputItem fail={errors.password && true}>
           <label>{t("new_pass_input_label")}</label>
           <input
             type={visibility ? "text" : "password"}
@@ -38,47 +40,32 @@ const SetNewPassword: React.FC = () => {
             name="password"
             ref={register({
               required: true,
+              pattern: /(?=.*[a-z])(?=.*[A-Z]).{12,}/,
             })}
           />
           <p onClick={() => setVisibility(!visibility)}>
-            <Icon
-              name={visibility ? "eye-off" : "eye"}
-              size="22"
-              color="#E1E6EA"
-            />
+            <Icon name={visibility ? "eye-off" : "eye"} size="22" color="#E1E6EA" />
           </p>
         </InputItem>
-        <PasswordRequirements>{t("msg_invalid_password")}</PasswordRequirements>
-        {errors.password && errors.password.type === "required" && (
-          <Error>{t("msg_required")}</Error>
-        )}
-        {errors.password && errors.password.type === "pattern" && (
-          <Error>{t("msg_invalid_password")}</Error>
-        )}
-        <InputItem>
+        {errors.password && errors.password.type === "required" && <Error>{t("msg_required")}</Error>}
+        {errors.password && errors.password.type === "pattern" && <Error>{t("msg_invalid_password")}</Error>}
+        <InputItem fail={errors.repeat && true}>
           <label>{t("repeat_new_pass_input_label")}</label>
           <input
             type={visibility ? "text" : "password"}
             placeholder={t("repeat_new_pass_input_placeholder")}
-            name="password"
+            name="repeat"
             ref={register({
               required: true,
+              validate: (value) => value === password.current,
             })}
           />
           <p onClick={() => setVisibility(!visibility)}>
-            <Icon
-              name={visibility ? "eye-off" : "eye"}
-              size="22"
-              color="#E1E6EA"
-            />
+            <Icon name={visibility ? "eye-off" : "eye"} size="22" color="#E1E6EA" />
           </p>
         </InputItem>
-        {errors.password && errors.password.type === "required" && (
-          <Error>{t("msg_required")}</Error>
-        )}
-        {errors.password && errors.password.type === "pattern" && (
-          <Error>{t("msg_invalid_password")}</Error>
-        )}
+        {errors.repeat && errors.repeat.type === "required" && <Error>{t("msg_required")}</Error>}
+        {errors.repeat && errors.repeat.type === "validate" && <Error>{t("msg_passwords_not_match")}</Error>}
         <Button primary type="submit">
           {t("change_password")}
         </Button>
