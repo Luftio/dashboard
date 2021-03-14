@@ -7,10 +7,16 @@ const ForgotPassword = styled.a`
   text-decoration: underline;
   cursor: pointer;
   position: relative;
-  top: -10px;
+  left: 280px;
+  top: -8px;
 
   &:hover {
     color: ${(props) => props.theme.color_brand};
+    transition: ${(props) => props.theme.transition_primary};
+  }
+
+  @media only screen and (max-width: 970px) {
+    left: 330px;
   }
 `;
 

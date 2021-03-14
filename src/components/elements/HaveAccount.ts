@@ -15,6 +15,7 @@ const HaveAccount = styled.div`
     color: ${(props) => props.theme.color_secondary};
     &:hover {
       color: ${(props) => props.theme.color_brand};
+      transition: ${(props) => props.theme.transition_primary};
     }
   }
 `;

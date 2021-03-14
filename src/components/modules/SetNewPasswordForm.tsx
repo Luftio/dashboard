@@ -20,6 +20,8 @@ const SetNewPassword: React.FC = () => {
   const { t } = useTranslation<string>();
   const router = useRouter();
   const [visibility, setVisibility] = useState<boolean>(false);
+  const [visibilityRepeat, setVisibilityRepeat] = useState<boolean>(false);
+
   const { register, handleSubmit, errors, watch } = useForm<Formdata>();
   const onSubmit = handleSubmit(({ password, repeat }) => {
     console.log(password, repeat);
@@ -52,7 +54,7 @@ const SetNewPassword: React.FC = () => {
         <InputItem fail={errors.repeat && true}>
           <label>{t("repeat_new_pass_input_label")}</label>
           <input
-            type={visibility ? "text" : "password"}
+            type={visibilityRepeat ? "text" : "password"}
             placeholder={t("repeat_new_pass_input_placeholder")}
             name="repeat"
             ref={register({
@@ -60,8 +62,8 @@ const SetNewPassword: React.FC = () => {
               validate: (value) => value === password.current,
             })}
           />
-          <p onClick={() => setVisibility(!visibility)}>
-            <Icon name={visibility ? "eye-off" : "eye"} size="22" color="#E1E6EA" />
+          <p onClick={() => setVisibilityRepeat(!visibilityRepeat)}>
+            <Icon name={visibilityRepeat ? "eye-off" : "eye"} size="22" color="#E1E6EA" />
           </p>
         </InputItem>
         {errors.repeat && errors.repeat.type === "required" && <Error>{t("msg_required")}</Error>}

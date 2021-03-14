@@ -31,50 +31,15 @@ const Dashboard: React.FC = ({}) => {
         <Image src="/static/logo.svg" alt="Luftio logo" width={120} height={45} />
       </Logo>
       <Heading sidebar>{t("sidebar_menu_heading")}</Heading>
-      <SidebarItem
-        url="/dashboard"
-        active={router.pathname === "/dashboard" && "active"}
-        icon="pie-chart"
-        text={t("sidebar_menu_item_1")}
-      ></SidebarItem>
-      <SidebarItem
-        url="/events"
-        active={router.pathname === "/events" && "active"}
-        icon="bell"
-        text={t("sidebar_menu_item_2")}
-      ></SidebarItem>
-      <SidebarItem
-        url="/feedback"
-        active={router.pathname === "/feedback" && "active"}
-        icon="file"
-        text={t("sidebar_menu_item_3")}
-      ></SidebarItem>
-      <SidebarItem
-        url="//feedback"
-        active={router.pathname === "/feedback" && "active"}
-        icon="archive"
-        text={t("sidebar_menu_item_4")}
-      ></SidebarItem>
+      <SidebarItem url="/dashboard" active={router.pathname === "/dashboard" && "active"} icon="pie-chart" text={t("sidebar_menu_item_1")}></SidebarItem>
+      <SidebarItem url="/events" active={router.pathname === "/events" && "active"} icon="bell" text={t("sidebar_menu_item_2")}></SidebarItem>
+      <SidebarItem url="/suggestions" active={router.pathname === "/suggestions" && "active"} icon="file" text={t("sidebar_menu_item_3")}></SidebarItem>
+      <SidebarItem url="/feedback" active={router.pathname === "/feedback" && "active"} icon="archive" text={t("sidebar_menu_item_4")}></SidebarItem>
       <Heading sidebar>{t("sidebar_account_heading")}</Heading>
-      <SidebarItem
-        url="/profile"
-        active={router.pathname === "/profile" && "active"}
-        icon="user"
-        text={t("sidebar_account_item_1")}
-      ></SidebarItem>
+      <SidebarItem url="/profile" active={router.pathname === "/profile" && "active"} icon="user" text={t("sidebar_account_item_1")}></SidebarItem>
       <Heading sidebar>{t("sidebar_other_heading")}</Heading>
-      <SidebarItem
-        url="/settings"
-        active={router.pathname === "/settings" && "active"}
-        icon="settings"
-        text={t("sidebar_other_item_1")}
-      ></SidebarItem>
-      <SidebarItem
-        url="/support"
-        active={router.pathname === "/support" && "active"}
-        icon="info"
-        text={t("sidebar_other_item_2")}
-      ></SidebarItem>
+      <SidebarItem url="/settings" active={router.pathname === "/settings" && "active"} icon="settings" text={t("sidebar_other_item_1")}></SidebarItem>
+      <SidebarItem url="/support" active={router.pathname === "/support" && "active"} icon="info" text={t("sidebar_other_item_2")}></SidebarItem>
       <SidebarItem url="/sign-out" type icon="log-out" text={t("sidebar_sign_out")}></SidebarItem>
     </Sidebar>
   );

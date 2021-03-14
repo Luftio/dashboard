@@ -13,6 +13,10 @@
   "description_settings_page": "Luftio je komplexní systém monitorování kvality vzduchu, který pomáhám firmám zvýšit produktivitu zaměstnanců a zlepšit zdravotní podmínky na pracovišti.",
   "title_prfile_page": "Profil",
   "description_profile_page": "Luftio je komplexní systém monitorování kvality vzduchu, který pomáhám firmám zvýšit produktivitu zaměstnanců a zlepšit zdravotní podmínky na pracovišti.",
+  "title_feedback_page": "Zpětná vazba | Luftio",
+  "description_feedback_page": "Luftio je komplexní systém monitorování kvality vzduchu, který pomáhám firmám zvýšit produktivitu zaměstnanců a zlepšit zdravotní podmínky na pracovišti.",
+  "title_suggestions_page": "Doporučení | Luftio",
+  "description_suggestions_page": "Luftio je komplexní systém monitorování kvality vzduchu, který pomáhám firmám zvýšit produktivitu zaměstnanců a zlepšit zdravotní podmínky na pracovišti.",
   "sign_up_heading": "Začnete zlepšovat pracovní prostředí!",
   "sign_up_subheading": "Připojte se k dalším firmám, kterým záleží na zaměstnancích a jejich zdraví.",
   "sign_in_heading": "Vítejte zpět!",
@@ -92,7 +96,7 @@
   "profile_change_password_text": "Heslo musí obsahovat alespoň 12 znaků, malé a jedno velké pismeno.",
   "profile_change_password_button_text": "Změnit",
   "profile_devices_subheading": "Seznam zařízení",
-  "profile_devices_text": "V této sekci naleznete všechna zařízení, která zpravujete",
+  "profile_devices_text": "V této sekci naleznete všechna zařízení, která zpravujete. Každá karta obsahuje jméno a párovací kód.",
   "profile_devices_button_text": "Upravit",
   "profile_expand_password_current": "Aktuální:",
   "profile_expand_password_current_placeholder": "Aktuální heslo",
@@ -106,5 +110,9 @@
   "profile_edit_button_text": "Upravit",
   "profile_expand_name": "Jméno:",
   "profile_expand_surname": "Příjmení:",
-  "profile_expand_email": "E-mail:"
+  "profile_expand_email": "E-mail:",
+  "feedback_page_heading": "Zpětná vazba",
+  "feedback_page_empty_state": "Zatím jste nedostali žádný feedback",
+  "suggestions_page_heading": "Doporučení",
+  "suggestions_page_empty_state": "Zatím jste nedostali žádná doporučení"
 }

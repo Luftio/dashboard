@@ -17,6 +17,7 @@ const Button = styled.button<{ primary?: boolean; email?: boolean; signout?: boo
   &:hover {
     background: ${(props) => props.theme.color_button_hover};
     pointer-events: ${(props) => props.cursor};
+    transition: ${(props) => props.theme.transition_primary};
   }
 
   &:active {
@@ -38,6 +39,7 @@ const Button = styled.button<{ primary?: boolean; email?: boolean; signout?: boo
 
       &:hover {
         background: ${(props) => props.theme.color_brand_hover};
+        transition: ${(props) => props.theme.transition_primary};
       }
 
       &:active {
@@ -61,6 +63,7 @@ const Button = styled.button<{ primary?: boolean; email?: boolean; signout?: boo
 
       &:hover {
         background: ${(props) => props.theme.color_button_hover};
+        transition: ${(props) => props.theme.transition_primary};
       }
 
       &:active {
@@ -81,7 +84,7 @@ const Button = styled.button<{ primary?: boolean; email?: boolean; signout?: boo
 
       &:hover {
         background: rgba(255, 255, 255, 0.3);
-        transition: all 0.3s linear;
+        transition: ${(props) => props.theme.transition_primary};
       }
 
       &:active {
@@ -105,6 +108,7 @@ const Button = styled.button<{ primary?: boolean; email?: boolean; signout?: boo
         background-color: ${(props) => props.theme.color_brand_hover};
         background: ${(props) => props.background};
         pointer-events: ${(props) => props.cursor};
+        transition: ${(props) => props.theme.transition_primary};
       }
 
       &:active {

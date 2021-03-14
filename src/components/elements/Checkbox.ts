@@ -33,6 +33,7 @@ const Checkbox = styled.div`
 
     &:hover {
       color: ${(props) => props.theme.color_brand};
+      transition: ${(props) => props.theme.transition_primary};
     }
   }
 `;

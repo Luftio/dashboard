@@ -34,7 +34,7 @@ interface Props {
   url: string;
   target?: string;
   link?: boolean;
-  opacity?: false | "0";
+  opacity?: string | false | undefined;
   cursor?: false | "none";
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }

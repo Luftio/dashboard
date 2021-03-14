@@ -3,7 +3,6 @@
 ## Getting started
 
 ```bash
-$ git clone https://gitlab.com/luftio/dashboard.git
 $ npm install
 $ npm run dev
 ```

@@ -1,12 +1,17 @@
 export default {
+  color_green_good: "#23A454",
+  color_yellow_neutral: "#FFB951",
+  color_red_bad: "E55B5B",
   color_primary: "#838C97",
   color_secondary: "#AFB8BF",
   color_brand: "#031946",
   color_brand_hover: "#06225f",
   color_button_hover: "#fafafa",
+  color_date: "#ccc",
   color_dashboard_background: "#fafafa",
   color_sidebar_background: "#fff",
   color_button_active: "#e8e8e8",
+  color_message_card_hover: "#f3f3f3",
   color_heading: "#000",
   color_dashboard_subheading: "#000",
   color_placeholder: "#e1e6ea",
@@ -32,4 +37,5 @@ export default {
   border_radius_primary: "4px",
   border_radius_secondary: "20px",
   border_radius_checkbox: "2px",
+  transition_primary: "all 0.15s linear",
 };

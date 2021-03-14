@@ -13,6 +13,10 @@
   "description_settings_page": "Luftio is a data-driven air quality monitoring system, that helps companies improve their workspace and make their employees healthier and also more productive.",
   "title_profile_page": "Profile | Luftio",
   "description_profile_page": "Luftio is a data-driven air quality monitoring system, that helps companies improve their workspace and make their employees healthier and also more productive.",
+  "title_feedback_page": "Feedback | Luftio",
+  "description_feedback_page": "Luftio is a data-driven air quality monitoring system, that helps companies improve their workspace and make their employees healthier and also more productive.",
+  "title_suggestions_page": "Suggestions | Luftio",
+  "description_suggestions_page": "Luftio is a data-driven air quality monitoring system, that helps companies improve their workspace and make their employees healthier and also more productive.",
   "sign_up_heading": "Start to improve your work environment!",
   "sign_up_subheading": "Join other companies that care about employees and their health.",
   "sign_in_heading": "Welcome back!",
@@ -92,7 +96,7 @@
   "profile_change_password_text": "Password must be at least 12 characters long and contain a lowercase and an uppercase letter.",
   "profile_change_password_button_text": "Change",
   "profile_devices_subheading": "List of devices",
-  "profile_devices_text": "In this section you can find all your devices that you own.",
+  "profile_devices_text": "In this section you can find all your devices that you own. Each card displays its name and paring code.",
   "profile_devices_button_text": "Edit",
   "profile_expand_password_current": "Current:",
   "profile_expand_password_current_placeholder": "Current password",
@@ -106,5 +110,9 @@
   "profile_edit_button_text": "Edit",
   "profile_expand_name": "First name:",
   "profile_expand_surname": "Last name:",
-  "profile_expand_email": "Email:"
+  "profile_expand_email": "Email:",
+  "feedback_page_heading": "Feedback",
+  "feedback_page_empty_state": "You do not recieved any feedback yet",
+  "suggestions_page_heading": "Suggestions",
+  "suggestions_page_empty_state": "You do not recieved any suggestions yet"
 }

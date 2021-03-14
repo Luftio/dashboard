@@ -5,17 +5,64 @@ import BasicText from "./BasicText";
 
 # Basic text
 
-This is a simple basic text used thought out our dashboard.
+We have more types of basic text:
+
+1. This is a default simple text.
+2. This is a simple text used for dates in the Message card.
+3. This is a simple text used for name in the Message card.
+4. This is a simple text used for procents in the Message card.
+5. This is a simple text used for empty state messages.
 
 export const Component = (args) => <BasicText>{args.text}</BasicText>;
+export const ComponentDate = (args) => <BasicText date>{args.text}</BasicText>;
+export const ComponentName = (args) => <BasicText name>{args.text}</BasicText>;
+export const ComponentProcents = (args) => (
+  <BasicText procents color={args.color}>
+    {args.text}
+  </BasicText>
+);
+export const ComponentEmptyState = (args) => <BasicText emptystate>{args.text}</BasicText>;
 
 <Canvas>
   <Story
-    name="BasicText"
+    name="Default"
     args={{
       text: "I`m an basic text.",
     }}
   >
     {Component.bind({})}
+  </Story>
+  <Story
+    name="Date"
+    args={{
+      text: "13/3/2021",
+    }}
+  >
+    {ComponentDate.bind({})}
+  </Story>
+  <Story
+    name="Message card"
+    args={{
+      text: "I`m an basic text.",
+    }}
+  >
+    {ComponentName.bind({})}
+  </Story>
+  <Story
+    name="Procents"
+    args={{
+      text: "91 %",
+      color: "#23A454",
+    }}
+  >
+    {ComponentProcents.bind({})}
+  </Story>
+  <Story
+    name="Empty state"
+    args={{
+      text: "You do not recieved any feedback yet",
+    }}
+  >
+    {ComponentEmptyState.bind({})}
   </Story>
 </Canvas>

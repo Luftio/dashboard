@@ -1,0 +1,21 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import EmptyState from "./EmptyState";
+
+<Meta title="Modules/Empty state" component={EmptyState} />
+
+# Empty state
+
+Simple empty state components which is used when user did not recieve stuff to display just yet.
+
+export const Component = (args) => <EmptyState {...args} />;
+
+<Canvas>
+  <Story
+    name="Empty state"
+    args={{
+      message: "You do not recieved any feedback yet",
+    }}
+  >
+    {Component.bind({})}
+  </Story>
+</Canvas>

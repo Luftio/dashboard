@@ -15,6 +15,7 @@ const Item = styled.a<{ signout?: boolean; active?: false | "active" }>`
   &:hover {
     border-left: 3px solid transparent;
     color: ${(props) => props.theme.color_brand};
+    transition: ${(props) => props.theme.transition_primary};
 
     svg {
       stroke: ${(props) => props.theme.color_brand};
@@ -39,6 +40,7 @@ const Item = styled.a<{ signout?: boolean; active?: false | "active" }>`
       &:hover {
         border-left: 3px solid transparent;
         color: ${(props) => props.theme.color_fail_hover};
+        transition: ${(props) => props.theme.transition_primary};
 
         svg {
           stroke: ${(props) => props.theme.color_fail_hover};
@@ -72,6 +74,7 @@ const Item = styled.a<{ signout?: boolean; active?: false | "active" }>`
 
       &:hover {
         border-left: 3px solid ${(props) => props.theme.color_brand};
+        transition: ${(props) => props.theme.transition_primary};
       }
     `}
 `;

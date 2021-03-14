@@ -14,6 +14,12 @@ const Content = styled.div`
   background-color: ${(props) => props.theme.color_dashboard_background};
 `;
 
+const Div = styled.div`
+  margin: 0 0 0 5%;
+  width: 100%;
+  overflow: scroll;
+`;
+
 interface Props {
   children?: React.ReactNode;
 }
@@ -22,7 +28,9 @@ const Dashboard: React.FC<Props> = ({ children }) => {
   return (
     <Layout>
       <Sidebar />
-      <Content>{children}</Content>
+      <Content>
+        <Div>{children}</Div>
+      </Content>
     </Layout>
   );
 };
