@@ -8,7 +8,7 @@ import Heading from "../elements/Heading";
 import MessageCard from "../modules/MessageCard";
 import EmptyState from "../modules/EmptyState";
 
-const Feedback: React.FC = () => {
+const Suggestions: React.FC = () => {
   const { t } = useTranslation();
 
   return (
@@ -27,4 +27,4 @@ const Feedback: React.FC = () => {
   );
 };
 
-export default Feedback;
+export default Suggestions;

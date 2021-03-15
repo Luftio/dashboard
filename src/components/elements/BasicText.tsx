@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-const BasicText = styled.p<{ date?: boolean; name?: boolean; procents?: boolean; color?: string; emptystate?: boolean }>`
+const BasicText = styled.p<{ date?: boolean; name?: boolean; procents?: boolean; color?: string; emptystate?: boolean; events?: boolean }>`
   font-size: ${(props) => props.theme.font_size_secondary};
 
   ${(props) =>
@@ -33,6 +33,13 @@ const BasicText = styled.p<{ date?: boolean; name?: boolean; procents?: boolean;
       color: ${(props) => props.theme.color_primary};
       position: relative;
       bottom: 30px;
+    `}
+
+    ${(props) =>
+    props.events &&
+    css`
+      color: ${(props) => props.theme.color_primary};
+      margin: 0 20px 0 8px;
     `}
 `;
 

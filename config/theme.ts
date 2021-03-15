@@ -11,7 +11,7 @@ export default {
   color_dashboard_background: "#fafafa",
   color_sidebar_background: "#fff",
   color_button_active: "#e8e8e8",
-  color_message_card_hover: "#f3f3f3",
+  color_message_card_hover: "#f4f4f4",
   color_heading: "#000",
   color_dashboard_subheading: "#000",
   color_placeholder: "#e1e6ea",

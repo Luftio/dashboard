@@ -1,0 +1,38 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import EventsCard from "./EventsCard";
+
+<Meta title="Modules/Events card" component={EventsCard} />
+
+# Message card
+
+This component is displayed on feedback and suggestions pages as a message.
+
+export const Component = (args) => <EventsCard {...args} unread />;
+export const ComponentUnread = (args) => <EventsCard {...args} />;
+
+<Canvas>
+  <Story
+    name="From employee"
+    args={{
+      name: "John Doe",
+      procents: 83,
+      time: "12/3/2021 in 16.20",
+      location: "Kitchen",
+      value: 63,
+    }}
+  >
+    {Component}
+  </Story>
+  <Story
+    name="From measurement"
+    args={{
+      name: "Increased humidity",
+      procents: 83,
+      time: "13/3/2021 in 13.46",
+      location: "Meeting room",
+      value: 25,
+    }}
+  >
+    {ComponentUnread}
+  </Story>
+</Canvas>

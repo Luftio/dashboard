@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-const Button = styled.button<{ primary?: boolean; email?: boolean; signout?: boolean; opacity?: false | string; savechanges?: boolean; background?: string | false | undefined; cursor?: string | false | undefined }>`
+const Button = styled.button<{ primary?: boolean; email?: boolean; signout?: boolean; opacity?: false | string; savechanges?: boolean; background?: string | false | undefined; cursor?: string | false | undefined; nav?: boolean; active?: boolean }>`
   font-family: inherit;
   border: none;
   cursor: pointer;
@@ -114,6 +114,45 @@ const Button = styled.button<{ primary?: boolean; email?: boolean; signout?: boo
       &:active {
         background: ${(props) => props.theme.color_brand};
         border: none;
+      }
+    `}
+
+    ${(props) =>
+    props.nav &&
+    css`
+      display: flex;
+      align-items: center;
+      padding: 5px 30px;
+      margin: 0 20px 40px 0;
+      height: 45px;
+      font-weight: ${(props) => props.theme.font_weight_primary};
+      border: none;
+      color: ${(props) => props.theme.color_primary};
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+
+      &:hover {
+        transition: ${(props) => props.theme.transition_primary};
+        border: none;
+        background: #fff;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.08);
+      }
+
+      &:active {
+        border: none;
+        background: #fff;
+      }
+    `}
+
+    ${(props) =>
+    props.active &&
+    css`
+      color: ${(props) => props.theme.color_brand};
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.08);
+      position: relative;
+      bottom: 3px;
+
+      &:hover {
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.08);
       }
     `}
 `;

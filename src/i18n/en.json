@@ -112,7 +112,13 @@
   "profile_expand_surname": "Last name:",
   "profile_expand_email": "Email:",
   "feedback_page_heading": "Feedback",
+  "feedback_score_text": "total score:",
   "feedback_page_empty_state": "You do not recieved any feedback yet",
   "suggestions_page_heading": "Suggestions",
-  "suggestions_page_empty_state": "You do not recieved any suggestions yet"
+  "suggestion_score_text": "importance:",
+  "suggestions_page_empty_state": "You do not recieved any suggestions yet",
+  "events_page_heading": "Events",
+  "events_page_nav_measure": "From measurement",
+  "events_page_nav_employees": "From employees",
+  "events_page_threat": "threat:"
 }

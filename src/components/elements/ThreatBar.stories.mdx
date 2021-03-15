@@ -1,0 +1,18 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import Threat from "./ThreatBar";
+
+<Meta title="Elements/Threat" component={Threat} />
+
+# Threat
+
+This is a simple progress bar for threat index on events page.
+
+export const Component = () => (
+  <Threat>
+    <div></div>
+  </Threat>
+);
+
+<Canvas>
+  <Story name="Threat">{Component}</Story>
+</Canvas>

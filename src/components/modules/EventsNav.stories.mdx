@@ -1,0 +1,14 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import EventsNav from "./EventsNav";
+
+<Meta title="Modules/Events navigation" component={EventsNav} />
+
+# Events navigation
+
+This component is used for easy navigation on events page. It has events from measurement and also from employees.
+
+export const Component = (args) => <EventsNav />;
+
+<Canvas>
+  <Story name="Events navigation">{Component}</Story>
+</Canvas>

@@ -1,0 +1,99 @@
+import React from "react";
+import Link from "next/link";
+import styled, { css } from "styled-components";
+
+import "../../i18n/i18n";
+import { useTranslation } from "react-i18next";
+
+import BasicText from "../elements/BasicText";
+import ThreatBar from "../elements/ThreatBar";
+
+import { Icon } from "ts-react-feather-icons";
+
+const Card = styled.div`
+  background: #fff;
+  width: 95%;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  align-items: center;
+  cursor: pointer;
+  border-radius: ${(props) => props.theme.border_radius_primary};
+  margin-bottom: 20px;
+
+  &:hover {
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+    transition: ${(props) => props.theme.transition_primary};
+  }
+`;
+
+const Event = styled.div`
+  display: flex;
+  width: 85%;
+  height: 75px;
+  margin: 0 auto;
+  align-items: center;
+`;
+
+const Main = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex: 0.5;
+`;
+
+const BottomRow = styled.div`
+  display: flex;
+  margin-top: 8px;
+  align-items: center;
+`;
+
+const Threat = styled.div`
+  display: flex;
+  flex: 0.5;
+  align-items: center;
+`;
+
+const Unread = styled.div<{ display: string }>`
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(3, 24, 70, 0.8);
+  opacity: ${(props) => props.display};
+`;
+
+interface Props {
+  name: string;
+  value: number;
+  time: string;
+  location: string;
+  unread?: boolean;
+}
+
+const EventsCard: React.FC<Props> = ({ name, value, time, location, unread }) => {
+  const { t } = useTranslation<string>();
+
+  return (
+    <Link href="/support">
+      <Card>
+        <Event>
+          <Main>
+            <BasicText name>{name}</BasicText>
+            <BottomRow>
+              <Icon name="clock" size="16" color="#838C97" />
+              <BasicText events>{time}</BasicText>
+              <Icon name="map-pin" size="16" color="#838C97" />
+              <BasicText events>{location}</BasicText>
+            </BottomRow>
+          </Main>
+          <Threat>
+            <BasicText>{t("events_page_threat")}&nbsp;&nbsp;</BasicText>
+            <ThreatBar background={value > 75 ? "#E55B5B" : value > 40 ? "#FFB951" : "#23A454"} score={value}>
+              <div></div>
+            </ThreatBar>
+          </Threat>
+          <Unread display={unread ? "1" : "0"}></Unread>
+        </Event>
+      </Card>
+    </Link>
+  );
+};
+
+export default EventsCard;

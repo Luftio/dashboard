@@ -2,6 +2,9 @@ import React from "react";
 import Link from "next/link";
 import styled, { css } from "styled-components";
 
+import "../../i18n/i18n";
+import { useTranslation } from "react-i18next";
+
 import BasicText from "../elements/BasicText";
 
 const Card = styled.div`
@@ -66,6 +69,8 @@ interface Props {
 }
 
 const MessageCard: React.FC<Props> = ({ name, procents, date, suggestion, low, medium, high }) => {
+  const { t } = useTranslation<string>();
+
   return (
     <Link href="/support">
       <Card>
@@ -73,14 +78,14 @@ const MessageCard: React.FC<Props> = ({ name, procents, date, suggestion, low, m
           <BasicText name>{name}</BasicText>
           {suggestion ? (
             <Score>
-              <BasicText>důležitost:&nbsp;&nbsp;</BasicText>
+              <BasicText>{t("suggestion_score_text")}&nbsp;&nbsp;</BasicText>
               <Level fill={low || medium || (high && true)}></Level>
               <Level fill={medium || (high && true)}></Level>
               <Level fill={high && true}></Level>
             </Score>
           ) : (
             <Score>
-              <BasicText>celkové hodnocení:&nbsp;&nbsp;</BasicText>
+              <BasicText>{t("feedback_score_text")}&nbsp;&nbsp;</BasicText>
               <BasicText color={procents > 75 ? "#23A454" : procents > 40 ? "#FFB951" : "#E55B5B"} procents>
                 {procents}&nbsp;%
               </BasicText>
