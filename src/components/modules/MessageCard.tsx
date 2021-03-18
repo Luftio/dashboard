@@ -28,6 +28,10 @@ const Card = styled.div`
     background-color: ${(props) => props.theme.color_message_card_hover};
     transition: ${(props) => props.theme.transition_primary};
   }
+
+  &:active {
+    background-color: ${(props) => props.theme.color_button_active};
+  }
 `;
 
 const Message = styled.div`

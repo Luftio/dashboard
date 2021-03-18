@@ -1,0 +1,14 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import EventsHover from "./EventsHover";
+
+<Meta title="Modules/Events hover" component={EventsHover} />
+
+# Events hover
+
+Submenu that is shown when user hovers over the events sidebar item.
+
+export const Component = () => <EventsHover />;
+
+<Canvas>
+  <Story name="Events hover">{Component.bind({})}</Story>
+</Canvas>

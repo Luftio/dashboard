@@ -21,7 +21,7 @@ const Support: React.FC = () => {
       <ContentBlock>
         <ContentBlockItem subheading={t("support_chat_subheading")} buttonText={t("support_chat_button_text")} text={t("support_chat_text")} url="" />
         <ContentBlockItem subheading={t("support_email_subheading")} buttonText={t("support_email_button_text")} text={t("support_email_text")} url="mailto: info@luftio.cz" link />
-        <ContentBlockItem subheading={t("support_webpage_subheading")} buttonText={t("support_webpage_button_text")} text={t("support_webpage_text")} url={t("website")} target="_blank" link />
+        <ContentBlockItem subheading={t("support_webpage_subheading")} buttonText={t("support_webpage_button_text")} text={t("support_webpage_text")} url={t("faq_url")} target="_blank" link />
       </ContentBlock>
     </>
   );

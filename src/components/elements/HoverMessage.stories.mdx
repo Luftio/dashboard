@@ -1,0 +1,21 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import HoverMessage from "./HoverMessage";
+
+<Meta title="Elements/Hover message" component={HoverMessage} />
+
+# Hover message
+
+This is a hover message that is displayed when you hover ourl logo in sidebar. Its purpose is just UX.
+
+export const Component = (args) => <HoverMessage>{args.text}</HoverMessage>;
+
+<Canvas>
+  <Story
+    name="Hover message"
+    args={{
+      text: "Thank you for taking care of your employees  🚀",
+    }}
+  >
+    {Component.bind({})}
+  </Story>
+</Canvas>

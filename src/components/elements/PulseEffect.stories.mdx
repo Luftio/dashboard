@@ -1,0 +1,23 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import PulseEffect from "./PulseEffect";
+
+<Meta title="Elements/Pulse effect" component={PulseEffect} />
+
+# Pulse effect
+
+This is a pulse effect that is with each item in navigation menu on dashboard page.
+
+export const Component = (args) => <PulseEffect {...args}></PulseEffect>;
+
+<Canvas>
+  <Story
+    name="Pulse effect"
+    args={{
+      yellow: true,
+      green: false,
+      red: false,
+    }}
+  >
+    {Component.bind({})}
+  </Story>
+</Canvas>

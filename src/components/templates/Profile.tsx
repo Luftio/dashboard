@@ -80,9 +80,9 @@ const Settings: React.FC = () => {
   const [newPassword, setNewPassword] = useState<string>("");
   const [repeatNewPassword, setRepeatNewPassword] = useState<string>("");
 
-  const [deviceName1, setDeviceName1] = useState<string>("Meeting room");
-  const [deviceName2, setDeviceName2] = useState<string>("Corridor");
-  const [deviceName3, setDeviceName3] = useState<string>("Kitchen");
+  const [deviceName1, setDeviceName1] = useState<string>("Zasedačka");
+  const [deviceName2, setDeviceName2] = useState<string>("Chodba");
+  const [deviceName3, setDeviceName3] = useState<string>("Kuchyně");
 
   return (
     <>

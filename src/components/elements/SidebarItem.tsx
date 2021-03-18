@@ -4,32 +4,15 @@ import styled, { css } from "styled-components";
 
 import { Icon } from "ts-react-feather-icons";
 
-const Item = styled.a<{ signout?: boolean; active?: false | "active" }>`
+const Item = styled.a<{ signout?: boolean; active?: boolean; hover?: boolean }>`
   display: flex;
   align-items: center;
   padding-left: 12%;
-  cursor: pointer;
   margin-bottom: 6%;
   border-left: 3px solid transparent;
 
   &:hover {
     border-left: 3px solid transparent;
-    color: ${(props) => props.theme.color_brand};
-    transition: ${(props) => props.theme.transition_primary};
-
-    svg {
-      stroke: ${(props) => props.theme.color_brand};
-    }
-
-    span {
-      color: ${(props) => props.theme.color_brand};
-    }
-  }
-
-  @media only screen and (max-width: 900px) {
-    span {
-      display: none;
-    }
   }
 
   ${(props) =>
@@ -77,6 +60,14 @@ const Item = styled.a<{ signout?: boolean; active?: false | "active" }>`
         transition: ${(props) => props.theme.transition_primary};
       }
     `}
+
+    ${(props) =>
+    props.hover &&
+    css`
+      margin: 10px 0;
+      padding-left: 30px;
+      padding-right: -10px;
+    `}
 `;
 
 const Text = styled.span`
@@ -88,27 +79,59 @@ const Text = styled.span`
   }
 `;
 
+const Area = styled.span`
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding-right: 15px;
+
+  &:hover {
+    color: ${(props) => props.theme.color_brand};
+    transition: ${(props) => props.theme.transition_primary};
+
+    svg {
+      stroke: ${(props) => props.theme.color_brand};
+    }
+
+    span {
+      color: ${(props) => props.theme.color_brand};
+    }
+  }
+
+  @media only screen and (max-width: 1000px) {
+    span {
+      display: none;
+      width: 100%;
+    }
+  }
+`;
+
 interface Props {
   url: string;
   icon: any;
   text: string;
   type?: boolean;
   onClick?: () => void;
-  active?: false | "active";
+  active?: boolean;
+  hover?: boolean;
 }
 
-const SidebarItem: React.FC<Props> = ({ url, icon, text, type, active }) => {
+const SidebarItem: React.FC<Props> = ({ url, icon, text, type, active, hover }) => {
   return (
     <Link href={url}>
       {type ? (
         <Item signout>
-          <Icon name={icon} size="22" color="#838C97" />
-          <Text>{text}</Text>
+          <Area>
+            <Icon name={icon} size="22" color="#838C97" />
+            <Text>{text}</Text>
+          </Area>
         </Item>
       ) : (
-        <Item active={active}>
-          <Icon name={icon} size="22" color="#838C97" />
-          <Text>{text}</Text>
+        <Item hover={hover} active={active}>
+          <Area>
+            <Icon name={icon} size="22" color="#838C97" />
+            <Text>{text}</Text>
+          </Area>
         </Item>
       )}
     </Link>

@@ -1,5 +1,4 @@
 import React from "react";
-import Link from "next/link";
 import Image from "next/image";
 import styled from "styled-components";
 
@@ -11,6 +10,10 @@ import Button from "../elements/Button";
 const Div = styled.div`
   display: flex;
 
+  > a {
+    text-decoration: none;
+  }
+
   @media only screen and (max-width: 760px) {
     display: block;
   }
@@ -21,39 +24,24 @@ const EmailClients: React.FC = () => {
 
   return (
     <Div>
-      <Link href="https://mail.google.com/">
+      <a href="https://mail.google.com/">
         <Button email>
-          <Image
-            src="/static/gmail.svg"
-            alt="Gmail logo"
-            width={21}
-            height={29}
-          />
+          <Image src="/static/gmail.svg" alt="Gmail logo" width={21} height={29} />
           &nbsp;&nbsp;&nbsp;{t("open_gmail")}
         </Button>
-      </Link>
-      <Link href="https://outlook.live.com/mail">
+      </a>
+      <a href="https://outlook.live.com/mail">
         <Button email>
-          <Image
-            src="/static/outlook.svg"
-            alt="Outlook logo"
-            width={21}
-            height={29}
-          />
+          <Image src="/static/outlook.svg" alt="Outlook logo" width={21} height={29} />
           &nbsp;&nbsp;&nbsp;{t("open_outlook")}
         </Button>
-      </Link>
-      <Link href="https://email.seznam.cz/">
+      </a>
+      <a href="https://email.seznam.cz/">
         <Button email>
-          <Image
-            src="/static/seznam.svg"
-            alt="Seznam logo"
-            width={21}
-            height={29}
-          />
+          <Image src="/static/seznam.svg" alt="Seznam logo" width={21} height={29} />
           &nbsp;&nbsp;&nbsp;{t("open_seznam")}
         </Button>
-      </Link>
+      </a>
     </Div>
   );
 };

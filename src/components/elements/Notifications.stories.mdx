@@ -1,0 +1,21 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import Notifications from "./Notifications";
+
+<Meta title="Elements/Notifications" component={Notifications} />
+
+# Notifications
+
+This is a pulse effect that is with each item in navigation menu on dashboard page.
+
+export const Component = (args) => <Notifications {...args}></Notifications>;
+
+<Canvas>
+  <Story
+    name="Notifications"
+    args={{
+      amount: 3,
+    }}
+  >
+    {Component.bind({})}
+  </Story>
+</Canvas>

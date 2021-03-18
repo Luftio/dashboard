@@ -26,7 +26,7 @@ const ModalWrapper = styled.div`
   padding: 50px 60px;
   height: 100%;
   background: #fff;
-  z-index: 10;
+  z-index: 10000;
   border-radius: ${(props) => props.theme.border_radius_primary};
 
   @media only screen and (max-width: 620px) {

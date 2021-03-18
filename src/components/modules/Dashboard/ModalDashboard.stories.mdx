@@ -1,0 +1,26 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import ModalDashboard from "./ModalDashboard";
+
+<Meta title="Modules/Dashboard modal" component={ModalDashboard} />
+
+# Dashboard modal
+
+This is a modal that is displayed when clicked on some card. It has more details.
+
+export const Component = (args) => <ModalDashboard {...args} />;
+
+<Canvas>
+  <Story
+    name="Dashboard modal"
+    args={{
+      score: 53,
+      maxValue: 83,
+      minValue: 30,
+      change: 2,
+      subheading: "Score",
+      showModal: true,
+    }}
+  >
+    {Component.bind({})}
+  </Story>
+</Canvas>

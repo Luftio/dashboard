@@ -83,12 +83,7 @@ const Default: React.FC<Props> = ({ children }) => {
         </LeftSide>
         <Div>
           <ImageDiv>
-            <Image
-              src="/static/smart-buildings.svg"
-              alt="Smart buildings"
-              width={404}
-              height={542}
-            />
+            <Image src="/static/smart-buildings.svg" alt="Smart buildings" width={404} height={542} />
           </ImageDiv>
         </Div>
       </Layout>

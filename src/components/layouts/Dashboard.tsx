@@ -12,10 +12,14 @@ const Content = styled.div`
   display: flex;
   flex: 0.8;
   background-color: ${(props) => props.theme.color_dashboard_background};
+
+  @media only screen and (max-width: 1000px) {
+    flex: 0.85;
+  }
 `;
 
 const Div = styled.div`
-  margin: 0 0 0 5%;
+  padding-left: 5%;
   width: 100%;
   overflow: scroll;
 `;

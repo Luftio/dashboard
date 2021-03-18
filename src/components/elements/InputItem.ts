@@ -1,6 +1,8 @@
 import styled, { css } from "styled-components";
 
 const InputItem = styled.div<{ expand?: boolean; profile?: boolean; fail?: boolean; device?: boolean }>`
+  position: relative;
+
   > label {
     display: flex;
     font-size: ${(props) => props.theme.font_size_secondary};
@@ -10,14 +12,16 @@ const InputItem = styled.div<{ expand?: boolean; profile?: boolean; fail?: boole
 
   > p {
     position: absolute;
-    margin: -47px 0 0 357px;
+    left: 355px;
+    bottom: 10px;
     background: #fff;
     width: 30px;
     display: flex;
     justify-content: center;
+    cursor: pointer;
 
     @media only screen and (max-width: 970px) {
-      margin: -47px 0 0 407px;
+      left: 405px;
     }
   }
 

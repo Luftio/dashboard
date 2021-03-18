@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-const BasicText = styled.p<{ date?: boolean; name?: boolean; procents?: boolean; color?: string; emptystate?: boolean; events?: boolean }>`
+const BasicText = styled.p<{ date?: boolean; name?: boolean; procents?: boolean; color?: string; emptystate?: boolean; events?: boolean; bottomRowProcents?: boolean; bottomRowProcentsName?: boolean; procentsDashboard?: boolean }>`
   font-size: ${(props) => props.theme.font_size_secondary};
 
   ${(props) =>
@@ -25,6 +25,14 @@ const BasicText = styled.p<{ date?: boolean; name?: boolean; procents?: boolean;
     `}
 
     ${(props) =>
+    props.procentsDashboard &&
+    css`
+      font-weight: ${(props) => props.theme.font_weight_primary};
+      font-size: ${(props) => props.theme.font_size_primary};
+      color: ${(props) => props.color};
+    `}
+
+    ${(props) =>
     props.emptystate &&
     css`
       font-size: ${(props) => props.theme.font_size_sidebar_heading};
@@ -40,6 +48,19 @@ const BasicText = styled.p<{ date?: boolean; name?: boolean; procents?: boolean;
     css`
       color: ${(props) => props.theme.color_primary};
       margin: 0 20px 0 8px;
+    `}
+
+    ${(props) =>
+    props.bottomRowProcents &&
+    css`
+      font-size: ${(props) => props.theme.font_size_primary};
+      color: ${(props) => props.color};
+    `}
+
+    ${(props) =>
+    props.bottomRowProcentsName &&
+    css`
+      color: ${(props) => props.theme.color_primary};
     `}
 `;
 

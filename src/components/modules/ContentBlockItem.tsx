@@ -1,5 +1,4 @@
 import React from "react";
-import Link from "next/link";
 import styled from "styled-components";
 
 import Subheading from "../elements/Subheading";
@@ -45,11 +44,9 @@ const ContentBlockItem: React.FC<Props> = ({ subheading, buttonText, text, url, 
       <TopRow>
         <Subheading dashboard>{subheading}</Subheading>
         {link ? (
-          <Link href={url}>
-            <a target={target}>
-              <Button onClick={onClick}>{buttonText}</Button>
-            </a>
-          </Link>
+          <a href={url} target={target}>
+            <Button onClick={onClick}>{buttonText}</Button>
+          </a>
         ) : (
           <Button opacity={opacity} cursor={cursor} onClick={onClick}>
             {buttonText}

@@ -5,8 +5,9 @@ import "../../i18n/i18n";
 import { useTranslation } from "react-i18next";
 
 import Heading from "../elements/Heading";
-import EventsNav from "../modules/EventsNav";
+import EventsNav from "../modules/Events/EventsNav";
 import EventsCard from "../modules/EventsCard";
+import EmptyState from "../modules/EmptyState";
 
 const EventsMeasurement: React.FC = () => {
   const { t } = useTranslation();
@@ -24,7 +25,7 @@ const EventsMeasurement: React.FC = () => {
       <EventsCard name="Kritický stav CO2" time="12/3/2021 v 14.01" location="Zasedačka" value={95} />
       <EventsCard name="Zvýšená vlhkost" time="12/3/2021 v 13.24" location="Chodba" value={45} />
       <EventsCard name="Mírně stoupá tlak" time="12/3/2021 v 12.55" location="Zasedačka" value={15} />
-      {/* <EmptyState message={t("feedback_page_empty_state")} /> */}
+      {/* <EmptyState message={t("events_page_measure_empty_state")} /> */}
     </>
   );
 };

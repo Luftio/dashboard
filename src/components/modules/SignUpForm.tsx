@@ -25,11 +25,13 @@ type Formdata = {
 const SignUpForm: React.FC = () => {
   const { t } = useTranslation<string>();
   const router = useRouter();
+
   const [visibility, setVisibility] = useState<boolean>(false);
+
   const { register, handleSubmit, errors } = useForm<Formdata>();
   const onSubmit = handleSubmit(({ name, surname, email, password, check }) => {
     console.log(name, surname, email, password, check);
-    router.replace("/verify-email");
+    router.replace("/register/verify-email");
   });
 
   return (
@@ -85,9 +87,9 @@ const SignUpForm: React.FC = () => {
             })}
           />
           <label>{t("agree_with")}&nbsp;</label>
-          <Link href={t("terms_url")}>
-            <a target="_blank">{t("terms")}</a>
-          </Link>
+          <a href={t("terms_url")} target="_blank">
+            {t("terms")}
+          </a>
         </Checkbox>
         {errors.check && <Error>{t("msg_required")}</Error>}
         <Button primary type="submit">
