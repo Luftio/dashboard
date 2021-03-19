@@ -75,9 +75,9 @@ const Dashboard: React.FC = ({}) => {
 
   return (
     <Sidebar>
-      <Logo onMouseEnter={() => setShowMessage(true)} onMouseLeave={() => setShowMessage(false)}>
+      <Logo>
         <Link href="/dashboard">
-          <Animation>
+          <Animation onMouseEnter={() => setShowMessage(true)} onMouseLeave={() => setShowMessage(false)}>
             <Image src="/static/logo.svg" alt="Luftio logo" width={120} height={45} />
           </Animation>
         </Link>
