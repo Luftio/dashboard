@@ -10,7 +10,7 @@ import { useTranslation } from "react-i18next";
 import Heading from "../elements/Heading";
 import SidebarItem from "../elements/SidebarItem";
 import HoverMessage from "../elements/HoverMessage";
-import EventsHover from "../modules/events/EventsHover";
+import EventsHover from "./events/EventsHover";
 
 const Sidebar = styled.div`
   display: flex;
