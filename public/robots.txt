@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://dashboard-luftio.vercel.app
+
+# Sitemaps
+Sitemap: https://dashboard-luftio.vercel.app/sitemap.xml

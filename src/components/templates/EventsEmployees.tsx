@@ -5,7 +5,7 @@ import "../../i18n/i18n";
 import { useTranslation } from "react-i18next";
 
 import Heading from "../elements/Heading";
-import EventsNav from "../modules/Events/EventsNav";
+import EventsNav from "../modules/events/EventsNav";
 import EventsCard from "../modules/EventsCard";
 import EmptyState from "../modules/EmptyState";
 

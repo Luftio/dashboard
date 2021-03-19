@@ -26,8 +26,9 @@ const SendIntructions: React.FC = () => {
     <div>
       <form onSubmit={onSubmit}>
         <InputItem fail={errors.email && true}>
-          <label>{t("email_input_label")}</label>
+          <label htmlFor="email">{t("email_input_label")}</label>
           <input
+            id="email"
             type="text"
             placeholder={t("email_input_placeholder")}
             name="email"

@@ -76,6 +76,7 @@ const Text = styled.span`
 
   &:active {
     color: ${(props) => props.theme.color_brand};
+    margin: 0;
   }
 `;
 

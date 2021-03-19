@@ -6,9 +6,9 @@ import "../../i18n/i18n";
 import { useTranslation } from "react-i18next";
 
 import Heading from "../elements/Heading";
-import DashboardNav from "../modules/Dashboard/DashboardNav";
-import DashboardCard from "../modules/Dashboard/DashboardCard";
-import ModalDashboard from "../modules/Dashboard/ModalDashboard";
+import DashboardNav from "../modules/dashboard/DashboardNav";
+import DashboardCard from "../modules/dashboard/DashboardCard";
+import ModalDashboard from "../modules/dashboard/ModalDashboard";
 
 const Cards = styled.div`
   display: flex;

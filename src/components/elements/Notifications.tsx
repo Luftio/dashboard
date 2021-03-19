@@ -17,6 +17,7 @@ const Circle = styled.div<{ hover?: boolean }>`
     css`
       position: absolute;
       right: 25px;
+      top: 12px;
     `}
 `;
 

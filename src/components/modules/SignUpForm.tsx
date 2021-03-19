@@ -38,18 +38,19 @@ const SignUpForm: React.FC = () => {
     <div>
       <form onSubmit={onSubmit}>
         <InputItem fail={errors.name && true}>
-          <label>{t("name_input_label")}</label>
-          <input type="text" placeholder={t("name_input_placeholder")} name="name" ref={register({ required: true })} />
+          <label htmlFor="name">{t("name_input_label")}</label>
+          <input id="name" type="text" placeholder={t("name_input_placeholder")} name="name" ref={register({ required: true })} />
         </InputItem>
         {errors.name && errors.name.type === "required" && <Error>{t("msg_required")}</Error>}
         <InputItem fail={errors.surname && true}>
-          <label>{t("surname_input_label")}</label>
-          <input type="text" placeholder={t("surname_input_placeholder")} name="surname" ref={register({ required: true })} />
+          <label htmlFor="surname">{t("surname_input_label")}</label>
+          <input id="surname" type="text" placeholder={t("surname_input_placeholder")} name="surname" ref={register({ required: true })} />
         </InputItem>
         {errors.surname && errors.surname.type === "required" && <Error>{t("msg_required")}</Error>}
         <InputItem fail={errors.email && true}>
-          <label>{t("email_input_label")}</label>
+          <label htmlFor="email">{t("email_input_label")}</label>
           <input
+            id="email"
             type="text"
             placeholder={t("email_input_placeholder")}
             name="email"
@@ -62,11 +63,13 @@ const SignUpForm: React.FC = () => {
         {errors.email && errors.email.type === "required" && <Error>{t("msg_required")}</Error>}
         {errors.email && errors.email.type === "pattern" && <Error>{t("msg_invalid_email")}</Error>}
         <InputItem fail={errors.password && true}>
-          <label>{t("pass_input_label")}</label>
+          <label htmlFor="password">{t("pass_input_label")}</label>
           <input
+            id="password"
             type={visibility ? "text" : "password"}
             placeholder={t("pass_input_placeholder")}
             name="password"
+            autoComplete="new-password"
             ref={register({
               required: true,
               pattern: /(?=.*[a-z])(?=.*[A-Z]).{12,}/,
@@ -80,13 +83,15 @@ const SignUpForm: React.FC = () => {
         {errors.password && errors.password.type === "pattern" && <Error>{t("msg_invalid_password")}</Error>}
         <Checkbox>
           <input
+            id="checkbox"
+            aria-label="checkbox"
             type="checkbox"
             name="check"
             ref={register({
               required: true,
             })}
           />
-          <label>{t("agree_with")}&nbsp;</label>
+          <label htmlFor="checkbox">{t("agree_with")}&nbsp;</label>
           <a href={t("terms_url")} target="_blank">
             {t("terms")}
           </a>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+<url><loc>https://dashboard-luftio.vercel.app</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-03-19T17:20:15.687Z</lastmod></url>
+<url><loc>https://dashboard-luftio.vercel.app/after-delete</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-03-19T17:20:15.687Z</lastmod></url>
+<url><loc>https://dashboard-luftio.vercel.app/dashboard</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-03-19T17:20:15.688Z</lastmod></url>
+<url><loc>https://dashboard-luftio.vercel.app/events/from-employees</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-03-19T17:20:15.688Z</lastmod></url>
+<url><loc>https://dashboard-luftio.vercel.app/events/from-measurement</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-03-19T17:20:15.688Z</lastmod></url>
+<url><loc>https://dashboard-luftio.vercel.app/feedback</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-03-19T17:20:15.688Z</lastmod></url>
+<url><loc>https://dashboard-luftio.vercel.app/password/request-change</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-03-19T17:20:15.688Z</lastmod></url>
+<url><loc>https://dashboard-luftio.vercel.app/password/send-instructions</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-03-19T17:20:15.688Z</lastmod></url>
+<url><loc>https://dashboard-luftio.vercel.app/password/set-new</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-03-19T17:20:15.688Z</lastmod></url>
+<url><loc>https://dashboard-luftio.vercel.app/profile</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-03-19T17:20:15.688Z</lastmod></url>
+<url><loc>https://dashboard-luftio.vercel.app/register</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-03-19T17:20:15.688Z</lastmod></url>
+<url><loc>https://dashboard-luftio.vercel.app/register/verify-email</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-03-19T17:20:15.688Z</lastmod></url>
+<url><loc>https://dashboard-luftio.vercel.app/settings</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-03-19T17:20:15.688Z</lastmod></url>
+<url><loc>https://dashboard-luftio.vercel.app/sign-out</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-03-19T17:20:15.688Z</lastmod></url>
+<url><loc>https://dashboard-luftio.vercel.app/suggestions</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-03-19T17:20:15.688Z</lastmod></url>
+<url><loc>https://dashboard-luftio.vercel.app/support</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-03-19T17:20:15.688Z</lastmod></url>
+</urlset>

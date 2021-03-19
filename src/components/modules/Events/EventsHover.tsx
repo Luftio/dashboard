@@ -25,8 +25,9 @@ const Div = styled.div`
 `;
 
 const Row = styled.div`
-  display: flex;
+  display: block;
   align-items: center;
+  position: relative;
 `;
 
 const EventsHover: React.FC = () => {

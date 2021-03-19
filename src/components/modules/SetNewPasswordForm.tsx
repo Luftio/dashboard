@@ -35,11 +35,13 @@ const SetNewPassword: React.FC = () => {
     <div>
       <form onSubmit={onSubmit}>
         <InputItem fail={errors.password && true}>
-          <label>{t("new_pass_input_label")}</label>
+          <label htmlFor="new-password">{t("new_pass_input_label")}</label>
           <input
+            id="new-password"
             type={visibility ? "text" : "password"}
             placeholder={t("new_pass_input_placeholder")}
             name="password"
+            autoComplete="new-password"
             ref={register({
               required: true,
               pattern: /(?=.*[a-z])(?=.*[A-Z]).{12,}/,
@@ -52,11 +54,13 @@ const SetNewPassword: React.FC = () => {
         {errors.password && errors.password.type === "required" && <Error>{t("msg_required")}</Error>}
         {errors.password && errors.password.type === "pattern" && <Error>{t("msg_invalid_password")}</Error>}
         <InputItem fail={errors.repeat && true}>
-          <label>{t("repeat_new_pass_input_label")}</label>
+          <label htmlFor="repeat-password">{t("repeat_new_pass_input_label")}</label>
           <input
+            id="repeat-password"
             type={visibilityRepeat ? "text" : "password"}
             placeholder={t("repeat_new_pass_input_placeholder")}
             name="repeat"
+            autoComplete="new-password"
             ref={register({
               required: true,
               validate: (value) => value === password.current,
