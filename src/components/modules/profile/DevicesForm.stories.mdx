@@ -1,0 +1,21 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import DevicesForm from "./DevicesForm";
+
+<Meta title="Modules/Forms" component={DevicesForm} />
+
+# Devices form
+
+This is a form for updating devices names inside dashboard.
+
+export const Component = (args) => <DevicesForm {...args} />;
+
+<Canvas>
+  <Story
+    name="Devices"
+    args={{
+      edit: true,
+    }}
+  >
+    {Component}
+  </Story>
+</Canvas>

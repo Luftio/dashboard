@@ -18,6 +18,7 @@ const Sidebar = styled.div`
   flex-direction: column;
   background: ${(props) => props.theme.color_sidebar_background};
   height: 100vh;
+  position: relative;
 
   @media only screen and (max-width: 1000px) {
     flex: 0.15;
@@ -96,7 +97,7 @@ const Dashboard: React.FC = ({}) => {
       <Heading sidebar>{t("sidebar_other_heading")}</Heading>
       <SidebarItem url="/settings" active={url === "settings" && true} icon="settings" text={t("sidebar_other_item_1")}></SidebarItem>
       <SidebarItem url="/support" active={url === "support" && true} icon="info" text={t("sidebar_other_item_2")}></SidebarItem>
-      <SidebarItem url="/sign-out" type icon="log-out" text={t("sidebar_sign_out")}></SidebarItem>
+      <SidebarItem url="/sign-out" type={true} icon="log-out" text={t("sidebar_sign_out")}></SidebarItem>
     </Sidebar>
   );
 };

@@ -1,0 +1,14 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import FeedbackChart from "./FeedbackChart";
+
+<Meta title="Modules/Charts" component={FeedbackChart} />
+
+# FeedbackChart
+
+This is a chart that is displayed for dashboard card called feedback.
+
+export const Component = () => <FeedbackChart />;
+
+<Canvas>
+  <Story name="Hapiness chart">{Component.bind({})}</Story>
+</Canvas>

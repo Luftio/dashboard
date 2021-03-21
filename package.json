@@ -15,7 +15,10 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "@react-spring/konva": "^9.0.0-rc.3",
+    "@react-spring/native": "^9.0.0-rc.3",
     "@react-spring/three": "^9.0.0-rc.3",
+    "@react-spring/zdog": "^9.0.0-rc.3",
     "@sentry/react": "^6.2.2",
     "@sentry/tracing": "^6.2.2",
     "axios": "^0.21.1",
@@ -31,7 +34,8 @@
     "react-i18next": "^11.8.8",
     "react-spring": "^9.0.0-rc.3",
     "styled-components": "^5.2.1",
-    "ts-react-feather-icons": "^1.0.0"
+    "ts-react-feather-icons": "^1.0.0",
+    "victory": "^35.4.12"
   },
   "devDependencies": {
     "@storybook/addon-a11y": "^6.1.21",
@@ -55,6 +59,7 @@
     "eslint-plugin-react": "^7.22.0",
     "next-sitemap": "^1.6.3",
     "prettier": "^2.2.1",
+    "react-inspector": "^5.1.0",
     "storybook-addon-next-router": "^2.0.4",
     "ts-loader": "^8.0.17",
     "ts-node": "^9.1.1",

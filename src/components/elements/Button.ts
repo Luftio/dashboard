@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-const Button = styled.button<{ primary?: boolean; email?: boolean; signout?: boolean; opacity?: false | string; savechanges?: boolean; background?: string | false | undefined; cursor?: string | false | undefined; nav?: boolean; active?: boolean }>`
+const Button = styled.button<{ primary?: boolean; email?: boolean; signout?: boolean; opacity?: false | string; savechanges?: boolean; background?: any; cursor?: string | false | undefined; nav?: boolean; active?: boolean }>`
   font-family: inherit;
   border: none;
   cursor: pointer;

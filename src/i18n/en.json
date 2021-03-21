@@ -107,6 +107,7 @@
   "profile_expand_password_new_placeholder": "New password",
   "profile_expand_password_repeat_new": "Repeat:",
   "profile_expand_password_repeat_new_placeholder": "Repeat new password",
+  "profile_expand_password_success": "Your password was changed",
   "profile_save_changes": "Save changes",
   "profile_cancel": "Cancel",
   "profile_edit_heading": "Account info",
@@ -114,6 +115,9 @@
   "profile_expand_name": "First name:",
   "profile_expand_surname": "Last name:",
   "profile_expand_email": "Email:",
+  "profile_success": "Your account info was updated",
+  "profile_verify_email_heading": "Verify your new email",
+  "profile_verify_email_text": "We have sent a confirmation email to your new address. Once you have confirmed your changes, you are done.",
   "feedback_page_heading": "Feedback",
   "feedback_score_text": "total score:",
   "feedback_page_empty_state": "You do not recieved any feedback yet",
@@ -133,5 +137,9 @@
   "dashboard_pressure": "Pressure",
   "dashboard_improvement": "Improvement",
   "dashboard_deterioration": "Deterioration",
-  "dashboard_modal_score_now": "currently"
+  "dashboard_modal_score_now": "currently",
+  "dashboard_events_card_subheading": "Events",
+  "dashboard_feedback_card_subheading": "Feddback",
+  "dashboard_bottomcard_last": "Latest:",
+  "dashboard_feedback_chart_label": "mood score"
 }

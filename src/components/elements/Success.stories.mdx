@@ -1,0 +1,21 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import Success from "./Success";
+
+<Meta title="Elements/Messages" component={Success} />
+
+# Success
+
+This is a simple text that is displayed after success change of either password or personal information in the dashboard profile page.
+
+export const Component = (args) => <Success>{args.text}</Success>;
+
+<Canvas>
+  <Story
+    name="Success"
+    args={{
+      text: "Your account info was updated",
+    }}
+  >
+    {Component.bind({})}
+  </Story>
+</Canvas>

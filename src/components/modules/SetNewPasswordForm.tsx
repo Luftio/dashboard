@@ -54,9 +54,9 @@ const SetNewPassword: React.FC = () => {
         {errors.password && errors.password.type === "required" && <Error>{t("msg_required")}</Error>}
         {errors.password && errors.password.type === "pattern" && <Error>{t("msg_invalid_password")}</Error>}
         <InputItem fail={errors.repeat && true}>
-          <label htmlFor="repeat-password">{t("repeat_new_pass_input_label")}</label>
+          <label htmlFor="repeat-new-password">{t("repeat_new_pass_input_label")}</label>
           <input
-            id="repeat-password"
+            id="repeat-new-password"
             type={visibilityRepeat ? "text" : "password"}
             placeholder={t("repeat_new_pass_input_placeholder")}
             name="repeat"

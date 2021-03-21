@@ -12,6 +12,8 @@ We have more types of basic text:
 3. This is a simple text used for name in the Message card.
 4. This is a simple text used for procents in the Message card.
 5. This is a simple text used for empty state messages.
+6. This is a simple text used in dashboard card for procents.
+7. This is a simple text used dashboard card for naming columns.
 
 export const Component = (args) => <BasicText>{args.text}</BasicText>;
 export const ComponentDate = (args) => <BasicText date>{args.text}</BasicText>;
@@ -23,6 +25,12 @@ export const ComponentProcents = (args) => (
 );
 export const ComponentEmptyState = (args) => <BasicText emptystate>{args.text}</BasicText>;
 export const ComponentEvents = (args) => <BasicText events>{args.text}</BasicText>;
+export const ComponentDashboardCardBottomProcents = (args) => (
+  <BasicText bottomRowProcents color={args.color}>
+    {args.text}
+  </BasicText>
+);
+export const ComponentDashboardCardBottomName = (args) => <BasicText bottomRowProcentsName>{args.text}</BasicText>;
 
 <Canvas>
   <Story
@@ -73,5 +81,22 @@ export const ComponentEvents = (args) => <BasicText events>{args.text}</BasicTex
     }}
   >
     {ComponentEmptyState.bind({})}
+  </Story>
+  <Story
+    name="Dashboard Card procents"
+    args={{
+      text: "10%",
+      color: "#23A454",
+    }}
+  >
+    {ComponentDashboardCardBottomProcents.bind({})}
+  </Story>
+  <Story
+    name="Dashboard card name"
+    args={{
+      text: "max.",
+    }}
+  >
+    {ComponentDashboardCardBottomName.bind({})}
   </Story>
 </Canvas>

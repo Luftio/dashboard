@@ -60,7 +60,7 @@
   "change_password": "Změnit a přihlásit se",
   "msg_required": "Toto je pole je povinné.",
   "msg_invalid_email": "E-mail je neplatný.",
-  "msg_invalid_password": "Heslo musí obsahovat alespoň 12 znaků, malé a jedno velké pismeno",
+  "msg_invalid_password": "Heslo musí obsahovat alespoň 12 znaků, malé a jedno velké písmeno",
   "msg_passwords_not_match": "Hesla se sobě nerovnají",
   "open_gmail": "Otevřít Gmail",
   "open_outlook": "Otevřít Outlook",
@@ -107,6 +107,7 @@
   "profile_expand_password_new_placeholder": "Nové heslo",
   "profile_expand_password_repeat_new": "Zopakujte:",
   "profile_expand_password_repeat_new_placeholder": "Zopakujte nové heslo",
+  "profile_expand_password_success": "Vaše heslo bylo změněno",
   "profile_save_changes": "Uložit změny",
   "profile_cancel": "Zrušit",
   "profile_edit_heading": "Osobní údaje",
@@ -114,6 +115,9 @@
   "profile_expand_name": "Jméno:",
   "profile_expand_surname": "Příjmení:",
   "profile_expand_email": "E-mail:",
+  "profile_success": "Vaše osobní údaje byly změněny",
+  "profile_verify_email_heading": "Potvrdťe změnu e-mailu",
+  "profile_verify_email_text": "Na Váši novou adresu jsme zaslali potvzovací e-mail. Jakmile změny potvrdíte, máte hotovo.",
   "feedback_page_heading": "Zpětná vazba",
   "feedback_score_text": "celkové hodnocení:",
   "feedback_page_empty_state": "Zatím jste nedostali žádný feedback",
@@ -133,5 +137,9 @@
   "dashboard_pressure": "Tlak",
   "dashboard_improvement": "Zlepšení",
   "dashboard_deterioration": "Zhoršení",
-  "dashboard_modal_score_now": "aktuálně"
+  "dashboard_modal_score_now": "aktuálně",
+  "dashboard_events_card_subheading": "Události",
+  "dashboard_feedback_card_subheading": "Zpětná vazba",
+  "dashboard_bottomcard_last": "Poslední:",
+  "dashboard_feedback_chart_label": "skóre nálady"
 }

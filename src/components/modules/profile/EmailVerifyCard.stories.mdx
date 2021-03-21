@@ -1,0 +1,14 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import EmailVerifyCard from "./EmailVerifyCard";
+
+<Meta title="Modules/Email verify card" component={EmailVerifyCard} />
+
+# Email verify card
+
+This is a card for displayed when user changes his email adress until it is not confirmed by him.
+
+export const Component = () => <EmailVerifyCard />;
+
+<Canvas>
+  <Story name="Email verify card">{Component}</Story>
+</Canvas>

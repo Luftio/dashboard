@@ -9,6 +9,7 @@ import Heading from "../elements/Heading";
 import DashboardNav from "../modules/dashboard/DashboardNav";
 import DashboardCard from "../modules/dashboard/DashboardCard";
 import ModalDashboard from "../modules/dashboard/ModalDashboard";
+import BottomRowCard from "../modules/dashboard/BottomRowCard";
 
 const Cards = styled.div`
   display: flex;
@@ -43,6 +44,10 @@ const Support: React.FC = () => {
         <DashboardCard type="pressure" score={988} maxValue={989} minValue={976} change={+1} subheading={t("dashboard_pressure")} />
       </Cards>
       <ModalDashboard showModal={showModal} setShowModal={setShowModal} subheading={t("dashboard_score")} score={53} maxValue={83} minValue={30} change={+2} />
+      <Cards>
+        <BottomRowCard message1="Stoupá hodnota CO2" date1="12/3/2021" message2="Teplota je přiliš vysoká" date2="12/3/2021" message3="Kritický stav CO2" date3="12/3/2021" subheading={t("dashboard_events_card_subheading")} />
+        <BottomRowCard feedback message1="Aleš Zima" date1="14/3/2021" message2="Michal Pečinka" date2="14/3/2021" message3="Jana Nová" date3="14/3/2021" subheading={t("dashboard_feedback_card_subheading")} />
+      </Cards>
     </>
   );
 };

@@ -13,7 +13,7 @@ const Card = styled.div`
   box-shadow: ${(props) => props.theme.color_block_box_shadow};
   margin-right: 1.5%;
   cursor: pointer;
-  padding: 15px 0;
+  padding: 15px 15px;
 
   &:hover {
     box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.08);
@@ -26,7 +26,6 @@ const TopRow = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 0 15px;
   margin-bottom: 260px;
 `;
 
@@ -34,7 +33,6 @@ const BottomRow = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  padding: 0 15px;
   justify-content: center;
 `;
 

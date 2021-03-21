@@ -15,10 +15,14 @@ const Item = styled.a<{ signout?: boolean; active?: boolean; hover?: boolean }>`
     border-left: 3px solid transparent;
   }
 
+  &:active {
+    border-left: 3px solid transparent;
+  }
+
   ${(props) =>
     props.signout &&
     css`
-      margin: 40% 0 0 0;
+      margin-top: 40%;
 
       &:hover {
         border-left: 3px solid transparent;
@@ -76,11 +80,10 @@ const Text = styled.span`
 
   &:active {
     color: ${(props) => props.theme.color_brand};
-    margin: 0;
   }
 `;
 
-const Area = styled.span`
+const Area = styled.span<{ signout?: boolean }>`
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -105,6 +108,23 @@ const Area = styled.span`
       width: 100%;
     }
   }
+
+  ${(props) =>
+    props.signout &&
+    css`
+      &:hover {
+        color: ${(props) => props.theme.color_fail_hover};
+        transition: ${(props) => props.theme.transition_primary};
+
+        svg {
+          stroke: ${(props) => props.theme.color_fail_hover};
+        }
+
+        span {
+          color: ${(props) => props.theme.color_fail_hover};
+        }
+      }
+    `}
 `;
 
 interface Props {
@@ -120,21 +140,12 @@ interface Props {
 const SidebarItem: React.FC<Props> = ({ url, icon, text, type, active, hover }) => {
   return (
     <Link href={url}>
-      {type ? (
-        <Item signout>
-          <Area>
-            <Icon name={icon} size="22" color="#838C97" />
-            <Text>{text}</Text>
-          </Area>
-        </Item>
-      ) : (
-        <Item hover={hover} active={active}>
-          <Area>
-            <Icon name={icon} size="22" color="#838C97" />
-            <Text>{text}</Text>
-          </Area>
-        </Item>
-      )}
+      <Item hover={hover} active={active} signout={type}>
+        <Area signout={type}>
+          <Icon name={icon} size="22" color="#838C97" />
+          <Text>{text}</Text>
+        </Area>
+      </Item>
     </Link>
   );
 };

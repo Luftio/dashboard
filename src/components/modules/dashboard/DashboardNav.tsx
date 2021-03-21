@@ -11,6 +11,7 @@ import PulseEffect from "../../elements/PulseEffect";
 
 const Navigation = styled.div`
   display: flex;
+  width: 100%;
 `;
 
 const DashboardNav: React.FC = () => {

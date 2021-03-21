@@ -1,0 +1,14 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import EventsChart from "./EventsChart";
+
+<Meta title="Modules/Charts" component={EventsChart} />
+
+# EventsChart
+
+This is a chart that is displayed for dashboard card called events.
+
+export const Component = () => <EventsChart />;
+
+<Canvas>
+  <Story name="Events chart">{Component.bind({})}</Story>
+</Canvas>

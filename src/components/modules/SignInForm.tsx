@@ -24,7 +24,7 @@ const SignUpForm: React.FC = () => {
   const router = useRouter();
   const [visibility, setVisibility] = useState<boolean>(false);
 
-  const { register, handleSubmit, errors } = useForm<Formdata>();
+  const { register, handleSubmit, errors } = useForm<Formdata>({ mode: "onSubmit" });
   const onSubmit = handleSubmit(({ email, password }) => {
     console.log(email, password);
     router.replace("/dashboard");
@@ -50,9 +50,9 @@ const SignUpForm: React.FC = () => {
         {errors.email && errors.email.type === "required" && <Error>{t("msg_required")}</Error>}
         {errors.email && errors.email.type === "pattern" && <Error>{t("msg_invalid_email")}</Error>}
         <InputItem fail={errors.password && true}>
-          <label htmlFor="password">{t("pass_input_label")}</label>
+          <label htmlFor="current-password">{t("pass_input_label")}</label>
           <input
-            id="passoword"
+            id="current-password"
             type={visibility ? "text" : "password"}
             autoComplete="current-password"
             placeholder={t("pass_input_placeholder")}

@@ -20,13 +20,17 @@ const App = ({ Component, pageProps }: AppProps) => (
   <>
     <Head>
       <meta name="viewport" content="width=device-width initial-scale=1" />
-      <meta name="theme-color" content="#000000" />
-      <link rel="icon" href="/static/favicon.ico" />
+      <link rel="manifest" href="/manifest.json" />
+      <meta name="theme-color" content="#fff" />
+      <link rel="icon" href="/static/favicon.png" />
+      <link rel="apple-touch-icon" href="/static/apple-touch-icon.png"></link>
+      <link rel="apple-touch-icon" sizes="57x57" href="/static/touch-icon-iphone.png"></link>
+      <link rel="apple-touch-icon" sizes="76x76" href="/static/touch-icon-ipad.png"></link>
+      <link rel="apple-touch-icon" sizes="120x120" href="/static/touch-icon-iphone-retina.png"></link>
+      <link rel="apple-touch-icon" sizes="152x152" href="/static/touch-icon-ipad-retina.png"></link>
+      <link rel="apple-touch-icon" sizes="180x180" href="/static/touch-icon-iphone-6-plus.png"></link>
       <link rel="preconnect" href="https://fonts.gstatic.com"></link>
-      <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap"
-        rel="stylesheet"
-      ></link>
+      <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet"></link>
       <meta property="og:type" content="website" />
       <meta property="og:url" content="https://app.luftio.com/" />
       <meta property="og:title" content="Lorem ipsum" />

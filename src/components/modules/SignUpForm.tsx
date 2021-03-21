@@ -63,9 +63,9 @@ const SignUpForm: React.FC = () => {
         {errors.email && errors.email.type === "required" && <Error>{t("msg_required")}</Error>}
         {errors.email && errors.email.type === "pattern" && <Error>{t("msg_invalid_email")}</Error>}
         <InputItem fail={errors.password && true}>
-          <label htmlFor="password">{t("pass_input_label")}</label>
+          <label htmlFor="new-password">{t("pass_input_label")}</label>
           <input
-            id="password"
+            id="new-password"
             type={visibility ? "text" : "password"}
             placeholder={t("pass_input_placeholder")}
             name="password"

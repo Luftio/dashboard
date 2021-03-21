@@ -10,8 +10,11 @@ import ContentBlock from "../elements/ContentBlock";
 import Subheading from "../elements/Subheading";
 import InputItem from "../elements/InputItem";
 import Button from "../elements/Button";
+import ProfileForm from "../modules/profile/ProfileForm";
 import ContentBlockItem from "../modules/ContentBlockItem";
-import DeviceCard from "../modules/DeviceCard";
+import DeviceCard from "../modules/profile/DeviceCard";
+import ChangePassword from "../modules/profile/ChangePasswordForm";
+import DevicesForm from "../modules/profile/DevicesForm";
 
 const Expand = styled.form<{ profile?: boolean; password?: boolean }>`
   display: flex;
@@ -25,13 +28,6 @@ const Expand = styled.form<{ profile?: boolean; password?: boolean }>`
       border-bottom: ${(props) => props.theme.divider};
       margin: -70px auto 0 auto;
       padding-bottom: 45px;
-    `};
-
-  ${(props) =>
-    props.password &&
-    css`
-      border-bottom: ${(props) => props.theme.divider};
-      background: #fff;
     `};
 `;
 
@@ -68,21 +64,10 @@ const TopRowProfile = styled.div`
 
 const Settings: React.FC = () => {
   const { t } = useTranslation();
+
   const [editPassword, setEditPassword] = useState<boolean>(false);
   const [editProfile, setEditProfile] = useState<boolean>(false);
   const [editDevices, setEditDevices] = useState<boolean>(false);
-
-  const [name, setName] = useState<string>("Petr");
-  const [surname, setSurname] = useState<string>("Novák");
-  const [email, setEmail] = useState<string>("petr@novak.cz");
-
-  const [currentPassword, setCurrentPassword] = useState<string>("");
-  const [newPassword, setNewPassword] = useState<string>("");
-  const [repeatNewPassword, setRepeatNewPassword] = useState<string>("");
-
-  const [deviceName1, setDeviceName1] = useState<string>("Zasedačka");
-  const [deviceName2, setDeviceName2] = useState<string>("Chodba");
-  const [deviceName3, setDeviceName3] = useState<string>("Kuchyně");
 
   return (
     <>
@@ -101,39 +86,20 @@ const Settings: React.FC = () => {
           </TopRowProfile>
         </Profile>
         {editProfile ? (
-          <Expand profile>
-            <InputItem expand>
-              <label>{t("profile_expand_name")}</label>
-              <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
-            </InputItem>
-            <InputItem expand>
-              <label>{t("profile_expand_surname")}</label>
-              <input type="text" value={surname} onChange={(e) => setSurname(e.target.value)} />
-            </InputItem>
-            <InputItem expand>
-              <label>{t("profile_expand_email")}</label>
-              <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
-            </InputItem>
-            <Buttons>
-              <Button type="submit" onClick={() => setEditProfile(false)} savechanges>
-                {t("profile_save_changes")}
-              </Button>
-              <Button onClick={() => setEditProfile(false)}>{t("profile_cancel")}</Button>
-            </Buttons>
-          </Expand>
+          <ProfileForm onClick={() => setEditProfile(false)} />
         ) : (
           <Expand profile>
             <InputItem profile>
-              <label>{t("profile_expand_name")}</label>
-              <input type="text" defaultValue={name} />
+              <label htmlFor="name">{t("profile_expand_name")}</label>
+              <input id="name" type="text" defaultValue="Petr" />
             </InputItem>
             <InputItem profile>
-              <label>{t("profile_expand_surname")}</label>
-              <input type="text" defaultValue={surname} />
+              <label htmlFor="surname">{t("profile_expand_surname")}</label>
+              <input id="surname" type="text" defaultValue="Novák" />
             </InputItem>
             <InputItem profile>
-              <label>{t("profile_expand_email")}</label>
-              <input type="text" defaultValue={email} />
+              <label htmlFor="email">{t("profile_expand_email")}</label>
+              <input id="email" type="text" defaultValue="petr.novak@gmail.com" />
             </InputItem>
           </Expand>
         )}
@@ -146,34 +112,7 @@ const Settings: React.FC = () => {
           opacity={editPassword && "0"}
           cursor={editPassword && "none"}
         />
-        {editPassword && (
-          <Expand password>
-            <InputItem expand>
-              <label>{t("profile_expand_password_current")}</label>
-              <input type="password" placeholder={t("profile_expand_password_current_placeholder")} value={currentPassword} onChange={(e) => setCurrentPassword(e.target.value)} />
-            </InputItem>
-            <InputItem expand>
-              <label>{t("profile_expand_password_new")}</label>
-              <input type="password" pattern="/(?=.*[a-z])(?=.*[A-Z]).{12,}/" placeholder={t("profile_expand_password_new_placeholder")} value={newPassword} onChange={(e) => setNewPassword(e.target.value)} />
-            </InputItem>
-            <InputItem expand>
-              <label>{t("profile_expand_password_repeat_new")}</label>
-              <input type="password" placeholder={t("profile_expand_password_repeat_new_placeholder")} value={repeatNewPassword} onChange={(e) => setRepeatNewPassword(e.target.value)} />
-            </InputItem>
-            <Buttons password>
-              <Button
-                type="submit"
-                background={(!repeatNewPassword || !newPassword || !currentPassword) && "rgba(3, 25, 70, 0.4)"}
-                cursor={(!repeatNewPassword || !newPassword || !currentPassword) && "none"}
-                onClick={() => setEditPassword(false)}
-                savechanges
-              >
-                {t("profile_save_changes")}
-              </Button>
-              <Button onClick={() => setEditPassword(false)}>{t("profile_cancel")}</Button>
-            </Buttons>
-          </Expand>
-        )}
+        {editPassword && <ChangePassword onClick={() => setEditPassword(false)} />}
         <ContentBlockItem
           subheading={t("profile_devices_subheading")}
           buttonText={t("profile_devices_button_text")}
@@ -183,21 +122,17 @@ const Settings: React.FC = () => {
           opacity={editDevices && "0"}
           cursor={editDevices && "none"}
         />
-        <Expand>
-          <Cards>
-            <DeviceCard edit={editDevices} onChange={(e) => setDeviceName1(e.target.value)} name={deviceName1} label="L0135C1L" />
-            <DeviceCard edit={editDevices} onChange={(e) => setDeviceName2(e.target.value)} name={deviceName2} label="T1605C1A" />
-            <DeviceCard edit={editDevices} onChange={(e) => setDeviceName3(e.target.value)} name={deviceName3} label="B0105U7K" />
-          </Cards>
-          {editDevices && (
-            <Buttons>
-              <Button type="submit" onClick={() => setEditDevices(false)} savechanges>
-                {t("profile_save_changes")}
-              </Button>
-              <Button onClick={() => setEditDevices(false)}>{t("profile_cancel")}</Button>
-            </Buttons>
-          )}
-        </Expand>
+        {editDevices ? (
+          <DevicesForm onClick={() => setEditDevices(false)} edit={editDevices} />
+        ) : (
+          <Expand>
+            <Cards>
+              <DeviceCard edit={editDevices} nameDevice="Zasedačka" label="L0135C1L" htmlFor="device1" id="device1" />
+              <DeviceCard edit={editDevices} nameDevice="Chodba" label="T1605C1A" htmlFor="device2" id="device1" />
+              <DeviceCard edit={editDevices} nameDevice="Kuchyně" label="B0105U7K" htmlFor="device3" id="device1" />
+            </Cards>
+          </Expand>
+        )}
       </ContentBlock>
     </>
   );

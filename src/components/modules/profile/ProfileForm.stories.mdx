@@ -1,0 +1,14 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import ProfileForm from "./ProfileForm";
+
+<Meta title="Modules/Forms" component={ProfileForm} />
+
+# Personal information form
+
+This is a form is for updating personal information inside dashboard.
+
+export const Component = () => <ProfileForm />;
+
+<Canvas>
+  <Story name="Personal information">{Component}</Story>
+</Canvas>

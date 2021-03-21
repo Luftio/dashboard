@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-const InputItem = styled.div<{ expand?: boolean; profile?: boolean; fail?: boolean; device?: boolean }>`
+const InputItem = styled.div<{ expand?: boolean; profile?: boolean; fail?: boolean; device?: boolean; failDashboard?: boolean }>`
   position: relative;
 
   > label {
@@ -14,7 +14,7 @@ const InputItem = styled.div<{ expand?: boolean; profile?: boolean; fail?: boole
     position: absolute;
     left: 355px;
     bottom: 10px;
-    background: #fff;
+    background: transparent;
     width: 30px;
     display: flex;
     justify-content: center;
@@ -118,6 +118,19 @@ const InputItem = styled.div<{ expand?: boolean; profile?: boolean; fail?: boole
       > input {
         width: 175px;
         height: 35px;
+      }
+    `}
+
+    ${(props) =>
+    props.failDashboard &&
+    css`
+      > input {
+        border: 1px solid ${(props) => props.theme.color_fail};
+
+        &:focus {
+          border: 1px solid ${(props) => props.theme.color_fail};
+          box-shadow: none;
+        }
       }
     `}
 `;

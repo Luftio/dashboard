@@ -1,0 +1,57 @@
+{
+  "name": "Luftio dashboard",
+  "short_name": "Copyright © 2021 Luftio",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fff",
+  "theme_color": "#031946",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/static/favicon.png",
+      "type": "image/png",
+      "sizes": "42x42"
+    },
+    {
+      "src": "/static/maskable-icon.png",
+      "type": "image/png",
+      "sizes": "48x48",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/static/splash-screen.png",
+      "type": "image/png",
+      "sizes": "520x520"
+    },
+    {
+      "src": "/static/apple-touch-icon.png",
+      "type": "image/png",
+      "sizes": "46x46"
+    },
+    {
+      "src": "/static/touch-icon-iphone.png",
+      "type": "image/png",
+      "sizes": "57x57"
+    },
+    {
+      "src": "/static/touch-icon-ipad.png",
+      "type": "image/png",
+      "sizes": "76x76"
+    },
+    {
+      "src": "/static/touch-icon-iphone-retina.png",
+      "type": "image/png",
+      "sizes": "120x120"
+    },
+    {
+      "src": "/static/touch-icon-ipad-retina.png",
+      "type": "image/png",
+      "sizes": "152x152"
+    },
+    {
+      "src": "/static/touch-icon-iphone-6-plus.png",
+      "type": "image/png",
+      "sizes": "180x180"
+    }
+  ]
+}
