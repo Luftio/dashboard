@@ -113,23 +113,15 @@ const Settings: React.FC = () => {
           cursor={editPassword && "none"}
         />
         {editPassword && <ChangePassword onClick={() => setEditPassword(false)} />}
-        <ContentBlockItem
-          subheading={t("profile_devices_subheading")}
-          buttonText={t("profile_devices_button_text")}
-          text={t("profile_devices_text")}
-          url=""
-          onClick={() => setEditDevices(!editDevices)}
-          opacity={editDevices && "0"}
-          cursor={editDevices && "none"}
-        />
+        <ContentBlockItem subheading={t("profile_devices_subheading")} buttonText={t("profile_devices_button_text")} text={t("profile_devices_text")} url="" onClick={() => setEditDevices(!editDevices)} opacity={editDevices && "0"} cursor={editDevices && "none"} />
         {editDevices ? (
           <DevicesForm onClick={() => setEditDevices(false)} edit={editDevices} />
         ) : (
           <Expand>
             <Cards>
-              <DeviceCard edit={editDevices} nameDevice="Zasedačka" label="L0135C1L" htmlFor="device1" id="device1" />
-              <DeviceCard edit={editDevices} nameDevice="Chodba" label="T1605C1A" htmlFor="device2" id="device1" />
-              <DeviceCard edit={editDevices} nameDevice="Kuchyně" label="B0105U7K" htmlFor="device3" id="device1" />
+              <DeviceCard nameDevice="Zasedačka" label="L0135C1L" />
+              <DeviceCard nameDevice="Chodba" label="T1605C1A" />
+              <DeviceCard nameDevice="Kuchyně" label="B0105U7K" />
             </Cards>
           </Expand>
         )}
