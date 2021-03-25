@@ -141,5 +141,6 @@
   "dashboard_events_card_subheading": "Události",
   "dashboard_feedback_card_subheading": "Zpětná vazba",
   "dashboard_bottomcard_last": "Poslední:",
-  "dashboard_feedback_chart_label": "skóre nálady"
+  "dashboard_feedback_chart_label": "skóre nálady",
+  "dashboard_events_chart_label": "celkem"
 }

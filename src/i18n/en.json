@@ -139,7 +139,8 @@
   "dashboard_deterioration": "Deterioration",
   "dashboard_modal_score_now": "currently",
   "dashboard_events_card_subheading": "Events",
-  "dashboard_feedback_card_subheading": "Feddback",
+  "dashboard_feedback_card_subheading": "Feedback",
   "dashboard_bottomcard_last": "Latest:",
-  "dashboard_feedback_chart_label": "mood score"
+  "dashboard_feedback_chart_label": "mood score",
+  "dashboard_events_chart_label": "total"
 }

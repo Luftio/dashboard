@@ -27,6 +27,13 @@ const LeftSide = styled.div`
     flex: 0.8;
     overflow: visible;
   }
+
+  @media only screen and (max-width: 570px) {
+    flex: 1;
+    overflow: visible;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 `;
 
 const Content = styled.div`

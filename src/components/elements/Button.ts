@@ -50,6 +50,10 @@ const Button = styled.button<{ primary?: boolean; email?: boolean; signout?: boo
       @media only screen and (max-width: 970px) {
         width: 450px;
       }
+
+      @media only screen and (max-width: 570px) {
+        width: 100%;
+      }
     `}
 
   ${(props) =>

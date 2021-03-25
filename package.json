@@ -12,7 +12,8 @@
     "start": "next start",
     "export": "npm run build && next export",
     "storybook": "start-storybook -s ./public -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "chromatic": "chromatic --project-token abde2b2ec12c --exit-zero-on-changes"
   },
   "dependencies": {
     "@react-spring/konva": "^9.0.0-rc.3",
@@ -53,6 +54,7 @@
     "@typescript-eslint/parser": "^4.15.2",
     "babel-loader": "^8.2.2",
     "babel-plugin-styled-components": "^1.12.0",
+    "chromatic": "^5.7.0",
     "eslint": "^7.21.0",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-prettier": "^3.3.1",

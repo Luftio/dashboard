@@ -7,6 +7,7 @@ import Subheading from "../elements/Subheading";
 
 const Div = styled.div`
   margin: 50px 0 40px 0;
+  width: 100%;
 `;
 
 interface Props {

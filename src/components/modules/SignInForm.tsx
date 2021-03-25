@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
+import styled from "styled-components";
 
 import "../../i18n/i18n";
 import { useTranslation } from "react-i18next";

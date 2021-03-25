@@ -23,9 +23,14 @@ const InputItem = styled.div<{ expand?: boolean; profile?: boolean; fail?: boole
     @media only screen and (max-width: 970px) {
       left: 405px;
     }
+
+    @media only screen and (max-width: 570px) {
+      left: 90%;
+    }
   }
 
   > input {
+    -webkit-appearance: none;
     display: flex;
     width: 400px;
     height: 45px;
@@ -57,6 +62,10 @@ const InputItem = styled.div<{ expand?: boolean; profile?: boolean; fail?: boole
 
     @media only screen and (max-width: 970px) {
       width: 450px;
+    }
+
+    @media only screen and (max-width: 570px) {
+      width: 100%;
     }
   }
 
