@@ -8,7 +8,6 @@ import BasicText from "../elements/BasicText";
 const Item = styled.div`
   display: flex;
   width: 85%;
-  height: 150px;
   flex-direction: column;
   margin: 0 auto;
   border-bottom: ${(props) => props.theme.divider};
@@ -42,7 +41,7 @@ const ContentBlockItem: React.FC<Props> = ({ subheading, buttonText, text, url, 
   return (
     <Item>
       <TopRow>
-        <Subheading dashboard>{subheading}</Subheading>
+        <Subheading contentBlockItem>{subheading}</Subheading>
         {link ? (
           <a href={url} target={target}>
             <Button onClick={onClick}>{buttonText}</Button>
@@ -53,7 +52,7 @@ const ContentBlockItem: React.FC<Props> = ({ subheading, buttonText, text, url, 
           </Button>
         )}
       </TopRow>
-      <BasicText>{text}</BasicText>
+      <BasicText contentBlockItem>{text}</BasicText>
     </Item>
   );
 };

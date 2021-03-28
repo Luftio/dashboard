@@ -4,7 +4,7 @@ import styled, { css } from "styled-components";
 
 import { Icon } from "ts-react-feather-icons";
 
-const Item = styled.a<{ signout?: boolean; active?: boolean; hover?: boolean }>`
+const Item = styled.a<{ signout?: boolean; active?: boolean; hover?: boolean; dropdown?: boolean }>`
   display: flex;
   align-items: center;
   padding-left: 12%;
@@ -18,6 +18,13 @@ const Item = styled.a<{ signout?: boolean; active?: boolean; hover?: boolean }>`
   &:active {
     border-left: 3px solid transparent;
   }
+
+  ${(props) =>
+    props.dropdown &&
+    css`
+      padding-left: 5%;
+      margin-bottom: 20px;
+    `}
 
   ${(props) =>
     props.signout &&
@@ -43,6 +50,12 @@ const Item = styled.a<{ signout?: boolean; active?: boolean; hover?: boolean }>`
       svg {
         stroke: ${(props) => props.theme.color_fail};
       }
+
+      ${(props) =>
+        props.dropdown &&
+        css`
+          margin-top: 30px;
+        `}
     `}
 
   ${(props) =>
@@ -74,13 +87,19 @@ const Item = styled.a<{ signout?: boolean; active?: boolean; hover?: boolean }>`
     `}
 `;
 
-const Text = styled.span`
+const Text = styled.span<{ dropdown?: boolean }>`
   color: ${(props) => props.theme.color_primary};
   margin-left: 20px;
 
   &:active {
     color: ${(props) => props.theme.color_brand};
   }
+
+  ${(props) =>
+    props.dropdown &&
+    css`
+      font-size: ${(props) => props.theme.font_size_sidebar_heading};
+    `}
 `;
 
 const Area = styled.span<{ signout?: boolean }>`
@@ -105,6 +124,13 @@ const Area = styled.span<{ signout?: boolean }>`
   @media only screen and (max-width: 1000px) {
     span {
       display: none;
+      width: 100%;
+    }
+  }
+
+  @media only screen and (max-width: 850px) {
+    span {
+      display: flex;
       width: 100%;
     }
   }
@@ -135,15 +161,16 @@ interface Props {
   onClick?: () => void;
   active?: boolean;
   hover?: boolean;
+  dropdown?: boolean;
 }
 
-const SidebarItem: React.FC<Props> = ({ url, icon, text, type, active, hover }) => {
+const SidebarItem: React.FC<Props> = ({ url, icon, text, type, active, hover, dropdown }) => {
   return (
     <Link href={url}>
-      <Item hover={hover} active={active} signout={type}>
+      <Item dropdown={dropdown} hover={hover} active={active} signout={type}>
         <Area signout={type}>
-          <Icon name={icon} size="22" color="#838C97" />
-          <Text>{text}</Text>
+          <Icon name={icon} size={dropdown ? "32" : "22"} color="#838C97" />
+          <Text dropdown={dropdown}>{text}</Text>
         </Area>
       </Item>
     </Link>

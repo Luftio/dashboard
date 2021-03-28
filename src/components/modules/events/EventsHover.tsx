@@ -9,7 +9,7 @@ import SidebarItem from "../../elements/SidebarItem";
 import Notifications from "../../elements/Notifications";
 
 const Div = styled.div`
-  width: 100%;
+  width: 300px;
   height: 80px;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
   background: #fff;

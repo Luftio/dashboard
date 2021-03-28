@@ -9,6 +9,10 @@ const ThreatBar = styled.div<{ background?: string; score?: number }>`
   height: 10px;
   width: 120px;
 
+  @media only screen and (max-width: 600px) {
+    width: 80px;
+  }
+
   > div {
     border-radius: 100px;
     background: ${(props) => props.background};

@@ -9,17 +9,23 @@ import HapinessChart from "./FeedbackChart";
 import EventsChart from "./EventsChart";
 
 const Card = styled.div`
-  width: 49.25%;
+  width: 48.5%;
   height: 350px;
   border-radius: ${(props) => props.theme.border_radius_primary};
   background-color: #fff;
   box-shadow: ${(props) => props.theme.color_block_box_shadow};
   margin-right: 1.5%;
   padding: 15px 15px;
+  margin-bottom: 1.7%;
 
   &:hover {
     box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.08);
     transition: ${(props) => props.theme.transition_primary};
+  }
+
+  @media only screen and (max-width: 850px) {
+    width: 100%;
+    margin-bottom: 20px;
   }
 `;
 
@@ -59,15 +65,15 @@ const BottomRowCard: React.FC<Props> = ({ subheading, onClick, message1, date1, 
         <BasicText bottomRowProcentsName>{t("dashboard_bottomcard_last")}</BasicText>
         <Notification>
           <BasicText notifications>{message1}</BasicText>
-          <BasicText date>{date1}</BasicText>
+          <BasicText dateDashboard>{date1}</BasicText>
         </Notification>
         <Notification>
           <BasicText notifications>{message2}</BasicText>
-          <BasicText date>{date2}</BasicText>
+          <BasicText dateDashboard>{date2}</BasicText>
         </Notification>
         <Notification>
           <BasicText notifications>{message3}</BasicText>
-          <BasicText date>{date3}</BasicText>
+          <BasicText dateDashboard>{date3}</BasicText>
         </Notification>
       </Card>
     </>

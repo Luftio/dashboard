@@ -31,19 +31,9 @@ const Expand = styled.form<{ profile?: boolean; password?: boolean }>`
     `};
 `;
 
-const Buttons = styled.div<{ password?: boolean }>`
-  display: flex;
-  margin-top: 20px;
-
-  ${(props) =>
-    props.password &&
-    css`
-      margin-bottom: 20px;
-    `};
-`;
-
 const Cards = styled.div`
   display: flex;
+  flex-wrap: wrap;
 `;
 
 const Profile = styled.div`
@@ -103,15 +93,7 @@ const Settings: React.FC = () => {
             </InputItem>
           </Expand>
         )}
-        <ContentBlockItem
-          subheading={t("profile_change_password_subheading")}
-          buttonText={t("profile_change_password_button_text")}
-          text={t("profile_change_password_text")}
-          url=""
-          onClick={() => setEditPassword(!editPassword)}
-          opacity={editPassword && "0"}
-          cursor={editPassword && "none"}
-        />
+        <ContentBlockItem subheading={t("profile_change_password_subheading")} buttonText={t("profile_change_password_button_text")} text={t("profile_change_password_text")} url="" onClick={() => setEditPassword(!editPassword)} opacity={editPassword && "0"} cursor={editPassword && "none"} />
         {editPassword && <ChangePassword onClick={() => setEditPassword(false)} />}
         <ContentBlockItem subheading={t("profile_devices_subheading")} buttonText={t("profile_devices_button_text")} text={t("profile_devices_text")} url="" onClick={() => setEditDevices(!editDevices)} opacity={editDevices && "0"} cursor={editDevices && "none"} />
         {editDevices ? (

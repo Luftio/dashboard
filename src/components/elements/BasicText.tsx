@@ -1,10 +1,20 @@
 import styled, { css } from "styled-components";
 
-const BasicText = styled.p<{ date?: boolean; name?: boolean; procents?: boolean; color?: string; emptystate?: boolean; events?: boolean; bottomRowProcents?: boolean; bottomRowProcentsName?: boolean; procentsDashboard?: boolean; verifyEmail?: boolean; notifications?: boolean }>`
+const BasicText = styled.p<{ date?: boolean; name?: boolean; procents?: boolean; color?: string; emptystate?: boolean; events?: boolean; bottomRowProcents?: boolean; bottomRowProcentsName?: boolean; procentsDashboard?: boolean; verifyEmail?: boolean; notifications?: boolean; contentBlockItem?: boolean; dateDashboard?: boolean }>`
   font-size: ${(props) => props.theme.font_size_secondary};
 
   ${(props) =>
     props.date &&
+    css`
+      color: ${(props) => props.theme.color_date};
+
+      @media only screen and (max-width: 850px) {
+        display: none;
+      }
+    `}
+
+  ${(props) =>
+    props.dateDashboard &&
     css`
       color: ${(props) => props.theme.color_date};
     `}
@@ -14,6 +24,11 @@ const BasicText = styled.p<{ date?: boolean; name?: boolean; procents?: boolean;
     css`
       font-weight: ${(props) => props.theme.font_weight_primary};
       flex: 0.5;
+      margin-right: 10px;
+
+      @media only screen and (max-width: 850px) {
+        flex: initial;
+      }
     `}
 
     ${(props) =>
@@ -75,6 +90,12 @@ const BasicText = styled.p<{ date?: boolean; name?: boolean; procents?: boolean;
     css`
       display: flex;
       flex: 1;
+    `}
+
+    ${(props) =>
+    props.contentBlockItem &&
+    css`
+      padding-bottom: 50px;
     `}
 `;
 

@@ -13,6 +13,18 @@ import { Icon } from "ts-react-feather-icons";
 
 const Navigation = styled.div`
   display: flex;
+  margin-bottom: 30px;
+  padding-top: 5px;
+  padding-left: 8px;
+  position: relative;
+  left: -8px;
+  overflow-x: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const EventsNav: React.FC = () => {

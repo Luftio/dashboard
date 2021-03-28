@@ -31,24 +31,40 @@ const Event = styled.div`
   height: 75px;
   margin: 0 auto;
   align-items: center;
+
+  @media only screen and (max-width: 850px) {
+    justify-content: space-between;
+  }
 `;
 
 const Main = styled.div`
   display: flex;
   flex-direction: column;
   flex: 0.5;
+
+  @media only screen and (max-width: 850px) {
+    flex: initial;
+  }
 `;
 
 const BottomRow = styled.div`
   display: flex;
   margin-top: 8px;
   align-items: center;
+
+  @media only screen and (max-width: 600px) {
+    display: none;
+  }
 `;
 
 const Threat = styled.div`
   display: flex;
   flex: 0.5;
   align-items: center;
+
+  @media only screen and (max-width: 850px) {
+    flex: initial;
+  }
 `;
 
 const Unread = styled.div<{ display: string }>`
@@ -57,6 +73,10 @@ const Unread = styled.div<{ display: string }>`
   border-radius: 50%;
   background: rgba(3, 24, 70, 0.8);
   opacity: ${(props) => props.display};
+
+  @media only screen and (max-width: 850px) {
+    display: none;
+  }
 `;
 
 interface Props {

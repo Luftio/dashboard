@@ -12,7 +12,7 @@ import SidebarItem from "../elements/SidebarItem";
 import HoverMessage from "../elements/HoverMessage";
 import EventsHover from "./events/EventsHover";
 
-const Sidebar = styled.div`
+const SidebarBlock = styled.div`
   display: flex;
   flex: 0.2;
   flex-direction: column;
@@ -22,6 +22,10 @@ const Sidebar = styled.div`
 
   @media only screen and (max-width: 1000px) {
     flex: 0.15;
+  }
+
+  @media only screen and (max-width: 850px) {
+    display: none;
   }
 `;
 
@@ -65,17 +69,16 @@ const Animation = styled.div`
   }
 `;
 
-const Dashboard: React.FC = ({}) => {
+const Sidebar: React.FC = ({}) => {
   const { t } = useTranslation<string>();
   const router = useRouter();
+  const url = router.pathname.split("/")[1];
 
   const [show, setShow] = useState<Boolean>(false);
   const [showMessage, setShowMessage] = useState<Boolean>(false);
 
-  const url = router.pathname.split("/")[1];
-
   return (
-    <Sidebar>
+    <SidebarBlock>
       <Logo>
         <Link href="/dashboard">
           <Animation onMouseEnter={() => setShowMessage(true)} onMouseLeave={() => setShowMessage(false)}>
@@ -98,8 +101,8 @@ const Dashboard: React.FC = ({}) => {
       <SidebarItem url="/settings" active={url === "settings" && true} icon="settings" text={t("sidebar_other_item_1")}></SidebarItem>
       <SidebarItem url="/support" active={url === "support" && true} icon="info" text={t("sidebar_other_item_2")}></SidebarItem>
       <SidebarItem url="/sign-out" type={true} icon="log-out" text={t("sidebar_sign_out")}></SidebarItem>
-    </Sidebar>
+    </SidebarBlock>
   );
 };
 
-export default Dashboard;
+export default Sidebar;

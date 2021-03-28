@@ -21,16 +21,22 @@ const Background = styled.div`
   align-items: center;
 `;
 
+const Div = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 const ModalWrapper = styled.div`
-  width: 100%;
+  width: 60%;
   padding: 50px 60px;
   height: 100%;
   background: #fff;
   z-index: 10000;
   border-radius: ${(props) => props.theme.border_radius_primary};
 
-  @media only screen and (max-width: 620px) {
-    padding: 50px 15px;
+  @media only screen and (max-width: 850px) {
+    width: 90%;
   }
 `;
 
@@ -45,11 +51,6 @@ const TopRow = styled.div`
 
 const Top = styled.div`
   margin-bottom: 50px;
-  width: 400px;
-
-  @media only screen and (max-width: 620px) {
-    width: 450px;
-  }
 `;
 
 const CloseIcon = styled.p`
@@ -86,20 +87,22 @@ const Modal: React.FC<Props> = ({ showModal, setShowModal, subheading, text, but
       {showModal ? (
         <Background onClick={closeModal} ref={modalRef}>
           <animated.div style={animation}>
-            <ModalWrapper>
-              <Top>
-                <TopRow>
-                  <Subheading dashboard>{subheading}</Subheading>
-                  <CloseIcon onClick={() => setShowModal((prev: any) => !prev)}>
-                    <Icon name="x" size="22" color="#838C97" />
-                  </CloseIcon>
-                </TopRow>
-                <BasicText>{text}</BasicText>
-              </Top>
-              <Link href="/after-delete">
-                <Button primary>{buttonText}</Button>
-              </Link>
-            </ModalWrapper>
+            <Div>
+              <ModalWrapper>
+                <Top>
+                  <TopRow>
+                    <Subheading dashboard>{subheading}</Subheading>
+                    <CloseIcon onClick={() => setShowModal((prev: any) => !prev)}>
+                      <Icon name="x" size="22" color="#838C97" />
+                    </CloseIcon>
+                  </TopRow>
+                  <BasicText>{text}</BasicText>
+                </Top>
+                <Link href="/after-delete">
+                  <Button modal>{buttonText}</Button>
+                </Link>
+              </ModalWrapper>
+            </Div>
           </animated.div>
         </Background>
       ) : null}

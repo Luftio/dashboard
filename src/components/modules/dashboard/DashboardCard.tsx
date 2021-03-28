@@ -6,7 +6,7 @@ import "../../../i18n/i18n";
 import { useTranslation } from "react-i18next";
 
 const Card = styled.div`
-  width: 32%;
+  width: 31.5%;
   height: 350px;
   border-radius: ${(props) => props.theme.border_radius_primary};
   background-color: #fff;
@@ -14,10 +14,20 @@ const Card = styled.div`
   margin-right: 1.5%;
   cursor: pointer;
   padding: 15px 15px;
+  margin-bottom: 1.7%;
 
   &:hover {
     box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.08);
     transition: ${(props) => props.theme.transition_primary};
+  }
+
+  @media only screen and (max-width: 1200px) {
+    width: 48.5%;
+  }
+
+  @media only screen and (max-width: 850px) {
+    width: 100%;
+    margin-bottom: 20px;
   }
 `;
 

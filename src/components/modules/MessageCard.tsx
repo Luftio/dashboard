@@ -40,11 +40,20 @@ const Message = styled.div`
   height: 75px;
   margin: 0 auto;
   align-items: center;
+
+  @media only screen and (max-width: 850px) {
+    justify-content: space-between;
+  }
 `;
 
 const Score = styled.div`
   display: flex;
   flex: 0.5;
+  align-items: center;
+
+  @media only screen and (max-width: 850px) {
+    flex: initial;
+  }
 `;
 
 const Level = styled.div<{ fill?: boolean }>`

@@ -14,6 +14,10 @@ import Copyright from "../elements/Copyright";
 
 const Div = styled.div`
   padding: 50px 0 0 70px;
+
+  @media only screen and (max-width: 970px) {
+    padding-left: 5%;
+  }
 `;
 
 const SignOut: React.FC = () => {

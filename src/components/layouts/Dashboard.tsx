@@ -1,11 +1,17 @@
 import React from "react";
 import styled from "styled-components";
+import { useMediaQuery } from "react-responsive";
 
+import MobileMenu from "../modules/MobileMenu";
 import Sidebar from "../modules/Sidebar";
 
 const Layout = styled.div`
   display: flex;
   height: 100vh;
+
+  @media only screen and (max-width: 850px) {
+    flex-direction: column;
+  }
 `;
 
 const Content = styled.div`
@@ -15,6 +21,10 @@ const Content = styled.div`
 
   @media only screen and (max-width: 1000px) {
     flex: 0.85;
+  }
+
+  @media only screen and (max-width: 850px) {
+    flex: 1;
   }
 `;
 
@@ -29,9 +39,11 @@ interface Props {
 }
 
 const Dashboard: React.FC<Props> = ({ children }) => {
+  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 850px)" });
+
   return (
     <Layout>
-      <Sidebar />
+      {isTabletOrMobile ? <MobileMenu /> : <Sidebar />}
       <Content>
         <Div>{children}</Div>
       </Content>

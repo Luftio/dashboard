@@ -14,7 +14,7 @@ import BottomRowCard from "../modules/dashboard/BottomRowCard";
 const Cards = styled.div`
   display: flex;
   width: 95%;
-  margin-bottom: 1.7%;
+  flex-wrap: wrap;
 `;
 
 const Support: React.FC = () => {
@@ -38,8 +38,6 @@ const Support: React.FC = () => {
         <DashboardCard type="score" score={53} maxValue={83} minValue={30} change={+2} subheading={t("dashboard_score")} onClick={openModal} />
         <DashboardCard type="CO2" score={1568} maxValue={1668} minValue={621} change={-3} subheading="CO2" />
         <DashboardCard type="temperature" score={21.3} maxValue={22.5} minValue={18.7} change={+5} subheading={t("dashboard_temperature")} />
-      </Cards>
-      <Cards>
         <DashboardCard type="humidity" score={18.1} maxValue={51.7} minValue={18.1} change={-9} subheading={t("dashboard_humidity")} />
         <DashboardCard type="pressure" score={988} maxValue={989} minValue={976} change={+1} subheading={t("dashboard_pressure")} />
       </Cards>

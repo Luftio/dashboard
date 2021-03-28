@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-const Button = styled.button<{ primary?: boolean; email?: boolean; signout?: boolean; opacity?: false | string; savechanges?: boolean; background?: any; cursor?: string | false | undefined; nav?: boolean; active?: boolean }>`
+const Button = styled.button<{ primary?: boolean; email?: boolean; signout?: boolean; opacity?: false | string; savechanges?: boolean; background?: any; cursor?: string | false | undefined; nav?: boolean; active?: boolean; modal?: boolean }>`
   font-family: inherit;
   border: none;
   cursor: pointer;
@@ -53,6 +53,29 @@ const Button = styled.button<{ primary?: boolean; email?: boolean; signout?: boo
 
       @media only screen and (max-width: 570px) {
         width: 100%;
+      }
+    `}
+
+  ${(props) =>
+    props.modal &&
+    css`
+      background: ${(props) => props.theme.color_brand};
+      display: block;
+      font-size: ${(props) => props.theme.font_size_primary};
+      width: 100%;
+      height: 45px;
+      margin-top: 30px;
+      color: #fff;
+      border: none;
+
+      &:hover {
+        background: ${(props) => props.theme.color_brand_hover};
+        transition: ${(props) => props.theme.transition_primary};
+      }
+
+      &:active {
+        background: ${(props) => props.theme.color_brand};
+        border: none;
       }
     `}
 
@@ -127,7 +150,7 @@ const Button = styled.button<{ primary?: boolean; email?: boolean; signout?: boo
       display: flex;
       align-items: center;
       padding: 5px 30px;
-      margin: 0 20px 40px 0;
+      margin: 0 20px 10px 0;
       height: 45px;
       font-weight: ${(props) => props.theme.font_weight_primary};
       border: none;

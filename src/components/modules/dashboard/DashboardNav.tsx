@@ -12,6 +12,18 @@ import PulseEffect from "../../elements/PulseEffect";
 const Navigation = styled.div`
   display: flex;
   width: 100%;
+  margin-bottom: 30px;
+  padding-top: 5px;
+  padding-left: 8px;
+  position: relative;
+  left: -8px;
+  overflow-x: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const DashboardNav: React.FC = () => {

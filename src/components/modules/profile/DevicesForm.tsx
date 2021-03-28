@@ -25,6 +25,7 @@ const Buttons = styled.div`
 
 const Cards = styled.div`
   display: flex;
+  flex-wrap: wrap;
 `;
 
 const Card = styled.div`
@@ -34,6 +35,7 @@ const Card = styled.div`
   display: flex;
   flex-direction: column;
   margin-right: 20px;
+  margin-top: 20px;
 `;
 
 const DeviceLabel = styled.label`

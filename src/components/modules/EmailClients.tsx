@@ -9,13 +9,10 @@ import Button from "../elements/Button";
 
 const Div = styled.div`
   display: flex;
+  flex-wrap: wrap;
 
   > a {
     text-decoration: none;
-  }
-
-  @media only screen and (max-width: 760px) {
-    display: block;
   }
 `;
 
