@@ -6,6 +6,7 @@ import "../../i18n/i18n";
 import { useTranslation } from "react-i18next";
 
 import Heading from "../elements/Heading";
+import Loader from "../elements/Loader";
 import DashboardNav from "../modules/dashboard/DashboardNav";
 import DashboardCard from "../modules/dashboard/DashboardCard";
 import ModalDashboard from "../modules/dashboard/ModalDashboard";
@@ -21,6 +22,14 @@ const Cards = styled.div`
   flex-wrap: wrap;
 `;
 
+const LoadingWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  height: 90%;
+  justify-content: center;
+  align-items: center;
+`;
+
 interface DashboardContentProps {
   activeDeviceId: string;
 }
@@ -34,15 +43,13 @@ const DashboardContent: React.FC<DashboardContentProps> = ({ activeDeviceId }) =
     setShowModalData(data);
   };
 
+  const [loading, setLoading] = useState<boolean>(true);
   const [devices, setDevices] = useState<Device[]>([]);
+
   const loadData = async () => {
+    setLoading(true);
     const devicesRequest = await ThingsboardService.getInstance().getDevices();
-    const devices: Device[] = [
-      //{ name: t("dashboard_all"), id: "all", color: "yellow" }
-      //{ name: "Zasedačka", id: "1", color: "green" },
-      //{ name: "Kuchyně", id: "2", color: "yellow" },
-      //{ name: "Chodba", id: "3", color: "red" },
-    ];
+    const devices: Device[] = [];
     for (const device of devicesRequest) {
       const startTs = +new Date() - 24 * 3600000;
       const endTs = +new Date();
@@ -180,12 +187,18 @@ const DashboardContent: React.FC<DashboardContentProps> = ({ activeDeviceId }) =
       }
     }
     setDevices(devices);
+    setLoading(false);
   };
   useEffect(() => {
     loadData();
   }, []);
 
-  const activeDevice = devices.find((it) => it.id === activeDeviceId);
+  let activeDevice = null;
+  if (devices.some((it: any) => it.id === activeDeviceId)) {
+    activeDevice = devices.find((it) => it.id === activeDeviceId);
+  } else if (devices.length > 0) {
+    activeDevice = devices[0];
+  }
 
   return (
     <>
@@ -194,7 +207,12 @@ const DashboardContent: React.FC<DashboardContentProps> = ({ activeDeviceId }) =
         <meta name="description" content={t("description_dashboard_page")} />
       </Head>
       <Heading dashboard>{t("dashboard_page_heading")}</Heading>
-      <DashboardNav devices={devices} activeDeviceId={activeDeviceId} />
+      {loading && (
+        <LoadingWrapper>
+          <Loader />
+        </LoadingWrapper>
+      )}
+      <DashboardNav devices={devices} activeDeviceId={activeDevice?.id || "all"} />
       <Cards>
         {activeDevice?.data?.map((data: DeviceData) => (
           <DashboardCard data={data} onClick={() => openModal(data)} />

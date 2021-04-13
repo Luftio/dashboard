@@ -1,0 +1,14 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import Loader from "./Loader";
+
+<Meta title="Elements/Loader" component={Loader} />
+
+# Loader
+
+Loading spinner component. Based on https://loading.io/css/
+
+export const Component = (args) => <Loader />;
+
+<Canvas>
+  <Story name="Loader">{Component.bind({})}</Story>
+</Canvas>
