@@ -12,6 +12,9 @@ const Menu = styled.div`
   justify-content: center;
   border-bottom: ${(props) => props.theme.border_primary};
   z-index: 10000;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
 `;
 
 const Nav = styled.nav`

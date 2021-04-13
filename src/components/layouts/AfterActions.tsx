@@ -28,7 +28,7 @@ interface Props {
 }
 
 const Default: React.FC<Props> = ({ children, afterdelete }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation<string>();
 
   return (
     <>

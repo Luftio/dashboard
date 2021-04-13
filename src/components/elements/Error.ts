@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 const Error = styled.p<{ dashboard?: boolean }>`
   color: ${(props) => props.theme.color_fail};

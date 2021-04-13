@@ -36,7 +36,9 @@ const SignOut: React.FC = () => {
         <Link href="/">
           <Button signout>{t("sign_in_back_button")}</Button>
         </Link>
-        <Copyright>{t("copyright")}</Copyright>
+        <Copyright>
+          Copyright © {new Date().getFullYear()} Luftio. {t("copyright")}
+        </Copyright>
       </Div>
     </>
   );

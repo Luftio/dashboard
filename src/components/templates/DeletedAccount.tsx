@@ -31,7 +31,9 @@ const DeletedAccount: React.FC = () => {
         <Image src="/static/logo_white.svg" alt="Luftio logo" width={120} height={45} />
         <Heading afterAction>{t("deleted_account_heading")}</Heading>
         <Subheading afterAction>{t("deleted_account_subheading")}</Subheading>
-        <Copyright>{t("copyright")}</Copyright>
+        <Copyright>
+          Copyright © {new Date().getFullYear()} Luftio. {t("copyright")}
+        </Copyright>
       </Div>
     </>
   );
