@@ -32,15 +32,13 @@ const App = ({ Component, pageProps }: AppProps) => (
       <link rel="preconnect" href="https://fonts.gstatic.com"></link>
       <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet"></link>
       <meta property="og:type" content="website" />
-      <meta property="og:url" content="https://app.luftio.com/" />
-      <meta property="og:title" content="Lorem ipsum" />
-      <meta property="og:description" content="Lorem ipsum" />
-      <meta property="og:image" content="SEM PAK DÁMEE NĚJAKOU HEZKOU GRAFIKU" />
+      <meta property="og:url" content="https://dashboard.luftio.com/" />
+      <meta property="og:title" content="Welcome to Luftio" />
+      <meta property="og:description" content="Luftio is a data-driven air quality monitoring system, that helps companies improve their workspace and make their employees healthier and also more productive." />
       <meta property="twitter:card" content="summary_large_image" />
-      <meta property="twitter:url" content="https://app.luftio.com" />
-      <meta property="twitter:title" content="Lorem ipsum" />
-      <meta property="twitter:description" content="Lorem ipsum" />
-      <meta property="twitter:image" content="SEM PAK DÁMEE NĚJAKOU HEZKOU GRAFIKU"></meta>
+      <meta property="twitter:url" content="https://dashboard.luftio.com" />
+      <meta property="twitter:title" content="Welcome to Luftio" />
+      <meta property="twitter:description" content="Luftio is a data-driven air quality monitoring system, that helps companies improve their workspace and make their employees healthier and also more productive." />
     </Head>
     <ThemeProvider theme={theme}>
       <GlobalStyle />
