@@ -27,10 +27,12 @@ module.exports = {
         destination: "/events/from-measurement",
         permanent: true,
       },
+      {
+        source: "/dashboard",
+        destination: "/dashboard/all",
+        permanent: true,
+      },
     ];
   },
-};
-
-module.exports = {
   target: "serverless",
 };

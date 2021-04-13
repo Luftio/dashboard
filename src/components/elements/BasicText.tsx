@@ -1,6 +1,20 @@
 import styled, { css } from "styled-components";
 
-const BasicText = styled.p<{ date?: boolean; name?: boolean; procents?: boolean; color?: string; emptystate?: boolean; events?: boolean; bottomRowProcents?: boolean; bottomRowProcentsName?: boolean; procentsDashboard?: boolean; verifyEmail?: boolean; notifications?: boolean; contentBlockItem?: boolean; dateDashboard?: boolean }>`
+const BasicText = styled.p<{
+  date?: boolean;
+  name?: boolean;
+  procents?: boolean;
+  color?: string;
+  emptystate?: boolean;
+  events?: boolean;
+  bottomRowProcents?: boolean;
+  bottomRowProcentsName?: boolean;
+  procentsDashboard?: boolean;
+  verifyEmail?: boolean;
+  notifications?: boolean;
+  contentBlockItem?: boolean;
+  dateDashboard?: boolean;
+}>`
   font-size: ${(props) => props.theme.font_size_secondary};
 
   ${(props) =>

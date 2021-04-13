@@ -7,7 +7,17 @@ import DashboardNav from "./DashboardNav";
 
 This is navigation that is displayed on dashboard page and contaions all devices.
 
-export const Component = () => <DashboardNav />;
+export const Component = () => (
+  <DashboardNav
+    activeDeviceId="all"
+    devices={[
+      { id: "all", name: "Vše", color: "yellow" },
+      { id: "1", name: "Zasedačka", color: "yellow" },
+      { id: "2", name: "Chodba", color: "green" },
+      { id: "3", name: "Kuchyňe", color: "red" },
+    ]}
+  />
+);
 
 <Canvas>
   <Story name="Navigation">{Component.bind({})}</Story>

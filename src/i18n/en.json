@@ -132,6 +132,7 @@
   "events_page_employees_empty_state": "You do not recieved any event from employees yet",
   "dashboard_page_heading": "Dashboard",
   "dashboard_score": "Score",
+  "dashboard_all": "All",
   "dashboard_temperature": "Temperature",
   "dashboard_humidity": "Humidity",
   "dashboard_pressure": "Pressure",

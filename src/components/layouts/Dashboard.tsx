@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useMediaQuery } from "react-responsive";
+import Router from "next/router";
 
 import MobileMenu from "../modules/MobileMenu";
 import Sidebar from "../modules/Sidebar";
+import ThingsboardService from "../../services/ThingsboardService";
 
 const Layout = styled.div`
   display: flex;
@@ -40,6 +42,14 @@ interface Props {
 
 const Dashboard: React.FC<Props> = ({ children }) => {
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 850px)" });
+
+  if (typeof window === "undefined") {
+    return null;
+  }
+  if (!ThingsboardService.getInstance().isLoggedIn()) {
+    Router.push("/");
+    return null;
+  }
 
   return (
     <Layout>

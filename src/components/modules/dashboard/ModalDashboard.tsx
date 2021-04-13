@@ -1,5 +1,13 @@
-import React, { useRef, MouseEvent } from "react";
+import React, { useRef, useState, MouseEvent } from "react";
 import { useSpring, animated } from "react-spring";
+import {
+  VictoryChart,
+  VictoryTheme,
+  VictoryLine,
+  VictoryAxis,
+  VictoryZoomContainer,
+  VictoryBrushContainer,
+} from "victory";
 import styled from "styled-components";
 
 import "../../../i18n/i18n";
@@ -9,6 +17,7 @@ import Subheading from "../../elements/Subheading";
 import BasicText from "../../elements/BasicText";
 
 import { Icon } from "ts-react-feather-icons";
+import DeviceData from "../../../types/DeviceData";
 
 const Background = styled.div`
   width: 100%;
@@ -24,11 +33,12 @@ const Background = styled.div`
 
 const ModalWrapper = styled.div`
   width: 100%;
-  padding: 50px 60px;
+  padding: 40px 50px;
   height: 100%;
   background: #fff;
   z-index: 10000;
   border-radius: ${(props) => props.theme.border_radius_primary};
+  max-width: 700px;
 
   @media only screen and (max-width: 620px) {
     padding: 50px 15px;
@@ -40,44 +50,21 @@ const TopRow = styled.div`
   justify-content: space-between;
   align-items: center;
   padding-bottom: 15px;
-  margin-bottom: 300px;
-  width: 700px;
 `;
 
 const CloseIcon = styled.p`
   cursor: pointer;
 `;
 
-const BottomRow = styled.div`
-  display: flex;
-  align-items: center;
-  width: 100%;
-  padding: 0 15px;
-  justify-content: center;
-`;
-
-const BottomRowItem = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 50px;
-  justify-content: space-between;
-  text-align: center;
-  flex: 0.2;
-`;
-
 interface Props {
-  showModal: boolean;
-  setShowModal: any;
-  subheading: string;
-  score: number;
-  minValue: number;
-  maxValue: number;
-  change: number;
+  data: DeviceData | null;
+  handleClose: () => void;
 }
 
-const ModalDashboard: React.FC<Props> = ({ showModal, setShowModal, subheading, score, minValue, maxValue, change }) => {
+const ModalDashboard: React.FC<Props> = ({ data, handleClose }) => {
   const { t } = useTranslation();
   const modalRef = useRef<any>();
+  const showModal = data != null;
 
   const animation = useSpring<any>({
     config: {
@@ -89,44 +76,72 @@ const ModalDashboard: React.FC<Props> = ({ showModal, setShowModal, subheading, 
 
   const closeModal = (e: MouseEvent) => {
     if (modalRef.current === e.target) {
-      setShowModal(false);
+      handleClose();
     }
   };
 
+  const [zoomDomain, setZoomDomain] = useState<any>();
+
   return (
     <>
-      {showModal ? (
+      {showModal && data != null ? (
         <Background onClick={closeModal} ref={modalRef}>
           <animated.div style={animation}>
             <ModalWrapper>
               <TopRow>
-                <Subheading dashboard>{subheading}</Subheading>
-                <CloseIcon onClick={() => setShowModal((prev: any) => !prev)}>
+                <Subheading dashboard>{data.title}</Subheading>
+                <CloseIcon onClick={() => handleClose()}>
                   <Icon name="x" size="22" color="#838C97" />
                 </CloseIcon>
               </TopRow>
-              <BottomRow>
-                <BottomRowItem>
-                  <BasicText procentsDashboard color={score > 75 ? "#23A454" : score > 40 ? "#FFB951" : "#E55B5B"}>
-                    {score} %
-                  </BasicText>
-                  <BasicText bottomRowProcentsName>{t("dashboard_modal_score_now")}</BasicText>
-                </BottomRowItem>
-                <BottomRowItem>
-                  <BasicText bottomRowProcents>{maxValue} %</BasicText>
-                  <BasicText bottomRowProcentsName>max.</BasicText>
-                </BottomRowItem>
-                <BottomRowItem>
-                  <BasicText bottomRowProcents>{minValue} %</BasicText>
-                  <BasicText bottomRowProcentsName>min.</BasicText>
-                </BottomRowItem>
-                <BottomRowItem>
-                  <BasicText bottomRowProcents color={change > 0 ? "#23A454" : "#E55B5B"}>
-                    {change} %
-                  </BasicText>
-                  <BasicText bottomRowProcentsName>{change > 0 ? t("dashboard_improvement") : t("dashboard_deterioration")}</BasicText>
-                </BottomRowItem>
-              </BottomRow>
+              <VictoryChart
+                theme={VictoryTheme.material}
+                width={700}
+                height={500}
+                scale={{ x: "time" }}
+                padding={{ left: 45, top: 20, bottom: 50 }}
+                containerComponent={
+                  <VictoryZoomContainer
+                    zoomDimension="x"
+                    zoomDomain={zoomDomain}
+                    onZoomDomainChange={(domain) => setZoomDomain(domain)}
+                  />
+                }>
+                <VictoryAxis dependentAxis fixLabelOverlap={true} />
+                <VictoryAxis fixLabelOverlap={true} />
+                <VictoryLine
+                  style={{
+                    data: { stroke: "#031846" },
+                  }}
+                  data={data.values}
+                  interpolation="natural"
+                  x="ts"
+                  y="value"
+                />
+              </VictoryChart>
+              <VictoryChart
+                theme={VictoryTheme.material}
+                padding={{ top: 0, left: 45, right: 0, bottom: 30 }}
+                width={700}
+                height={100}
+                scale={{ x: "time" }}
+                containerComponent={
+                  <VictoryBrushContainer
+                    brushDimension="x"
+                    brushDomain={zoomDomain}
+                    onBrushDomainChange={(domain) => setZoomDomain(domain)}
+                  />
+                }>
+                <VictoryAxis fixLabelOverlap={true} />
+                <VictoryLine
+                  style={{
+                    data: { stroke: "#031846" },
+                  }}
+                  data={data.values}
+                  x="ts"
+                  y="value"
+                />
+              </VictoryChart>
             </ModalWrapper>
           </animated.div>
         </Background>
