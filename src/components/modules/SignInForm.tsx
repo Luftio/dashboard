@@ -24,6 +24,7 @@ const SignUpForm: React.FC = () => {
   const { t } = useTranslation<string>();
   const router = useRouter();
   const [visibility, setVisibility] = useState<boolean>(false);
+  const [logInError, setLogInError] = useState<boolean>(false);
 
   const { register, handleSubmit, errors } = useForm<Formdata>({ mode: "onSubmit" });
   const onSubmit = handleSubmit(({ email, password }) => {
@@ -33,7 +34,7 @@ const SignUpForm: React.FC = () => {
         router.replace("/dashboard");
       })
       .catch((error) => {
-        alert("Login error");
+        setLogInError(true);
       });
   });
 
@@ -76,6 +77,7 @@ const SignUpForm: React.FC = () => {
           <ForgotPassword>{t("forgot_password")}</ForgotPassword>
         </Link>
         {errors.password && errors.password.type === "required" && <Error>{t("msg_required")}</Error>}
+        {logInError && <Error>{t("msg_login_error")}</Error>}
         <Button primary type="submit">
           {t("sign_in")}
         </Button>

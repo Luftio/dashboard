@@ -62,6 +62,7 @@
   "msg_invalid_email": "E-mail je neplatný.",
   "msg_invalid_password": "Heslo musí obsahovat alespoň 12 znaků, malé a jedno velké písmeno",
   "msg_passwords_not_match": "Hesla se sobě nerovnají",
+  "msg_login_error": "Uživatelské jméno nebo heslo je nesprávné",
   "open_gmail": "Otevřít Gmail",
   "open_outlook": "Otevřít Outlook",
   "open_seznam": "Otevřít Seznam",

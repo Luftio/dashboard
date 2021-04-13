@@ -2,14 +2,14 @@ import styled, { css } from "styled-components";
 
 const Loader = styled.div`
   display: inner-block;
-  width: 80px;
-  height: 80px;
+  width: 40px;
+  height: 40px;
 
   ::after {
     content: " ";
     display: block;
-    width: 64px;
-    height: 64px;
+    width: 54px;
+    height: 54px;
     margin: 8px;
     border-radius: 50%;
     border: 6px solid ${(props) => props.theme.color_brand};

@@ -25,7 +25,7 @@ const Cards = styled.div`
 const LoadingWrapper = styled.div`
   display: flex;
   width: 100%;
-  height: 90%;
+  height: 80%;
   justify-content: center;
   align-items: center;
 `;
