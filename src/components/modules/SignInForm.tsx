@@ -14,6 +14,7 @@ import Error from "../elements/Error";
 import ForgotPassword from "../elements/ForgotPassword";
 
 import { Icon } from "ts-react-feather-icons";
+import ThingsboardService from "../../services/ThingsboardService";
 
 type Formdata = {
   email: string;
@@ -27,8 +28,14 @@ const SignUpForm: React.FC = () => {
 
   const { register, handleSubmit, errors } = useForm<Formdata>({ mode: "onSubmit" });
   const onSubmit = handleSubmit(({ email, password }) => {
-    console.log(email, password);
-    router.replace("/dashboard");
+    ThingsboardService.getInstance()
+      .loginEmail(email, password)
+      .then((success) => {
+        router.replace("/dashboard");
+      })
+      .catch((error) => {
+        alert("Login error");
+      });
   });
 
   return (

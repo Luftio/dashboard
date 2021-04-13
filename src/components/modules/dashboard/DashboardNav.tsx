@@ -8,6 +8,7 @@ import { useTranslation } from "react-i18next";
 
 import Button from "../../elements/Button";
 import PulseEffect from "../../elements/PulseEffect";
+import Device from "../../../types/Device";
 
 const Navigation = styled.div`
   display: flex;
@@ -26,36 +27,27 @@ const Navigation = styled.div`
   }
 `;
 
-const DashboardNav: React.FC = () => {
+interface DashboardNavProps {
+  devices: Device[];
+  activeDeviceId: string;
+}
+
+const DashboardNav: React.FC<DashboardNavProps> = ({ devices, activeDeviceId }) => {
   const { t } = useTranslation();
   const router = useRouter();
 
   return (
     <Navigation>
-      <Link href="/events/from-measurement">
-        <Button nav active={true}>
-          Vše
-          <PulseEffect yellow></PulseEffect>
-        </Button>
-      </Link>
-      <Link href="/events/from-employees">
-        <Button nav active={router.pathname === "/events/from-measurement" && true}>
-          Zasedačka
-          <PulseEffect yellow></PulseEffect>
-        </Button>
-      </Link>
-      <Link href="/events/from-measurement">
-        <Button nav active={router.pathname === "/events/from-measurement" && true}>
-          Chodba
-          <PulseEffect green></PulseEffect>
-        </Button>
-      </Link>
-      <Link href="/events/from-measurement">
-        <Button nav active={router.pathname === "/events/from-measurement" && true}>
-          Kuchyňe
-          <PulseEffect red></PulseEffect>
-        </Button>
-      </Link>
+      {devices.map((device) => (
+        <Link href={"/dashboard/" + device.id}>
+          <Button nav active={device.id === activeDeviceId}>
+            {device.name}
+            {device.color == "green" && <PulseEffect green></PulseEffect>}
+            {device.color == "yellow" && <PulseEffect yellow></PulseEffect>}
+            {device.color == "red" && <PulseEffect red></PulseEffect>}
+          </Button>
+        </Link>
+      ))}
     </Navigation>
   );
 };

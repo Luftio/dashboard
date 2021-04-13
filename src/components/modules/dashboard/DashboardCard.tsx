@@ -1,13 +1,16 @@
 import React from "react";
 import styled from "styled-components";
+import { VictoryChart, VictoryTheme, VictoryLine, VictoryAxis } from "victory";
+
 import BasicText from "../../elements/BasicText";
 
 import "../../../i18n/i18n";
 import { useTranslation } from "react-i18next";
 
+import DeviceData from "../../../types/DeviceData";
+
 const Card = styled.div`
   width: 31.5%;
-  height: 350px;
   border-radius: ${(props) => props.theme.border_radius_primary};
   background-color: #fff;
   box-shadow: ${(props) => props.theme.color_block_box_shadow};
@@ -36,7 +39,14 @@ const TopRow = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  margin-bottom: 260px;
+`;
+
+const ChartRow = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  justify-content: center;
 `;
 
 const BottomRow = styled.div`
@@ -56,150 +66,91 @@ const BottomRowItem = styled.div`
 `;
 
 interface Props {
-  subheading: string;
-  score: number;
-  minValue: number;
-  maxValue: number;
-  change: number;
-  type: string;
+  data: DeviceData;
   onClick?: React.MouseEventHandler<HTMLDivElement>;
 }
 
-const DashboardCard: React.FC<Props> = ({ subheading, score, minValue, maxValue, change, type, onClick }) => {
+const DashboardCard: React.FC<Props> = ({ data, onClick }) => {
   const { t } = useTranslation();
+
+  const getFormattedValue = (type: string, value: number) => {
+    if (type === "score" || type === "humidity") {
+      return value + " %";
+    } else if (type === "CO2") {
+      return value + " ppm";
+    } else if (type === "temperature") {
+      return value + "°C";
+    } else if (type === "pressure") {
+      return value + " hPa";
+    }
+    return value;
+  };
+
+  const getChartProps = (type: string) => {
+    if (type === "score") {
+      return { minDomain: { y: 0 }, maxDomain: { y: 100 } };
+    } else if (type === "CO2") {
+      return { minDomain: { y: 0 }, maxDomain: { y: 2000 } };
+    } else if (type === "temperature") {
+      return { minDomain: { y: 5 }, maxDomain: { y: 35 } };
+    } else if (type === "pressure") {
+      return { minDomain: { y: 800 }, maxDomain: { y: 1200 } };
+    } else if (type === "humidity") {
+      return { minDomain: { y: 0 }, maxDomain: { y: 100 } };
+    }
+    return {};
+  };
 
   return (
     <>
-      {type === "score" && (
-        <Card onClick={onClick}>
-          <TopRow>
-            <BasicText name>{subheading}</BasicText>
-            <BasicText procentsDashboard color={score > 75 ? "#23A454" : score > 40 ? "#FFB951" : "#E55B5B"}>
-              {score} %
+      <Card onClick={onClick}>
+        <TopRow>
+          <BasicText name>{data.title}</BasicText>
+          <BasicText
+            procentsDashboard
+            color={data.color == "green" ? "#23A454" : data.color == "yellow" ? "#FFB951" : "#E55B5B"}>
+            {getFormattedValue(data.type, data.value)}
+          </BasicText>
+        </TopRow>
+        <ChartRow>
+          <VictoryChart theme={VictoryTheme.material} height={250} padding={{ left: 45, top: 20, bottom: 50 }}>
+            <VictoryAxis dependentAxis fixLabelOverlap={true} scale={{ x: "time" }} />
+            <VictoryAxis fixLabelOverlap={true} scale={{ x: "time" }} />
+            <VictoryLine
+              {...getChartProps(data.type)}
+              style={{
+                data: { stroke: "#031846" },
+              }}
+              data={data.values}
+              animate={{
+                duration: 500,
+                onLoad: { duration: 1000 },
+              }}
+              interpolation="natural"
+              x="ts"
+              y="value"
+            />
+          </VictoryChart>
+        </ChartRow>
+        <BottomRow>
+          <BottomRowItem>
+            <BasicText bottomRowProcents>{getFormattedValue(data.type, data.maxValue)}</BasicText>
+            <BasicText bottomRowProcentsName>max.</BasicText>
+          </BottomRowItem>
+          <BottomRowItem>
+            <BasicText bottomRowProcents>{getFormattedValue(data.type, data.minValue)}</BasicText>
+            <BasicText bottomRowProcentsName>min.</BasicText>
+          </BottomRowItem>
+          <BottomRowItem>
+            <BasicText bottomRowProcents color={data.change > 0 ? "#23A454" : "#E55B5B"}>
+              {data.change} %
             </BasicText>
-          </TopRow>
-          <BottomRow>
-            <BottomRowItem>
-              <BasicText bottomRowProcents>{maxValue} %</BasicText>
-              <BasicText bottomRowProcentsName>max.</BasicText>
-            </BottomRowItem>
-            <BottomRowItem>
-              <BasicText bottomRowProcents>{minValue} %</BasicText>
-              <BasicText bottomRowProcentsName>min.</BasicText>
-            </BottomRowItem>
-            <BottomRowItem>
-              <BasicText bottomRowProcents color={change > 0 ? "#23A454" : "#E55B5B"}>
-                {change} %
-              </BasicText>
-              <BasicText bottomRowProcentsName>{change > 0 ? t("dashboard_improvement") : t("dashboard_deterioration")}</BasicText>
-            </BottomRowItem>
-          </BottomRow>
-        </Card>
-      )}
-      {type === "CO2" && (
-        <Card>
-          <TopRow>
-            <BasicText name>{subheading}</BasicText>
-            <BasicText procentsDashboard color={score < 1000 ? "#23A454" : score < 2000 ? "#FFB951" : "#E55B5B"}>
-              {score} ppm
+            <BasicText bottomRowProcentsName>
+              {data.change > 0 ? t("dashboard_improvement") : t("dashboard_deterioration")}
             </BasicText>
-          </TopRow>
-          <BottomRow>
-            <BottomRowItem>
-              <BasicText bottomRowProcents>{maxValue} ppm</BasicText>
-              <BasicText bottomRowProcentsName>max.</BasicText>
-            </BottomRowItem>
-            <BottomRowItem>
-              <BasicText bottomRowProcents>{minValue} ppm</BasicText>
-              <BasicText bottomRowProcentsName>min.</BasicText>
-            </BottomRowItem>
-            <BottomRowItem>
-              <BasicText bottomRowProcents color={change > 0 ? "#23A454" : "#E55B5B"}>
-                {change} %
-              </BasicText>
-              <BasicText bottomRowProcentsName>{change > 0 ? t("dashboard_improvement") : t("dashboard_deterioration")}</BasicText>
-            </BottomRowItem>
-          </BottomRow>
-        </Card>
-      )}
-      {type === "temperature" && (
-        <Card>
-          <TopRow>
-            <BasicText name>{subheading}</BasicText>
-            <BasicText procentsDashboard color={score > 19 && score < 24 ? "#23A454" : score > 17 && score < 27 ? "#FFB951" : "#E55B5B"}>
-              {score}°C
-            </BasicText>
-          </TopRow>
-          <BottomRow>
-            <BottomRowItem>
-              <BasicText bottomRowProcents>{maxValue}°C</BasicText>
-              <BasicText bottomRowProcentsName>max.</BasicText>
-            </BottomRowItem>
-            <BottomRowItem>
-              <BasicText bottomRowProcents>{minValue}°C</BasicText>
-              <BasicText bottomRowProcentsName>min.</BasicText>
-            </BottomRowItem>
-            <BottomRowItem>
-              <BasicText bottomRowProcents color={change > 0 ? "#23A454" : "#E55B5B"}>
-                {change} %
-              </BasicText>
-              <BasicText bottomRowProcentsName>{change > 0 ? t("dashboard_improvement") : t("dashboard_deterioration")}</BasicText>
-            </BottomRowItem>
-          </BottomRow>
-        </Card>
-      )}
-      {type === "humidity" && (
-        <Card>
-          <TopRow>
-            <BasicText name>{subheading}</BasicText>
-            <BasicText procentsDashboard color={score > 30 && score < 60 ? "#23A454" : score > 25 && score < 70 ? "#FFB951" : "#E55B5B"}>
-              {score} %
-            </BasicText>
-          </TopRow>
-          <BottomRow>
-            <BottomRowItem>
-              <BasicText bottomRowProcents>{maxValue} %</BasicText>
-              <BasicText bottomRowProcentsName>max.</BasicText>
-            </BottomRowItem>
-            <BottomRowItem>
-              <BasicText bottomRowProcents>{minValue} %</BasicText>
-              <BasicText bottomRowProcentsName>min.</BasicText>
-            </BottomRowItem>
-            <BottomRowItem>
-              <BasicText bottomRowProcents color={change > 0 ? "#23A454" : "#E55B5B"}>
-                {change} %
-              </BasicText>
-              <BasicText bottomRowProcentsName>{change > 0 ? t("dashboard_improvement") : t("dashboard_deterioration")}</BasicText>
-            </BottomRowItem>
-          </BottomRow>
-        </Card>
-      )}
-      {type === "pressure" && (
-        <Card>
-          <TopRow>
-            <BasicText name>{subheading}</BasicText>
-            <BasicText procentsDashboard color={score > 970 && score < 1020 ? "#23A454" : "#FFB951"}>
-              {score} hPa
-            </BasicText>
-          </TopRow>
-          <BottomRow>
-            <BottomRowItem>
-              <BasicText bottomRowProcents>{maxValue} hPa</BasicText>
-              <BasicText bottomRowProcentsName>max.</BasicText>
-            </BottomRowItem>
-            <BottomRowItem>
-              <BasicText bottomRowProcents>{minValue} hPa</BasicText>
-              <BasicText bottomRowProcentsName>min.</BasicText>
-            </BottomRowItem>
-            <BottomRowItem>
-              <BasicText bottomRowProcents color={change > 0 ? "#23A454" : "#E55B5B"}>
-                {change} %
-              </BasicText>
-              <BasicText bottomRowProcentsName>{change > 0 ? t("dashboard_improvement") : t("dashboard_deterioration")}</BasicText>
-            </BottomRowItem>
-          </BottomRow>
-        </Card>
-      )}
+          </BottomRowItem>
+        </BottomRow>
+      </Card>
     </>
   );
 };
