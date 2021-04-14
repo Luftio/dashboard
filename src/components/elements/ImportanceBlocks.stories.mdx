@@ -1,0 +1,23 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import ImportanceBlocks from "./ImportanceBlocks";
+
+<Meta title="Elements/Importance block" component={ImportanceBlocks} />
+
+# Importance block
+
+This is a importance block used in suggestion pages.
+
+export const Component = (args) => <ImportanceBlocks {...args} />;
+
+<Canvas>
+  <Story
+    name="Importance block"
+    args={{
+      low: true,
+      medium: false,
+      high: false,
+      block: false,
+    }}>
+    {Component.bind({})}
+  </Story>
+</Canvas>

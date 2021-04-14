@@ -31,6 +31,12 @@ const Background = styled.div`
   align-items: center;
 `;
 
+const Div = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 const ModalWrapper = styled.div`
   width: 100%;
   padding: 40px 50px;
@@ -42,6 +48,10 @@ const ModalWrapper = styled.div`
 
   @media only screen and (max-width: 620px) {
     padding: 50px 15px;
+  }
+
+  @media only screen and (max-width: 850px) {
+    width: 95%;
   }
 `;
 
@@ -87,62 +97,64 @@ const ModalDashboard: React.FC<Props> = ({ data, handleClose }) => {
       {showModal && data != null ? (
         <Background onClick={closeModal} ref={modalRef}>
           <animated.div style={animation}>
-            <ModalWrapper>
-              <TopRow>
-                <Subheading dashboard>{data.title}</Subheading>
-                <CloseIcon onClick={() => handleClose()}>
-                  <Icon name="x" size="22" color="#838C97" />
-                </CloseIcon>
-              </TopRow>
-              <VictoryChart
-                theme={VictoryTheme.material}
-                width={700}
-                height={500}
-                scale={{ x: "time" }}
-                padding={{ left: 45, top: 20, bottom: 50 }}
-                containerComponent={
-                  <VictoryZoomContainer
-                    zoomDimension="x"
-                    zoomDomain={zoomDomain}
-                    onZoomDomainChange={(domain) => setZoomDomain(domain)}
+            <Div>
+              <ModalWrapper>
+                <TopRow>
+                  <Subheading dashboard>{data.title}</Subheading>
+                  <CloseIcon onClick={() => handleClose()}>
+                    <Icon name="x" size="22" color="#838C97" />
+                  </CloseIcon>
+                </TopRow>
+                <VictoryChart
+                  theme={VictoryTheme.material}
+                  width={700}
+                  height={500}
+                  scale={{ x: "time" }}
+                  padding={{ left: 45, top: 20, bottom: 50 }}
+                  containerComponent={
+                    <VictoryZoomContainer
+                      zoomDimension="x"
+                      zoomDomain={zoomDomain}
+                      onZoomDomainChange={(domain) => setZoomDomain(domain)}
+                    />
+                  }>
+                  <VictoryAxis dependentAxis fixLabelOverlap={true} />
+                  <VictoryAxis fixLabelOverlap={true} />
+                  <VictoryLine
+                    style={{
+                      data: { stroke: "#031846" },
+                    }}
+                    data={data.values}
+                    interpolation="natural"
+                    x="ts"
+                    y="value"
                   />
-                }>
-                <VictoryAxis dependentAxis fixLabelOverlap={true} />
-                <VictoryAxis fixLabelOverlap={true} />
-                <VictoryLine
-                  style={{
-                    data: { stroke: "#031846" },
-                  }}
-                  data={data.values}
-                  interpolation="natural"
-                  x="ts"
-                  y="value"
-                />
-              </VictoryChart>
-              <VictoryChart
-                theme={VictoryTheme.material}
-                padding={{ top: 0, left: 45, right: 0, bottom: 30 }}
-                width={700}
-                height={100}
-                scale={{ x: "time" }}
-                containerComponent={
-                  <VictoryBrushContainer
-                    brushDimension="x"
-                    brushDomain={zoomDomain}
-                    onBrushDomainChange={(domain) => setZoomDomain(domain)}
+                </VictoryChart>
+                <VictoryChart
+                  theme={VictoryTheme.material}
+                  padding={{ top: 0, left: 45, right: 0, bottom: 30 }}
+                  width={700}
+                  height={100}
+                  scale={{ x: "time" }}
+                  containerComponent={
+                    <VictoryBrushContainer
+                      brushDimension="x"
+                      brushDomain={zoomDomain}
+                      onBrushDomainChange={(domain) => setZoomDomain(domain)}
+                    />
+                  }>
+                  <VictoryAxis fixLabelOverlap={true} />
+                  <VictoryLine
+                    style={{
+                      data: { stroke: "#031846" },
+                    }}
+                    data={data.values}
+                    x="ts"
+                    y="value"
                   />
-                }>
-                <VictoryAxis fixLabelOverlap={true} />
-                <VictoryLine
-                  style={{
-                    data: { stroke: "#031846" },
-                  }}
-                  data={data.values}
-                  x="ts"
-                  y="value"
-                />
-              </VictoryChart>
-            </ModalWrapper>
+                </VictoryChart>
+              </ModalWrapper>
+            </Div>
           </animated.div>
         </Background>
       ) : null}

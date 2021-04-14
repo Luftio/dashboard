@@ -1,0 +1,14 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import RangeSlider from "./RangeSlider.tsx";
+
+<Meta title="Elements/Range slider" component={RangeSlider} />
+
+# Range slider
+
+This components is displayed on feedback detail.
+
+export const Component = () => <RangeSlider />;
+
+<Canvas>
+  <Story name="Range slider">{Component.bind({})}</Story>
+</Canvas>

@@ -1,0 +1,14 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import EventsDetailBlock from "./EventsDetailBlock";
+
+<Meta title="Modules/Events detail block" component={EventsDetailBlock} />
+
+# Events detail block
+
+Detail of events card. Data is a output of our integration.
+
+export const Component = () => <EventsDetailBlock />;
+
+<Canvas>
+  <Story name="Events detail block">{Component.bind({})}</Story>
+</Canvas>

@@ -2,7 +2,7 @@ import React from "react";
 import Dashboard from "../../components/layouts/Dashboard";
 import Suggestions from "../../components/templates/Suggestions";
 
-const FeedbackPage: React.FC = () => {
+const SuggestionsPage: React.FC = () => {
   return (
     <Dashboard>
       <Suggestions />
@@ -10,4 +10,4 @@ const FeedbackPage: React.FC = () => {
   );
 };
 
-export default FeedbackPage;
+export default SuggestionsPage;

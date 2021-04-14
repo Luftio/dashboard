@@ -1,0 +1,22 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import SelectBlock from "./SelectBlock";
+
+<Meta title="Elements/Select block" component={SelectBlock} />
+
+# Select block
+
+This is a select block used throughout our dashboard.
+
+export const Component = (args) => <SelectBlock {...args} />;
+
+<Canvas>
+  <Story
+    name="Select block"
+    args={{
+      color: "#838C97",
+      text: "I am hot",
+      colorBorder: "#e1e6ea",
+    }}>
+    {Component.bind({})}
+  </Story>
+</Canvas>

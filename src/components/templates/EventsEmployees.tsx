@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 
 import Heading from "../elements/Heading";
 import EventsNav from "../modules/events/EventsNav";
-import EventsCard from "../modules/EventsCard";
+import EventsCard from "../modules/events/EventsCard";
 import EmptyState from "../modules/EmptyState";
 
 const EventsEmployees: React.FC = () => {

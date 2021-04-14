@@ -14,6 +14,7 @@ const BasicText = styled.p<{
   notifications?: boolean;
   contentBlockItem?: boolean;
   dateDashboard?: boolean;
+  select?: boolean;
 }>`
   font-size: ${(props) => props.theme.font_size_secondary};
 
@@ -110,6 +111,15 @@ const BasicText = styled.p<{
     props.contentBlockItem &&
     css`
       padding-bottom: 50px;
+    `}
+
+    ${(props) =>
+    props.select &&
+    css`
+      font-size: ${(props) => props.theme.font_size_secondary};
+      color: ${(props) => props.color};
+      text-align: center;
+      margin-top: 3px;
     `}
 `;
 

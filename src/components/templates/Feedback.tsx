@@ -8,7 +8,7 @@ import Heading from "../elements/Heading";
 import MessageCard from "../modules/MessageCard";
 
 const Feedback: React.FC = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation<string>();
 
   return (
     <>
@@ -17,11 +17,11 @@ const Feedback: React.FC = () => {
         <meta name="description" content={t("description_feedback_page")} />
       </Head>
       <Heading dashboard>{t("feedback_page_heading")}</Heading>
-      <MessageCard name="Aleš Zima" procents={83} date="14/3/2021" />
-      <MessageCard name="Michal Pečinka" procents={31} date="14/3/2021" />
-      <MessageCard name="Jana Nová" procents={58} date="14/3/2021" />
-      <MessageCard name="Ondřej Lanč" procents={92} date="13/3/2021" />
-      <MessageCard name="Aneta Zelinková" procents={71} date="12/3/2021" />
+      <MessageCard name="Aleš Zima" procents={83} date="14/3/2021" href="/feedback/detail" />
+      <MessageCard name="Michal Pečinka" procents={31} date="14/3/2021" href="" />
+      <MessageCard name="Jana Nová" procents={58} date="14/3/2021" href="" />
+      <MessageCard name="Ondřej Lanč" procents={92} date="13/3/2021" href="" />
+      <MessageCard name="Aneta Zelinková" procents={71} date="12/3/2021" href="" />
       {/* <EmptyState message={t("feedback_page_empty_state")} /> */}
     </>
   );

@@ -1,0 +1,26 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import DetailRow from "./DetailRow";
+
+<Meta title="Elements/Detail row" component={DetailRow} />
+
+# Detail row
+
+This is a detail row used on detail pages.
+
+export const Component = (args) => <DetailRow {...args} />;
+
+<Canvas>
+  <Story
+    name="Detail row"
+    args={{
+      subheading: "Description",
+      text: "Example text of detail row text.",
+      type: "text",
+      value: 0,
+      low: false,
+      medium: true,
+      high: false,
+    }}>
+    {Component.bind({})}
+  </Story>
+</Canvas>

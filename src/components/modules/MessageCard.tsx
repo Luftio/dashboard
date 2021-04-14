@@ -6,6 +6,7 @@ import "../../i18n/i18n";
 import { useTranslation } from "react-i18next";
 
 import BasicText from "../elements/BasicText";
+import ImportanceBlocks from "../elements/ImportanceBlocks";
 
 const Card = styled.div`
   background: #fff;
@@ -56,21 +57,6 @@ const Score = styled.div`
   }
 `;
 
-const Level = styled.div<{ fill?: boolean }>`
-  width: 17px;
-  height: 17px;
-  border-radius: ${(props) => props.theme.border_radius_checkbox};
-  border: ${(props) => props.theme.border_primary};
-  margin-right: 5px;
-
-  ${(props) =>
-    props.fill &&
-    css`
-      background-color: rgba(3, 24, 70, 0.8);
-      border: none;
-    `}
-`;
-
 interface Props {
   name: string;
   procents: number;
@@ -79,22 +65,21 @@ interface Props {
   low?: boolean;
   medium?: boolean;
   high?: boolean;
+  href: string;
 }
 
-const MessageCard: React.FC<Props> = ({ name, procents, date, suggestion, low, medium, high }) => {
+const MessageCard: React.FC<Props> = ({ name, procents, date, suggestion, low, medium, high, href }) => {
   const { t } = useTranslation<string>();
 
   return (
-    <Link href="/support">
+    <Link href={href}>
       <Card>
         <Message>
           <BasicText name>{name}</BasicText>
           {suggestion ? (
             <Score>
               <BasicText>{t("suggestion_score_text")}&nbsp;&nbsp;</BasicText>
-              <Level fill={low || medium || (high && true)}></Level>
-              <Level fill={medium || (high && true)}></Level>
-              <Level fill={high && true}></Level>
+              <ImportanceBlocks low={low} medium={medium} high={high} />
             </Score>
           ) : (
             <Score>

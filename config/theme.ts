@@ -24,6 +24,7 @@ export default {
   color_alert_box_shadow: "0px 4px 8px rgba(221, 88, 84, 0.3)",
   color_input_box_shadow: "0px 0px 2px rgba(3, 24, 70, 0.3);",
   color_block_box_shadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
+  color_slider_box_shadow: "0px 2px 4px rgba(0, 0, 0, 0.3)",
   font_size_primary: "1rem",
   font_size_secondary: "0.875rem",
   font_size_heading: "1.5rem",

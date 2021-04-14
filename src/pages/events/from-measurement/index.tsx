@@ -1,6 +1,6 @@
 import React from "react";
-import Dashboard from "../../components/layouts/Dashboard";
-import EventsMeasurement from "../../components/templates/EventsMeasurement";
+import Dashboard from "../../../components/layouts/Dashboard";
+import EventsMeasurement from "../../../components/templates/EventsMeasurement";
 
 const EventsMeasurementPage: React.FC = () => {
   return (

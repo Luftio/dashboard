@@ -1,0 +1,14 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import FeedbackDetailBlock from "./FeedbackDetailBlock";
+
+<Meta title="Modules/Feedback detail block" component={FeedbackDetailBlock} />
+
+# Feedback detail block
+
+Detail of feedback card. It shows feedback that employee gave through our mobile app.
+
+export const Component = () => <FeedbackDetailBlock />;
+
+<Canvas>
+  <Story name="Feedback detail block">{Component.bind({})}</Story>
+</Canvas>

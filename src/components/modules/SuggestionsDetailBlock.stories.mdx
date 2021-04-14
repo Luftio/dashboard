@@ -1,0 +1,14 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import SuggestionsDetailBlock from "./SuggestionsDetailBlock";
+
+<Meta title="Modules/Suggestions detail block" component={SuggestionsDetailBlock} />
+
+# Suggestions detail block
+
+Detail of suggestion card. Data is a output of our integration.
+
+export const Component = () => <SuggestionsDetailBlock />;
+
+<Canvas>
+  <Story name="Suggestions detail block">{Component.bind({})}</Story>
+</Canvas>

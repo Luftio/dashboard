@@ -36,7 +36,7 @@ const ModalWrapper = styled.div`
   border-radius: ${(props) => props.theme.border_radius_primary};
 
   @media only screen and (max-width: 850px) {
-    width: 90%;
+    width: 95%;
   }
 `;
 
