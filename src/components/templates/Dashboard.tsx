@@ -49,7 +49,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({ activeDeviceId }) =
   const loadData = async () => {
     setLoading(true);
     const devicesRequest = await ThingsboardService.getInstance().getDevices();
-    const devices: Device[] = [];
+    let devices: Device[] = [];
     for (const device of devicesRequest) {
       const startTs = +new Date() - 24 * 3600000;
       const endTs = +new Date();
@@ -186,6 +186,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({ activeDeviceId }) =
         });
       }
     }
+    devices = devices.sort((a, b) => (a.name == "L0145HJ7" ? -1 : b.name == "L0145HJ7" ? 1 : 0));
     setDevices(devices);
     setLoading(false);
   };
