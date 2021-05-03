@@ -1,10 +1,8 @@
 import React from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import styled from "styled-components";
 
 import "../../../i18n/i18n";
-import { useTranslation } from "react-i18next";
 
 import Button from "../../elements/Button";
 import PulseEffect from "../../elements/PulseEffect";
@@ -33,9 +31,6 @@ interface DashboardNavProps {
 }
 
 const DashboardNav: React.FC<DashboardNavProps> = ({ devices, activeDeviceId }) => {
-  const { t } = useTranslation();
-  const router = useRouter();
-
   return (
     <Navigation>
       {devices.map((device) => (
