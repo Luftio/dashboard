@@ -15,13 +15,11 @@ cache:
   paths:
     - .yarn
 
-# Installs the dependencies
-before_script:
-  - yarn install --frozen-lockfile --prefer-offline --cache-folder .yarn
-
 # Chromatic
 chromatic_publish:
   stage: test
+  before_script:
+    - yarn install --frozen-lockfile --prefer-offline --cache-folder .yarn
   script:
     - yarn chromatic --project-token=abde2b2ec12c
 
@@ -33,5 +31,6 @@ deploy:
     - master
   variables:
     GIT_REMOTE_URL: ssh://dokku@app.luftio.com:22/dashboard
+  cache: {}
   script: dokku-deploy
   after_script: [dokku-unlock]
