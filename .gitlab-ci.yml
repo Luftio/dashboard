@@ -4,6 +4,10 @@ image: node:latest
 # Sets the stages for the pipeline
 stages:
   - test
+  - deploy
+
+variables:
+  GIT_DEPTH: 0
 
 # Cache the dependencies
 cache:
@@ -11,13 +15,23 @@ cache:
   paths:
     - .yarn
 
-
 # Installs the dependencies
 before_script:
   - yarn install --frozen-lockfile --prefer-offline --cache-folder .yarn
 
-#👇Adds Chromatic as a job
+# Chromatic
 chromatic_publish:
   stage: test
   script:
     - yarn chromatic --project-token=abde2b2ec12c
+
+# Deploy via Dokku
+deploy:
+  image: dokku/ci-docker-image
+  stage: deploy
+  only:
+    - master
+  variables:
+    GIT_REMOTE_URL: ssh://dokku@app.luftio.com:22/dashboard
+  script: dokku-deploy
+  after_script: [dokku-unlock]
