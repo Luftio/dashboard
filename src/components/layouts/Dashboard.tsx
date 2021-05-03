@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import { useMediaQuery } from "react-responsive";
 import Router from "next/router";
