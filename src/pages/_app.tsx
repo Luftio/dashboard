@@ -2,6 +2,7 @@ import React from "react";
 import { AppProps } from "next/app";
 import Head from "next/head";
 import { ThemeProvider } from "styled-components";
+
 import * as Sentry from "@sentry/react";
 import { Integrations } from "@sentry/tracing";
 
@@ -30,15 +31,23 @@ const App = ({ Component, pageProps }: AppProps) => (
       <link rel="apple-touch-icon" sizes="152x152" href="/static/touch-icon-ipad-retina.png"></link>
       <link rel="apple-touch-icon" sizes="180x180" href="/static/touch-icon-iphone-6-plus.png"></link>
       <link rel="preconnect" href="https://fonts.gstatic.com"></link>
-      <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet"></link>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap"
+        rel="stylesheet"></link>
       <meta property="og:type" content="website" />
       <meta property="og:url" content="https://dashboard.luftio.com/" />
       <meta property="og:title" content="Welcome to Luftio" />
-      <meta property="og:description" content="Luftio is a data-driven air quality monitoring system, that helps companies improve their workspace and make their employees healthier and also more productive." />
+      <meta
+        property="og:description"
+        content="Luftio is a data-driven air quality monitoring system, that helps companies improve their workspace and make their employees healthier and also more productive."
+      />
       <meta property="twitter:card" content="summary_large_image" />
       <meta property="twitter:url" content="https://dashboard.luftio.com" />
       <meta property="twitter:title" content="Welcome to Luftio" />
-      <meta property="twitter:description" content="Luftio is a data-driven air quality monitoring system, that helps companies improve their workspace and make their employees healthier and also more productive." />
+      <meta
+        property="twitter:description"
+        content="Luftio is a data-driven air quality monitoring system, that helps companies improve their workspace and make their employees healthier and also more productive."
+      />
     </Head>
     <ThemeProvider theme={theme}>
       <GlobalStyle />
