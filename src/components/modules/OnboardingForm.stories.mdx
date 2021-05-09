@@ -1,0 +1,14 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import OnboardingForm from "./OnboardingForm";
+
+<Meta title="Modules/Onboarding form" component={OnboardingForm} />
+
+# Onboarding form
+
+This is our onboarding form. We collect from user data that we can than put into good use in future.
+
+export const Component = () => <OnboardingForm />;
+
+<Canvas>
+  <Story name="Onboarding form">{Component}</Story>
+</Canvas>

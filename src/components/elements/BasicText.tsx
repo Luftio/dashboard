@@ -15,6 +15,8 @@ const BasicText = styled.p<{
   contentBlockItem?: boolean;
   dateDashboard?: boolean;
   select?: boolean;
+  onboarding?: boolean;
+  onboardingItem?: boolean;
 }>`
   font-size: ${(props) => props.theme.font_size_secondary};
 
@@ -120,6 +122,14 @@ const BasicText = styled.p<{
       color: ${(props) => props.color};
       text-align: center;
       margin-top: 3px;
+    `}
+
+    ${(props) =>
+    props.onboardingItem &&
+    css`
+      font-size: ${(props) => props.theme.font_size_primary};
+      margin-top: 20px;
+      margin-bottom: 19.2px;
     `}
 `;
 

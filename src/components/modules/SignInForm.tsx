@@ -22,6 +22,7 @@ type Formdata = {
 
 const SignUpForm: React.FC = () => {
   const { t } = useTranslation<string>();
+
   const router = useRouter();
   const [visibility, setVisibility] = useState<boolean>(false);
   const [logInError, setLogInError] = useState<boolean>(false);

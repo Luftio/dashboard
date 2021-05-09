@@ -14,6 +14,7 @@ const Select = styled.div<{ color?: string }>`
   align-items: center;
   justify-content: center;
   margin-right: 20px;
+  cursor: pointer;
 
   @media only screen and (max-width: 1000px) {
     margin-bottom: 20px;
@@ -24,12 +25,14 @@ interface Props {
   color: string;
   text: string;
   colorBorder: string;
+  icon: any;
+  onClick?: () => void;
 }
 
-const SelectBlock: React.FC<Props> = ({ color, text, colorBorder }) => {
+const SelectBlock: React.FC<Props> = ({ color, text, colorBorder, icon, onClick }) => {
   return (
-    <Select color={colorBorder}>
-      <Icon name="thermometer" size="18" color={color} />
+    <Select color={colorBorder} onClick={onClick}>
+      <Icon name={icon} size="18" color={color} />
       <BasicText select color={color}>
         {text}
       </BasicText>

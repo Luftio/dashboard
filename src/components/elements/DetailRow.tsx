@@ -69,9 +69,14 @@ const DetailRowText: React.FC<Props> = ({ subheading, text, type, value, low, me
       {type === "range" && <RangeSlider />}
       {type === "select" && (
         <Blocks>
-          <SelectBlock text={t("detail_feedback_temp_cold")} color="#5A8AD3" colorBorder="#5A8AD3" />
-          <SelectBlock text={t("detail_feedback_temp_medium")} color="#838C97" colorBorder="#e1e6ea" />
-          <SelectBlock text={t("detail_feedback_temp_hot")} color="#838C97" colorBorder="#e1e6ea" />
+          <SelectBlock icon="thermometer" text={t("detail_feedback_temp_cold")} color="#5A8AD3" colorBorder="#5A8AD3" />
+          <SelectBlock
+            icon="thermometer"
+            text={t("detail_feedback_temp_medium")}
+            color="#838C97"
+            colorBorder="#e1e6ea"
+          />
+          <SelectBlock icon="thermometer" text={t("detail_feedback_temp_hot")} color="#838C97" colorBorder="#e1e6ea" />
         </Blocks>
       )}
       {type === "bar" && (

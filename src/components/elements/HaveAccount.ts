@@ -3,10 +3,11 @@ import styled from "styled-components";
 const HaveAccount = styled.div`
   display: flex;
   align-items: center;
+  margin: 30px 0;
+
   > p {
     color: ${(props) => props.theme.color_secondary};
     font-size: ${(props) => props.theme.font_size_secondary};
-    margin: 30px 0;
   }
 
   > a {

@@ -16,6 +16,7 @@ type Formdata = {
 const SendIntructions: React.FC = () => {
   const { t } = useTranslation<string>();
   const router = useRouter();
+
   const { register, handleSubmit, errors } = useForm<Formdata>();
   const onSubmit = handleSubmit(({ email }) => {
     console.log(email);
