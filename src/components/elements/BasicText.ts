@@ -17,6 +17,7 @@ const BasicText = styled.p<{
   select?: boolean;
   onboarding?: boolean;
   onboardingItem?: boolean;
+  onboardingItemResult?: boolean;
 }>`
   font-size: ${(props) => props.theme.font_size_secondary};
 
@@ -130,6 +131,19 @@ const BasicText = styled.p<{
       font-size: ${(props) => props.theme.font_size_primary};
       margin-top: 20px;
       margin-bottom: 19.2px;
+    `}
+
+    ${(props) =>
+    props.onboardingItemResult &&
+    css`
+      font-size: ${(props) => props.theme.font_size_secondary};
+      font-weight: ${(props) => props.theme.font_weight_primary};
+      color: ${(props) => props.theme.color_secondary};
+
+      @media only screen and (max-width: 1340px) {
+        margin-bottom: 15px;
+        text-align: left;
+      }
     `}
 `;
 

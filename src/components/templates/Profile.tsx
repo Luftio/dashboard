@@ -10,13 +10,13 @@ import ContentBlock from "../elements/ContentBlock";
 import Subheading from "../elements/Subheading";
 import InputItem from "../elements/InputItem";
 import Button from "../elements/Button";
+import BasicText from "../elements/BasicText";
 import ProfileForm from "../modules/profile/ProfileForm";
 import ContentBlockItem from "../modules/ContentBlockItem";
-import DeviceCard from "../modules/profile/DeviceCard";
 import ChangePassword from "../modules/profile/ChangePasswordForm";
-import DevicesForm from "../modules/profile/DevicesForm";
+import OnboardingFormResult from "../modules/profile/OnboardingFormResults";
 
-const Expand = styled.form<{ profile?: boolean; password?: boolean }>`
+const Expand = styled.form<{ profile?: boolean }>`
   display: flex;
   width: 85%;
   flex-direction: column;
@@ -31,12 +31,7 @@ const Expand = styled.form<{ profile?: boolean; password?: boolean }>`
     `};
 `;
 
-const Cards = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-`;
-
-const Profile = styled.div`
+const Wrapper = styled.div`
   display: flex;
   width: 85%;
   height: 150px;
@@ -44,12 +39,17 @@ const Profile = styled.div`
   margin: 0 auto;
 `;
 
-const TopRowProfile = styled.div`
+const TopRow = styled.div<{ selectForm?: boolean }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 25px;
-  margin-top: 15px;
+
+  ${(props) =>
+    props.selectForm &&
+    css`
+      margin-top: 30px;
+    `};
 `;
 
 const Settings: React.FC = () => {
@@ -57,7 +57,6 @@ const Settings: React.FC = () => {
 
   const [editPassword, setEditPassword] = useState<boolean>(false);
   const [editProfile, setEditProfile] = useState<boolean>(false);
-  const [editDevices, setEditDevices] = useState<boolean>(false);
 
   return (
     <>
@@ -67,14 +66,17 @@ const Settings: React.FC = () => {
       </Head>
       <Heading dashboard>{t("profile_page_heading")}</Heading>
       <ContentBlock>
-        <Profile>
-          <TopRowProfile>
+        <Wrapper>
+          <TopRow>
             <Subheading dashboard>{t("profile_edit_heading")}</Subheading>
-            <Button opacity={editProfile && "0"} cursor={editProfile && "none"} onClick={() => setEditProfile(!editProfile)}>
+            <Button
+              opacity={editProfile && "0"}
+              cursor={editProfile && "none"}
+              onClick={() => setEditProfile(!editProfile)}>
               {t("profile_edit_button_text")}
             </Button>
-          </TopRowProfile>
-        </Profile>
+          </TopRow>
+        </Wrapper>
         {editProfile ? (
           <ProfileForm onClick={() => setEditProfile(false)} />
         ) : (
@@ -93,20 +95,25 @@ const Settings: React.FC = () => {
             </InputItem>
           </Expand>
         )}
-        <ContentBlockItem subheading={t("profile_change_password_subheading")} buttonText={t("profile_change_password_button_text")} text={t("profile_change_password_text")} url="" onClick={() => setEditPassword(!editPassword)} opacity={editPassword && "0"} cursor={editPassword && "none"} />
+        <ContentBlockItem
+          subheading={t("profile_change_password_subheading")}
+          buttonText={t("profile_change_password_button_text")}
+          text={t("profile_change_password_text")}
+          url=""
+          onClick={() => setEditPassword(!editPassword)}
+          opacity={editPassword && "0"}
+          cursor={editPassword && "none"}
+        />
         {editPassword && <ChangePassword onClick={() => setEditPassword(false)} />}
-        <ContentBlockItem subheading={t("profile_devices_subheading")} buttonText={t("profile_devices_button_text")} text={t("profile_devices_text")} url="" onClick={() => setEditDevices(!editDevices)} opacity={editDevices && "0"} cursor={editDevices && "none"} />
-        {editDevices ? (
-          <DevicesForm onClick={() => setEditDevices(false)} edit={editDevices} />
-        ) : (
-          <Expand>
-            <Cards>
-              <DeviceCard nameDevice="Zasedačka" label="L0135C1L" />
-              <DeviceCard nameDevice="Chodba" label="T1605C1A" />
-              <DeviceCard nameDevice="Kuchyně" label="B0105U7K" />
-            </Cards>
-          </Expand>
-        )}
+        <Wrapper>
+          <TopRow selectForm>
+            <Subheading dashboard>{t("profile_onboarding_form_results_heading")}</Subheading>
+          </TopRow>
+          <BasicText contentBlockItem>{t("profile_onboarding_form_results_text")}</BasicText>
+        </Wrapper>
+        <Expand>
+          <OnboardingFormResult />
+        </Expand>
       </ContentBlock>
     </>
   );

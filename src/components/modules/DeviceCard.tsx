@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-import BasicText from "../../elements/BasicText";
-import Subheading from "../../elements/Subheading";
+import BasicText from "../elements/BasicText";
+import Subheading from "../elements/Subheading";
 
 const Card = styled.div`
   border: ${(props) => props.theme.border_primary};

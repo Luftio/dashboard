@@ -29,7 +29,7 @@ const Item = styled.a<{ signout?: boolean; active?: boolean; hover?: boolean; dr
   ${(props) =>
     props.signout &&
     css`
-      margin-top: 40%;
+      margin-top: 30%;
 
       &:hover {
         border-left: 3px solid transparent;

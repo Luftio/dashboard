@@ -69,7 +69,7 @@ const Animation = styled.div`
   }
 `;
 
-const Sidebar: React.FC = () => {
+const Sidebar: React.FC = ({}) => {
   const { t } = useTranslation<string>();
   const router = useRouter();
   const url = router.pathname.split("/")[1];
@@ -117,6 +117,11 @@ const Sidebar: React.FC = () => {
         active={url === "profile" && true}
         icon="user"
         text={t("sidebar_account_item_1")}></SidebarItem>
+      <SidebarItem
+        url="/manage-users"
+        active={url === "manage-users" && true}
+        icon="users"
+        text={t("sidebar_account_item_2")}></SidebarItem>
       <Heading sidebar>{t("sidebar_other_heading")}</Heading>
       <SidebarItem
         url="/settings"
