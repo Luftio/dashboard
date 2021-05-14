@@ -36,11 +36,11 @@ const Div = styled.div`
   overflow: scroll;
 `;
 
-interface Props {
+interface DashboardProps {
   children?: React.ReactNode;
 }
 
-const Dashboard: React.FC<Props> = ({ children }) => {
+const Dashboard: React.FC<DashboardProps> = ({ children }) => {
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 850px)" });
 
   if (typeof window === "undefined") {

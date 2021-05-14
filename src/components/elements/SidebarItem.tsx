@@ -153,7 +153,7 @@ const Area = styled.span<{ signout?: boolean }>`
     `}
 `;
 
-interface Props {
+interface SidebarItemProps {
   url: string;
   icon: any;
   text: string;
@@ -164,7 +164,7 @@ interface Props {
   dropdown?: boolean;
 }
 
-const SidebarItem: React.FC<Props> = ({ url, icon, text, type, active, hover, dropdown }) => {
+const SidebarItem: React.FC<SidebarItemProps> = ({ url, icon, text, type, active, hover, dropdown }) => {
   return (
     <Link href={url}>
       <Item dropdown={dropdown} hover={hover} active={active} signout={type}>

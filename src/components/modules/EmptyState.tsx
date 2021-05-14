@@ -9,11 +9,11 @@ const Div = styled.div`
   margin: 70px auto 0 auto;
 `;
 
-interface Props {
+interface EmptyStateProps {
   message: string;
 }
 
-const EmptyState: React.FC<Props> = ({ message }) => {
+const EmptyState: React.FC<EmptyStateProps> = ({ message }) => {
   return (
     <Div>
       <Image src="/static/EmptyState.svg" alt="Empty State" width={360} height={302} />

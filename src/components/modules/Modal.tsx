@@ -57,7 +57,7 @@ const CloseIcon = styled.p`
   cursor: pointer;
 `;
 
-interface Props {
+interface ModalProps {
   showModal: boolean;
   setShowModal: any;
   subheading: string;
@@ -65,7 +65,7 @@ interface Props {
   buttonText: string;
 }
 
-const Modal: React.FC<Props> = ({ showModal, setShowModal, subheading, text, buttonText }) => {
+const Modal: React.FC<ModalProps> = ({ showModal, setShowModal, subheading, text, buttonText }) => {
   const modalRef = useRef<any>();
 
   const animation = useSpring<any>({

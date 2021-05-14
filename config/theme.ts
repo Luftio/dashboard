@@ -19,7 +19,7 @@ export default {
   color_fail: "#f04640",
   color_fail_hover: "#d63d38",
   color_alert: "#dd5854",
-  color_hover_message: "#31363f",
+  color_tooltip_primary: "#31363f",
   color_alert_text: "#FFF",
   color_alert_box_shadow: "0px 4px 8px rgba(221, 88, 84, 0.3)",
   color_input_box_shadow: "0px 0px 2px rgba(3, 24, 70, 0.3);",

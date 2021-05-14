@@ -57,7 +57,7 @@ const Score = styled.div`
   }
 `;
 
-interface Props {
+interface MessageCardProps {
   name: string;
   procents: number;
   date: string;
@@ -68,7 +68,7 @@ interface Props {
   href: string;
 }
 
-const MessageCard: React.FC<Props> = ({ name, procents, date, suggestion, low, medium, high, href }) => {
+const MessageCard: React.FC<MessageCardProps> = ({ name, procents, date, suggestion, low, medium, high, href }) => {
   const { t } = useTranslation<string>();
 
   return (

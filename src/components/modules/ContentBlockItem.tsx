@@ -25,7 +25,7 @@ const TopRow = styled.div`
   margin-top: 15px;
 `;
 
-interface Props {
+interface ContentBlockItemProps {
   subheading: string;
   buttonText: string;
   text?: string;
@@ -37,7 +37,17 @@ interface Props {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-const ContentBlockItem: React.FC<Props> = ({ subheading, buttonText, text, url, target, link, opacity, cursor, onClick }) => {
+const ContentBlockItem: React.FC<ContentBlockItemProps> = ({
+  subheading,
+  buttonText,
+  text,
+  url,
+  target,
+  link,
+  opacity,
+  cursor,
+  onClick,
+}) => {
   return (
     <Item>
       <TopRow>

@@ -9,7 +9,7 @@ import { useTranslation } from "react-i18next";
 
 import Heading from "../elements/Heading";
 import SidebarItem from "../elements/SidebarItem";
-import HoverMessage from "../elements/HoverMessage";
+import Tooltip from "../elements/Tooltip";
 import EventsHover from "./events/EventsHover";
 
 const SidebarBlock = styled.div`
@@ -69,7 +69,7 @@ const Animation = styled.div`
   }
 `;
 
-const Sidebar: React.FC = ({}) => {
+const Sidebar: React.FC = () => {
   const { t } = useTranslation<string>();
   const router = useRouter();
   const url = router.pathname.split("/")[1];
@@ -85,21 +85,49 @@ const Sidebar: React.FC = ({}) => {
             <Image src="/static/logo.svg" alt="Luftio logo" width={120} height={45} />
           </Animation>
         </Link>
-        {showMessage && <HoverMessage>{t("logo_hover_message")}&nbsp;&nbsp;🚀</HoverMessage>}
+        {showMessage && <Tooltip>{t("logo_hover_message")}&nbsp;&nbsp;🚀</Tooltip>}
       </Logo>
       <Heading sidebar>{t("sidebar_menu_heading")}</Heading>
-      <SidebarItem url="/dashboard" active={url === "dashboard" && true} icon="pie-chart" text={t("sidebar_menu_item_1")}></SidebarItem>
+      <SidebarItem
+        url="/dashboard"
+        active={url === "dashboard" && true}
+        icon="pie-chart"
+        text={t("sidebar_menu_item_1")}></SidebarItem>
       <Events onMouseEnter={() => setShow(true)} onMouseLeave={() => setShow(false)}>
-        <SidebarItem url="/events/from-measurement" active={url === "events" && true} icon="bell" text={t("sidebar_menu_item_2")}></SidebarItem>
+        <SidebarItem
+          url="/events/from-measurement"
+          active={url === "events" && true}
+          icon="bell"
+          text={t("sidebar_menu_item_2")}></SidebarItem>
         {show && <EventsHover />}
       </Events>
-      <SidebarItem url="/suggestions" active={url === "suggestions" && true} icon="file" text={t("sidebar_menu_item_3")}></SidebarItem>
-      <SidebarItem url="/feedback" active={url === "feedback" && true} icon="archive" text={t("sidebar_menu_item_4")}></SidebarItem>
+      <SidebarItem
+        url="/suggestions"
+        active={url === "suggestions" && true}
+        icon="file"
+        text={t("sidebar_menu_item_3")}></SidebarItem>
+      <SidebarItem
+        url="/feedback"
+        active={url === "feedback" && true}
+        icon="archive"
+        text={t("sidebar_menu_item_4")}></SidebarItem>
       <Heading sidebar>{t("sidebar_account_heading")}</Heading>
-      <SidebarItem url="/profile" active={url === "profile" && true} icon="user" text={t("sidebar_account_item_1")}></SidebarItem>
+      <SidebarItem
+        url="/profile"
+        active={url === "profile" && true}
+        icon="user"
+        text={t("sidebar_account_item_1")}></SidebarItem>
       <Heading sidebar>{t("sidebar_other_heading")}</Heading>
-      <SidebarItem url="/settings" active={url === "settings" && true} icon="settings" text={t("sidebar_other_item_1")}></SidebarItem>
-      <SidebarItem url="/support" active={url === "support" && true} icon="info" text={t("sidebar_other_item_2")}></SidebarItem>
+      <SidebarItem
+        url="/settings"
+        active={url === "settings" && true}
+        icon="settings"
+        text={t("sidebar_other_item_1")}></SidebarItem>
+      <SidebarItem
+        url="/support"
+        active={url === "support" && true}
+        icon="info"
+        text={t("sidebar_other_item_2")}></SidebarItem>
       <SidebarItem url="/sign-out" type={true} icon="log-out" text={t("sidebar_sign_out")}></SidebarItem>
     </SidebarBlock>
   );

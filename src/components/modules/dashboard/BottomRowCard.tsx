@@ -42,7 +42,7 @@ const ChartDiv = styled.div`
   justify-content: center;
 `;
 
-interface Props {
+interface BottomRowCardProps {
   subheading: string;
   message1: string;
   date1: string;
@@ -54,7 +54,17 @@ interface Props {
   onClick?: React.MouseEventHandler<HTMLDivElement>;
 }
 
-const BottomRowCard: React.FC<Props> = ({ subheading, onClick, message1, date1, message2, date2, message3, date3, feedback }) => {
+const BottomRowCard: React.FC<BottomRowCardProps> = ({
+  subheading,
+  onClick,
+  message1,
+  date1,
+  message2,
+  date2,
+  message3,
+  date3,
+  feedback,
+}) => {
   const { t } = useTranslation();
 
   return (

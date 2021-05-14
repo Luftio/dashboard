@@ -44,7 +44,7 @@ const Text = styled.p<{ main?: boolean }>`
   font-size: ${(props) => props.theme.font_size_secondary};
 `;
 
-interface Props {
+interface DetailRowTextProps {
   subheading: string;
   text?: string;
   type: string;
@@ -54,7 +54,7 @@ interface Props {
   high?: boolean;
 }
 
-const DetailRowText: React.FC<Props> = ({ subheading, text, type, value, low, medium, high }) => {
+const DetailRowText: React.FC<DetailRowTextProps> = ({ subheading, text, type, value, low, medium, high }) => {
   const { t } = useTranslation<string>();
 
   return (

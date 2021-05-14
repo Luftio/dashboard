@@ -22,12 +22,12 @@ const Image = styled.div<{ delete?: boolean }>`
     `}
 `;
 
-interface Props {
+interface DefaultProps {
   children: React.ReactNode;
   afterdelete?: boolean;
 }
 
-const Default: React.FC<Props> = ({ children, afterdelete }) => {
+const Default: React.FC<DefaultProps> = ({ children, afterdelete }) => {
   const { t } = useTranslation<string>();
 
   return (

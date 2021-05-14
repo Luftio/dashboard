@@ -47,11 +47,11 @@ const Group = styled.div`
   margin-bottom: 40px;
 `;
 
-interface Props {
+interface DropdownMenuProps {
   onClick: () => void;
 }
 
-const DropdownMenu: React.FC<Props> = ({ onClick }) => {
+const DropdownMenu: React.FC<DropdownMenuProps> = ({ onClick }) => {
   const { t } = useTranslation<string>();
 
   const router = useRouter();
@@ -61,17 +61,52 @@ const DropdownMenu: React.FC<Props> = ({ onClick }) => {
     <>
       <DropDown>
         <Group>
-          <SidebarItem dropdown url="/dashboard" active={url === "dashboard" && true} icon="pie-chart" text={t("sidebar_menu_item_1")}></SidebarItem>
-          <SidebarItem dropdown url="/events/from-measurement" active={url === "events" && true} icon="bell" text={t("sidebar_menu_item_2")}></SidebarItem>
-          <SidebarItem dropdown url="/suggestions" active={url === "suggestions" && true} icon="file" text={t("sidebar_menu_item_3")}></SidebarItem>
-          <SidebarItem dropdown url="/feedback" active={url === "feedback" && true} icon="archive" text={t("sidebar_menu_item_4")}></SidebarItem>
+          <SidebarItem
+            dropdown
+            url="/dashboard"
+            active={url === "dashboard" && true}
+            icon="pie-chart"
+            text={t("sidebar_menu_item_1")}></SidebarItem>
+          <SidebarItem
+            dropdown
+            url="/events/from-measurement"
+            active={url === "events" && true}
+            icon="bell"
+            text={t("sidebar_menu_item_2")}></SidebarItem>
+          <SidebarItem
+            dropdown
+            url="/suggestions"
+            active={url === "suggestions" && true}
+            icon="file"
+            text={t("sidebar_menu_item_3")}></SidebarItem>
+          <SidebarItem
+            dropdown
+            url="/feedback"
+            active={url === "feedback" && true}
+            icon="archive"
+            text={t("sidebar_menu_item_4")}></SidebarItem>
         </Group>
         <Group>
-          <SidebarItem dropdown url="/profile" active={url === "profile" && true} icon="user" text={t("sidebar_account_item_1")}></SidebarItem>
+          <SidebarItem
+            dropdown
+            url="/profile"
+            active={url === "profile" && true}
+            icon="user"
+            text={t("sidebar_account_item_1")}></SidebarItem>
         </Group>
         <Group>
-          <SidebarItem dropdown url="/settings" active={url === "settings" && true} icon="settings" text={t("sidebar_other_item_1")}></SidebarItem>
-          <SidebarItem dropdown url="/support" active={url === "support" && true} icon="info" text={t("sidebar_other_item_2")}></SidebarItem>
+          <SidebarItem
+            dropdown
+            url="/settings"
+            active={url === "settings" && true}
+            icon="settings"
+            text={t("sidebar_other_item_1")}></SidebarItem>
+          <SidebarItem
+            dropdown
+            url="/support"
+            active={url === "support" && true}
+            icon="info"
+            text={t("sidebar_other_item_2")}></SidebarItem>
         </Group>
         <SidebarItem dropdown url="/sign-out" type={true} icon="log-out" text={t("sidebar_sign_out")}></SidebarItem>
       </DropDown>

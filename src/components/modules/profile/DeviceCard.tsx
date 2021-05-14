@@ -14,12 +14,12 @@ const Card = styled.div`
   margin-top: 20px;
 `;
 
-interface Props {
+interface DeviceCardProps {
   nameDevice?: string;
   label: string;
 }
 
-const DeviceCard: React.FC<Props> = ({ nameDevice, label }) => {
+const DeviceCard: React.FC<DeviceCardProps> = ({ nameDevice, label }) => {
   return (
     <Card>
       <Subheading device>{nameDevice}</Subheading>

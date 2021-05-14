@@ -65,12 +65,12 @@ const CloseIcon = styled.p`
   cursor: pointer;
 `;
 
-interface Props {
+interface ModalDashboardProps {
   data: DeviceData | null;
   handleClose: () => void;
 }
 
-const ModalDashboard: React.FC<Props> = ({ data, handleClose }) => {
+const ModalDashboard: React.FC<ModalDashboardProps> = ({ data, handleClose }) => {
   const { t } = useTranslation();
   const modalRef = useRef<any>();
   const showModal = data != null;

@@ -21,11 +21,11 @@ const AlertSign = styled.div`
   }
 `;
 
-interface Props {
+interface AlertProps {
   alertText: string;
 }
 
-const Alert: React.FC<Props> = ({ alertText }) => {
+const Alert: React.FC<AlertProps> = ({ alertText }) => {
   return (
     <AlertSign>
       <Icon name="alert-triangle" color="#fff" />

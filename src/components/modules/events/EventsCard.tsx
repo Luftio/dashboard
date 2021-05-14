@@ -79,7 +79,7 @@ const Unread = styled.div<{ display: string }>`
   }
 `;
 
-interface Props {
+interface EventsCardProps {
   name: string;
   value: number;
   time: string;
@@ -88,7 +88,7 @@ interface Props {
   href: string;
 }
 
-const EventsCard: React.FC<Props> = ({ name, value, time, location, unread, href }) => {
+const EventsCard: React.FC<EventsCardProps> = ({ name, value, time, location, unread, href }) => {
   const { t } = useTranslation<string>();
 
   return (

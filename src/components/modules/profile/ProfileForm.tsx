@@ -28,7 +28,7 @@ const Buttons = styled.div`
   margin-bottom: -25px;
 `;
 
-interface Props {
+interface ChangePasswordProps {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
@@ -38,7 +38,7 @@ type Formdata = {
   email: string;
 };
 
-const ChangePassword: React.FC<Props> = ({ onClick }) => {
+const ChangePassword: React.FC<ChangePasswordProps> = ({ onClick }) => {
   const { t } = useTranslation<string>();
 
   const [verifyEmail, setVerifyEmail] = useState<boolean>(false);
@@ -93,7 +93,11 @@ const ChangePassword: React.FC<Props> = ({ onClick }) => {
       {verifyEmail && <EmailVerifyCard />}
       {showSuccessMsg && <Success>{t("profile_success")}</Success>}
       <Buttons>
-        <Button type="submit" background={formState.isDirty ? "rgba(3, 25, 70, 1)" : "rgba(3, 25, 70, 0.4)"} cursor={formState.isDirty ? "auto" : "none"} savechanges>
+        <Button
+          type="submit"
+          background={formState.isDirty ? "rgba(3, 25, 70, 1)" : "rgba(3, 25, 70, 0.4)"}
+          cursor={formState.isDirty ? "auto" : "none"}
+          savechanges>
           {t("profile_save_changes")}
         </Button>
         <Button type="button" onClick={onClick}>

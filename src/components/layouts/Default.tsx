@@ -71,11 +71,11 @@ const ImageDiv = styled.div`
   }
 `;
 
-interface Props {
+interface DefaultProps {
   children: React.ReactNode;
 }
 
-const Default: React.FC<Props> = ({ children }) => {
+const Default: React.FC<DefaultProps> = ({ children }) => {
   const { t } = useTranslation();
 
   return (

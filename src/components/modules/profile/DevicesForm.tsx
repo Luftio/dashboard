@@ -42,7 +42,7 @@ const DeviceLabel = styled.label`
   font-size: ${(props) => props.theme.font_size_secondary};
 `;
 
-interface Props {
+interface DevicesFormProps {
   edit: boolean;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
@@ -53,7 +53,7 @@ type Formdata = {
   device3: string;
 };
 
-const DevicesForm: React.FC<Props> = ({ onClick, edit }) => {
+const DevicesForm: React.FC<DevicesFormProps> = ({ onClick, edit }) => {
   const { t } = useTranslation<string>();
 
   const { register, handleSubmit, errors, formState } = useForm<Formdata>();
@@ -106,7 +106,11 @@ const DevicesForm: React.FC<Props> = ({ onClick, edit }) => {
       </Cards>
       {edit && (
         <Buttons>
-          <Button type="submit" background={formState.isDirty ? "rgba(3, 25, 70, 1)" : "rgba(3, 25, 70, 0.4)"} cursor={formState.isDirty ? "auto" : "none"} savechanges>
+          <Button
+            type="submit"
+            background={formState.isDirty ? "rgba(3, 25, 70, 1)" : "rgba(3, 25, 70, 0.4)"}
+            cursor={formState.isDirty ? "auto" : "none"}
+            savechanges>
             {t("profile_save_changes")}
           </Button>
           <Button type="button" onClick={onClick}>

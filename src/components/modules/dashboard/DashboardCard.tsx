@@ -65,12 +65,12 @@ const BottomRowItem = styled.div`
   flex: 0.4;
 `;
 
-interface Props {
+interface DashboardCardProps {
   data: DeviceData;
   onClick?: React.MouseEventHandler<HTMLDivElement>;
 }
 
-const DashboardCard: React.FC<Props> = ({ data, onClick }) => {
+const DashboardCard: React.FC<DashboardCardProps> = ({ data, onClick }) => {
   const { t } = useTranslation();
 
   const getFormattedValue = (type: string, value: number) => {

@@ -21,12 +21,12 @@ const Circle = styled.div<{ hover?: boolean }>`
     `}
 `;
 
-interface Props {
+interface NotificationsProps {
   amount?: number;
   type?: boolean;
 }
 
-const Notifications: React.FC<Props> = ({ amount, type }) => {
+const Notifications: React.FC<NotificationsProps> = ({ amount, type }) => {
   return <Circle hover={type}>{amount}</Circle>;
 };
 

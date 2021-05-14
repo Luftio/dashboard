@@ -21,7 +21,7 @@ const Select = styled.div<{ color?: string }>`
   }
 `;
 
-interface Props {
+interface SelectBlockProps {
   color: string;
   text: string;
   colorBorder: string;
@@ -29,7 +29,7 @@ interface Props {
   onClick?: () => void;
 }
 
-const SelectBlock: React.FC<Props> = ({ color, text, colorBorder, icon, onClick }) => {
+const SelectBlock: React.FC<SelectBlockProps> = ({ color, text, colorBorder, icon, onClick }) => {
   return (
     <Select color={colorBorder} onClick={onClick}>
       <Icon name={icon} size="18" color={color} />

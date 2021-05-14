@@ -1,0 +1,20 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import Tooltip from "./Tooltip";
+
+<Meta title="Elements/Tooltip" component={Tooltip} />
+
+# Tooltip
+
+This is a tooltip that is displayed when you hover on somethings. Its purpose is just UX.
+
+export const Component = (args) => <Tooltip>{args.text}</Tooltip>;
+
+<Canvas>
+  <Story
+    name="Tooltip"
+    args={{
+      text: "Thank you for taking care of your employees  🚀",
+    }}>
+    {Component.bind({})}
+  </Story>
+</Canvas>

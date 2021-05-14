@@ -10,12 +10,12 @@ const Div = styled.div`
   width: 100%;
 `;
 
-interface Props {
+interface HeaderProps {
   heading: string;
   subheading: string;
 }
 
-const Header: React.FC<Props> = ({ heading, subheading }) => {
+const Header: React.FC<HeaderProps> = ({ heading, subheading }) => {
   return (
     <Div>
       <Image src="/static/logo.svg" alt="Luftio logo" width={120} height={45} />

@@ -21,14 +21,14 @@ const Level = styled.div<{ fill?: boolean }>`
     `}
 `;
 
-interface Props {
+interface ImportanceBlocksProps {
   low?: boolean;
   medium?: boolean;
   high?: boolean;
   block?: boolean;
 }
 
-const ImportanceBlocks: React.FC<Props> = ({ low, medium, high, block }) => {
+const ImportanceBlocks: React.FC<ImportanceBlocksProps> = ({ low, medium, high, block }) => {
   return (
     <Blocks>
       <Level fill={low || medium || (high && true)}></Level>
