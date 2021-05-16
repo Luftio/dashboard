@@ -18,15 +18,15 @@ const Layout = styled.div`
 
 const Content = styled.div`
   display: flex;
-  flex: 0.8;
+  width: 80%;
   background-color: ${(props) => props.theme.color_dashboard_background};
 
   @media only screen and (max-width: 1000px) {
-    flex: 0.85;
+    width: 85%;
   }
 
   @media only screen and (max-width: 850px) {
-    flex: 1;
+    width: 100%;
   }
 `;
 

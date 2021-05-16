@@ -14,14 +14,14 @@ import EventsHover from "./events/EventsHover";
 
 const SidebarBlock = styled.div`
   display: flex;
-  flex: 0.2;
+  width: 20%;
   flex-direction: column;
   background: ${(props) => props.theme.color_sidebar_background};
   height: 100vh;
   position: relative;
 
   @media only screen and (max-width: 1000px) {
-    flex: 0.15;
+    width: 15%;
   }
 
   @media only screen and (max-width: 850px) {
