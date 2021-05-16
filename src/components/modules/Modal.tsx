@@ -154,8 +154,8 @@ const Modal: React.FC<ModalProps> = ({
                         <SelectItem modal>
                           <label htmlFor="role">Role</label>
                           <select name="role" ref={register}>
-                            <option value="user">User</option>
-                            <option value="manager">Manager</option>
+                            <option value="user">{t("manage_users_user_heading")}</option>
+                            <option value="manager">{t("manage_users_manager_heading")}</option>
                           </select>
                         </SelectItem>
                         <Button modal type="submit">

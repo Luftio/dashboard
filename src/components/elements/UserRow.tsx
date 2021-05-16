@@ -105,8 +105,8 @@ const UserRow: React.FC<UserRowProps> = ({ name, email, role, isPending, onClick
         <Email isPeding={isPending}>{email}</Email>
         <SelectItem isPending={isPending}>
           <select>
-            <option value="manager">Manager</option>
-            <option value="user">User</option>
+            <option value="manager">{t("manage_users_user_heading")}</option>
+            <option value="user">{t("manage_users_manager_heading")}</option>
           </select>
         </SelectItem>
         {isPending && <NotAccepted>{t("manage_users_peding")}</NotAccepted>}
