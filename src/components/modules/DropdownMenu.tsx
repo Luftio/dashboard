@@ -93,6 +93,12 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({ onClick }) => {
             active={url === "profile" && true}
             icon="user"
             text={t("sidebar_account_item_1")}></SidebarItem>
+          <SidebarItem
+            dropdown
+            url="/manage-users"
+            active={url === "manage-users" && true}
+            icon="users"
+            text={t("sidebar_account_item_2")}></SidebarItem>
         </Group>
         <Group>
           <SidebarItem

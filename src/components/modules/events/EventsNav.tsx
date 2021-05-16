@@ -44,7 +44,7 @@ const EventsNav: React.FC = () => {
       </Link>
       <Link href="/events/from-employees">
         <Button nav active={url === "from-employees" && true}>
-          <Icon name="users" size="22" color={url === "from-employees" ? "#031946" : "#838C97"} />
+          <Icon name="briefcase" size="22" color={url === "from-employees" ? "#031946" : "#838C97"} />
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{t("events_page_nav_employees")}
         </Button>
       </Link>

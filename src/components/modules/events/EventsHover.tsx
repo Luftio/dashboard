@@ -39,11 +39,21 @@ const EventsHover: React.FC = () => {
   return (
     <Div>
       <Row>
-        <SidebarItem hover={true} url="/events/from-measurement" active={url === "from-measurement" && true} icon="activity" text={t("events_page_nav_measure")}></SidebarItem>
+        <SidebarItem
+          hover={true}
+          url="/events/from-measurement"
+          active={url === "from-measurement" && true}
+          icon="activity"
+          text={t("events_page_nav_measure")}></SidebarItem>
         <Notifications type amount={2} />
       </Row>
       <Row>
-        <SidebarItem hover={true} url="/events/from-employees" active={url === "from-employees" && true} icon="users" text={t("events_page_nav_employees")}></SidebarItem>
+        <SidebarItem
+          hover={true}
+          url="/events/from-employees"
+          active={url === "from-employees" && true}
+          icon="briefcase"
+          text={t("events_page_nav_employees")}></SidebarItem>
       </Row>
     </Div>
   );

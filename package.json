@@ -38,7 +38,8 @@
     "react-spring": "^9.0.0-rc.3",
     "styled-components": "^5.2.1",
     "ts-react-feather-icons": "^1.0.0",
-    "victory": "^35.4.12"
+    "victory": "^35.4.12",
+    "zustand": "^3.5.1"
   },
   "devDependencies": {
     "@storybook/addon-a11y": "^6.1.21",

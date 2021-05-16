@@ -205,7 +205,6 @@ const DashboardContent: React.FC<DashboardContentProps> = ({ activeDeviceId }) =
     <>
       <Head>
         <title>{t("title_dashboard_page")}</title>
-        <meta name="description" content={t("description_dashboard_page")} />
       </Head>
       <Heading dashboard>{t("dashboard_page_heading")}</Heading>
       {loading && (

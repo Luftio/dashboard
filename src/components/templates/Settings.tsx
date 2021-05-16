@@ -48,7 +48,7 @@ const Cards = styled.div`
 `;
 
 const Settings: React.FC = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation<string>();
 
   const [showModal, setShowModal] = useState<boolean>(false);
   const [editDevices, setEditDevices] = useState<boolean>(false);
@@ -61,7 +61,6 @@ const Settings: React.FC = () => {
     <>
       <Head>
         <title>{t("title_settings_page")}</title>
-        <meta name="description" content={t("description_settings_page")} />
       </Head>
       <Heading dashboard>{t("settings_page_heading")}</Heading>
       <ContentBlock>
@@ -97,6 +96,7 @@ const Settings: React.FC = () => {
         />
       </ContentBlock>
       <Modal
+        href="/after-delete"
         showModal={showModal}
         setShowModal={setShowModal}
         subheading={t("modal_subheading")}

@@ -1,7 +1,7 @@
 import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
 import InputItem from "./InputItem";
 
-<Meta title="Elements/Input Item" component={InputItem} />
+<Meta title="Elements/Input item" component={InputItem} />
 
 # Input Item
 
@@ -38,8 +38,7 @@ export const ComponentExpand = (args) => (
     args={{
       text: "Name",
       placeholder: "John",
-    }}
-  >
+    }}>
     {Component.bind({})}
   </Story>
   <Story
@@ -47,8 +46,7 @@ export const ComponentExpand = (args) => (
     args={{
       text: "Name",
       placeholder: "John",
-    }}
-  >
+    }}>
     {ComponentFail.bind({})}
   </Story>
   <Story
@@ -56,8 +54,7 @@ export const ComponentExpand = (args) => (
     args={{
       text: "First name",
       placeholder: "John",
-    }}
-  >
+    }}>
     {ComponentExpand.bind({})}
   </Story>
 </Canvas>

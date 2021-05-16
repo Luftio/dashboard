@@ -1,7 +1,7 @@
 import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
 import BasicText from "./BasicText";
 
-<Meta title="Elements/BasicText" component={BasicText} />
+<Meta title="Elements/Basic text" component={BasicText} />
 
 # Basic text
 
@@ -37,24 +37,21 @@ export const ComponentDashboardCardBottomName = (args) => <BasicText bottomRowPr
     name="Default"
     args={{
       text: "I'm an basic text.",
-    }}
-  >
+    }}>
     {Component.bind({})}
   </Story>
   <Story
     name="Date"
     args={{
       text: "13/3/2021",
-    }}
-  >
+    }}>
     {ComponentDate.bind({})}
   </Story>
   <Story
     name="Message card"
     args={{
       text: "I'm an basic text.",
-    }}
-  >
+    }}>
     {ComponentName.bind({})}
   </Story>
   <Story
@@ -62,41 +59,36 @@ export const ComponentDashboardCardBottomName = (args) => <BasicText bottomRowPr
     args={{
       text: "91 %",
       color: "#23A454",
-    }}
-  >
+    }}>
     {ComponentProcents.bind({})}
   </Story>
   <Story
     name="Empty state"
     args={{
       text: "You do not recieved any feedback yet",
-    }}
-  >
+    }}>
     {ComponentEmptyState.bind({})}
   </Story>
   <Story
     name="Events"
     args={{
       text: "John Doe",
-    }}
-  >
+    }}>
     {ComponentEmptyState.bind({})}
   </Story>
   <Story
-    name="Dashboard Card procents"
+    name="Dashboard card procents"
     args={{
       text: "10%",
       color: "#23A454",
-    }}
-  >
+    }}>
     {ComponentDashboardCardBottomProcents.bind({})}
   </Story>
   <Story
     name="Dashboard card name"
     args={{
       text: "max.",
-    }}
-  >
+    }}>
     {ComponentDashboardCardBottomName.bind({})}
   </Story>
 </Canvas>

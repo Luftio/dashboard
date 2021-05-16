@@ -1,6 +1,13 @@
 import styled, { css } from "styled-components";
 
-const InputItem = styled.div<{ expand?: boolean; profile?: boolean; fail?: boolean; device?: boolean; failDashboard?: boolean }>`
+const InputItem = styled.div<{
+  expand?: boolean;
+  profile?: boolean;
+  fail?: boolean;
+  device?: boolean;
+  failDashboard?: boolean;
+  modal?: boolean;
+}>`
   position: relative;
 
   > label {
@@ -140,6 +147,14 @@ const InputItem = styled.div<{ expand?: boolean; profile?: boolean; fail?: boole
           border: 1px solid ${(props) => props.theme.color_fail};
           box-shadow: none;
         }
+      }
+    `}
+
+    ${(props) =>
+    props.modal &&
+    css`
+      > input {
+        width: 100%;
       }
     `}
 `;

@@ -15,7 +15,6 @@ const Suggestions: React.FC = () => {
     <>
       <Head>
         <title>{t("title_suggestions_page")}</title>
-        <meta name="description" content={t("description_suggestions_page")} />
       </Head>
       <Heading dashboard>{t("suggestions_page_heading")}</Heading>
       <MessageCard

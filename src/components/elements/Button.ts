@@ -167,6 +167,7 @@ const Button = styled.button<{
       border: none;
       color: ${(props) => props.theme.color_primary};
       box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+      white-space: nowrap;
 
       &:hover {
         transition: ${(props) => props.theme.transition_primary};

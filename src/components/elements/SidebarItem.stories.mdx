@@ -2,7 +2,7 @@ import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
 import SidebarItem from "./SidebarItem";
 import { withNextRouter } from "storybook-addon-next-router";
 
-<Meta title="Elements/Sidebar Item" component={SidebarItem} decorators={[withNextRouter]} />
+<Meta title="Elements/Sidebar item" component={SidebarItem} decorators={[withNextRouter]} />
 
 # Sidebar Item
 
@@ -29,19 +29,17 @@ asPath: '/dashboard',
       text: "Dasboard",
       url: "/dashboard",
     }}
-    decorators={[withNextRouter]}
-  >
+    decorators={[withNextRouter]}>
     {Component.bind({})}
   </Story>
   <Story
-    name="Sign Out"
+    name="Sign out"
     args={{
       icon: "log-out",
       text: "Sign Out",
       url: "/dashboard",
     }}
-    decorators={[withNextRouter]}
-  >
+    decorators={[withNextRouter]}>
     {ComponentSignOut.bind({})}
   </Story>
 </Canvas>

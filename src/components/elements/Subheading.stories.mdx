@@ -20,24 +20,21 @@ export const ComponentDashboard = (args) => <Subheading dashboard>{args.text}</S
     name="Default"
     args={{
       text: "Join other companies that care about employees and their health.",
-    }}
-  >
+    }}>
     {Component.bind({})}
   </Story>
   <Story
-    name="After Action"
+    name="After action"
     args={{
       text: "We will look forward to seeing you again sometime... 👋",
-    }}
-  >
+    }}>
     {ComponentSignOut.bind({})}
   </Story>
   <Story
     name="Dashboard"
     args={{
       text: "Dashboard",
-    }}
-  >
+    }}>
     {ComponentDashboard.bind({})}
   </Story>
 </Canvas>

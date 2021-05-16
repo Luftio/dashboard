@@ -44,6 +44,7 @@ const TopRow = styled.div<{ selectForm?: boolean }>`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 25px;
+  margin-top: 15px;
 
   ${(props) =>
     props.selectForm &&
@@ -62,7 +63,6 @@ const Settings: React.FC = () => {
     <>
       <Head>
         <title>{t("title_profile_page")}</title>
-        <meta name="description" content={t("description_profile_page")} />
       </Head>
       <Heading dashboard>{t("profile_page_heading")}</Heading>
       <ContentBlock>

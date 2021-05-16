@@ -1,7 +1,7 @@
 import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
 import Success from "./Success";
 
-<Meta title="Elements/Messages" component={Success} />
+<Meta title="Elements/Success messages" component={Success} />
 
 # Success
 
@@ -11,11 +11,10 @@ export const Component = (args) => <Success>{args.text}</Success>;
 
 <Canvas>
   <Story
-    name="Success"
+    name="Success messages"
     args={{
       text: "Your account info was updated",
-    }}
-  >
+    }}>
     {Component.bind({})}
   </Story>
 </Canvas>

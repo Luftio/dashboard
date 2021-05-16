@@ -18,6 +18,8 @@ const BasicText = styled.p<{
   onboarding?: boolean;
   onboardingItem?: boolean;
   onboardingItemResult?: boolean;
+  manageUsers?: boolean;
+  manageUsersEmail?: boolean;
 }>`
   font-size: ${(props) => props.theme.font_size_secondary};
 
@@ -143,6 +145,42 @@ const BasicText = styled.p<{
       @media only screen and (max-width: 1340px) {
         margin-bottom: 15px;
         text-align: left;
+      }
+    `}
+
+    ${(props) =>
+    props.manageUsers &&
+    css`
+      display: flex;
+      width: 31%;
+      font-weight: ${(props) => props.theme.font_weight_primary};
+      color: ${(props) => props.theme.color_secondary};
+
+      @media only screen and (max-width: 1075px) {
+        width: 50%;
+      }
+
+      @media only screen and (max-width: 700px) {
+        width: 31%;
+      }
+
+      &:last-of-type {
+        flex: 0;
+        padding-right: 6px;
+        position: relative;
+      }
+    `}
+
+    ${(props) =>
+    props.manageUsersEmail &&
+    css`
+      display: flex;
+      width: 31%;
+      font-weight: ${(props) => props.theme.font_weight_primary};
+      color: ${(props) => props.theme.color_secondary};
+
+      @media only screen and (max-width: 1075px) {
+        display: none;
       }
     `}
 `;

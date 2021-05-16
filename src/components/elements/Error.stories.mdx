@@ -1,7 +1,7 @@
 import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
 import Error from "./Error";
 
-<Meta title="Elements/Messages" component={Error} />
+<Meta title="Elements/Error message" component={Error} />
 
 # Error
 
@@ -11,11 +11,10 @@ export const Component = (args) => <Error>{args.text}</Error>;
 
 <Canvas>
   <Story
-    name="Error"
+    name="Error message"
     args={{
       text: "I`m an error message.",
-    }}
-  >
+    }}>
     {Component.bind({})}
   </Story>
 </Canvas>

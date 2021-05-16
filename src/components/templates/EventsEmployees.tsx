@@ -16,7 +16,6 @@ const EventsEmployees: React.FC = () => {
     <>
       <Head>
         <title>{t("title_feedback_page")}</title>
-        <meta name="description" content={t("description_feedback_page")} />
       </Head>
       <Heading dashboard>{t("events_page_heading")}</Heading>
       <EventsNav />

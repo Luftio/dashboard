@@ -1,0 +1,21 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import UserRow from "./UserRow";
+
+<Meta title="Elements/User row" component={UserRow} />
+
+# User row
+
+This is a user row that is displayed when you hover on somethings. Its purpose is just UX.
+
+export const Component = (args) => <UserRow {...args} />;
+
+<Canvas>
+  <Story
+    name="User row"
+    args={{
+      name: "John Doe",
+      email: "john@doe.com",
+    }}>
+    {Component.bind({})}
+  </Story>
+</Canvas>

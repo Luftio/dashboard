@@ -1,7 +1,7 @@
 import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
 import DevicesForm from "./DevicesForm";
 
-<Meta title="Modules/Forms" component={DevicesForm} />
+<Meta title="Modules/Devices form" component={DevicesForm} />
 
 # Devices form
 
@@ -11,11 +11,10 @@ export const Component = (args) => <DevicesForm {...args} />;
 
 <Canvas>
   <Story
-    name="Devices"
+    name="Devices form"
     args={{
       edit: true,
-    }}
-  >
+    }}>
     {Component}
   </Story>
 </Canvas>

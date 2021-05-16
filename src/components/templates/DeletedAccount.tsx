@@ -25,7 +25,6 @@ const DeletedAccount: React.FC = () => {
     <>
       <Head>
         <title>{t("title_deleted_account")}</title>
-        <meta name="description" content={t("description_deleted_account")} />
       </Head>
       <Div>
         <Image src="/static/logo_white.svg" alt="Luftio logo" width={120} height={45} />
