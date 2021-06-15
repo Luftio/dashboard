@@ -65,6 +65,7 @@ type RootQuery {
   getMeasuredData: GetMeasuredData
   eventFromMeasureDetail: EventFromMeasureDetail
   eventFromEmployeeDetail: EventFromEmployeeDetail
+  suggestions: [SuggestionDetail!]
   suggestionDetail: SuggestionDetail
   feedbackDetail: FeedbackDetail
   user(id: ID): User

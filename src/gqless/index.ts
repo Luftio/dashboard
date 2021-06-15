@@ -13,9 +13,19 @@ import {
 //@ts-ignore
 import schema from "../graphql/schema.graphql";
 
+const mocks = {
+  RootQuery: () => ({
+    suggestions: () => new MockList([3, 10]),
+  }),
+};
+
 const queryFetcher: QueryFetcher = async function (query, variables) {
   //@ts-ignore
-  return mockServer(schema, mocks).query(query, variables);
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(mockServer(schema, mocks).query(query, variables));
+    }, 1000);
+  });
   // Modify "./src/graphql/schema.graphql" if needed
   /*const response = await fetch("./src/graphql/schema.graphql", {
     method: "POST",
