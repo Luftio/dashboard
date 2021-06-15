@@ -15,7 +15,8 @@
     "jsx": "preserve",
     "sourceMap": true,
     "inlineSources": true,
-    "sourceRoot": "/"
+    "sourceRoot": "/",
+    "allowSyntheticDefaultImports": true
   },
   "exclude": ["node_modules"],
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "next.config.js"]

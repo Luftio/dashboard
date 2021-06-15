@@ -9,6 +9,8 @@ import { useTranslation } from "react-i18next";
 
 import DeviceData from "../../../types/DeviceData";
 
+import { useQuery } from "../../../gqless";
+
 const Card = styled.div`
   width: 31.5%;
   border-radius: ${(props) => props.theme.border_radius_primary};
@@ -101,11 +103,15 @@ const DashboardCard: React.FC<DashboardCardProps> = ({ data, onClick }) => {
     return {};
   };
 
+  const query = useQuery();
+
   return (
     <>
       <Card onClick={onClick}>
         <TopRow>
-          <BasicText name>{data.title}</BasicText>
+          <BasicText name>
+            {data.title} {/*{query.getMeasuredData?.title} */}
+          </BasicText>
           <BasicText
             procentsDashboard
             color={data.color == "green" ? "#23A454" : data.color == "yellow" ? "#FFB951" : "#E55B5B"}>
@@ -134,19 +140,24 @@ const DashboardCard: React.FC<DashboardCardProps> = ({ data, onClick }) => {
         </ChartRow>
         <BottomRow>
           <BottomRowItem>
-            <BasicText bottomRowProcents>{getFormattedValue(data.type, data.maxValue)}</BasicText>
+            <BasicText bottomRowProcents>
+              {getFormattedValue(data.type, data.maxValue)} {/*{query.getMeasuredData?.max_value} */}
+            </BasicText>
             <BasicText bottomRowProcentsName>max.</BasicText>
           </BottomRowItem>
           <BottomRowItem>
-            <BasicText bottomRowProcents>{getFormattedValue(data.type, data.minValue)}</BasicText>
+            <BasicText bottomRowProcents>
+              {getFormattedValue(data.type, data.minValue)} {/*{query.getMeasuredData?.min_value} */}
+            </BasicText>
             <BasicText bottomRowProcentsName>min.</BasicText>
           </BottomRowItem>
           <BottomRowItem>
             <BasicText bottomRowProcents color={data.change > 0 ? "#23A454" : "#E55B5B"}>
-              {data.change} %
+              {data.change} %{/* {query.getMeasuredData?.difference} % */}
             </BasicText>
             <BasicText bottomRowProcentsName>
               {data.change > 0 ? t("dashboard_improvement") : t("dashboard_deterioration")}
+              {/* {query.getMeasuredData?.difference > 0 ? t("dashboard_improvement") : t("dashboard_deterioration")} */}
             </BasicText>
           </BottomRowItem>
         </BottomRow>

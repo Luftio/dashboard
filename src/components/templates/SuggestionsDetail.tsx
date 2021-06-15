@@ -7,8 +7,12 @@ import { useTranslation } from "react-i18next";
 import Heading from "../elements/Heading";
 import SuggestionsDetailBlock from "../modules/SuggestionsDetailBlock";
 
+import { useQuery } from "../../gqless/";
+
 const SuggestionsDetail: React.FC = () => {
   const { t } = useTranslation<string>();
+
+  const query = useQuery();
 
   return (
     <>
@@ -16,7 +20,13 @@ const SuggestionsDetail: React.FC = () => {
         <title>{t("title_suggestion_detail_page")}</title>
       </Head>
       <Heading dashboard>{t("detail_suggestions_heading")}</Heading>
-      <SuggestionsDetailBlock />
+      <SuggestionsDetailBlock
+        title={query.suggestionDetail?.title}
+        date={query.suggestionDetail?.date}
+        description={query.suggestionDetail?.description}
+        howSolve={query.suggestionDetail?.how_solve}
+        whyImportant={query.suggestionDetail?.why_important}
+      />
     </>
   );
 };

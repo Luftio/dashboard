@@ -16,6 +16,8 @@ import ContentBlockItem from "../modules/ContentBlockItem";
 import ChangePassword from "../modules/profile/ChangePasswordForm";
 import OnboardingFormResult from "../modules/profile/OnboardingFormResults";
 
+import { useQuery } from "../../gqless";
+
 const Expand = styled.form<{ profile?: boolean }>`
   display: flex;
   width: 85%;
@@ -59,6 +61,9 @@ const Settings: React.FC = () => {
   const [editPassword, setEditPassword] = useState<boolean>(false);
   const [editProfile, setEditProfile] = useState<boolean>(false);
 
+  const query = useQuery();
+  const user = query.user({ id: "1" });
+
   return (
     <>
       <Head>
@@ -83,15 +88,15 @@ const Settings: React.FC = () => {
           <Expand profile>
             <InputItem profile>
               <label htmlFor="name">{t("profile_expand_name")}</label>
-              <input id="name" type="text" defaultValue="Petr" />
+              <input id="name" type="text" defaultValue={user?.first_name} />
             </InputItem>
             <InputItem profile>
               <label htmlFor="surname">{t("profile_expand_surname")}</label>
-              <input id="surname" type="text" defaultValue="Novák" />
+              <input id="surname" type="text" defaultValue={user?.last_name} />
             </InputItem>
             <InputItem profile>
               <label htmlFor="email">{t("profile_expand_email")}</label>
-              <input id="email" type="text" defaultValue="petr.novak@gmail.com" />
+              <input id="email" type="text" defaultValue={user?.email} />
             </InputItem>
           </Expand>
         )}

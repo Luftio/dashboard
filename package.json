@@ -8,14 +8,19 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "prebuild": "npm run generate",
     "postbuild": "next-sitemap",
     "start": "next start",
     "export": "npm run build && next export",
     "storybook": "start-storybook -s ./public -p 6006",
     "build-storybook": "build-storybook",
-    "chromatic": "chromatic --project-token abde2b2ec12c --exit-zero-on-changes"
+    "chromatic": "chromatic --project-token abde2b2ec12c --exit-zero-on-changes",
+    "generate": "gqless generate && rm -rf ./node_modules/.cache/babel-loader && node index.js"
   },
   "dependencies": {
+    "@gqless/react": "^2.0.15",
+    "@graphql-tools/graphql-tag-pluck": "^6.5.1",
+    "@graphql-tools/mock": "^8.1.3",
     "@react-spring/konva": "^9.0.0-rc.3",
     "@react-spring/native": "^9.0.0-rc.3",
     "@react-spring/three": "^9.0.0-rc.3",
@@ -25,6 +30,7 @@
     "axios": "^0.21.1",
     "class-transformer": "^0.4.0",
     "class-validator": "^0.13.1",
+    "gqless": "^2.0.14",
     "i18next": "^19.9.1",
     "i18next-browser-languagedetector": "^6.0.1",
     "i18next-http-backend": "^1.1.1",
@@ -42,6 +48,7 @@
     "zustand": "^3.5.1"
   },
   "devDependencies": {
+    "@gqless/cli": "^2.0.16",
     "@storybook/addon-a11y": "^6.1.21",
     "@storybook/addon-docs": "^6.1.21",
     "@storybook/addon-essentials": "^6.1.21",
@@ -56,12 +63,14 @@
     "@typescript-eslint/eslint-plugin": "^4.15.2",
     "@typescript-eslint/parser": "^4.15.2",
     "babel-loader": "^8.2.2",
+    "babel-plugin-import-graphql": "^2.8.1",
     "babel-plugin-styled-components": "^1.12.0",
     "chromatic": "^5.7.0",
     "eslint": "^7.21.0",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-react": "^7.22.0",
+    "graphql": "^15.5.0",
     "next-sitemap": "^1.6.3",
     "prettier": "^2.2.1",
     "react-inspector": "^5.1.0",
@@ -78,6 +87,7 @@
           "next/babel"
         ],
         "plugins": [
+          "import-graphql",
           [
             "styled-components",
             {
@@ -92,6 +102,7 @@
           "next/babel"
         ],
         "plugins": [
+          "import-graphql",
           [
             "styled-components",
             {

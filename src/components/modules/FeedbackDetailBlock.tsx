@@ -12,6 +12,8 @@ import DetailRowText from "../elements/DetailRow";
 
 import { Icon } from "ts-react-feather-icons";
 
+import { useQuery } from "../../gqless";
+
 const Card = styled.div`
   background: #fff;
   width: 95%;
@@ -39,24 +41,26 @@ const BottomRow = styled.div`
 const FeedbackDetailBlock: React.FC = () => {
   const { t } = useTranslation<string>();
 
+  const query = useQuery();
+
   return (
     <Card>
       <TopRow>
-        <Subheading contentBlockItem>Aleš Zima</Subheading>
+        <Subheading contentBlockItem>{query.feedbackDetail?.name}</Subheading>
         <Link href="/feedback">
           <Button>{t("detail_close")}</Button>
         </Link>
       </TopRow>
       <BottomRow>
         <Icon name="clock" size="16" color="#838C97" />
-        <BasicText events>14/3/2021</BasicText>
+        <BasicText events>{query.feedbackDetail?.date}</BasicText>
       </BottomRow>
       <DetailRowText type="select" subheading={t("detail_feedback_temp")} value={0} />
       <DetailRowText type="range" subheading={t("detail_feedback_air")} value={0} />
       <DetailRowText
         type="text"
         subheading={t("detail_feedback_satisfied")}
-        text="Dobře, ale jsou prostory na zlepšení"
+        text={query.feedbackDetail?.how_feel}
         value={0}
       />
     </Card>

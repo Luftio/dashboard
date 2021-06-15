@@ -1,0 +1,21 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import OnboardingFormResultRow from "./OnboardingFormResultRow.tsx";
+
+<Meta title="Elements/Onboarding form result row" component={OnboardingFormResultRow} />
+
+# Onboarding form result row
+
+This components is displayed if user have visited exprired link for e.g. instructions for changing password, activation email etc.
+
+export const Component = (args) => <OnboardingFormResultRow {...args} />;
+
+<Canvas>
+  <Story
+    name="Onboarding form result row"
+    args={{
+      title: "Do you want to reduce energy consumption in the workplace?",
+      selectedItem: {1}
+    }}>
+    {Component.bind({})}
+  </Story>
+</Canvas>

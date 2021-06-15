@@ -36,8 +36,12 @@ const Slider = styled.input`
   }
 `;
 
-const RangeSlider: React.FC = () => {
-  return <Slider id="slider" type="range" min="1" max="100" value="67" />;
+interface RangeSliderProps {
+  value: number;
+}
+
+const RangeSlider: React.FC<RangeSliderProps> = ({ value }) => {
+  return <Slider id="slider" type="range" min="1" max="100" value={value} />;
 };
 
 export default RangeSlider;

@@ -48,7 +48,7 @@ interface DetailRowTextProps {
   subheading: string;
   text?: string;
   type: string;
-  value: number;
+  value: any;
   low?: boolean;
   medium?: boolean;
   high?: boolean;
@@ -66,7 +66,7 @@ const DetailRowText: React.FC<DetailRowTextProps> = ({ subheading, text, type, v
         </ContentDiv>
       )}
       {type === "importance" && <ImportanceBlocks block low={low} medium={medium} high={high} />}
-      {type === "range" && <RangeSlider />}
+      {type === "range" && <RangeSlider value={value} />}
       {type === "select" && (
         <Blocks>
           <SelectBlock icon="thermometer" text={t("detail_feedback_temp_cold")} color="#5A8AD3" colorBorder="#5A8AD3" />

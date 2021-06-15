@@ -1,0 +1,96 @@
+type GetMeasuredData {
+  title: String!
+  type: String!
+  actual_value: Float!
+  max_value: Float!
+  min_value: Float!
+  difference: Float!
+  color: String!
+}
+
+type EventFromMeasureDetail {
+  title: String!
+  place: String!
+  date: String!
+  threat: Int!
+  is_read: Boolean!
+  justification: String!
+}
+
+type EventFromEmployeeDetail {
+  name: String!
+  place: String!
+  date: String!
+  is_read: Boolean!
+  threat: Int!
+  temperature: String!
+  breath: Int!
+  how_feel: String!
+}
+
+type SuggestionDetail {
+  title: String!
+  importance: String!
+  date: String!
+  is_read: Boolean!
+  description: String!
+  how_solve: String!
+  why_important: String!
+}
+
+type FeedbackDetail {
+  name: String
+  total_score: Int
+  date: String
+  is_read: Boolean
+  temperature: String
+  breath: Int
+  how_feel: String!
+}
+
+type User {
+  id: ID!
+  first_name: String!
+  last_name: String!
+  email: String!
+}
+
+type OnboardFormResult {
+  productivity: Int!
+  energy: Int!
+  feedback: Int!
+}
+
+type RootQuery {
+  getMeasuredData: GetMeasuredData
+  eventFromMeasureDetail: EventFromMeasureDetail
+  eventFromEmployeeDetail: EventFromEmployeeDetail
+  suggestionDetail: SuggestionDetail
+  feedbackDetail: FeedbackDetail
+  user(id: ID): User
+  onboardFormResult: OnboardFormResult
+}
+
+schema {
+  query: RootQuery
+}
+
+# Dashboard
+# map devices - id
+# map events - (title, date, url)
+# map feedback - (title, date, url)
+
+# Events
+# map card - (title, date, place, threats, is_read)
+
+# Suggestions
+# map card - (title, date, importance, is_read)
+
+# Feedback
+# map card - (title, total_score, date, is_read)
+
+# Manage users
+# map users rows - (full_name, email, role, is_pending)
+
+# Settings
+# map device cards - (title, code)

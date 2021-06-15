@@ -7,8 +7,12 @@ import { useTranslation } from "react-i18next";
 import Heading from "../elements/Heading";
 import MessageCard from "../modules/MessageCard";
 
+import { useQuery } from "../../gqless";
+
 const Feedback: React.FC = () => {
   const { t } = useTranslation<string>();
+
+  const query = useQuery();
 
   return (
     <>
@@ -16,6 +20,7 @@ const Feedback: React.FC = () => {
         <title>{t("title_feedback_page")}</title>
       </Head>
       <Heading dashboard>{t("feedback_page_heading")}</Heading>
+
       <MessageCard name="Aleš Zima" procents={83} date="14/3/2021" href="/feedback/detail" />
       <MessageCard name="Michal Pečinka" procents={31} date="14/3/2021" href="" />
       <MessageCard name="Jana Nová" procents={58} date="14/3/2021" href="" />

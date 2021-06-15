@@ -25,10 +25,9 @@ interface ImportanceBlocksProps {
   low?: boolean;
   medium?: boolean;
   high?: boolean;
-  block?: boolean;
 }
 
-const ImportanceBlocks: React.FC<ImportanceBlocksProps> = ({ low, medium, high, block }) => {
+const ImportanceBlocks: React.FC<ImportanceBlocksProps> = ({ low, medium, high }) => {
   return (
     <Blocks>
       <Level fill={low || medium || (high && true)}></Level>
