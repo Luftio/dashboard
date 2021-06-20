@@ -49,12 +49,11 @@ interface DetailRowTextProps {
   text?: string;
   type: string;
   value: any;
-  low?: boolean;
-  medium?: boolean;
-  high?: boolean;
+  level?: number;
+  temperature?: number;
 }
 
-const DetailRowText: React.FC<DetailRowTextProps> = ({ subheading, text, type, value, low, medium, high }) => {
+const DetailRowText: React.FC<DetailRowTextProps> = ({ subheading, text, type, value, level, temperature }) => {
   const { t } = useTranslation<string>();
 
   return (
@@ -65,18 +64,28 @@ const DetailRowText: React.FC<DetailRowTextProps> = ({ subheading, text, type, v
           <Text>{text}</Text>
         </ContentDiv>
       )}
-      {type === "importance" && <ImportanceBlocks block low={low} medium={medium} high={high} />}
+      {type === "importance" && <ImportanceBlocks level={level} />}
       {type === "range" && <RangeSlider value={value} />}
       {type === "select" && (
         <Blocks>
-          <SelectBlock icon="thermometer" text={t("detail_feedback_temp_cold")} color="#5A8AD3" colorBorder="#5A8AD3" />
+          <SelectBlock
+            icon="thermometer"
+            text={t("detail_feedback_temp_cold")}
+            color={temperature == 1 ? "#5A8AD3" : "#838C97"}
+            colorBorder={temperature == 1 ? "#5A8AD3" : "#838C97"}
+          />
           <SelectBlock
             icon="thermometer"
             text={t("detail_feedback_temp_medium")}
-            color="#838C97"
-            colorBorder="#e1e6ea"
+            color={temperature == 2 ? "#5A8AD3" : "#838C97"}
+            colorBorder={temperature == 2 ? "#5A8AD3" : "#838C97"}
           />
-          <SelectBlock icon="thermometer" text={t("detail_feedback_temp_hot")} color="#838C97" colorBorder="#e1e6ea" />
+          <SelectBlock
+            icon="thermometer"
+            text={t("detail_feedback_temp_hot")}
+            color={temperature == 3 ? "#5A8AD3" : "#838C97"}
+            colorBorder={temperature == 3 ? "#5A8AD3" : "#838C97"}
+          />
         </Blocks>
       )}
       {type === "bar" && (

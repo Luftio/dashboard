@@ -103,14 +103,15 @@ const DashboardCard: React.FC<DashboardCardProps> = ({ data, onClick }) => {
     return {};
   };
 
-  const query = useQuery();
+  // const query = useQuery();
+  // const deviceData = query.deviceData;
 
   return (
     <>
       <Card onClick={onClick}>
         <TopRow>
           <BasicText name>
-            {data.title} {/*{query.getMeasuredData?.title} */}
+            {data.title} {/*{deviceData.title} */}
           </BasicText>
           <BasicText
             procentsDashboard
@@ -141,23 +142,25 @@ const DashboardCard: React.FC<DashboardCardProps> = ({ data, onClick }) => {
         <BottomRow>
           <BottomRowItem>
             <BasicText bottomRowProcents>
-              {getFormattedValue(data.type, data.maxValue)} {/*{query.getMeasuredData?.max_value} */}
+              {getFormattedValue(data.type, data.maxValue)}
+              {/* {getFormattedValue(deviceData?.type, deviceData?.max_value)} */}
             </BasicText>
             <BasicText bottomRowProcentsName>max.</BasicText>
           </BottomRowItem>
           <BottomRowItem>
             <BasicText bottomRowProcents>
-              {getFormattedValue(data.type, data.minValue)} {/*{query.getMeasuredData?.min_value} */}
+              {getFormattedValue(data.type, data.minValue)}
+              {/* {getFormattedValue(deviceData?.type, deviceData?.min_value)} */}
             </BasicText>
             <BasicText bottomRowProcentsName>min.</BasicText>
           </BottomRowItem>
           <BottomRowItem>
             <BasicText bottomRowProcents color={data.change > 0 ? "#23A454" : "#E55B5B"}>
-              {data.change} %{/* {query.getMeasuredData?.difference} % */}
+              {data.change} %{/* {deviceData.difference} % */}
             </BasicText>
             <BasicText bottomRowProcentsName>
               {data.change > 0 ? t("dashboard_improvement") : t("dashboard_deterioration")}
-              {/* {query.getMeasuredData?.difference > 0 ? t("dashboard_improvement") : t("dashboard_deterioration")} */}
+              {/* {deviceData.difference > 0 ? t("dashboard_improvement") : t("dashboard_deterioration")} */}
             </BasicText>
           </BottomRowItem>
         </BottomRow>

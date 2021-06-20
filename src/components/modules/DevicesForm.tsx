@@ -8,6 +8,8 @@ import { useTranslation } from "react-i18next";
 import Button from "../elements/Button";
 import InputItem from "../elements/InputItem";
 
+import { useQuery } from "../../gqless";
+
 const Expand = styled.form`
   display: flex;
   width: 85%;
@@ -35,6 +37,7 @@ const Card = styled.div`
   display: flex;
   flex-direction: column;
   margin-right: 20px;
+  margin-bottom: 20px;
 `;
 
 const DeviceLabel = styled.label`
@@ -55,53 +58,33 @@ type Formdata = {
 const DevicesForm: React.FC<DevicesFormProps> = ({ onClick, edit }) => {
   const { t } = useTranslation<string>();
 
-  const { register, handleSubmit, errors, formState } = useForm<Formdata>();
+  const { register, handleSubmit, formState } = useForm<Formdata>();
   const onSubmit = handleSubmit(({ device1, device2, device3 }) => {
     console.log(device1, device2, device3);
   });
 
+  const query = useQuery();
+  const manageDevices = query.manageDevices({ id: "1" });
+
   return (
     <Expand onSubmit={onSubmit}>
       <Cards>
-        <Card>
-          <InputItem device>
-            <input
-              type="text"
-              id="device1"
-              name="device1"
-              ref={register({
-                required: true,
-              })}
-            />
-          </InputItem>
-          <DeviceLabel htmlFor="device1">L0135C1L</DeviceLabel>
-        </Card>
-        <Card>
-          <InputItem device>
-            <input
-              type="text"
-              id="device2"
-              name="device2"
-              ref={register({
-                required: true,
-              })}
-            />
-          </InputItem>
-          <DeviceLabel htmlFor="device1">L0135C1L</DeviceLabel>
-        </Card>
-        <Card>
-          <InputItem device>
-            <input
-              type="text"
-              id="device3"
-              name="device3"
-              ref={register({
-                required: true,
-              })}
-            />
-          </InputItem>
-          <DeviceLabel htmlFor="device3">L0135C1L</DeviceLabel>
-        </Card>
+        {manageDevices?.map((device) => (
+          <Card key={device.id}>
+            <InputItem device>
+              <input
+                value={device.title}
+                type="text"
+                id="device1"
+                name="device1"
+                ref={register({
+                  required: true,
+                })}
+              />
+            </InputItem>
+            <DeviceLabel htmlFor={`device${device.id}`}>{device.label}</DeviceLabel>
+          </Card>
+        ))}
       </Cards>
       {edit && (
         <Buttons>

@@ -12,8 +12,6 @@ import DetailRowText from "../elements/DetailRow";
 
 import { Icon } from "ts-react-feather-icons";
 
-import { useQuery } from "../../gqless";
-
 const Card = styled.div`
   background: #fff;
   width: 95%;
@@ -38,31 +36,48 @@ const BottomRow = styled.div`
   margin-bottom: 50px;
 `;
 
-const FeedbackDetailBlock: React.FC = () => {
-  const { t } = useTranslation<string>();
+interface FeedbackDetailBlockProps {
+  name: string;
+  date: string;
+  howFeel: string;
+  howBreath: number;
+  event: boolean;
+  place: string;
+  temperatureLevel: number;
+}
 
-  const query = useQuery();
+const FeedbackDetailBlock: React.FC<FeedbackDetailBlockProps> = ({
+  name,
+  date,
+  howFeel,
+  event,
+  place,
+  howBreath,
+  temperatureLevel,
+}) => {
+  const { t } = useTranslation<string>();
 
   return (
     <Card>
       <TopRow>
-        <Subheading contentBlockItem>{query.feedbackDetail?.name}</Subheading>
-        <Link href="/feedback">
+        <Subheading contentBlockItem>{name}</Subheading>
+        <Link href={event ? "/events/from-employees" : "/feedback"}>
           <Button>{t("detail_close")}</Button>
         </Link>
       </TopRow>
       <BottomRow>
         <Icon name="clock" size="16" color="#838C97" />
-        <BasicText events>{query.feedbackDetail?.date}</BasicText>
+        <BasicText events>{date}</BasicText>
+        {event && (
+          <>
+            <Icon name="map-pin" size="16" color="#838C97" />
+            <BasicText events>{place}</BasicText>
+          </>
+        )}
       </BottomRow>
-      <DetailRowText type="select" subheading={t("detail_feedback_temp")} value={0} />
-      <DetailRowText type="range" subheading={t("detail_feedback_air")} value={0} />
-      <DetailRowText
-        type="text"
-        subheading={t("detail_feedback_satisfied")}
-        text={query.feedbackDetail?.how_feel}
-        value={0}
-      />
+      <DetailRowText type="select" subheading={t("detail_feedback_temp")} value={0} temperature={temperatureLevel} />
+      <DetailRowText type="range" subheading={t("detail_feedback_air")} value={howBreath} />
+      <DetailRowText type="text" subheading={t("detail_feedback_satisfied")} text={howFeel} value={0} />
     </Card>
   );
 };

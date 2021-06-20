@@ -7,8 +7,13 @@ import { useTranslation } from "react-i18next";
 import Heading from "../elements/Heading";
 import FeedbackDetailBlock from "../modules/FeedbackDetailBlock";
 
+import { useQuery } from "../../gqless/";
+
 const SuggestionsDetail: React.FC = () => {
   const { t } = useTranslation<string>();
+
+  const query = useQuery();
+  const feedbackDetail = query.feedbackDetail;
 
   return (
     <>
@@ -16,7 +21,13 @@ const SuggestionsDetail: React.FC = () => {
         <title>{t("title_feedback_detail_page")}</title>
       </Head>
       <Heading dashboard>{t("detail_feedback_heading")}</Heading>
-      <FeedbackDetailBlock />
+      <FeedbackDetailBlock
+        name={feedbackDetail?.name}
+        date={feedbackDetail?.date}
+        howFeel={feedbackDetail?.how_feel}
+        howBreath={feedbackDetail?.breath}
+        temperatureLevel={feedbackDetail?.temperature}
+      />
     </>
   );
 };

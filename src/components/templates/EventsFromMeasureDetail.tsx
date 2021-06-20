@@ -9,10 +9,11 @@ import EventsDetailBlock from "../modules/events/EventsDetailBlock";
 
 import { useQuery } from "../../gqless";
 
-const EventsDetail: React.FC = () => {
+const EventsFromMeasureDetail: React.FC = () => {
   const { t } = useTranslation<string>();
 
   const query = useQuery();
+  const eventFromMeasureDetail = query.eventFromMeasureDetail;
 
   return (
     <>
@@ -21,14 +22,14 @@ const EventsDetail: React.FC = () => {
       </Head>
       <Heading dashboard>{t("detail_events_heading")}</Heading>
       <EventsDetailBlock
-        title={query.eventFromMeasureDetail?.title}
-        date={query.eventFromMeasureDetail?.date}
-        place={query.eventFromMeasureDetail?.place}
-        threat={query.eventFromMeasureDetail?.threat}
-        justification={query.eventFromMeasureDetail?.justification}
+        title={eventFromMeasureDetail?.title}
+        date={eventFromMeasureDetail?.date}
+        place={eventFromMeasureDetail?.place}
+        threat={eventFromMeasureDetail?.threat}
+        justification={eventFromMeasureDetail?.justification}
       />
     </>
   );
 };
 
-export default EventsDetail;
+export default EventsFromMeasureDetail;

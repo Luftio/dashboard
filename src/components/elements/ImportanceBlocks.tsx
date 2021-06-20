@@ -22,17 +22,31 @@ const Level = styled.div<{ fill?: boolean }>`
 `;
 
 interface ImportanceBlocksProps {
-  low?: boolean;
-  medium?: boolean;
-  high?: boolean;
+  level?: number;
 }
 
-const ImportanceBlocks: React.FC<ImportanceBlocksProps> = ({ low, medium, high }) => {
+const ImportanceBlocks: React.FC<ImportanceBlocksProps> = ({ level }) => {
   return (
     <Blocks>
-      <Level fill={low || medium || (high && true)}></Level>
-      <Level fill={medium || (high && true)}></Level>
-      <Level fill={high && true}></Level>
+      {level == 1 ? (
+        <>
+          <Level fill={true}></Level>
+          <Level fill={false}></Level>
+          <Level fill={false}></Level>
+        </>
+      ) : level == 2 ? (
+        <>
+          <Level fill={true}></Level>
+          <Level fill={true}></Level>
+          <Level fill={false}></Level>
+        </>
+      ) : (
+        <>
+          <Level fill={true}></Level>
+          <Level fill={true}></Level>
+          <Level fill={true}></Level>
+        </>
+      )}
     </Blocks>
   );
 };

@@ -180,7 +180,7 @@
   "manage_users_manager_text": "Může spravovat účty organizace a měnit role. Má přistup do dashboardu i aplikace.",
   "manage_users_user_heading": "Uživatel",
   "manage_users_user_text": "Nemůže spravovat účty organizace ani měnit role. Má přistup jen do aplikace.",
-  "manage_users_peding": "(Nepřijato)",
+  "manage_users_pending": "(Nepřijato)",
   "manage_users_delete_heading": "Opravdu chcete tento účet smazat?",
   "manage_users_delete_text": "Pro potvrzení této akce stiskněte tlačítko smazat. Uživateli se tak smažou všechna jeho data. Můžete ho ale kdykoli pozvat zpět do organizace.",
   "manage_users_modal_add_heading": "Přidejte nového uživatele",

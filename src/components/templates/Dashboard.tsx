@@ -220,25 +220,8 @@ const DashboardContent: React.FC<DashboardContentProps> = ({ activeDeviceId }) =
       </Cards>
       {activeDevice?.data != null && (
         <Cards>
-          <BottomRowCard
-            message1="Stoupá hodnota CO2"
-            date1="14/4/2021"
-            message2="Teplota je přiliš vysoká"
-            date2="12/4/2021"
-            message3="Kritický stav CO2"
-            date3="11/4/2021"
-            subheading={t("dashboard_events_card_subheading")}
-          />
-          <BottomRowCard
-            feedback
-            message1="Aleš Zima"
-            date1="12/4/2021"
-            message2="Michal Pečinka"
-            date2="12/4/2021"
-            message3="Jana Nová"
-            date3="9/4/2021"
-            subheading={t("dashboard_feedback_card_subheading")}
-          />
+          <BottomRowCard subheading={t("dashboard_events_card_subheading")} />
+          <BottomRowCard feedback subheading={t("dashboard_feedback_card_subheading")} />
         </Cards>
       )}
       <ModalDashboard data={showModalData} handleClose={() => setShowModalData(null)} />

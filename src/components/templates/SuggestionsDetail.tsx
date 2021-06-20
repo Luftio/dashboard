@@ -13,6 +13,7 @@ const SuggestionsDetail: React.FC = () => {
   const { t } = useTranslation<string>();
 
   const query = useQuery();
+  const suggestionsDetail = query.suggestionDetail;
 
   return (
     <>
@@ -21,11 +22,12 @@ const SuggestionsDetail: React.FC = () => {
       </Head>
       <Heading dashboard>{t("detail_suggestions_heading")}</Heading>
       <SuggestionsDetailBlock
-        title={query.suggestionDetail?.title}
-        date={query.suggestionDetail?.date}
-        description={query.suggestionDetail?.description}
-        howSolve={query.suggestionDetail?.how_solve}
-        whyImportant={query.suggestionDetail?.why_important}
+        title={suggestionsDetail?.title}
+        date={suggestionsDetail?.date}
+        description={suggestionsDetail?.description}
+        howSolve={suggestionsDetail?.how_solve}
+        whyImportant={suggestionsDetail?.why_important}
+        level={suggestionsDetail?.importance}
       />
     </>
   );

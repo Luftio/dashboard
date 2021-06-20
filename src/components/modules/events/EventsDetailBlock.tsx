@@ -37,11 +37,11 @@ const BottomRow = styled.div`
 `;
 
 interface EventsDetailBlockProps {
-  title: string | undefined;
-  date: string | undefined;
-  place: string | undefined;
-  threat: number | undefined;
-  justification: string | undefined;
+  title: string;
+  date: string;
+  place: string;
+  threat: number;
+  justification: string;
 }
 
 const EventsDetailBlock: React.FC<EventsDetailBlockProps> = ({ title, date, place, threat, justification }) => {

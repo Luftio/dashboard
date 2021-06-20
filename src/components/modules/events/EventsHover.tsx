@@ -8,6 +8,8 @@ import { useTranslation } from "react-i18next";
 import SidebarItem from "../../elements/SidebarItem";
 import Notifications from "../../elements/Notifications";
 
+import { useQuery } from "../../../gqless";
+
 const Div = styled.div`
   width: 300px;
   height: 80px;
@@ -36,6 +38,9 @@ const EventsHover: React.FC = () => {
 
   const url = router.pathname.split("/")[2];
 
+  const query = useQuery();
+  const notifications = query.notifications;
+
   return (
     <Div>
       <Row>
@@ -45,7 +50,7 @@ const EventsHover: React.FC = () => {
           active={url === "from-measurement" && true}
           icon="activity"
           text={t("events_page_nav_measure")}></SidebarItem>
-        <Notifications type amount={2} />
+        <Notifications type amount={notifications?.events_from_measure} />
       </Row>
       <Row>
         <SidebarItem
@@ -54,6 +59,7 @@ const EventsHover: React.FC = () => {
           active={url === "from-employees" && true}
           icon="briefcase"
           text={t("events_page_nav_employees")}></SidebarItem>
+        <Notifications type amount={notifications?.events_from_employees} />
       </Row>
     </Div>
   );

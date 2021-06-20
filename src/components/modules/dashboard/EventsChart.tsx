@@ -21,10 +21,36 @@ const EventsChart: React.FC = () => {
         ]}
         innerRadius={85}
         labelRadius={120}
-        labelComponent={<VictoryTooltip pointerLength={0} active={true} flyoutWidth={70} flyoutHeight={70} cornerRadius={35} flyoutStyle={{ stroke: "#AFB8BF", strokeWidth: 1, fill: "#fff" }} style={{ fontSize: "24px" }} />}
+        labelComponent={
+          <VictoryTooltip
+            pointerLength={0}
+            active={true}
+            flyoutWidth={70}
+            flyoutHeight={70}
+            cornerRadius={35}
+            flyoutStyle={{ stroke: "#AFB8BF", strokeWidth: 1, fill: "#fff" }}
+            style={{ fontSize: "24px" }}
+          />
+        }
       />
-      <VictoryLabel textAnchor="middle" verticalAnchor="middle" x={200} y={185} text={`20`} style={{ fontSize: 45, fontFamily: "Montserrat", fontWeight: 600 }} />;
-      <VictoryLabel textAnchor="middle" verticalAnchor="start" x={200} y={215} text={`${t("dashboard_events_chart_label")}`} style={{ fontSize: 25, fontFamily: "Montserrat" }} />;
+      <VictoryLabel
+        textAnchor="middle"
+        verticalAnchor="middle"
+        x={200}
+        y={185}
+        text={`20`}
+        style={{ fontSize: 45, fontFamily: "Montserrat", fontWeight: 600 }}
+      />
+      ;
+      <VictoryLabel
+        textAnchor="middle"
+        verticalAnchor="start"
+        x={200}
+        y={215}
+        text={`${t("dashboard_events_chart_label")}`}
+        style={{ fontSize: 25, fontFamily: "Montserrat" }}
+      />
+      ;
     </svg>
   );
 };

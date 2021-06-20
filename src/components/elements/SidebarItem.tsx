@@ -121,7 +121,7 @@ const Area = styled.span<{ signout?: boolean }>`
     }
   }
 
-  @media only screen and (max-width: 1000px) {
+  @media only screen and (max-width: 1100px) {
     span {
       display: none;
       width: 100%;

@@ -2,6 +2,7 @@ import { createReactClient } from "@gqless/react";
 import { mockServer, MockList } from "@graphql-tools/mock";
 
 import { createClient, QueryFetcher } from "gqless";
+
 import {
   generatedSchema,
   scalarsEnumsHash,
@@ -15,16 +16,23 @@ import schema from "../graphql/schema.graphql";
 
 const mocks = {
   RootQuery: () => ({
-    suggestions: () => new MockList([3, 10]),
+    devices: () => new MockList([5, 5]),
+    eventsFromMeasure: () => new MockList([0, 20]),
+    eventsFromEmployee: () => new MockList([0, 20]),
+    suggestions: () => new MockList([0, 20]),
+    feedback: () => new MockList([0, 20]),
+    manageUsers: () => new MockList([1, 10]),
+    manageDevices: () => new MockList([5, 5]),
+    eventsNotifications: () => new MockList([3, 3]),
+    feedbackNotifications: () => new MockList([3, 3]),
   }),
 };
 
 const queryFetcher: QueryFetcher = async function (query, variables) {
-  //@ts-ignore
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(mockServer(schema, mocks).query(query, variables));
-    }, 1000);
+    }, 500);
   });
   // Modify "./src/graphql/schema.graphql" if needed
   /*const response = await fetch("./src/graphql/schema.graphql", {

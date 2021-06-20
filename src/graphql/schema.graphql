@@ -1,4 +1,12 @@
-type GetMeasuredData {
+type Device {
+  id: ID!
+  label: String!
+  title: String!
+  color: String!
+  data: DeviceData!
+}
+
+type DeviceData {
   title: String!
   type: String!
   actual_value: Float!
@@ -8,43 +16,69 @@ type GetMeasuredData {
   color: String!
 }
 
+type Notifications {
+  events: Int!
+  events_from_measure: Int!
+  events_from_employees: Int!
+  feedback: Int!
+  suggestions: Int!
+}
+
+type Notification {
+  id: ID!
+  title: String!
+  date: String!
+}
+
+type Analytics {
+  events_total: Int!
+  events_good_total: Int!
+  events_normal_total: Int!
+  events_bad_total: Int!
+  feedback_total: Int!
+}
+
 type EventFromMeasureDetail {
+  id: ID!
   title: String!
   place: String!
   date: String!
   threat: Int!
-  is_read: Boolean!
+  is_unread: Boolean!
   justification: String!
 }
 
-type EventFromEmployeeDetail {
+type EventFromEmployeesDetail {
+  id: ID!
   name: String!
   place: String!
   date: String!
-  is_read: Boolean!
+  is_unread: Boolean!
   threat: Int!
-  temperature: String!
+  temperature: Int!
   breath: Int!
   how_feel: String!
 }
 
 type SuggestionDetail {
+  id: ID!
   title: String!
-  importance: String!
+  importance: Int!
   date: String!
-  is_read: Boolean!
+  is_unread: Boolean!
   description: String!
   how_solve: String!
   why_important: String!
 }
 
 type FeedbackDetail {
-  name: String
-  total_score: Int
-  date: String
-  is_read: Boolean
-  temperature: String
-  breath: Int
+  id: ID!
+  name: String!
+  total_score: Int!
+  date: String!
+  is_unread: Boolean!
+  temperature: Int!
+  breath: Int!
   how_feel: String!
 }
 
@@ -52,46 +86,43 @@ type User {
   id: ID!
   first_name: String!
   last_name: String!
+  full_name: String!
   email: String!
+  role: String!
+  pending_invitation: Boolean!
 }
 
-type OnboardFormResult {
+type OnboardingFormResult {
   productivity: Int!
   energy: Int!
   feedback: Int!
 }
 
 type RootQuery {
-  getMeasuredData: GetMeasuredData
+  devices(id: ID): [Device!]
+  deviceData: DeviceData
   eventFromMeasureDetail: EventFromMeasureDetail
-  eventFromEmployeeDetail: EventFromEmployeeDetail
-  suggestions: [SuggestionDetail!]
+  eventsFromMeasure(id: ID): [EventFromMeasureDetail!]
+  eventFromEmployeesDetail: EventFromEmployeesDetail
+  eventsFromEmployees(id: ID): [EventFromEmployeesDetail!]
+  eventsNotifications(id: ID): [Notification!]
+  suggestions(id: ID): [SuggestionDetail!]
   suggestionDetail: SuggestionDetail
+  feedback(id: ID): [FeedbackDetail!]
+  feedbackNotifications(id: ID): [Notification!]
   feedbackDetail: FeedbackDetail
+  notifications: Notifications
   user(id: ID): User
-  onboardFormResult: OnboardFormResult
+  manageUsers(id: ID): [User!]
+  manageDevices(id: ID): [Device!]
+  onboardingFormResult: OnboardingFormResult
+  analytics: Analytics
 }
 
 schema {
   query: RootQuery
 }
 
-# Dashboard
-# map devices - id
-# map events - (title, date, url)
-# map feedback - (title, date, url)
-
-# Events
-# map card - (title, date, place, threats, is_read)
-
-# Suggestions
-# map card - (title, date, importance, is_read)
-
-# Feedback
-# map card - (title, total_score, date, is_read)
-
-# Manage users
-# map users rows - (full_name, email, role, is_pending)
-
-# Settings
-# map device cards - (title, code)
+## Create custom scalar type for date
+## Pagination
+## Shimmer effect

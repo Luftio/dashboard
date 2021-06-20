@@ -11,6 +11,8 @@ import Notifications from "../../elements/Notifications";
 
 import { Icon } from "ts-react-feather-icons";
 
+import { useQuery } from "../../../gqless";
+
 const Navigation = styled.div`
   display: flex;
   margin-bottom: 30px;
@@ -33,19 +35,23 @@ const EventsNav: React.FC = () => {
 
   const url = router.pathname.split("/")[2];
 
+  const query = useQuery();
+  const notifications = query.notifications;
+
   return (
     <Navigation>
       <Link href="/events/from-measurement">
         <Button nav active={url === "from-measurement" && true}>
           <Icon name="activity" size="22" color={url === "from-measurement" ? "#031946" : "#838C97"} />
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{t("events_page_nav_measure")}
-          <Notifications amount={2} />
+          <Notifications amount={notifications?.events_from_measure} />
         </Button>
       </Link>
       <Link href="/events/from-employees">
         <Button nav active={url === "from-employees" && true}>
           <Icon name="briefcase" size="22" color={url === "from-employees" ? "#031946" : "#838C97"} />
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{t("events_page_nav_employees")}
+          <Notifications amount={notifications?.events_from_employees} />
         </Button>
       </Link>
     </Navigation>

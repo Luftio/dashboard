@@ -23,6 +23,7 @@ const Card = styled.div`
   &:last-of-type {
     border-bottom: none;
     border-radius: 0 0 ${(props) => props.theme.border_radius_primary} ${(props) => props.theme.border_radius_primary};
+    margin-bottom: 20px;
   }
 
   &:hover {
@@ -57,18 +58,30 @@ const Score = styled.div`
   }
 `;
 
+const Unread = styled.div<{ display: string }>`
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(3, 24, 70, 0.8);
+  opacity: ${(props) => props.display};
+  margin-left: 30px;
+
+  @media only screen and (max-width: 850px) {
+    display: none;
+  }
+`;
+
 interface MessageCardProps {
   name: string;
   procents: number;
   date: string;
   suggestion?: boolean;
-  low?: boolean;
-  medium?: boolean;
-  high?: boolean;
+  level?: number;
   href: string;
+  unread: boolean;
 }
 
-const MessageCard: React.FC<MessageCardProps> = ({ name, procents, date, suggestion, low, medium, high, href }) => {
+const MessageCard: React.FC<MessageCardProps> = ({ name, procents, date, suggestion, level, href, unread }) => {
   const { t } = useTranslation<string>();
 
   return (
@@ -79,7 +92,7 @@ const MessageCard: React.FC<MessageCardProps> = ({ name, procents, date, suggest
           {suggestion ? (
             <Score>
               <BasicText>{t("suggestion_score_text")}&nbsp;&nbsp;</BasicText>
-              <ImportanceBlocks low={low} medium={medium} high={high} />
+              <ImportanceBlocks level={level} />
             </Score>
           ) : (
             <Score>
@@ -89,8 +102,8 @@ const MessageCard: React.FC<MessageCardProps> = ({ name, procents, date, suggest
               </BasicText>
             </Score>
           )}
-
           <BasicText date>{date}</BasicText>
+          <Unread display={unread ? "1" : "0"}></Unread>
         </Message>
       </Card>
     </Link>

@@ -37,17 +37,17 @@ const BottomRow = styled.div`
 `;
 
 interface SuggestionsDetailBlockProps {
-  title: string | undefined;
-  importance?: string | undefined;
-  date: string | undefined;
-  description: string | undefined;
-  howSolve: string | undefined;
-  whyImportant: string | undefined;
+  title: string;
+  level?: number;
+  date: string;
+  description: string;
+  howSolve: string;
+  whyImportant: string;
 }
 
 const SuggestionsDetailBlock: React.FC<SuggestionsDetailBlockProps> = ({
   title,
-  importance,
+  level,
   date,
   description,
   howSolve,
@@ -67,10 +67,16 @@ const SuggestionsDetailBlock: React.FC<SuggestionsDetailBlockProps> = ({
         <Icon name="clock" size="16" color="#838C97" />
         <BasicText events>{date}</BasicText>
       </BottomRow>
-      <DetailRowText type="importance" subheading={t("detail_suggestions_importance")} high value={0} />
-      <DetailRowText type="text" subheading={t("detail_suggestions_description")} text={description} value={0} />
-      <DetailRowText type="text" subheading={t("detail_suggestions_solve")} text={howSolve} value={0} />
-      <DetailRowText type="text" subheading={t("detail_suggestions_matter")} text={whyImportant} value={0} />
+      <DetailRowText type="importance" subheading={t("detail_suggestions_importance")} level={level} value={0} />
+      <DetailRowText
+        type="text"
+        subheading={t("detail_suggestions_description")}
+        level={0}
+        text={description}
+        value={0}
+      />
+      <DetailRowText type="text" subheading={t("detail_suggestions_solve")} level={0} text={howSolve} value={0} />
+      <DetailRowText type="text" subheading={t("detail_suggestions_matter")} level={0} text={whyImportant} value={0} />
     </Card>
   );
 };

@@ -81,14 +81,14 @@ const Unread = styled.div<{ display: string }>`
 
 interface EventsCardProps {
   name: string;
-  value: number;
+  threat: number;
   time: string;
   location: string;
   unread?: boolean;
   href: string;
 }
 
-const EventsCard: React.FC<EventsCardProps> = ({ name, value, time, location, unread, href }) => {
+const EventsCard: React.FC<EventsCardProps> = ({ name, threat, time, location, unread, href }) => {
   const { t } = useTranslation<string>();
 
   return (
@@ -106,7 +106,7 @@ const EventsCard: React.FC<EventsCardProps> = ({ name, value, time, location, un
           </Main>
           <Threat>
             <BasicText>{t("events_page_threat")}&nbsp;&nbsp;</BasicText>
-            <ThreatBar background={value > 75 ? "#E55B5B" : value > 40 ? "#FFB951" : "#23A454"} score={value}>
+            <ThreatBar background={threat > 75 ? "#E55B5B" : threat > 40 ? "#FFB951" : "#23A454"} score={threat}>
               <div></div>
             </ThreatBar>
           </Threat>

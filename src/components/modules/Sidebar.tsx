@@ -10,7 +10,10 @@ import { useTranslation } from "react-i18next";
 import Heading from "../elements/Heading";
 import SidebarItem from "../elements/SidebarItem";
 import Tooltip from "../elements/Tooltip";
+import Notifications from "../elements/Notifications";
 import EventsHover from "./events/EventsHover";
+
+import { useQuery } from "../../gqless";
 
 const SidebarBlock = styled.div`
   display: flex;
@@ -29,7 +32,7 @@ const SidebarBlock = styled.div`
   }
 `;
 
-const Events = styled.div`
+const Wrapper = styled.div`
   display: flex;
   position: relative;
 `;
@@ -77,6 +80,9 @@ const Sidebar: React.FC = ({}) => {
   const [show, setShow] = useState<Boolean>(false);
   const [showMessage, setShowMessage] = useState<Boolean>(false);
 
+  const query = useQuery();
+  const notifications = query.notifications;
+
   return (
     <SidebarBlock>
       <Logo>
@@ -93,24 +99,31 @@ const Sidebar: React.FC = ({}) => {
         active={url === "dashboard" && true}
         icon="pie-chart"
         text={t("sidebar_menu_item_1")}></SidebarItem>
-      <Events onMouseEnter={() => setShow(true)} onMouseLeave={() => setShow(false)}>
+      <Wrapper onMouseEnter={() => setShow(true)} onMouseLeave={() => setShow(false)}>
         <SidebarItem
           url="/events/from-measurement"
           active={url === "events" && true}
           icon="bell"
           text={t("sidebar_menu_item_2")}></SidebarItem>
+        <Notifications sidebar amount={notifications?.events} />
         {show && <EventsHover />}
-      </Events>
-      <SidebarItem
-        url="/suggestions"
-        active={url === "suggestions" && true}
-        icon="file"
-        text={t("sidebar_menu_item_3")}></SidebarItem>
-      <SidebarItem
-        url="/feedback"
-        active={url === "feedback" && true}
-        icon="archive"
-        text={t("sidebar_menu_item_4")}></SidebarItem>
+      </Wrapper>
+      <Wrapper>
+        <SidebarItem
+          url="/suggestions"
+          active={url === "suggestions" && true}
+          icon="file"
+          text={t("sidebar_menu_item_3")}></SidebarItem>
+        <Notifications sidebar amount={notifications?.suggestions} />
+      </Wrapper>
+      <Wrapper>
+        <SidebarItem
+          url="/feedback"
+          active={url === "feedback" && true}
+          icon="archive"
+          text={t("sidebar_menu_item_4")}></SidebarItem>
+        <Notifications sidebar amount={notifications?.feedback} />
+      </Wrapper>
       <Heading sidebar>{t("sidebar_account_heading")}</Heading>
       <SidebarItem
         url="/profile"
