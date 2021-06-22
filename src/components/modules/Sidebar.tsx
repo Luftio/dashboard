@@ -17,6 +17,7 @@ const SidebarBlock = styled.div`
   width: 20%;
   flex-direction: column;
   background: ${(props) => props.theme.color_sidebar_background};
+  box-shadow: 3px 0 5px -6px #b9babd;
   height: 100vh;
   position: relative;
 
