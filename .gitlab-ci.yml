@@ -10,14 +10,14 @@ stages:
 variables:
   GIT_DEPTH: 0
   npm_config_cache: "$CI_PROJECT_DIR/.npm"
-  CYPRESS_CACHE_FOLDER: "$CI_PROJECT_DIR/cache/Cypress"
+  CYPRESS_CACHE_FOLDER: "$CI_PROJECT_DIR/.cache/Cypress"
 
 # Cache the dependencies
 cache:
   key: $CI_COMMIT_REF_SLUG-$CI_PROJECT_DIR
   paths:
     - .yarn
-    - cache/Cypress
+    - .cache/Cypress
     - node_modules
 
 # this job installs NPM dependencies and Cypress
