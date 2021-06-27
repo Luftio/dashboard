@@ -40,7 +40,7 @@ cypress-e2e:
   stage: test
   script:
     - npm run build
-    - npm start & wait-on http://localhost:3000
+    - npm start & npx wait-on http://localhost:3000
     - $(npm bin)/cypress run
   artifacts:
     expire_in: 1 week
@@ -57,7 +57,7 @@ cypress-e2e-chrome:
   stage: test
   script:
     - npm run build
-    - npm start & wait-on http://localhost:3000
+    - npm start & npx wait-on http://localhost:3000
     - $(npm bin)/cypress run --browser chrome
   artifacts:
     expire_in: 1 week
