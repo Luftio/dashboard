@@ -1,4 +1,4 @@
 {
   "projectId": "rvdexx",
-  "baseUrl": "https://dashboard.luftio.cz/"
+  "baseUrl": "http://localhost:3000/"
 }
