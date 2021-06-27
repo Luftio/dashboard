@@ -29,6 +29,7 @@ const SendIntructions: React.FC = () => {
         <InputItem fail={errors.email && true}>
           <label htmlFor="email">{t("email_input_label")}</label>
           <input
+            data-cy="email"
             id="email"
             type="text"
             placeholder={t("email_input_placeholder")}
@@ -41,7 +42,7 @@ const SendIntructions: React.FC = () => {
         </InputItem>
         {errors.email && errors.email.type === "required" && <Error>{t("msg_required")}</Error>}
         {errors.email && errors.email.type === "pattern" && <Error>{t("msg_invalid_email")}</Error>}
-        <Button primary type="submit">
+        <Button primary type="submit" data-cy="submit">
           {t("send_instruction")}
         </Button>
       </form>

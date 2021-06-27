@@ -39,17 +39,32 @@ const SignUpForm: React.FC = () => {
       <form onSubmit={onSubmit}>
         <InputItem fail={errors.name && true}>
           <label htmlFor="name">{t("name_input_label")}</label>
-          <input id="name" type="text" placeholder={t("name_input_placeholder")} name="name" ref={register({ required: true })} />
+          <input
+            data-cy="first-name"
+            id="name"
+            type="text"
+            placeholder={t("name_input_placeholder")}
+            name="name"
+            ref={register({ required: true })}
+          />
         </InputItem>
         {errors.name && errors.name.type === "required" && <Error>{t("msg_required")}</Error>}
         <InputItem fail={errors.surname && true}>
           <label htmlFor="surname">{t("surname_input_label")}</label>
-          <input id="surname" type="text" placeholder={t("surname_input_placeholder")} name="surname" ref={register({ required: true })} />
+          <input
+            data-cy="last-name"
+            id="surname"
+            type="text"
+            placeholder={t("surname_input_placeholder")}
+            name="surname"
+            ref={register({ required: true })}
+          />
         </InputItem>
         {errors.surname && errors.surname.type === "required" && <Error>{t("msg_required")}</Error>}
         <InputItem fail={errors.email && true}>
           <label htmlFor="email">{t("email_input_label")}</label>
           <input
+            data-cy="e-mail"
             id="email"
             type="text"
             placeholder={t("email_input_placeholder")}
@@ -65,6 +80,7 @@ const SignUpForm: React.FC = () => {
         <InputItem fail={errors.password && true}>
           <label htmlFor="new-password">{t("pass_input_label")}</label>
           <input
+            data-cy="password"
             id="new-password"
             type={visibility ? "text" : "password"}
             placeholder={t("pass_input_placeholder")}
@@ -83,6 +99,7 @@ const SignUpForm: React.FC = () => {
         {errors.password && errors.password.type === "pattern" && <Error>{t("msg_invalid_password")}</Error>}
         <Checkbox>
           <input
+            data-cy="checkbox"
             id="checkbox"
             aria-label="checkbox"
             type="checkbox"
@@ -97,14 +114,14 @@ const SignUpForm: React.FC = () => {
           </a>
         </Checkbox>
         {errors.check && <Error>{t("msg_required")}</Error>}
-        <Button primary type="submit">
+        <Button primary type="submit" data-cy="submit">
           {t("create_account")}
         </Button>
       </form>
       <HaveAccount>
         <p>{t("have_account")}&nbsp;</p>
         <Link href="/">
-          <a>{t("sign_in")}</a>
+          <a data-cy="sign-in">{t("sign_in")}</a>
         </Link>
       </HaveAccount>
     </div>

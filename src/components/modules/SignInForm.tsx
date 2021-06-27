@@ -45,6 +45,7 @@ const SignUpForm: React.FC = () => {
         <InputItem fail={errors.email && true}>
           <label htmlFor="email">{t("email_input_label")}</label>
           <input
+            data-cy="email"
             id="email"
             type="text"
             placeholder={t("email_input_placeholder")}
@@ -61,6 +62,7 @@ const SignUpForm: React.FC = () => {
         <InputItem fail={errors.password && true}>
           <label htmlFor="current-password">{t("pass_input_label")}</label>
           <input
+            data-cy="password"
             id="current-password"
             type={visibility ? "text" : "password"}
             autoComplete="current-password"
@@ -75,18 +77,18 @@ const SignUpForm: React.FC = () => {
           </p>
         </InputItem>
         <Link href="/password/request-change">
-          <ForgotPassword>{t("forgot_password")}</ForgotPassword>
+          <ForgotPassword data-cy="forgot-password">{t("forgot_password")}</ForgotPassword>
         </Link>
         {errors.password && errors.password.type === "required" && <Error>{t("msg_required")}</Error>}
         {logInError && <Error>{t("msg_login_error")}</Error>}
-        <Button primary type="submit">
+        <Button primary type="submit" data-cy="submit">
           {t("sign_in")}
         </Button>
       </form>
       <HaveAccount>
         <p>{t("dont_have_account")}&nbsp;</p>
         <Link href="/register">
-          <a>{t("create_account")}</a>
+          <a data-cy="sign-up">{t("create_account")}</a>
         </Link>
       </HaveAccount>
     </div>
