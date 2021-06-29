@@ -14,6 +14,12 @@ const HeadingDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @media only screen and (max-width: 500px) {
+    flex-direction: column;
+    margin-bottom: 30px;
+    align-items: flex-start;
+  }
 `;
 
 const Feedback: React.FC = () => {
