@@ -1,0 +1,25 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import Filter from "./Filter.tsx";
+
+<Meta title="Elements/Filter" component={Filter} />
+
+# Filter
+
+This components is displayed if user have visited exprired link for e.g. instructions for changing password, activation email etc.
+
+export const Component = (args) => <Filter {...args} />;
+
+<Canvas>
+  <Story
+    name="Filter"
+    args={{
+      filterOptions: [
+        { value: "latest", label: "Latest" },
+        { value: "oldest", label: "Oldest" },
+        { value: "best", label: "Best" },
+        { value: "worst", label: "Worst" },
+      ],
+    }}>
+    {Component.bind({})}
+  </Story>
+</Canvas>
