@@ -98,6 +98,7 @@ const Filter: React.FC<FilterProps> = ({ filterOptions }) => {
       placeholder={t("filter_placeholder")}
       value={filterValue}
       onChange={(value) => setFilterValue(value)}
+      noOptionsMessage={() => t("filter_no_options_msg")}
     />
   );
 };

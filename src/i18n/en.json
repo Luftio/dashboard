@@ -186,6 +186,7 @@
   "manage_users_modal_add_heading": "Add a new user",
   "manage_users_modal_add_text": "Add a new member to your organization via email and assign them the appropriate role. Then the user must accept the invitation sent by e-mail.",
   "filter_placeholder": "Sort by",
+  "filter_no_options_msg": "Not found 🧐",
   "filter_latest": "Latest",
   "filter_oldest": "Oldest",
   "filter_best": "Best",

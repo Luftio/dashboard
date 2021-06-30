@@ -186,6 +186,7 @@
   "manage_users_modal_add_heading": "Přidejte nového uživatele",
   "manage_users_modal_add_text": "Přidejte přes e-mail nového člena do organizace a přiřadtě mu patřičnou roli. Poté uživatel musí přijmout pozvánku zaslanou na e-mail.",
   "filter_placeholder": "Seřadit podle",
+  "filter_no_options_msg": "Nenalezeno 🧐",
   "filter_latest": "Nejnovější",
   "filter_oldest": "Nejstarší",
   "filter_best": "Nejlepší",
