@@ -54,7 +54,7 @@ const Filter: React.FC<FilterProps> = ({ filterOptions }) => {
     indicatorSeparator: (styles: any) => ({ ...styles, display: "none" }),
     option: (provided: any, state: any) => ({
       ...provided,
-      color: state.menuIsOpen ? "#000" : "#AFB8BF",
+      color: state.isSelected ? "#000" : "#AFB8BF",
       background: "#fff",
       cursor: "pointer",
       borderRadius: 20,
@@ -63,6 +63,10 @@ const Filter: React.FC<FilterProps> = ({ filterOptions }) => {
 
       "&:active": {
         background: "#fff",
+      },
+
+      "&:hover": {
+        color: "#838C97",
       },
     }),
     dropdownIndicator: (base: any, state: any) => ({
