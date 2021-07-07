@@ -40,8 +40,12 @@ const SendIntructions: React.FC = () => {
             })}
           />
         </InputItem>
-        {errors.email && errors.email.type === "required" && <Error>{t("msg_required")}</Error>}
-        {errors.email && errors.email.type === "pattern" && <Error>{t("msg_invalid_email")}</Error>}
+        {errors.email && errors.email.type === "required" && (
+          <Error data-cy="email-required">{t("msg_required")}</Error>
+        )}
+        {errors.email && errors.email.type === "pattern" && (
+          <Error data-cy="email-invalid">{t("msg_invalid_email")}</Error>
+        )}
         <Button primary type="submit" data-cy="submit">
           {t("send_instruction")}
         </Button>

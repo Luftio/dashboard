@@ -93,48 +93,41 @@ const Sidebar: React.FC = ({}) => {
         url="/dashboard"
         active={url === "dashboard" && true}
         icon="pie-chart"
-        text={t("sidebar_menu_item_1")}></SidebarItem>
+        text={t("sidebar_menu_item_1")}
+      />
       <Events onMouseEnter={() => setShow(true)} onMouseLeave={() => setShow(false)}>
         <SidebarItem
           url="/events/from-measurement"
           active={url === "events" && true}
           icon="bell"
-          text={t("sidebar_menu_item_2")}></SidebarItem>
+          text={t("sidebar_menu_item_2")}
+        />
         {show && <EventsHover />}
       </Events>
       <SidebarItem
         url="/suggestions"
         active={url === "suggestions" && true}
         icon="file"
-        text={t("sidebar_menu_item_3")}></SidebarItem>
-      <SidebarItem
-        url="/feedback"
-        active={url === "feedback" && true}
-        icon="archive"
-        text={t("sidebar_menu_item_4")}></SidebarItem>
+        text={t("sidebar_menu_item_3")}
+      />
+      <SidebarItem url="/feedback" active={url === "feedback" && true} icon="archive" text={t("sidebar_menu_item_4")} />
       <Heading sidebar>{t("sidebar_account_heading")}</Heading>
-      <SidebarItem
-        url="/profile"
-        active={url === "profile" && true}
-        icon="user"
-        text={t("sidebar_account_item_1")}></SidebarItem>
+      <SidebarItem url="/profile" active={url === "profile" && true} icon="user" text={t("sidebar_account_item_1")} />
       <SidebarItem
         url="/manage-users"
         active={url === "manage-users" && true}
         icon="users"
-        text={t("sidebar_account_item_2")}></SidebarItem>
+        text={t("sidebar_account_item_2")}
+      />
       <Heading sidebar>{t("sidebar_other_heading")}</Heading>
       <SidebarItem
         url="/settings"
         active={url === "settings" && true}
         icon="settings"
-        text={t("sidebar_other_item_1")}></SidebarItem>
-      <SidebarItem
-        url="/support"
-        active={url === "support" && true}
-        icon="info"
-        text={t("sidebar_other_item_2")}></SidebarItem>
-      <SidebarItem url="/sign-out" type={true} icon="log-out" text={t("sidebar_sign_out")}></SidebarItem>
+        text={t("sidebar_other_item_1")}
+      />
+      <SidebarItem url="/support" active={url === "support" && true} icon="info" text={t("sidebar_other_item_2")} />
+      <SidebarItem url="/sign-out" type={true} icon="log-out" text={t("sidebar_sign_out")} />
     </SidebarBlock>
   );
 };

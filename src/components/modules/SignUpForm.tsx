@@ -48,7 +48,9 @@ const SignUpForm: React.FC = () => {
             ref={register({ required: true })}
           />
         </InputItem>
-        {errors.name && errors.name.type === "required" && <Error>{t("msg_required")}</Error>}
+        {errors.name && errors.name.type === "required" && (
+          <Error data-cy="first-name-required">{t("msg_required")}</Error>
+        )}
         <InputItem fail={errors.surname && true}>
           <label htmlFor="surname">{t("surname_input_label")}</label>
           <input
@@ -60,11 +62,13 @@ const SignUpForm: React.FC = () => {
             ref={register({ required: true })}
           />
         </InputItem>
-        {errors.surname && errors.surname.type === "required" && <Error>{t("msg_required")}</Error>}
+        {errors.surname && errors.surname.type === "required" && (
+          <Error data-cy="last-name-required">{t("msg_required")}</Error>
+        )}
         <InputItem fail={errors.email && true}>
           <label htmlFor="email">{t("email_input_label")}</label>
           <input
-            data-cy="e-mail"
+            data-cy="email"
             id="email"
             type="text"
             placeholder={t("email_input_placeholder")}
@@ -75,8 +79,12 @@ const SignUpForm: React.FC = () => {
             })}
           />
         </InputItem>
-        {errors.email && errors.email.type === "required" && <Error>{t("msg_required")}</Error>}
-        {errors.email && errors.email.type === "pattern" && <Error>{t("msg_invalid_email")}</Error>}
+        {errors.email && errors.email.type === "required" && (
+          <Error data-cy="email-required">{t("msg_required")}</Error>
+        )}
+        {errors.email && errors.email.type === "pattern" && (
+          <Error data-cy="email-invalid">{t("msg_invalid_email")}</Error>
+        )}
         <InputItem fail={errors.password && true}>
           <label htmlFor="new-password">{t("pass_input_label")}</label>
           <input
@@ -91,12 +99,16 @@ const SignUpForm: React.FC = () => {
               pattern: /(?=.*[a-z])(?=.*[A-Z]).{12,}/,
             })}
           />
-          <p onClick={() => setVisibility(!visibility)}>
-            <Icon name={visibility ? "eye-off" : "eye"} size="22" color="#E1E6EA" />
+          <p data-cy="eye" onClick={() => setVisibility(!visibility)}>
+            <Icon data-cy="eye-icon" name={visibility ? "eye-off" : "eye"} size="22" color="#E1E6EA" />
           </p>
         </InputItem>
-        {errors.password && errors.password.type === "required" && <Error>{t("msg_required")}</Error>}
-        {errors.password && errors.password.type === "pattern" && <Error>{t("msg_invalid_password")}</Error>}
+        {errors.password && errors.password.type === "required" && (
+          <Error data-cy="password-required">{t("msg_required")}</Error>
+        )}
+        {errors.password && errors.password.type === "pattern" && (
+          <Error data-cy="password-invalid">{t("msg_invalid_password")}</Error>
+        )}
         <Checkbox>
           <input
             data-cy="checkbox"
@@ -113,7 +125,7 @@ const SignUpForm: React.FC = () => {
             {t("terms")}
           </a>
         </Checkbox>
-        {errors.check && <Error>{t("msg_required")}</Error>}
+        {errors.check && <Error data-cy="terms-required">{t("msg_required")}</Error>}
         <Button primary type="submit" data-cy="submit">
           {t("create_account")}
         </Button>

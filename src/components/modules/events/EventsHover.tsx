@@ -37,14 +37,15 @@ const EventsHover: React.FC = () => {
   const url = router.pathname.split("/")[2];
 
   return (
-    <Div>
+    <Div data-cy="events-hover-card">
       <Row>
         <SidebarItem
           hover={true}
           url="/events/from-measurement"
           active={url === "from-measurement" && true}
           icon="activity"
-          text={t("events_page_nav_measure")}></SidebarItem>
+          text={t("events_page_nav_measure")}
+        />
         <Notifications type amount={2} />
       </Row>
       <Row>
@@ -53,7 +54,8 @@ const EventsHover: React.FC = () => {
           url="/events/from-employees"
           active={url === "from-employees" && true}
           icon="briefcase"
-          text={t("events_page_nav_employees")}></SidebarItem>
+          text={t("events_page_nav_employees")}
+        />
       </Row>
     </Div>
   );

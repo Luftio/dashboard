@@ -13,7 +13,14 @@
     "export": "npm run build && next export",
     "storybook": "start-storybook -s ./public -p 6006",
     "build-storybook": "build-storybook",
-    "chromatic": "chromatic --project-token abde2b2ec12c --exit-zero-on-changes"
+    "chromatic": "chromatic --project-token abde2b2ec12c --exit-zero-on-changes",
+    "cypress:open": "cypress open",
+    "cypress:open:mobile": "cypress open --config viewportWidth=375,viewportHeight=667",
+    "cypress:run": "cypress run",
+    "cypress:run:mobile": "cypress run --config viewportWidth=375,viewportHeight=667",
+    "test:api": "npm cypress:run --spec 'cypress/tests/api/*'",
+    "lint": "eslint && prettier --check \"**/**.{ts,js,tsx}\" \"*.{json,md,yml,mdx}\"",
+    "prettier": "prettier --write '**/**.{ts,js,tsx}' '*.{json,md,yml,mdx}'"
   },
   "dependencies": {
     "@react-spring/konva": "^9.0.0-rc.3",
@@ -43,6 +50,8 @@
     "zustand": "^3.5.1"
   },
   "devDependencies": {
+    "@percy/cli": "^1.0.0-beta.58",
+    "@percy/cypress": "^3.1.0",
     "@storybook/addon-a11y": "^6.1.21",
     "@storybook/addon-docs": "^6.1.21",
     "@storybook/addon-essentials": "^6.1.21",
@@ -74,6 +83,14 @@
     "ts-node": "^9.1.1",
     "tsconfig-paths": "^3.9.0",
     "typescript": "^4.1.3"
+  },
+  "percy": {
+    "version": 1,
+    "snapshot": {
+      "widths": [
+        1280
+      ]
+    }
   },
   "babel": {
     "env": {
