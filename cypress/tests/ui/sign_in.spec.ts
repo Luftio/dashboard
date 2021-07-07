@@ -62,7 +62,7 @@ describe("Sign in", () => {
       .should("have.css", "color", "rgb(240, 70, 64)");
     cy.visualSnapshot("Display Email is Invalid Error");
 
-    cy.getBySel("email").type("martin.fresh@company.com{enter}").clear();
+    cy.getBySel("email").type("martin.fresh@company.com").clear();
     cy.getBySel("email-required")
       .should("be.visible")
       .and("contain", "This field is required")
