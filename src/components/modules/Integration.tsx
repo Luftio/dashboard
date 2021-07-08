@@ -34,6 +34,7 @@ interface IntegrationProps {
   tagTitle2: string;
   tagBgColor2: string;
   description: string;
+  isAdded: boolean;
 }
 
 const Integration: React.FC<IntegrationProps> = ({
@@ -44,6 +45,7 @@ const Integration: React.FC<IntegrationProps> = ({
   tagTitle2,
   tagBgColor2,
   description,
+  isAdded,
 }) => {
   return (
     <Div>
@@ -56,7 +58,7 @@ const Integration: React.FC<IntegrationProps> = ({
         </TopRow>
         <BasicText>{description}</BasicText>
       </Main>
-      <PlusButton />
+      <PlusButton isAdded={isAdded} />
     </Div>
   );
 };

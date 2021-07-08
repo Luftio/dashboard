@@ -133,6 +133,7 @@ const Settings: React.FC = () => {
             tagTitle2={t("integration_tag_notifications")}
             tagBgColor2="#FFDB63"
             description={t("integration_slack_description")}
+            isAdded={true}
           />
           <Integration
             logo="/static/trello.svg"
@@ -142,6 +143,7 @@ const Settings: React.FC = () => {
             tagTitle2={t("integration_tag_notifications")}
             tagBgColor2="#FFDB63"
             description={t("integration_slack_trello")}
+            isAdded={false}
           />
         </Expand>
         <ContentBlockItem

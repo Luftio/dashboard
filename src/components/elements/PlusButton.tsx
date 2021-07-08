@@ -1,9 +1,9 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 import { Icon } from "ts-react-feather-icons";
 
-const Circle = styled.div`
+const Circle = styled.div<{ isAdded?: boolean }>`
   width: 34px;
   height: 34px;
   border-radius: 50%;
@@ -21,12 +21,30 @@ const Circle = styled.div`
   &:active {
     background-color: ${(props) => props.theme.color_placeholder};
   }
+
+  ${(props) =>
+    props.isAdded &&
+    css`
+      background-color: #a2ebbe;
+
+      &:hover {
+        background-color: #a2ebbe;
+      }
+
+      &:active {
+        background-color: #a2ebbe;
+      }
+    `}
 `;
 
-const PlusButton: React.FC = () => {
+interface PlusButtonProps {
+  isAdded: boolean;
+}
+
+const PlusButton: React.FC<PlusButtonProps> = ({ isAdded }) => {
   return (
-    <Circle>
-      <Icon name="plus" color="#838C97" size="20px" />
+    <Circle isAdded={isAdded}>
+      <Icon name={isAdded ? "check" : "plus"} color={isAdded ? "#23A454" : "#838C97"} size="20px" />
     </Circle>
   );
 };
