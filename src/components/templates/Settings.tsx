@@ -14,6 +14,7 @@ import ContentBlockItem from "../modules/ContentBlockItem";
 import Modal from "../modules/Modal";
 import DeviceCard from "../modules/DeviceCard";
 import DevicesForm from "../modules/DevicesForm";
+import Integration from "../modules/Integration";
 
 const Devices = styled.div`
   display: flex;
@@ -31,7 +32,7 @@ const TopRowDevices = styled.div`
   margin-top: 15px;
 `;
 
-const Expand = styled.form`
+const Expand = styled.form<{ integrations?: boolean }>`
   display: flex;
   width: 85%;
   flex-direction: column;
@@ -39,12 +40,41 @@ const Expand = styled.form`
   border-bottom: ${(props) => props.theme.divider};
   margin: -70px auto 0 auto;
   padding-bottom: 45px;
+
+  ${(props) =>
+    props.integrations &&
+    css`
+      margin: -10px auto 0 auto;
+      padding-bottom: 0;
+    `};
 `;
 
 const Cards = styled.div`
   margin-top: 40px;
   display: flex;
   flex-wrap: wrap;
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+  width: 85%;
+  height: 150px;
+  flex-direction: column;
+  margin: 0 auto;
+`;
+
+const TopRow = styled.div<{ selectForm?: boolean }>`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  margin-top: 15px;
+
+  ${(props) =>
+    props.selectForm &&
+    css`
+      margin-top: 30px;
+    `};
 `;
 
 const Settings: React.FC = () => {
@@ -87,6 +117,33 @@ const Settings: React.FC = () => {
             </Cards>
           </Expand>
         )}
+
+        <Wrapper>
+          <TopRow selectForm>
+            <Subheading dashboard>{t("integration_heading")}</Subheading>
+          </TopRow>
+          <BasicText contentBlockItem>{t("integration_text")}</BasicText>
+        </Wrapper>
+        <Expand integrations>
+          <Integration
+            logo="/static/slack-new-logo.svg"
+            title="Slack"
+            tagTitle1="Chat"
+            tagBgColor1="#3F74F9"
+            tagTitle2={t("integration_tag_notifications")}
+            tagBgColor2="#FFDB63"
+            description={t("integration_slack_description")}
+          />
+          <Integration
+            logo="/static/trello.svg"
+            title="Trello"
+            tagTitle1={t("integration_tag_project_mang")}
+            tagBgColor1="#F65656"
+            tagTitle2={t("integration_tag_notifications")}
+            tagBgColor2="#FFDB63"
+            description={t("integration_slack_trello")}
+          />
+        </Expand>
         <ContentBlockItem
           subheading={t("settings_delete_subheading")}
           buttonText={t("settings_delete_button_text")}

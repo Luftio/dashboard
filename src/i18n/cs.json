@@ -194,5 +194,11 @@
   "filter_high_threat": "Nejvyšší hrozba",
   "filter_low_threat": "Nejmenší hrozba",
   "filter_high_importance": "Nejdůležitější",
-  "filter_low_importance": "Nejméně důležité"
+  "filter_low_importance": "Nejméně důležité",
+  "integration_heading": "Integrace",
+  "integration_text": "Propojte si Luftio s nástroji, které již používate.",
+  "integration_slack_description": "Dostávejte všechna upozornění na kanálu, kde je chcete vidět.",
+  "integration_slack_trello": "Mějte vaše úkoly na jednom místě.",
+  "integration_tag_notifications": "Notifikace",
+  "integration_tag_project_mang": "Projektové řízení"
 }

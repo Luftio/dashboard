@@ -194,5 +194,11 @@
   "filter_high_threat": "Highest threat",
   "filter_low_threat": "Lowest threat",
   "filter_high_importance": "Highest importance",
-  "filter_low_importance": "Lowest threat"
+  "filter_low_importance": "Lowest threat",
+  "integration_heading": "Integrations",
+  "integration_text": "Connect your Luftio to tools you already use.",
+  "integration_slack_description": "Receive all notifications in the channel where you want to see them.",
+  "integration_slack_trello": "Keep your tasks in one place.",
+  "integration_tag_notifications": "Notifications",
+  "integration_tag_project_mang": "Project management"
 }

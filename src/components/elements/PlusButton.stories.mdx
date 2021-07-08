@@ -1,0 +1,14 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import PlusButton from "./PlusButton";
+
+<Meta title="Elements/Plus button" component={PlusButton} />
+
+# Plus button
+
+Plus button to add new integration.
+
+export const Component = (args) => <PlusButton />;
+
+<Canvas>
+  <Story name="Plus button">{Component.bind({})}</Story>
+</Canvas>
