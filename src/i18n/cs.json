@@ -200,5 +200,19 @@
   "integration_slack_description": "Dostávejte všechna upozornění na kanálu, kde je chcete vidět.",
   "integration_slack_trello": "Mějte vaše úkoly na jednom místě.",
   "integration_tag_notifications": "Notifikace",
-  "integration_tag_project_mang": "Projektové řízení"
+  "integration_tag_project_mang": "Projektové řízení",
+  "welcome_tour_next_button": "Další",
+  "welcome_tour_finish_button": "Dokončit",
+  "welcome_tour_1_heading": "Vítejte v Luftio",
+  "welcome_tour_1_text": "Provedeme Vás uživatelským rozhraním a ukážememe, co vše se dá v Dasboardu dělat, abyste jej mohli využívat naplno.",
+  "welcome_tour_2_heading": "Přehled všeho",
+  "welcome_tour_2_text": "V této záložce naleznete přehled všeho, co se ve Vaší firmě odehrálo. Máte zde grafy naměřených hodnot a také well-being statistiky.",
+  "welcome_tour_3_heading": "Upozornění na jednom místě",
+  "welcome_tour_3_text": "Zde dostávate všechna upozornění, ať už to od zaměstanců či z měření. Systém také vyhodnocuje míru hrozby.",
+  "welcome_tour_4_heading": "Doporučení na zlepšení",
+  "welcome_tour_4_text": "Naše umělá inteligece Vám tvoří doporučení na zlepšení kvality vzduchu na pracovišti na míru. Automaticky se také zobrazí důležitost daného doporučení.",
+  "welcome_tour_5_heading": "Zpětná vazba od zaměstnanců",
+  "welcome_tour_5_text": "Zde se ukládají pravidelné zpětné vazby od zaměstanců na pracovní prostředí. Zaměstnanci vyplnují v mobilní aplikaci krátký formulár. Zde najdete jeho vyhodnocení i konkrétní odpovědi na otázky.",
+  "welcome_tour_6_heading": "Správa uživatelů",
+  "welcome_tour_6_text": "Zde vidítě všechny zaměstance, kteří používají Luftio. Můžete pozvat nové nebo staré odebrat."
 }

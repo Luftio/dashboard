@@ -1,0 +1,22 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import WelcomeModalContent from "./WelcomeModalContent";
+
+<Meta title="ModulesWelcome modal content" component={WelcomeModalContent} />
+
+# Welcome modal content
+
+This is custom modal used by reactour library.
+
+export const Component = (args) => <WelcomeModalContent {...args} />;
+
+<Canvas>
+  <Story
+    name="Welcome modal content"
+    args={{
+      heading: "Welcome to Luftio",
+      text:
+        "We will guide you through the user interface and show you what all the amazing features, so you can make full use of it.",
+    }}>
+    {Component}
+  </Story>
+</Canvas>

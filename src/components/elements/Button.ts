@@ -11,6 +11,7 @@ const Button = styled.button<{
   nav?: boolean;
   active?: boolean;
   modal?: boolean;
+  welcomeModal?: boolean;
 }>`
   font-family: inherit;
   border: none;
@@ -192,6 +193,27 @@ const Button = styled.button<{
 
       &:hover {
         box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.08);
+      }
+    `}
+
+    ${(props) =>
+    props.welcomeModal &&
+    css`
+      background: ${(props) => props.theme.color_brand};
+      color: #fff;
+      border: none;
+      position: relative;
+      left: 70px;
+      margin-top: 20px;
+
+      &:hover {
+        background: ${(props) => props.theme.color_brand_hover};
+        transition: ${(props) => props.theme.transition_primary};
+      }
+
+      &:active {
+        background: ${(props) => props.theme.color_brand};
+        border: none;
       }
     `}
 `;

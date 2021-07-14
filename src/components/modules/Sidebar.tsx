@@ -95,7 +95,7 @@ const Sidebar: React.FC = ({}) => {
         icon="pie-chart"
         text={t("sidebar_menu_item_1")}
       />
-      <Events onMouseEnter={() => setShow(true)} onMouseLeave={() => setShow(false)}>
+      <Events data-tour="event" onMouseEnter={() => setShow(true)} onMouseLeave={() => setShow(false)}>
         <SidebarItem
           url="/events/from-measurement"
           active={url === "events" && true}

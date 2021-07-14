@@ -22,6 +22,7 @@ const BasicText = styled.p<{
   manageUsersEmail?: boolean;
   tag?: boolean;
   integrationTitle?: boolean;
+  welcomeModalHeading?: boolean;
 }>`
   font-size: ${(props) => props.theme.font_size_secondary};
 
@@ -198,6 +199,14 @@ const BasicText = styled.p<{
       font-weight: ${(props) => props.theme.font_weight_primary};
       font-size: ${(props) => props.theme.font_size_primary};
       margin-right: 65px;
+    `}
+
+    ${(props) =>
+    props.welcomeModalHeading &&
+    css`
+      font-weight: ${(props) => props.theme.font_weight_primary};
+      font-size: ${(props) => props.theme.font_size_primary};
+      margin-bottom: 25px;
     `}
 `;
 

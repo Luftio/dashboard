@@ -200,5 +200,19 @@
   "integration_slack_description": "Receive all notifications in the channel where you want to see them.",
   "integration_slack_trello": "Keep your tasks in one place.",
   "integration_tag_notifications": "Notifications",
-  "integration_tag_project_mang": "Project management"
+  "integration_tag_project_mang": "Project management",
+  "welcome_tour_next_button": "Next",
+  "welcome_tour_finish_button": "Finish",
+  "welcome_tour_1_heading": "Welcome to Luftio",
+  "welcome_tour_1_text": "We will guide you through the user interface and show you what all the amazing features, so you can make full use of it.",
+  "welcome_tour_2_heading": "An overview of everything",
+  "welcome_tour_2_text": "In this tab you will find an overview of everything that has happened in your company. You have here also well-being statistics.",
+  "welcome_tour_3_heading": "Alerts in one place",
+  "welcome_tour_3_text": "Here you receive all notifications, whether from employees or from measurements. The system also evaluates the threat level.",
+  "welcome_tour_4_heading": "Recommendations for improvement",
+  "welcome_tour_4_text": "Our artificial intelligence creates custom recommendations for improving the quality of the air in the workplace. The importance of the recommendation is also automatically displayed.",
+  "welcome_tour_5_heading": "Feedback from employees",
+  "welcome_tour_5_text": "This is where regular feedback from employees on the work environment is stored. Employees fill out a short form in the mobile application. Here you will find its evaluation and specific answers to questions.",
+  "welcome_tour_6_heading": "User management",
+  "welcome_tour_6_text": "Here you see all employees who use Luftio. You can invite new or remove old ones."
 }
