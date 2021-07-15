@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://dashboard-luftio.vercel.app
+Host: https://dashboard.luftio.com
 
 # Sitemaps
-Sitemap: https://dashboard-luftio.vercel.app/sitemap.xml
+Sitemap: https://dashboard.luftio.com/sitemap.xml
