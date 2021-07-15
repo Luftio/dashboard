@@ -1,0 +1,41 @@
+;FFMETADATA1
+[CHAPTER]
+TIMEBASE=1/1000
+START=-6979
+END=1993
+title=Sign in Should redirect unauthenticated user to sign in page
+[CHAPTER]
+TIMEBASE=1/1000
+START=-617
+END=10972
+title=Sign in User can sign in
+[CHAPTER]
+TIMEBASE=1/1000
+START=18402
+END=22564
+title=Sign in Should display sign in errors
+[CHAPTER]
+TIMEBASE=1/1000
+START=21907
+END=26730
+title=Sign in User can reset password
+[CHAPTER]
+TIMEBASE=1/1000
+START=25555
+END=31556
+title=Sign in Should display forgot password errors
+[CHAPTER]
+TIMEBASE=1/1000
+START=33467
+END=37560
+title=Sign in User can visit sign up page and go back
+[CHAPTER]
+TIMEBASE=1/1000
+START=34772
+END=41657
+title=Sign in Should error for an invalid user
+[CHAPTER]
+TIMEBASE=1/1000
+START=45777
+END=48545
+title=Sign in User can hide and show password

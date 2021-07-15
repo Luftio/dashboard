@@ -8,7 +8,7 @@ describe("Sign Out", () => {
     cy.location("pathname").should("eq", "/dashboard/all");
     cy.visualSnapshot("Page Is Loading");
 
-    cy.getBySel("log-out").click();
+    cy.getBySel("log-out").click({ force: true });
     cy.location("pathname").should("eq", "/sign-out");
     cy.visualSnapshot("Redirect to After Sign Out");
   });
