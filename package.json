@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "postbuild": "next-sitemap && cypress run --record --key 8a3aa6aa-d7ca-4f8e-baf6-7a2250649637",
+    "postbuild": "next-sitemap && cypress run",
     "start": "next start",
     "export": "npm run build && next export",
     "storybook": "start-storybook -s ./public -p 6006",
