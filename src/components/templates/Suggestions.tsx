@@ -42,18 +42,20 @@ const Suggestions: React.FC = () => {
           ]}
         />
       </HeadingDiv>
-      <MessageCard
-        suggestion
-        high
-        name="Kupte zvlhčovač vzduchu"
-        procents={0}
-        date="14/3/2021"
-        href="/suggestions/detail"
-      />
-      <MessageCard suggestion low name="Vypínejte klimatizace kolem oběda" procents={0} date="13/3/2021" href="" />
-      <MessageCard suggestion medium name="Otevírejte okna v zasedačce č. 1" procents={0} date="13/3/2021" href="" />
-      <MessageCard suggestion low name="Servis klimatizace" procents={0} date="13/3/2021" href="" />
-      {/* <EmptyState message={t("suggestions_page_empty_state")} /> */}
+      <div>
+        <MessageCard
+          suggestion
+          high
+          name="Kupte zvlhčovač vzduchu"
+          procents={0}
+          date="14/3/2021"
+          href="/suggestions/detail"
+        />
+        <MessageCard suggestion low name="Vypínejte klimatizace kolem oběda" procents={0} date="13/3/2021" href="" />
+        <MessageCard suggestion medium name="Otevírejte okna v zasedačce č. 1" procents={0} date="13/3/2021" href="" />
+        <MessageCard suggestion low name="Servis klimatizace" procents={0} date="13/3/2021" href="" />
+        {/* <EmptyState message={t("suggestions_page_empty_state")} /> */}
+      </div>
     </>
   );
 };

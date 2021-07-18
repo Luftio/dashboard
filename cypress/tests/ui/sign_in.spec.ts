@@ -84,7 +84,7 @@ describe("Sign in", () => {
     cy.signIn("susan.simpson@company", "m(;93PB~&6~@yi@");
 
     cy.getBySel("invalid-user").should("be.visible").and("contain", "Username or password is incorrect");
-    cy.visualSnapshot("Sign In, Invalid Username and Password, Username or Password is Invalid");
+    cy.visualSnapshot("Username or Password is Invalid");
   });
 
   it("User can hide and show password", function () {

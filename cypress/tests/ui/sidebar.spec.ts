@@ -26,7 +26,7 @@ describe("Sidebar", () => {
     cy.visualSnapshot("User is on Events From Measurement page");
   });
 
-  it("Sidebar is links are functional", function () {
+  it("Sidebar links are functional", function () {
     cy.getBySel("pie-chart").click({ force: true });
     cy.location("pathname").should("eq", "/dashboard/all");
     cy.getBySel("pie-chart").should("have.css", "color", "rgb(3, 25, 70)");

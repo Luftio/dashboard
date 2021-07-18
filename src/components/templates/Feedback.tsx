@@ -41,11 +41,13 @@ const Feedback: React.FC = () => {
           ]}
         />
       </HeadingDiv>
-      <MessageCard name="Aleš Zima" procents={83} date="14/3/2021" href="/feedback/detail" />
-      <MessageCard name="Michal Pečinka" procents={31} date="14/3/2021" href="" />
-      <MessageCard name="Jana Nová" procents={58} date="14/3/2021" href="" />
-      <MessageCard name="Ondřej Lanč" procents={92} date="13/3/2021" href="" />
-      <MessageCard name="Aneta Zelinková" procents={71} date="12/3/2021" href="" />
+      <div>
+        <MessageCard name="Aleš Zima" procents={83} date="14/3/2021" href="/feedback/detail" />
+        <MessageCard name="Michal Pečinka" procents={31} date="14/3/2021" href="" />
+        <MessageCard name="Jana Nová" procents={58} date="14/3/2021" href="" />
+        <MessageCard name="Ondřej Lanč" procents={92} date="13/3/2021" href="" />
+        <MessageCard name="Aneta Zelinková" procents={71} date="12/3/2021" href="" />
+      </div>
       {/* <EmptyState message={t("feedback_page_empty_state")} /> */}
     </>
   );
