@@ -55,7 +55,7 @@ cypress-e2e-chrome:
   script:
     - npm run build
     - npm start & npx wait-on http://localhost:3000
-    - $(npm bin)/cypress run --browser chrome --parallel
+    - $(npm bin)/cypress run --browser chrome
   artifacts:
     expire_in: 1 week
     when: always
