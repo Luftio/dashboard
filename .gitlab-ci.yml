@@ -41,7 +41,7 @@ cypress-e2e:
   script:
     - npm run build
     - npm start & npx wait-on http://localhost:3000
-    - $(npm bin)/cypress run --record --key 8a3aa6aa-d7ca-4f8e-baf6-7a2250649637
+    - $(npm bin)/cypress run --record --key 8a3aa6aa-d7ca-4f8e-baf6-7a2250649637 --parallel
   artifacts:
     expire_in: 1 week
     when: always
@@ -55,7 +55,7 @@ cypress-e2e-chrome:
   script:
     - npm run build
     - npm start & npx wait-on http://localhost:3000
-    - $(npm bin)/cypress run --browser chrome
+    - $(npm bin)/cypress run --browser chrome --parallel
   artifacts:
     expire_in: 1 week
     when: always
