@@ -62,7 +62,7 @@ const Settings: React.FC = () => {
   const [editProfile, setEditProfile] = useState<boolean>(false);
 
   const query = useQuery();
-  const user = query.user({ id: "1" });
+  const user = query.account;
 
   return (
     <>
@@ -110,6 +110,7 @@ const Settings: React.FC = () => {
           cursor={editPassword && "none"}
         />
         {editPassword && <ChangePassword onClick={() => setEditPassword(false)} />}
+        {/* TODO: load onboarding form
         <Wrapper>
           <TopRow selectForm>
             <Subheading dashboard>{t("profile_onboarding_form_results_heading")}</Subheading>
@@ -119,6 +120,7 @@ const Settings: React.FC = () => {
         <Expand>
           <OnboardingFormResult />
         </Expand>
+        */}
       </ContentBlock>
     </>
   );

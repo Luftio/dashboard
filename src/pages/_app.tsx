@@ -9,13 +9,15 @@ import { Integrations } from "@sentry/tracing";
 import GlobalStyle from "../../shared/Global";
 import theme from "../../config/theme";
 
-Sentry.init({
-  dsn: "https://cad8d186d4894cefa24e91776672611c@o550006.ingest.sentry.io/5673158",
-  integrations: [new Integrations.BrowserTracing()],
-  tracesSampleRate: 1.0,
-  release: "luftio-dashboard@" + process.env.npm_package_version,
-  environment: "production",
-});
+if (typeof window !== "undefined" && process.env.NODE_ENV === "production") {
+  Sentry.init({
+    dsn: "https://cad8d186d4894cefa24e91776672611c@o550006.ingest.sentry.io/5673158",
+    integrations: [new Integrations.BrowserTracing()],
+    tracesSampleRate: 1.0,
+    release: "luftio-dashboard@" + process.env.npm_package_version,
+    environment: "production",
+  });
+}
 
 const App = ({ Component, pageProps }: AppProps) => (
   <>

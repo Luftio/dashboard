@@ -9,11 +9,25 @@ import EventsDetailBlock from "../modules/events/EventsDetailBlock";
 
 import { useQuery } from "../../gqless";
 
-const EventsFromMeasureDetail: React.FC = () => {
+type EventsFromMeasureDetailProps = {
+  id: string;
+};
+
+const EventsFromMeasureDetail: React.FC<EventsFromMeasureDetailProps> = (props) => {
   const { t } = useTranslation<string>();
 
   const query = useQuery();
-  const eventFromMeasureDetail = query.eventFromMeasureDetail;
+  const event = query.event_from_measure({ id: props.id });
+
+  if (
+    event.title == null ||
+    event.date == null ||
+    event.place == null ||
+    event.threat == null ||
+    event.justification == null
+  ) {
+    return null;
+  }
 
   return (
     <>
@@ -22,11 +36,11 @@ const EventsFromMeasureDetail: React.FC = () => {
       </Head>
       <Heading dashboard>{t("detail_events_heading")}</Heading>
       <EventsDetailBlock
-        title={eventFromMeasureDetail?.title}
-        date={eventFromMeasureDetail?.date}
-        place={eventFromMeasureDetail?.place}
-        threat={eventFromMeasureDetail?.threat}
-        justification={eventFromMeasureDetail?.justification}
+        title={event?.title}
+        date={new Date(event?.date).toLocaleString()}
+        place={event?.place}
+        threat={event?.threat}
+        justification={event?.justification}
       />
     </>
   );

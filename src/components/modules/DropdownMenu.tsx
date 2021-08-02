@@ -63,7 +63,7 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({ onClick }) => {
         <Group>
           <SidebarItem
             dropdown
-            url="/dashboard"
+            url="/dashboard/all"
             active={url === "dashboard" && true}
             icon="pie-chart"
             text={t("sidebar_menu_item_1")}></SidebarItem>

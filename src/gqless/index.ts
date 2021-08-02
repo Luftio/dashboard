@@ -2,6 +2,7 @@ import { createReactClient } from "@gqless/react";
 import { mockServer, MockList } from "@graphql-tools/mock";
 
 import { createClient, QueryFetcher } from "gqless";
+import ThingsboardService from "../services/ThingsboardService";
 
 import {
   generatedSchema,
@@ -11,10 +12,7 @@ import {
   SchemaObjectTypesNames,
 } from "./schema.generated";
 
-//@ts-ignore
-import schema from "../graphql/schema.graphql";
-
-const mocks = {
+/*const mocks = {
   RootQuery: () => ({
     devices: () => new MockList([5, 5]),
     eventsFromMeasure: () => new MockList([0, 20]),
@@ -28,17 +26,20 @@ const mocks = {
   }),
 };
 
-const queryFetcher: QueryFetcher = async function (query, variables) {
+const mockQueryFetcher: QueryFetcher = async function (query, variables) {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(mockServer(schema, mocks).query(query, variables));
     }, 500);
   });
-  // Modify "./src/graphql/schema.graphql" if needed
-  /*const response = await fetch("./src/graphql/schema.graphql", {
+};*/
+
+const serverQueryFetcher: QueryFetcher = async function (query, variables) {
+  const response = await fetch(process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      ...ThingsboardService.getInstance().getAuthHeader(),
     },
     body: JSON.stringify({
       query,
@@ -48,8 +49,11 @@ const queryFetcher: QueryFetcher = async function (query, variables) {
   });
 
   const json = await response.json();
+  return json;
+};
 
-  return json;*/
+const queryFetcher: QueryFetcher = function (query, variables) {
+  return serverQueryFetcher(query, variables);
 };
 
 export const client = createClient<GeneratedSchema, SchemaObjectTypesNames, SchemaObjectTypes>({

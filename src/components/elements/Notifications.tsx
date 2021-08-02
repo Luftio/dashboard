@@ -39,7 +39,7 @@ interface NotificationsProps {
 const Notifications: React.FC<NotificationsProps> = ({ amount, type, sidebar }) => {
   return (
     <>
-      {amount != 0 && (
+      {amount != null && amount != 0 && (
         <Circle hover={type} sidebar={sidebar}>
           {amount}
         </Circle>

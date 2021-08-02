@@ -9,8 +9,12 @@ import OnboardingFormResultRow from "./OnboardingFormResultRow";
 const OnboardingFormResult: React.FC = () => {
   const { t } = useTranslation<string>();
 
-  const query = useQuery();
-  const onboardFormResult = query.onboardingFormResult;
+  // const query = useQuery(); TODO: use query
+  const onboardFormResult = {
+    productivity: 1,
+    energy: 1,
+    feedback: 1,
+  };
 
   return (
     <>

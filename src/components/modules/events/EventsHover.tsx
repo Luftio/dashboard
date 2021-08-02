@@ -8,8 +8,6 @@ import { useTranslation } from "react-i18next";
 import SidebarItem from "../../elements/SidebarItem";
 import Notifications from "../../elements/Notifications";
 
-import { useQuery } from "../../../gqless";
-
 const Div = styled.div`
   width: 300px;
   height: 80px;
@@ -32,14 +30,16 @@ const Row = styled.div`
   position: relative;
 `;
 
-const EventsHover: React.FC = () => {
+type EventsHoverProps = {
+  events_from_measure_unread_count?: number;
+  events_from_employees_unread_count?: number;
+};
+
+const EventsHover: React.FC<EventsHoverProps> = (props) => {
   const { t } = useTranslation<string>();
   const router = useRouter();
 
   const url = router.pathname.split("/")[2];
-
-  const query = useQuery();
-  const notifications = query.notifications;
 
   return (
     <Div>
@@ -50,7 +50,7 @@ const EventsHover: React.FC = () => {
           active={url === "from-measurement" && true}
           icon="activity"
           text={t("events_page_nav_measure")}></SidebarItem>
-        <Notifications type amount={notifications?.events_from_measure} />
+        <Notifications type amount={props.events_from_measure_unread_count} />
       </Row>
       <Row>
         <SidebarItem
@@ -59,7 +59,7 @@ const EventsHover: React.FC = () => {
           active={url === "from-employees" && true}
           icon="briefcase"
           text={t("events_page_nav_employees")}></SidebarItem>
-        <Notifications type amount={notifications?.events_from_employees} />
+        <Notifications type amount={props.events_from_employees_unread_count} />
       </Row>
     </Div>
   );

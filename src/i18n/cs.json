@@ -149,6 +149,7 @@
   "dashboard_temperature": "Teplota",
   "dashboard_humidity": "Vlhkost",
   "dashboard_pressure": "Tlak",
+  "dashboard_change": "Změna",
   "dashboard_improvement": "Zlepšení",
   "dashboard_deterioration": "Zhoršení",
   "dashboard_modal_score_now": "aktuálně",

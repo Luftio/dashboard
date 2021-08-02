@@ -1,6 +1,11 @@
 import styled, { css } from "styled-components";
 
-const Subheading = styled.h2<{ afterAction?: boolean; dashboard?: boolean; device?: boolean; contentBlockItem?: boolean }>`
+const Subheading = styled.h2<{
+  afterAction?: boolean;
+  dashboard?: boolean;
+  device?: boolean;
+  contentBlockItem?: boolean;
+}>`
   font-size: ${(props) => props.theme.font_size_primary};
   font-weight: ${(props) => props.theme.font_weight_subheading};
   color: ${(props) => props.theme.color_primary};

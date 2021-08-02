@@ -24,7 +24,7 @@ const Feedback: React.FC = () => {
   const { t } = useTranslation<string>();
 
   const query = useQuery();
-  const feedback = query.feedback({ id: "1" });
+  const feedbacks = query.feedbacks;
 
   return (
     <>
@@ -36,19 +36,30 @@ const Feedback: React.FC = () => {
         <LoadingWrapper>
           <Loader />
         </LoadingWrapper>
-      ) : feedback == null || feedback.length == 0 ? (
+      ) : feedbacks == null || feedbacks.length == 0 ? (
         <EmptyState message={t("feedback_page_empty_state")} />
       ) : (
-        feedback.map((feedback) => (
-          <MessageCard
-            key={feedback.id}
-            name={feedback.name}
-            procents={feedback.total_score}
-            date={feedback.date}
-            href="/feedback/detail"
-            unread={feedback.is_unread}
-          />
-        ))
+        feedbacks.map((feedback) => {
+          if (
+            feedback == null ||
+            feedback.id == null ||
+            feedback.name == null ||
+            feedback.total_score == null ||
+            feedback.date == null ||
+            feedback.is_unread == null
+          )
+            return null;
+          return (
+            <MessageCard
+              key={feedback.id}
+              name={feedback.name}
+              procents={feedback.total_score}
+              date={new Date(feedback.date).toLocaleString()}
+              href={"/feedback/" + feedback.id}
+              unread={feedback.is_unread}
+            />
+          );
+        })
       )}
     </>
   );

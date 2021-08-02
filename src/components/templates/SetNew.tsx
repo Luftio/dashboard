@@ -11,10 +11,7 @@ const SetNew: React.FC = () => {
 
   return (
     <>
-      <Header
-        heading={t("set_new_password_heading")}
-        subheading={t("set_new_password_subheading")}
-      />
+      <Header heading={t("set_new_password_heading")} subheading={t("set_new_password_subheading")} />
       <SetNewPassword />
     </>
   );

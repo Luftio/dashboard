@@ -31,10 +31,10 @@ const SignUpForm: React.FC = () => {
   const onSubmit = handleSubmit(({ email, password }) => {
     ThingsboardService.getInstance()
       .loginEmail(email, password)
-      .then((success) => {
-        router.replace("/dashboard");
+      .then(() => {
+        router.replace("/dashboard/all");
       })
-      .catch((error) => {
+      .catch(() => {
         setLogInError(true);
       });
   });

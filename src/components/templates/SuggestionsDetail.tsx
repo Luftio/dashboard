@@ -9,11 +9,26 @@ import SuggestionsDetailBlock from "../modules/SuggestionsDetailBlock";
 
 import { useQuery } from "../../gqless/";
 
-const SuggestionsDetail: React.FC = () => {
+type SuggestionsDetailProps = {
+  id: string;
+};
+
+const SuggestionsDetail: React.FC<SuggestionsDetailProps> = (props) => {
   const { t } = useTranslation<string>();
 
   const query = useQuery();
-  const suggestionsDetail = query.suggestionDetail;
+  const suggestion = query.suggestion({ id: props.id });
+
+  if (
+    suggestion.title == null ||
+    suggestion.importance == null ||
+    suggestion.date == null ||
+    suggestion.description == null ||
+    suggestion.how_solve == null ||
+    suggestion.why_important == null ||
+    suggestion.is_unread == null
+  )
+    return null;
 
   return (
     <>
@@ -22,12 +37,12 @@ const SuggestionsDetail: React.FC = () => {
       </Head>
       <Heading dashboard>{t("detail_suggestions_heading")}</Heading>
       <SuggestionsDetailBlock
-        title={suggestionsDetail?.title}
-        date={suggestionsDetail?.date}
-        description={suggestionsDetail?.description}
-        howSolve={suggestionsDetail?.how_solve}
-        whyImportant={suggestionsDetail?.why_important}
-        level={suggestionsDetail?.importance}
+        title={suggestion?.title}
+        date={new Date(suggestion?.date).toLocaleString()}
+        description={suggestion?.description}
+        howSolve={suggestion?.how_solve}
+        whyImportant={suggestion?.why_important}
+        level={suggestion?.importance}
       />
     </>
   );

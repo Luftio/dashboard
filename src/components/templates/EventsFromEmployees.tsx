@@ -25,7 +25,7 @@ const EventsFromEmployees: React.FC = () => {
   const { t } = useTranslation();
 
   const query = useQuery();
-  const eventsFromEmployee = query.eventsFromEmployees({ id: "1" });
+  const eventsFromEmployee = query.events_from_employee;
 
   return (
     <>
@@ -33,7 +33,10 @@ const EventsFromEmployees: React.FC = () => {
         <title>{t("title_feedback_page")}</title>
       </Head>
       <Heading dashboard>{t("events_page_heading")}</Heading>
-      <EventsNav />
+      <EventsNav
+        events_from_employees_unread_count={query.events_from_employees_unread_count}
+        events_from_measure_unread_count={query.events_from_measure_unread_count}
+      />
       {query.$state.isLoading ? (
         <LoadingWrapper>
           <Loader />
@@ -41,17 +44,22 @@ const EventsFromEmployees: React.FC = () => {
       ) : eventsFromEmployee == null || eventsFromEmployee.length == 0 ? (
         <EmptyState message={t("events_page_employees_empty_state")} />
       ) : (
-        eventsFromEmployee.map((event) => (
-          <EventsCard
-            key={event.id}
-            name={event.name}
-            time={event.date}
-            location={event.place}
-            threat={event.threat}
-            unread={event.is_unread}
-            href="/events/from-employees/detail"
-          />
-        ))
+        eventsFromEmployee.map((event) => {
+          if (event.name == null || event.date == null || event.place == null || event.threat == null) {
+            return null;
+          }
+          return (
+            <EventsCard
+              key={event.id}
+              name={event.name}
+              time={new Date(event.date).toLocaleString()}
+              location={event.place}
+              threat={event.threat}
+              unread={event.is_unread}
+              href={"/events/from-employees/" + event.id}
+            />
+          );
+        })
       )}
     </>
   );

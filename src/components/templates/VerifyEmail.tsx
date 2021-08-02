@@ -10,10 +10,7 @@ const VerifyEmail: React.FC = () => {
   const { t } = useTranslation();
   return (
     <>
-      <Header
-        heading={t("verification_heading")}
-        subheading={t("verification_subheading")}
-      />
+      <Header heading={t("verification_heading")} subheading={t("verification_subheading")} />
       <EmailClients />
     </>
   );

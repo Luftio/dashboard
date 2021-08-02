@@ -11,10 +11,7 @@ const SignIn: React.FC = () => {
 
   return (
     <>
-      <Header
-        heading={t("request_change_heading")}
-        subheading={t("request_change_subheading")}
-      />
+      <Header heading={t("request_change_heading")} subheading={t("request_change_subheading")} />
       <RequestChangeForm />
     </>
   );

@@ -52,12 +52,18 @@ interface BottomRowCardProps {
   onClick?: React.MouseEventHandler<HTMLDivElement>;
 }
 
+interface NotificationType {
+  id: string;
+  title: string;
+  date: string;
+}
+
 const BottomRowCard: React.FC<BottomRowCardProps> = ({ subheading, onClick, feedback }) => {
   const { t } = useTranslation();
 
-  const query = useQuery();
-  const feedbackNotifications = query.feedbackNotifications({ id: "1" });
-  const eventsNotifications = query.eventsNotifications({ id: "1" });
+  // const query = useQuery(); TODO: use query
+  const feedbackNotifications: NotificationType[] = [];
+  const eventsNotifications: NotificationType[] = [];
 
   return (
     <>

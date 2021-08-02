@@ -24,7 +24,7 @@ const Suggestions: React.FC = () => {
   const { t } = useTranslation();
 
   const query = useQuery();
-  const suggestions = query.suggestions({ id: "1" });
+  const suggestions = query.suggestions;
 
   return (
     <>
@@ -39,18 +39,27 @@ const Suggestions: React.FC = () => {
       ) : suggestions == null || suggestions.length == 0 ? (
         <EmptyState message={t("suggestions_page_empty_state")} />
       ) : (
-        suggestions.map((suggestion) => (
-          <MessageCard
-            key={suggestion.id}
-            suggestion
-            level={suggestion.importance}
-            name={suggestion.title}
-            procents={0}
-            date={suggestion.date}
-            href="/suggestions/detail"
-            unread={suggestion.is_unread}
-          />
-        ))
+        suggestions.map((suggestion) => {
+          if (
+            suggestion.title == null ||
+            suggestion.importance == null ||
+            suggestion.date == null ||
+            suggestion.is_unread == null
+          )
+            return null;
+          return (
+            <MessageCard
+              key={suggestion.id}
+              suggestion
+              level={suggestion.importance}
+              name={suggestion.title}
+              procents={0}
+              date={new Date(suggestion.date).toLocaleString()}
+              href={"/suggestions/" + suggestion.id}
+              unread={suggestion.is_unread}
+            />
+          );
+        })
       )}
     </>
   );

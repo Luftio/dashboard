@@ -39,12 +39,24 @@ const SignUpForm: React.FC = () => {
       <form onSubmit={onSubmit}>
         <InputItem fail={errors.name && true}>
           <label htmlFor="name">{t("name_input_label")}</label>
-          <input id="name" type="text" placeholder={t("name_input_placeholder")} name="name" ref={register({ required: true })} />
+          <input
+            id="name"
+            type="text"
+            placeholder={t("name_input_placeholder")}
+            name="name"
+            ref={register({ required: true })}
+          />
         </InputItem>
         {errors.name && errors.name.type === "required" && <Error>{t("msg_required")}</Error>}
         <InputItem fail={errors.surname && true}>
           <label htmlFor="surname">{t("surname_input_label")}</label>
-          <input id="surname" type="text" placeholder={t("surname_input_placeholder")} name="surname" ref={register({ required: true })} />
+          <input
+            id="surname"
+            type="text"
+            placeholder={t("surname_input_placeholder")}
+            name="surname"
+            ref={register({ required: true })}
+          />
         </InputItem>
         {errors.surname && errors.surname.type === "required" && <Error>{t("msg_required")}</Error>}
         <InputItem fail={errors.email && true}>

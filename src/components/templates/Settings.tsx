@@ -39,7 +39,6 @@ const Expand = styled.form`
   width: 85%;
   flex-direction: column;
   margin: -10px auto 0 auto;
-  border-bottom: ${(props) => props.theme.divider};
   margin: -70px auto 0 auto;
   padding-bottom: 45px;
 `;
@@ -70,7 +69,7 @@ const Settings: React.FC = () => {
   };
 
   const query = useQuery();
-  const manageDevices = query.manageDevices({ id: "1" });
+  const manageDevices = query.devices;
 
   return (
     <>
@@ -92,7 +91,7 @@ const Settings: React.FC = () => {
           <BasicText contentBlockItem>{t("profile_devices_text")}</BasicText>
         </Devices>
         {editDevices ? (
-          <DevicesForm onClick={() => setEditDevices(false)} edit={editDevices} />
+          <DevicesForm handleClose={() => setEditDevices(false)} edit={editDevices} />
         ) : (
           <Expand>
             <Cards>
@@ -101,29 +100,33 @@ const Settings: React.FC = () => {
                   <Loader />
                 </LoadingWrapper>
               ) : (
-                manageDevices?.map((device) => (
-                  <DeviceCard key={device.id} nameDevice={device.title} label={device.label} />
-                ))
+                manageDevices?.map((device) => {
+                  if (device.label == null) return null;
+                  return <DeviceCard key={device.id} nameDevice={device.title} label={device.label} />;
+                })
               )}
             </Cards>
           </Expand>
         )}
-        <ContentBlockItem
+        {/* Automatic account deletion shoudn't be enabled by default */}
+
+        {/*<ContentBlockItem
           subheading={t("settings_delete_subheading")}
           buttonText={t("settings_delete_button_text")}
           text={t("settings_delete_text")}
           url=""
           onClick={openModal}
-        />
+        />*/}
       </ContentBlock>
-      <Modal
+
+      {/*<Modal
         href="/after-delete"
         showModal={showModal}
         setShowModal={setShowModal}
         subheading={t("modal_subheading")}
         text={t("modal_text")}
         buttonText={t("modal_button_text")}
-      />
+     />*/}
     </>
   );
 };

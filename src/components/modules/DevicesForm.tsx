@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
 
@@ -8,14 +8,13 @@ import { useTranslation } from "react-i18next";
 import Button from "../elements/Button";
 import InputItem from "../elements/InputItem";
 
-import { useQuery } from "../../gqless";
+import { useQuery, useMutation } from "../../gqless";
 
 const Expand = styled.form`
   display: flex;
   width: 85%;
   flex-direction: column;
   margin: -10px auto 0 auto;
-  border-bottom: ${(props) => props.theme.divider};
   background: #fff;
 `;
 
@@ -46,25 +45,49 @@ const DeviceLabel = styled.label`
 
 interface DevicesFormProps {
   edit: boolean;
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  handleClose?: () => void;
 }
 
 type Formdata = {
-  device1: string;
-  device2: string;
-  device3: string;
+  deviceTitles: Record<string, string>;
 };
 
-const DevicesForm: React.FC<DevicesFormProps> = ({ onClick, edit }) => {
+const DevicesForm: React.FC<DevicesFormProps> = ({ handleClose, edit }) => {
   const { t } = useTranslation<string>();
 
-  const { register, handleSubmit, formState } = useForm<Formdata>();
-  const onSubmit = handleSubmit(({ device1, device2, device3 }) => {
-    console.log(device1, device2, device3);
-  });
-
   const query = useQuery();
-  const manageDevices = query.manageDevices({ id: "1" });
+  const [renameDevice] = useMutation(
+    (mutation, args: { id: string; title: string }) => {
+      return mutation.renameDevice({ input: args });
+    },
+    {
+      onError: (error) => {
+        console.error(error);
+      },
+    },
+  );
+
+  const manageDevices = query.devices;
+  const { register, handleSubmit, formState } = useForm<Formdata>({
+    defaultValues: { deviceTitles: Object.fromEntries(manageDevices.map((it) => [it.id, it.title])) },
+  });
+  const onSubmit = useMemo(
+    () =>
+      handleSubmit(async ({ deviceTitles }) => {
+        console.log(deviceTitles);
+        for (const device of manageDevices) {
+          if (device.id == null) continue;
+          const title = deviceTitles[device.id];
+          if (title && title != device.title) {
+            console.log("renaming device", { id: device.id, title });
+            const response = await renameDevice({ args: { id: device.id, title } });
+            console.log(response.title);
+          }
+        }
+        if (handleClose) handleClose();
+      }),
+    [manageDevices],
+  );
 
   return (
     <Expand onSubmit={onSubmit}>
@@ -73,10 +96,8 @@ const DevicesForm: React.FC<DevicesFormProps> = ({ onClick, edit }) => {
           <Card key={device.id}>
             <InputItem device>
               <input
-                value={device.title}
                 type="text"
-                id="device1"
-                name="device1"
+                name={"deviceTitles." + device.id}
                 ref={register({
                   required: true,
                 })}
@@ -95,7 +116,7 @@ const DevicesForm: React.FC<DevicesFormProps> = ({ onClick, edit }) => {
             savechanges>
             {t("profile_save_changes")}
           </Button>
-          <Button type="button" onClick={onClick}>
+          <Button type="button" onClick={handleClose}>
             {t("profile_cancel")}
           </Button>
         </Buttons>

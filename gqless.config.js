@@ -1,11 +1,13 @@
 /**
  * @type {import("@gqless/cli").GQlessConfig}
  */
+require("dotenv").config();
+
 const config = {
   react: true,
   scalarTypes: { DateTime: "string" },
   introspection: {
-    endpoint: "./src/graphql/schema.graphql",
+    endpoint: process.env.GRAPHQL_ENDPOINT,
     headers: {},
   },
   destination: "./src/gqless/index.ts",

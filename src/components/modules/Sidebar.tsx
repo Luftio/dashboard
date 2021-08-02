@@ -77,16 +77,15 @@ const Sidebar: React.FC = ({}) => {
   const router = useRouter();
   const url = router.pathname.split("/")[1];
 
-  const [show, setShow] = useState<Boolean>(false);
-  const [showMessage, setShowMessage] = useState<Boolean>(false);
+  const [show, setShow] = useState<boolean>(false);
+  const [showMessage, setShowMessage] = useState<boolean>(false);
 
   const query = useQuery();
-  const notifications = query.notifications;
 
   return (
     <SidebarBlock>
       <Logo>
-        <Link href="/dashboard">
+        <Link href="/dashboard/all">
           <Animation onMouseEnter={() => setShowMessage(true)} onMouseLeave={() => setShowMessage(false)}>
             <Image src="/static/logo.svg" alt="Luftio logo" width={120} height={45} />
           </Animation>
@@ -95,7 +94,7 @@ const Sidebar: React.FC = ({}) => {
       </Logo>
       <Heading sidebar>{t("sidebar_menu_heading")}</Heading>
       <SidebarItem
-        url="/dashboard"
+        url="/dashboard/all"
         active={url === "dashboard" && true}
         icon="pie-chart"
         text={t("sidebar_menu_item_1")}></SidebarItem>
@@ -105,8 +104,13 @@ const Sidebar: React.FC = ({}) => {
           active={url === "events" && true}
           icon="bell"
           text={t("sidebar_menu_item_2")}></SidebarItem>
-        <Notifications sidebar amount={notifications?.events} />
-        {show && <EventsHover />}
+        <Notifications sidebar amount={query.events_unread_count} />
+        {show && (
+          <EventsHover
+            events_from_employees_unread_count={query.events_from_employees_unread_count}
+            events_from_measure_unread_count={query.events_from_measure_unread_count}
+          />
+        )}
       </Wrapper>
       <Wrapper>
         <SidebarItem
@@ -114,7 +118,7 @@ const Sidebar: React.FC = ({}) => {
           active={url === "suggestions" && true}
           icon="file"
           text={t("sidebar_menu_item_3")}></SidebarItem>
-        <Notifications sidebar amount={notifications?.suggestions} />
+        <Notifications sidebar amount={query.suggestions_unread_count} />
       </Wrapper>
       <Wrapper>
         <SidebarItem
@@ -122,7 +126,7 @@ const Sidebar: React.FC = ({}) => {
           active={url === "feedback" && true}
           icon="archive"
           text={t("sidebar_menu_item_4")}></SidebarItem>
-        <Notifications sidebar amount={notifications?.feedback} />
+        <Notifications sidebar amount={query.feedback_unread_count} />
       </Wrapper>
       <Heading sidebar>{t("sidebar_account_heading")}</Heading>
       <SidebarItem

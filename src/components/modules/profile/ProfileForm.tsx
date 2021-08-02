@@ -54,7 +54,7 @@ const ChangePassword: React.FC<ChangePasswordProps> = ({ onClick }) => {
   });
 
   const query = useQuery();
-  const user = query.user({ id: "1" });
+  const user = query.account;
 
   return (
     <Expand onSubmit={onSubmit}>

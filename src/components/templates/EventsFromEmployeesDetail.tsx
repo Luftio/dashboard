@@ -9,11 +9,26 @@ import FeedbackDetailBlock from "../modules/FeedbackDetailBlock";
 
 import { useQuery } from "../../gqless";
 
-const EventsFromEmployeesDetail: React.FC = () => {
+type EventsFromEmployeesDetailProps = {
+  id: string;
+};
+
+const EventsFromEmployeesDetail: React.FC<EventsFromEmployeesDetailProps> = (props) => {
   const { t } = useTranslation<string>();
 
   const query = useQuery();
-  const eventFromEmployeesDetail = query.eventFromEmployeesDetail;
+  const event = query.event_from_employee({ id: props.id });
+
+  if (
+    event.name == null ||
+    event.date == null ||
+    event.how_feel == null ||
+    event.place == null ||
+    event.breath == null ||
+    event.temperature == null
+  ) {
+    return null;
+  }
 
   return (
     <>
@@ -23,12 +38,12 @@ const EventsFromEmployeesDetail: React.FC = () => {
       <Heading dashboard>{t("detail_events_heading")}</Heading>
       <FeedbackDetailBlock
         event
-        name={eventFromEmployeesDetail?.name}
-        date={eventFromEmployeesDetail?.date}
-        howFeel={eventFromEmployeesDetail?.how_feel}
-        place={eventFromEmployeesDetail?.place}
-        howBreath={eventFromEmployeesDetail?.breath}
-        temperatureLevel={eventFromEmployeesDetail?.temperature}
+        name={event?.name}
+        date={new Date(event?.date).toLocaleString()}
+        howFeel={event?.how_feel}
+        place={event?.place}
+        howBreath={event?.breath}
+        temperatureLevel={event?.temperature}
       />
     </>
   );

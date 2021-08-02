@@ -35,3 +35,6 @@ yarn-error.log*
 
 # GQLess
 src/gqless/*.generated.ts
+
+# Storybook
+storybook-static/

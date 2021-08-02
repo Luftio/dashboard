@@ -63,7 +63,7 @@ const LoadingWrapper = styled.div`
 const ManageUsers: React.FC = () => {
   const { t } = useTranslation();
 
-  const [showTooltip, setShowTooltip] = useState<Boolean>(false);
+  const [showTooltip, setShowTooltip] = useState<boolean>(false);
   const [showModal, setShowModal] = useState<boolean>(false);
   const [showAddModal, setShowAddModal] = useState<boolean>(false);
 
@@ -76,7 +76,13 @@ const ManageUsers: React.FC = () => {
   };
 
   const query = useQuery();
-  const manageUsers = query.manageUsers({ id: "1" });
+  const manageUsers: {
+    id: string;
+    full_name: string;
+    email: string;
+    role: string;
+    pending_invitation: boolean;
+  }[] = []; // TODO: use query
 
   return (
     <>

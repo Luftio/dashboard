@@ -41,17 +41,17 @@ interface FeedbackDetailBlockProps {
   date: string;
   howFeel: string;
   howBreath: number;
-  event: boolean;
-  place: string;
   temperatureLevel: number;
+  event?: boolean;
+  place?: string;
 }
 
 const FeedbackDetailBlock: React.FC<FeedbackDetailBlockProps> = ({
   name,
   date,
   howFeel,
-  event,
-  place,
+  event = false,
+  place = null,
   howBreath,
   temperatureLevel,
 }) => {
