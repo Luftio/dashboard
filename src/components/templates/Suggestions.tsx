@@ -1,6 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import styled from "styled-components";
+import moment from "moment";
 
 import "../../i18n/i18n";
 import { useTranslation } from "react-i18next";
@@ -25,6 +26,11 @@ const Suggestions: React.FC = () => {
 
   const query = useQuery();
   const suggestions = query.suggestions;
+
+  const formatDate = (date: any) => {
+    const dateJs = new Date(date);
+    return moment(dateJs).format("DD/MM/YYYY");
+  };
 
   return (
     <>
@@ -54,7 +60,7 @@ const Suggestions: React.FC = () => {
               level={suggestion.importance}
               name={suggestion.title}
               procents={0}
-              date={new Date(suggestion.date).toLocaleString()}
+              date={formatDate(suggestion.date)}
               href={"/suggestions/" + suggestion.id}
               unread={suggestion.is_unread}
             />

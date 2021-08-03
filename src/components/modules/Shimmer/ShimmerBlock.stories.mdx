@@ -1,0 +1,22 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import ShimmerBlock from "./ShimmerBlock";
+
+<Meta title="Modules/Shimmer block" component={ShimmerBlock} />
+
+# Shimmer block
+
+This is displayed as a loading animation for block.
+
+export const Component = (args) => <ShimmerBlock {...args} />;
+
+<Canvas>
+  <Story
+    name="Shimmer block"
+    args={{
+      feedback: true,
+      suggestion: false,
+      event: false,
+    }}>
+    {Component}
+  </Story>
+</Canvas>

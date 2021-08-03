@@ -8,7 +8,6 @@ import { useTranslation } from "react-i18next";
 
 import InputItem from "../elements/InputItem";
 import Button from "../elements/Button";
-import HaveAccount from "../elements/HaveAccount";
 import Error from "../elements/Error";
 import ForgotPassword from "../elements/ForgotPassword";
 
@@ -83,12 +82,6 @@ const SignUpForm: React.FC = () => {
           {t("sign_in")}
         </Button>
       </form>
-      <HaveAccount>
-        <p>{t("dont_have_account")}&nbsp;</p>
-        <Link href="/register">
-          <a>{t("create_account")}</a>
-        </Link>
-      </HaveAccount>
     </div>
   );
 };

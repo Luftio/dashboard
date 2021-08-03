@@ -1,6 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import styled from "styled-components";
+import moment from "moment";
 
 import "../../i18n/i18n";
 import { useTranslation } from "react-i18next";
@@ -25,6 +26,11 @@ const Feedback: React.FC = () => {
 
   const query = useQuery();
   const feedbacks = query.feedbacks;
+
+  const formatDate = (date: any) => {
+    const dateJs = new Date(date);
+    return moment(dateJs).format("DD/MM/YYYY");
+  };
 
   return (
     <>
@@ -54,7 +60,7 @@ const Feedback: React.FC = () => {
               key={feedback.id}
               name={feedback.name}
               procents={feedback.total_score}
-              date={new Date(feedback.date).toLocaleString()}
+              date={formatDate(feedback.date)}
               href={"/feedback/" + feedback.id}
               unread={feedback.is_unread}
             />

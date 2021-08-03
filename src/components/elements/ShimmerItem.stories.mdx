@@ -1,0 +1,26 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import Shimmer from "react-shimmer-effect";
+import ShimmerItem from "./ShimmerItem";
+
+<Meta title="Elements/Shimmer item" component={ShimmerItem} />
+
+# Shimmer item
+
+This is a Shimmer item used in shimmer effects.
+
+export const Component = (args) => (
+  <Shimmer>
+    <ShimmerItem {...args}></ShimmerItem>
+  </Shimmer>
+);
+
+<Canvas>
+  <Story
+    name="Shimmer item"
+    args={{
+      width: 40,
+      marginBottom: 0,
+    }}>
+    {Component.bind({})}
+  </Story>
+</Canvas>

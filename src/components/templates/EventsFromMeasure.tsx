@@ -1,6 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import styled from "styled-components";
+import moment from "moment";
 
 import "../../i18n/i18n";
 import { useTranslation } from "react-i18next";
@@ -27,6 +28,11 @@ const EventsFromMeasure: React.FC = () => {
   const query = useQuery();
   const eventsFromMeasure = query.events_from_measure;
 
+  const formatDate = (date: any) => {
+    const dateJs = new Date(date);
+    return moment(dateJs).format("DD/MM/YYYY") + t("date_at") + moment(dateJs).format("HH:mm");
+  };
+
   return (
     <>
       <Head>
@@ -50,7 +56,7 @@ const EventsFromMeasure: React.FC = () => {
             <EventsCard
               key={event.id}
               name={event.title}
-              time={new Date(event.date).toLocaleString()}
+              time={formatDate(event.date)}
               location={event.place}
               threat={event.threat}
               unread={event.is_unread}
