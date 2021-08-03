@@ -15,7 +15,14 @@
     "storybook": "start-storybook -s ./public -p 6006",
     "build-storybook": "build-storybook",
     "chromatic": "chromatic --project-token abde2b2ec12c --exit-zero-on-changes",
-    "generate": "gqless generate && rm -rf ./node_modules/.cache/babel-loader"
+    "generate": "gqless generate && rm -rf ./node_modules/.cache/babel-loader",
+    "cypress:open": "cypress open",
+    "cypress:open:mobile": "cypress open --config viewportWidth=375,viewportHeight=667",
+    "cypress:run": "cypress run",
+    "cypress:run:mobile": "cypress run --config viewportWidth=375,viewportHeight=667",
+    "test:api": "npm cypress:run --spec 'cypress/tests/api/*'",
+    "lint": "eslint && prettier --check \"**/**.{ts,js,tsx}\" \"*.{json,md,yml,mdx}\"",
+    "prettier": "prettier --write '**/**.{ts,js,tsx}' '*.{json,md,yml,mdx}'"
   },
   "dependencies": {
     "@gqless/react": "^2.0.15",
@@ -44,14 +51,17 @@
     "react-infinite-scroll-component": "^6.1.0",
     "react-responsive": "^8.2.0",
     "react-shimmer-effect": "^1.0.9",
+    "react-select": "^4.3.1",
     "react-spring": "^9.0.0-rc.3",
+    "reactour": "^1.18.6",
     "styled-components": "^5.2.1",
     "ts-react-feather-icons": "^1.0.0",
-    "victory": "^35.4.12",
-    "zustand": "^3.5.1"
+    "victory": "^35.4.12"
   },
   "devDependencies": {
     "@gqless/cli": "^2.0.16",
+    "@percy/cli": "^1.0.0-beta.58",
+    "@percy/cypress": "^3.1.0",
     "@storybook/addon-a11y": "^6.1.21",
     "@storybook/addon-docs": "^6.1.21",
     "@storybook/addon-essentials": "^6.1.21",
@@ -62,6 +72,8 @@
     "@types/react": "^17.0.2",
     "@types/react-dom": "^17.0.1",
     "@types/react-responsive": "^8.0.2",
+    "@types/react-select": "^4.0.16",
+    "@types/reactour": "^1.18.2",
     "@types/styled-components": "^5.1.7",
     "@typescript-eslint/eslint-plugin": "^4.15.2",
     "@typescript-eslint/parser": "^4.15.2",
@@ -69,6 +81,8 @@
     "babel-plugin-import-graphql": "^2.8.1",
     "babel-plugin-styled-components": "^1.12.0",
     "chromatic": "^5.7.0",
+    "cypress": "^7.6.0",
+    "cypress-eslint-preprocessor": "^1.2.2",
     "eslint": "^7.21.0",
     "eslint-config-next": "^11.0.1",
     "eslint-config-prettier": "^8.1.0",
@@ -83,7 +97,15 @@
     "ts-loader": "^8.0.17",
     "ts-node": "^9.1.1",
     "tsconfig-paths": "^3.9.0",
-    "typescript": "^4.3.2"
+    "typescript": "^4.3.2",
+  },
+  "percy": {
+    "version": 1,
+    "snapshot": {
+      "widths": [
+        1280
+      ]
+    }
   },
   "babel": {
     "env": {

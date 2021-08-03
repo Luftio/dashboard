@@ -16,7 +16,7 @@ const Card = styled.div`
   align-items: center;
   cursor: pointer;
 
-  &:first-of-type {
+  &:first-child {
     border-radius: ${(props) => props.theme.border_radius_primary} ${(props) => props.theme.border_radius_primary} 0 0;
   }
 

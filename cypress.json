@@ -1,0 +1,17 @@
+{
+  "baseUrl": "http://localhost:3000/",
+  "projectId": "rvdexx",
+  "integrationFolder": "cypress/tests",
+  "firefoxGcInterval": null,
+  "viewportHeight": 1000,
+  "viewportWidth": 1280,
+  "retries": {
+    "runMode": 2,
+    "openMode": 1
+  },
+  "env": {
+    "apiUrl": "http://localhost:8000",
+    "mobileViewportWidthBreakpoint": 414,
+    "coverage": false
+  }
+}

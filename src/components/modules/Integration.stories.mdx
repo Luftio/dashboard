@@ -1,0 +1,26 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import Integration from "./Integration";
+
+<Meta title="Modules/Integration" component={Integration} />
+
+# Integration
+
+This is a form for updating devices names inside dashboard.
+
+export const Component = (args) => <Integration {...args} />;
+
+<Canvas>
+  <Story
+    name="Integration"
+    args={{
+      logo: "/static/slack-new-logo.svg",
+      title: "Slack",
+      tagTitle1: "Chat",
+      tagBgColor1: "#3F74F9",
+      tagTitle2: "Notifikace",
+      tagBgColor2: "#FFDB63",
+      description: "Dostávejte všechna upozornění na kanálu, kde je chcete vidět.",
+    }}>
+    {Component}
+  </Story>
+</Canvas>

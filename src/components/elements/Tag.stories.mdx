@@ -1,0 +1,21 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import Tag from "./Tag";
+
+<Meta title="Elements/Tag" component={Tag} />
+
+# Tag
+
+Tag to better name integrations.
+
+export const Component = (args) => <Tag {...args} />;
+
+<Canvas>
+  <Story
+    name="Tag"
+    args={{
+      tagTitle: "Tag",
+      bgColor: "#3F74F9",
+    }}>
+    {Component.bind({})}
+  </Story>
+</Canvas>

@@ -42,7 +42,7 @@ const EventsHover: React.FC<EventsHoverProps> = (props) => {
   const url = router.pathname.split("/")[2];
 
   return (
-    <Div>
+    <Div data-cy="events-hover-card">
       <Row>
         <SidebarItem
           hover={true}

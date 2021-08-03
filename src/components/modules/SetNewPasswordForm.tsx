@@ -37,6 +37,7 @@ const SetNewPassword: React.FC = () => {
         <InputItem fail={errors.password && true}>
           <label htmlFor="new-password">{t("new_pass_input_label")}</label>
           <input
+            data-cy="new-password"
             id="new-password"
             type={visibility ? "text" : "password"}
             placeholder={t("new_pass_input_placeholder")}
@@ -47,15 +48,20 @@ const SetNewPassword: React.FC = () => {
               pattern: /(?=.*[a-z])(?=.*[A-Z]).{12,}/,
             })}
           />
-          <p onClick={() => setVisibility(!visibility)}>
+          <p data-cy="eye-1" onClick={() => setVisibility(!visibility)}>
             <Icon name={visibility ? "eye-off" : "eye"} size="22" color="#E1E6EA" />
           </p>
         </InputItem>
-        {errors.password && errors.password.type === "required" && <Error>{t("msg_required")}</Error>}
-        {errors.password && errors.password.type === "pattern" && <Error>{t("msg_invalid_password")}</Error>}
+        {errors.password && errors.password.type === "required" && (
+          <Error data-cy="new-password-required">{t("msg_required")}</Error>
+        )}
+        {errors.password && errors.password.type === "pattern" && (
+          <Error data-cy="new-password-invalid">{t("msg_invalid_password")}</Error>
+        )}
         <InputItem fail={errors.repeat && true}>
           <label htmlFor="repeat-new-password">{t("repeat_new_pass_input_label")}</label>
           <input
+            data-cy="repeat-new-password"
             id="repeat-new-password"
             type={visibilityRepeat ? "text" : "password"}
             placeholder={t("repeat_new_pass_input_placeholder")}
@@ -66,13 +72,17 @@ const SetNewPassword: React.FC = () => {
               validate: (value) => value === password.current,
             })}
           />
-          <p onClick={() => setVisibilityRepeat(!visibilityRepeat)}>
+          <p data-cy="eye-2" onClick={() => setVisibilityRepeat(!visibilityRepeat)}>
             <Icon name={visibilityRepeat ? "eye-off" : "eye"} size="22" color="#E1E6EA" />
           </p>
         </InputItem>
-        {errors.repeat && errors.repeat.type === "required" && <Error>{t("msg_required")}</Error>}
-        {errors.repeat && errors.repeat.type === "validate" && <Error>{t("msg_passwords_not_match")}</Error>}
-        <Button primary type="submit">
+        {errors.repeat && errors.repeat.type === "required" && (
+          <Error data-cy="repeat-new-password-required">{t("msg_required")}</Error>
+        )}
+        {errors.repeat && errors.repeat.type === "validate" && (
+          <Error data-cy="password-not-match">{t("msg_passwords_not_match")}</Error>
+        )}
+        <Button data-cy="submit" primary type="submit">
           {t("change_password")}
         </Button>
       </form>

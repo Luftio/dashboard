@@ -20,6 +20,9 @@ const BasicText = styled.p<{
   onboardingItemResult?: boolean;
   manageUsers?: boolean;
   manageUsersEmail?: boolean;
+  tag?: boolean;
+  integrationTitle?: boolean;
+  welcomeModalHeading?: boolean;
 }>`
   font-size: ${(props) => props.theme.font_size_secondary};
 
@@ -138,7 +141,6 @@ const BasicText = styled.p<{
     ${(props) =>
     props.onboardingItemResult &&
     css`
-      font-size: ${(props) => props.theme.font_size_secondary};
       font-weight: ${(props) => props.theme.font_weight_primary};
       color: ${(props) => props.theme.color_secondary};
 
@@ -182,6 +184,29 @@ const BasicText = styled.p<{
       @media only screen and (max-width: 1075px) {
         display: none;
       }
+    `}
+
+    ${(props) =>
+    props.tag &&
+    css`
+      color: #fff;
+      font-size: ${(props) => props.theme.font_size_tag};
+    `}
+
+    ${(props) =>
+    props.integrationTitle &&
+    css`
+      font-weight: ${(props) => props.theme.font_weight_primary};
+      font-size: ${(props) => props.theme.font_size_primary};
+      margin-right: 65px;
+    `}
+
+    ${(props) =>
+    props.welcomeModalHeading &&
+    css`
+      font-weight: ${(props) => props.theme.font_weight_primary};
+      font-size: ${(props) => props.theme.font_size_primary};
+      margin-bottom: 25px;
     `}
 `;
 

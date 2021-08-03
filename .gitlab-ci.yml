@@ -3,17 +3,65 @@ image: node:latest
 
 # Sets the stages for the pipeline
 stages:
+  - build
   - test
   - deploy
 
 variables:
   GIT_DEPTH: 0
+  npm_config_cache: "$CI_PROJECT_DIR/.npm"
+  CYPRESS_CACHE_FOLDER: "$CI_PROJECT_DIR/.cache/Cypress"
 
 # Cache the dependencies
 cache:
   key: $CI_COMMIT_REF_SLUG-$CI_PROJECT_DIR
   paths:
     - .yarn
+    - .cache/Cypress
+    - node_modules
+
+# this job installs NPM dependencies and Cypress
+install:
+  image: cypress/base:14.16.0
+  stage: build
+  script:
+    - npm ci
+    - npm install -g wait-on
+    # show where the Cypress test runner binaries are cached
+    - $(npm bin)/cypress cache path
+    # show all installed versions of Cypress binary
+    - $(npm bin)/cypress cache list
+    - $(npm bin)/cypress verify
+
+# two jobs that run after "install" job finishes
+# NPM dependencies and Cypress binary should be already installed
+cypress-e2e:
+  image: cypress/base:14.16.0
+  stage: test
+  script:
+    - npm run build
+    - npm start & npx wait-on http://localhost:3000
+    - $(npm bin)/cypress run --record --key 8a3aa6aa-d7ca-4f8e-baf6-7a2250649637 --parallel
+  artifacts:
+    expire_in: 1 week
+    when: always
+    paths:
+      - cypress/screenshots
+      - cypress/videos
+
+cypress-e2e-chrome:
+  image: cypress/browsers:node14.16.0-chrome90-ff88
+  stage: test
+  script:
+    - npm run build
+    - npm start & npx wait-on http://localhost:3000
+    - $(npm bin)/cypress run --browser chrome
+  artifacts:
+    expire_in: 1 week
+    when: always
+    paths:
+      - cypress/screenshots
+      - cypress/videos
 
 # Chromatic
 chromatic_publish:

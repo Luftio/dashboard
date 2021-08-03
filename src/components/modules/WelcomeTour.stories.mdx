@@ -1,0 +1,14 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import WelcomeTour from "./WelcomeTour";
+
+<Meta title="Modules/Welcome tour" component={WelcomeTour} />
+
+# Welcome tour
+
+If user is first time in the dashboard, we show him a little welcome tour around the UI.
+
+export const Component = () => <WelcomeTour />;
+
+<Canvas>
+  <Story name="Welcome tour">{Component}</Story>
+</Canvas>

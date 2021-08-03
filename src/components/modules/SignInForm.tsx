@@ -44,6 +44,7 @@ const SignUpForm: React.FC = () => {
         <InputItem fail={errors.email && true}>
           <label htmlFor="email">{t("email_input_label")}</label>
           <input
+            data-cy="email"
             id="email"
             type="text"
             placeholder={t("email_input_placeholder")}
@@ -55,11 +56,16 @@ const SignUpForm: React.FC = () => {
             })}
           />
         </InputItem>
-        {errors.email && errors.email.type === "required" && <Error>{t("msg_required")}</Error>}
-        {errors.email && errors.email.type === "pattern" && <Error>{t("msg_invalid_email")}</Error>}
+        {errors.email && errors.email.type === "required" && (
+          <Error data-cy="email-required">{t("msg_required")}</Error>
+        )}
+        {errors.email && errors.email.type === "pattern" && (
+          <Error data-cy="email-invalid">{t("msg_invalid_email")}</Error>
+        )}
         <InputItem fail={errors.password && true}>
           <label htmlFor="current-password">{t("pass_input_label")}</label>
           <input
+            data-cy="password"
             id="current-password"
             type={visibility ? "text" : "password"}
             autoComplete="current-password"
@@ -69,16 +75,18 @@ const SignUpForm: React.FC = () => {
               required: true,
             })}
           />
-          <p onClick={() => setVisibility(!visibility)}>
-            <Icon name={visibility ? "eye-off" : "eye"} size="22" color="#E1E6EA" />
+          <p data-cy="eye" onClick={() => setVisibility(!visibility)}>
+            <Icon data-cy="eye-icon" name={visibility ? "eye-off" : "eye"} size="22" color="#E1E6EA" />
           </p>
         </InputItem>
         <Link href="/password/request-change">
-          <ForgotPassword>{t("forgot_password")}</ForgotPassword>
+          <ForgotPassword data-cy="forgot-password">{t("forgot_password")}</ForgotPassword>
         </Link>
-        {errors.password && errors.password.type === "required" && <Error>{t("msg_required")}</Error>}
-        {logInError && <Error>{t("msg_login_error")}</Error>}
-        <Button primary type="submit">
+        {errors.password && errors.password.type === "required" && (
+          <Error data-cy="password-required">{t("msg_required")}</Error>
+        )}
+        {logInError && <Error data-cy="invalid-user">{t("msg_login_error")}</Error>}
+        <Button primary type="submit" data-cy="submit">
           {t("sign_in")}
         </Button>
       </form>

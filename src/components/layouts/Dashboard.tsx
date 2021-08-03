@@ -27,6 +27,7 @@ const Content = styled.div`
 
   @media only screen and (max-width: 850px) {
     width: 100%;
+    height: 100vh;
   }
 `;
 
@@ -46,6 +47,7 @@ const Dashboard: React.FC<DashboardProps> = ({ children }) => {
   if (typeof window === "undefined") {
     return null;
   }
+
   if (!ThingsboardService.getInstance().isLoggedIn()) {
     Router.push("/");
     return null;

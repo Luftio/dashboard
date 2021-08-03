@@ -20,6 +20,7 @@ const SidebarBlock = styled.div`
   width: 20%;
   flex-direction: column;
   background: ${(props) => props.theme.color_sidebar_background};
+  box-shadow: 3px 0 5px -6px #b9babd;
   height: 100vh;
   position: relative;
 
@@ -97,12 +98,19 @@ const Sidebar: React.FC = ({}) => {
         url="/dashboard/all"
         active={url === "dashboard" && true}
         icon="pie-chart"
+<<<<<<< HEAD
         text={t("sidebar_menu_item_1")}></SidebarItem>
       <Wrapper onMouseEnter={() => setShow(true)} onMouseLeave={() => setShow(false)}>
+=======
+        text={t("sidebar_menu_item_1")}
+      />
+      <Events data-tour="event" onMouseEnter={() => setShow(true)} onMouseLeave={() => setShow(false)}>
+>>>>>>> master
         <SidebarItem
           url="/events/from-measurement"
           active={url === "events" && true}
           icon="bell"
+<<<<<<< HEAD
           text={t("sidebar_menu_item_2")}></SidebarItem>
         <Notifications sidebar amount={query.events_unread_count} />
         {show && (
@@ -128,29 +136,36 @@ const Sidebar: React.FC = ({}) => {
           text={t("sidebar_menu_item_4")}></SidebarItem>
         <Notifications sidebar amount={query.feedback_unread_count} />
       </Wrapper>
-      <Heading sidebar>{t("sidebar_account_heading")}</Heading>
+=======
+          text={t("sidebar_menu_item_2")}
+        />
+        {show && <EventsHover />}
+      </Events>
       <SidebarItem
-        url="/profile"
-        active={url === "profile" && true}
-        icon="user"
-        text={t("sidebar_account_item_1")}></SidebarItem>
+        url="/suggestions"
+        active={url === "suggestions" && true}
+        icon="file"
+        text={t("sidebar_menu_item_3")}
+      />
+      <SidebarItem url="/feedback" active={url === "feedback" && true} icon="archive" text={t("sidebar_menu_item_4")} />
+>>>>>>> master
+      <Heading sidebar>{t("sidebar_account_heading")}</Heading>
+      <SidebarItem url="/profile" active={url === "profile" && true} icon="user" text={t("sidebar_account_item_1")} />
       <SidebarItem
         url="/manage-users"
         active={url === "manage-users" && true}
         icon="users"
-        text={t("sidebar_account_item_2")}></SidebarItem>
+        text={t("sidebar_account_item_2")}
+      />
       <Heading sidebar>{t("sidebar_other_heading")}</Heading>
       <SidebarItem
         url="/settings"
         active={url === "settings" && true}
         icon="settings"
-        text={t("sidebar_other_item_1")}></SidebarItem>
-      <SidebarItem
-        url="/support"
-        active={url === "support" && true}
-        icon="info"
-        text={t("sidebar_other_item_2")}></SidebarItem>
-      <SidebarItem url="/sign-out" type={true} icon="log-out" text={t("sidebar_sign_out")}></SidebarItem>
+        text={t("sidebar_other_item_1")}
+      />
+      <SidebarItem url="/support" active={url === "support" && true} icon="info" text={t("sidebar_other_item_2")} />
+      <SidebarItem url="/sign-out" type={true} icon="log-out" text={t("sidebar_sign_out")} />
     </SidebarBlock>
   );
 };

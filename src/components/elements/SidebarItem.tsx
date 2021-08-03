@@ -167,7 +167,7 @@ interface SidebarItemProps {
 const SidebarItem: React.FC<SidebarItemProps> = ({ url, icon, text, type, active, hover, dropdown }) => {
   return (
     <Link href={url}>
-      <Item dropdown={dropdown} hover={hover} active={active} signout={type}>
+      <Item data-cy={icon} data-tour={icon} dropdown={dropdown} hover={hover} active={active} signout={type}>
         <Area signout={type}>
           <Icon name={icon} size={dropdown ? "32" : "22"} color="#838C97" />
           <Text dropdown={dropdown}>{text}</Text>

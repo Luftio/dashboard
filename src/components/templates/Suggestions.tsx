@@ -10,6 +10,7 @@ import Heading from "../elements/Heading";
 import Loader from "../elements/Loader";
 import MessageCard from "../modules/MessageCard";
 import EmptyState from "../modules/EmptyState";
+import Filter from "../elements/Filter";
 
 import { useQuery } from "../../gqless/";
 
@@ -19,6 +20,19 @@ const LoadingWrapper = styled.div`
   height: 80%;
   justify-content: center;
   align-items: center;
+`;
+
+const HeadingDiv = styled.div`
+  width: 95%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  @media only screen and (max-width: 500px) {
+    flex-direction: column;
+    margin-bottom: 30px;
+    align-items: flex-start;
+  }
 `;
 
 const Suggestions: React.FC = () => {
@@ -37,7 +51,17 @@ const Suggestions: React.FC = () => {
       <Head>
         <title>{t("title_suggestions_page")}</title>
       </Head>
-      <Heading dashboard>{t("suggestions_page_heading")}</Heading>
+      <HeadingDiv>
+        <Heading dashboard>{t("suggestions_page_heading")}</Heading>
+        <Filter
+          filterOptions={[
+            { value: "latest", label: t("filter_latest") },
+            { value: "oldest", label: t("filter_oldest") },
+            { value: "high-importance", label: t("filter_high_importance") },
+            { value: "low-importance", label: t("filter_low_importance") },
+          ]}
+        />
+      </HeadingDiv>
       {query.$state.isLoading ? (
         <LoadingWrapper>
           <Loader />

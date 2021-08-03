@@ -16,7 +16,8 @@
     "sourceMap": true,
     "inlineSources": true,
     "sourceRoot": "/",
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "types": ["cypress"]
   },
   "exclude": ["node_modules"],
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "next.config.js"]
