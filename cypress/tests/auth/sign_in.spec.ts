@@ -70,16 +70,6 @@ describe("Sign in", () => {
     cy.visualSnapshot("Display Email is Required Error");
   });
 
-  it("User can visit sign up page and go back", () => {
-    cy.getBySel("sign-up").click();
-    cy.location("pathname").should("eq", "/register");
-    cy.visualSnapshot("User is on Sign Up Page");
-
-    cy.getBySel("sign-in").click();
-    cy.location("pathname").should("eq", "/");
-    cy.visualSnapshot("User is on Back on Sign In Page");
-  });
-
   it("Should error for an invalid user", function () {
     cy.signIn("susan.simpson@company", "m(;93PB~&6~@yi@");
 
