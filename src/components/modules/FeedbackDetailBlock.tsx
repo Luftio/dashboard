@@ -36,29 +36,48 @@ const BottomRow = styled.div`
   margin-bottom: 50px;
 `;
 
-const FeedbackDetailBlock: React.FC = () => {
+interface FeedbackDetailBlockProps {
+  name: string;
+  date: string;
+  howFeel: string;
+  howBreath: number;
+  temperatureLevel: number;
+  event?: boolean;
+  place?: string;
+}
+
+const FeedbackDetailBlock: React.FC<FeedbackDetailBlockProps> = ({
+  name,
+  date,
+  howFeel,
+  event = false,
+  place = null,
+  howBreath,
+  temperatureLevel,
+}) => {
   const { t } = useTranslation<string>();
 
   return (
     <Card>
       <TopRow>
-        <Subheading contentBlockItem>Aleš Zima</Subheading>
-        <Link href="/feedback">
+        <Subheading contentBlockItem>{name}</Subheading>
+        <Link href={event ? "/events/from-employees" : "/feedback"}>
           <Button>{t("detail_close")}</Button>
         </Link>
       </TopRow>
       <BottomRow>
         <Icon name="clock" size="16" color="#838C97" />
-        <BasicText events>14/3/2021</BasicText>
+        <BasicText events>{date}</BasicText>
+        {event && (
+          <>
+            <Icon name="map-pin" size="16" color="#838C97" />
+            <BasicText events>{place}</BasicText>
+          </>
+        )}
       </BottomRow>
-      <DetailRowText type="select" subheading={t("detail_feedback_temp")} value={0} />
-      <DetailRowText type="range" subheading={t("detail_feedback_air")} value={0} />
-      <DetailRowText
-        type="text"
-        subheading={t("detail_feedback_satisfied")}
-        text="Dobře, ale jsou prostory na zlepšení"
-        value={0}
-      />
+      <DetailRowText type="select" subheading={t("detail_feedback_temp")} value={0} temperature={temperatureLevel} />
+      <DetailRowText type="range" subheading={t("detail_feedback_air")} value={howBreath} />
+      <DetailRowText type="text" subheading={t("detail_feedback_satisfied")} text={howFeel} value={0} />
     </Card>
   );
 };

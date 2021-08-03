@@ -19,12 +19,6 @@ const Support: React.FC = () => {
       <Heading dashboard>{t("support_page_heading")}</Heading>
       <ContentBlock>
         <ContentBlockItem
-          subheading={t("support_chat_subheading")}
-          buttonText={t("support_chat_button_text")}
-          text={t("support_chat_text")}
-          url=""
-        />
-        <ContentBlockItem
           subheading={t("support_email_subheading")}
           buttonText={t("support_email_button_text")}
           text={t("support_email_text")}

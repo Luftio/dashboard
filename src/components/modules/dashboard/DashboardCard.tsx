@@ -7,7 +7,7 @@ import BasicText from "../../elements/BasicText";
 import "../../../i18n/i18n";
 import { useTranslation } from "react-i18next";
 
-import DeviceData from "../../../types/DeviceData";
+import { SchemaObjectTypes } from "../../../gqless";
 
 const Card = styled.div`
   width: 31.5%;
@@ -66,12 +66,16 @@ const BottomRowItem = styled.div`
 `;
 
 interface DashboardCardProps {
-  data: DeviceData;
+  data: SchemaObjectTypes["DeviceData"];
   onClick?: React.MouseEventHandler<HTMLDivElement>;
 }
 
 const DashboardCard: React.FC<DashboardCardProps> = ({ data, onClick }) => {
   const { t } = useTranslation();
+
+  if (data.type == null || data.value == null || data.maxValue == null || data.minValue == null) {
+    return null;
+  }
 
   const getFormattedValue = (type: string, value: number) => {
     if (type === "score" || type === "humidity") {
@@ -84,6 +88,21 @@ const DashboardCard: React.FC<DashboardCardProps> = ({ data, onClick }) => {
       return value + " hPa";
     }
     return value;
+  };
+
+  const getTitle = (type: string) => {
+    if (type === "score") {
+      return t("dashboard_score");
+    } else if (type === "CO2") {
+      return t("CO2");
+    } else if (type === "temperature") {
+      return t("dashboard_temperature");
+    } else if (type === "pressure") {
+      return t("dashboard_pressure");
+    } else if (type === "humidity") {
+      return t("dashboard_humidity");
+    }
+    return type;
   };
 
   const getChartProps = (type: string) => {
@@ -101,11 +120,25 @@ const DashboardCard: React.FC<DashboardCardProps> = ({ data, onClick }) => {
     return {};
   };
 
+  const changeColor = () => {
+    if (data.change != null && (data.type === "score" || data.type === "CO2")) {
+      return data.change > 0 ? "#23A454" : "#E55B5B";
+    }
+    return undefined;
+  };
+
+  const changeDescription = () => {
+    if (data.change != null && (data.type === "score" || data.type === "CO2")) {
+      return data.change > 0 ? t("dashboard_improvement") : t("dashboard_deterioration");
+    }
+    return t("dashboard_change");
+  };
+
   return (
     <>
       <Card onClick={onClick}>
         <TopRow>
-          <BasicText name>{data.title}</BasicText>
+          <BasicText name>{getTitle(data.type)}</BasicText>
           <BasicText
             procentsDashboard
             color={data.color == "green" ? "#23A454" : data.color == "yellow" ? "#FFB951" : "#E55B5B"}>
@@ -126,8 +159,8 @@ const DashboardCard: React.FC<DashboardCardProps> = ({ data, onClick }) => {
                 duration: 500,
                 onLoad: { duration: 1000 },
               }}
-              interpolation="natural"
-              x="ts"
+              interpolation="step"
+              x={(it) => new Date(it.ts)}
               y="value"
             />
           </VictoryChart>
@@ -142,12 +175,10 @@ const DashboardCard: React.FC<DashboardCardProps> = ({ data, onClick }) => {
             <BasicText bottomRowProcentsName>min.</BasicText>
           </BottomRowItem>
           <BottomRowItem>
-            <BasicText bottomRowProcents color={data.change > 0 ? "#23A454" : "#E55B5B"}>
+            <BasicText bottomRowProcents color={changeColor()}>
               {data.change} %
             </BasicText>
-            <BasicText bottomRowProcentsName>
-              {data.change > 0 ? t("dashboard_improvement") : t("dashboard_deterioration")}
-            </BasicText>
+            <BasicText bottomRowProcentsName>{changeDescription()}</BasicText>
           </BottomRowItem>
         </BottomRow>
       </Card>

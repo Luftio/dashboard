@@ -27,7 +27,23 @@ module.exports = {
         destination: "/events/from-measurement",
         permanent: true,
       },
+      {
+        source: "/register",
+        destination: "/",
+        permanent: true,
+      },
     ];
   },
   target: "serverless",
+  webpack: (config) => {
+    config.module.rules.push({
+      test: /\.(graphql|gql)$/,
+      exclude: /node_modules/,
+      loader: "graphql-tag/loader",
+    });
+    return config;
+  },
+  webpackDevMiddleware: (config) => {
+    return config;
+  },
 };

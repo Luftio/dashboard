@@ -10,7 +10,10 @@ import { useTranslation } from "react-i18next";
 import Heading from "../elements/Heading";
 import SidebarItem from "../elements/SidebarItem";
 import Tooltip from "../elements/Tooltip";
+import Notifications from "../elements/Notifications";
 import EventsHover from "./events/EventsHover";
+
+import { useQuery } from "../../gqless";
 
 const SidebarBlock = styled.div`
   display: flex;
@@ -30,7 +33,7 @@ const SidebarBlock = styled.div`
   }
 `;
 
-const Events = styled.div`
+const Wrapper = styled.div`
   display: flex;
   position: relative;
 `;
@@ -75,13 +78,15 @@ const Sidebar: React.FC = ({}) => {
   const router = useRouter();
   const url = router.pathname.split("/")[1];
 
-  const [show, setShow] = useState<Boolean>(false);
-  const [showMessage, setShowMessage] = useState<Boolean>(false);
+  const [show, setShow] = useState<boolean>(false);
+  const [showMessage, setShowMessage] = useState<boolean>(false);
+
+  const query = useQuery();
 
   return (
     <SidebarBlock>
       <Logo>
-        <Link href="/dashboard">
+        <Link href="/dashboard/all">
           <Animation onMouseEnter={() => setShowMessage(true)} onMouseLeave={() => setShowMessage(false)}>
             <Image src="/static/logo.svg" alt="Luftio logo" width={120} height={45} />
           </Animation>
@@ -90,27 +95,40 @@ const Sidebar: React.FC = ({}) => {
       </Logo>
       <Heading sidebar>{t("sidebar_menu_heading")}</Heading>
       <SidebarItem
-        url="/dashboard"
+        url="/dashboard/all"
         active={url === "dashboard" && true}
         icon="pie-chart"
-        text={t("sidebar_menu_item_1")}
-      />
-      <Events data-tour="event" onMouseEnter={() => setShow(true)} onMouseLeave={() => setShow(false)}>
+        text={t("sidebar_menu_item_1")}></SidebarItem>
+      <Wrapper data-tour="event" onMouseEnter={() => setShow(true)} onMouseLeave={() => setShow(false)}>
         <SidebarItem
           url="/events/from-measurement"
           active={url === "events" && true}
           icon="bell"
-          text={t("sidebar_menu_item_2")}
-        />
-        {show && <EventsHover />}
-      </Events>
-      <SidebarItem
-        url="/suggestions"
-        active={url === "suggestions" && true}
-        icon="file"
-        text={t("sidebar_menu_item_3")}
-      />
-      <SidebarItem url="/feedback" active={url === "feedback" && true} icon="archive" text={t("sidebar_menu_item_4")} />
+          text={t("sidebar_menu_item_2")}></SidebarItem>
+        <Notifications sidebar amount={query.events_unread_count} />
+        {show && (
+          <EventsHover
+            events_from_employees_unread_count={query.events_from_employees_unread_count}
+            events_from_measure_unread_count={query.events_from_measure_unread_count}
+          />
+        )}
+      </Wrapper>
+      <Wrapper>
+        <SidebarItem
+          url="/suggestions"
+          active={url === "suggestions" && true}
+          icon="file"
+          text={t("sidebar_menu_item_3")}></SidebarItem>
+        <Notifications sidebar amount={query.suggestions_unread_count} />
+      </Wrapper>
+      <Wrapper>
+        <SidebarItem
+          url="/feedback"
+          active={url === "feedback" && true}
+          icon="archive"
+          text={t("sidebar_menu_item_4")}></SidebarItem>
+        <Notifications sidebar amount={query.feedback_unread_count} />
+      </Wrapper>
       <Heading sidebar>{t("sidebar_account_heading")}</Heading>
       <SidebarItem url="/profile" active={url === "profile" && true} icon="user" text={t("sidebar_account_item_1")} />
       <SidebarItem

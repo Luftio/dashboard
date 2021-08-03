@@ -2,7 +2,7 @@ import React from "react";
 import NextDocument, { Html, Head, Main, NextScript, DocumentContext } from "next/document";
 import { ServerStyleSheet } from "styled-components";
 
-type Props = {};
+type Props = unknown;
 
 class Document extends NextDocument<Props> {
   // From https://github.com/vercel/next.js/blob/master/examples/with-styled-components/pages/_document.js

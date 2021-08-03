@@ -1,13 +1,13 @@
 import React from "react";
 import Dashboard from "../../../components/layouts/Dashboard";
-import EventsMeasurement from "../../../components/templates/EventsMeasurement";
+import EventsFromMeasure from "../../../components/templates/EventsFromMeasure";
 
-const EventsMeasurementPage: React.FC = () => {
+const EventsFromMeasurePage: React.FC = () => {
   return (
     <Dashboard>
-      <EventsMeasurement />
+      <EventsFromMeasure />
     </Dashboard>
   );
 };
 
-export default EventsMeasurementPage;
+export default EventsFromMeasurePage;

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Head from "next/head";
 import styled, { css } from "styled-components";
+//@ts-ignore
+import Shimmer from "react-shimmer-effect";
 
 import "../../i18n/i18n";
 import { useTranslation } from "react-i18next";
@@ -15,6 +17,9 @@ import ProfileForm from "../modules/profile/ProfileForm";
 import ContentBlockItem from "../modules/ContentBlockItem";
 import ChangePassword from "../modules/profile/ChangePasswordForm";
 import OnboardingFormResult from "../modules/profile/OnboardingFormResults";
+import ShimmerItem from "../elements/ShimmerItem";
+
+import { useQuery } from "../../gqless";
 
 const Expand = styled.form<{ profile?: boolean }>`
   display: flex;
@@ -59,6 +64,9 @@ const Settings: React.FC = () => {
   const [editPassword, setEditPassword] = useState<boolean>(false);
   const [editProfile, setEditProfile] = useState<boolean>(false);
 
+  const query = useQuery();
+  const user = query.account;
+
   return (
     <>
       <Head>
@@ -81,18 +89,28 @@ const Settings: React.FC = () => {
           <ProfileForm onClick={() => setEditProfile(false)} />
         ) : (
           <Expand profile>
-            <InputItem profile>
-              <label htmlFor="name">{t("profile_expand_name")}</label>
-              <input id="name" type="text" defaultValue="Petr" />
-            </InputItem>
-            <InputItem profile>
-              <label htmlFor="surname">{t("profile_expand_surname")}</label>
-              <input id="surname" type="text" defaultValue="Novák" />
-            </InputItem>
-            <InputItem profile>
-              <label htmlFor="email">{t("profile_expand_email")}</label>
-              <input id="email" type="text" defaultValue="petr.novak@gmail.com" />
-            </InputItem>
+            {query.$state.isLoading ? (
+              <Shimmer>
+                <ShimmerItem width={50} marginBottom={20}></ShimmerItem>
+                <ShimmerItem width={50} marginBottom={20}></ShimmerItem>
+                <ShimmerItem width={50} marginBottom={23}></ShimmerItem>
+              </Shimmer>
+            ) : (
+              <>
+                <InputItem profile>
+                  <label htmlFor="name">{t("profile_expand_name")}</label>
+                  <input id="name" type="text" defaultValue={user?.first_name} />
+                </InputItem>
+                <InputItem profile>
+                  <label htmlFor="surname">{t("profile_expand_surname")}</label>
+                  <input id="surname" type="text" defaultValue={user?.last_name} />
+                </InputItem>
+                <InputItem profile>
+                  <label htmlFor="email">{t("profile_expand_email")}</label>
+                  <input id="email" type="text" defaultValue={user?.email} />
+                </InputItem>
+              </>
+            )}
           </Expand>
         )}
         <ContentBlockItem
@@ -105,6 +123,7 @@ const Settings: React.FC = () => {
           cursor={editPassword && "none"}
         />
         {editPassword && <ChangePassword onClick={() => setEditPassword(false)} />}
+        {/* TODO: load onboarding form
         <Wrapper>
           <TopRow selectForm>
             <Subheading dashboard>{t("profile_onboarding_form_results_heading")}</Subheading>
@@ -114,6 +133,7 @@ const Settings: React.FC = () => {
         <Expand>
           <OnboardingFormResult />
         </Expand>
+        */}
       </ContentBlock>
     </>
   );

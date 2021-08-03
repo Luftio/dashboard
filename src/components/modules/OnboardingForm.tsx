@@ -26,7 +26,7 @@ const OnboardingForm: React.FC = () => {
 
   const onSubmit = () => {
     console.log(productivity, energy, feedback);
-    router.replace("/dashboard");
+    router.replace("/dashboard/all");
   };
 
   return (
@@ -110,7 +110,7 @@ const OnboardingForm: React.FC = () => {
       </form>
       <HaveAccount>
         <p>{t("fill_later")}&nbsp;</p>
-        <Link href="/dashboard">
+        <Link href="/dashboard/all">
           <a>{t("skip")}</a>
         </Link>
       </HaveAccount>

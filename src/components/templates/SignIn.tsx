@@ -11,10 +11,7 @@ const SignIn: React.FC = () => {
 
   return (
     <>
-      <Header
-        heading={t("sign_in_heading")}
-        subheading={t("sign_in_subheading")}
-      />
+      <Header heading={t("sign_in_heading")} subheading={t("sign_in_subheading")} />
       <SignInForm />
     </>
   );

@@ -6,7 +6,8 @@ import "../../../i18n/i18n";
 
 import Button from "../../elements/Button";
 import PulseEffect from "../../elements/PulseEffect";
-import Device from "../../../types/Device";
+
+import { SchemaObjectTypes } from "../../../gqless";
 
 const Navigation = styled.div`
   display: flex;
@@ -26,8 +27,8 @@ const Navigation = styled.div`
 `;
 
 interface DashboardNavProps {
-  devices: Device[];
-  activeDeviceId: string;
+  devices: SchemaObjectTypes["Device"][];
+  activeDeviceId?: string;
 }
 
 const DashboardNav: React.FC<DashboardNavProps> = ({ devices, activeDeviceId }) => {
@@ -36,7 +37,7 @@ const DashboardNav: React.FC<DashboardNavProps> = ({ devices, activeDeviceId }) 
       {devices.map((device) => (
         <Link href={"/dashboard/" + device.id}>
           <Button nav active={device.id === activeDeviceId}>
-            {device.name}
+            {device.title}
             {device.color == "green" && <PulseEffect green></PulseEffect>}
             {device.color == "yellow" && <PulseEffect yellow></PulseEffect>}
             {device.color == "red" && <PulseEffect red></PulseEffect>}

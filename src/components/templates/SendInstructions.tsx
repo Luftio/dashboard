@@ -11,10 +11,7 @@ const SendInstructions: React.FC = () => {
 
   return (
     <>
-      <Header
-        heading={t("instructions_heading")}
-        subheading={t("instructions_subheading")}
-      />
+      <Header heading={t("instructions_heading")} subheading={t("instructions_subheading")} />
       <EmailClients />
     </>
   );

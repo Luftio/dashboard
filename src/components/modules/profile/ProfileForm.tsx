@@ -10,6 +10,8 @@ import Button from "../../elements/Button";
 import EmailVerifyCard from "./EmailVerifyCard";
 import Success from "../../elements/Success";
 
+import { useQuery } from "../../../gqless";
+
 const Expand = styled.form`
   display: flex;
   width: 85%;
@@ -51,6 +53,9 @@ const ChangePassword: React.FC<ChangePasswordProps> = ({ onClick }) => {
     !formState.dirtyFields.email && setShowSuccessMsg(true);
   });
 
+  const query = useQuery();
+  const user = query.account;
+
   return (
     <Expand onSubmit={onSubmit}>
       <InputItem expand failDashboard={errors.name && true}>
@@ -59,7 +64,7 @@ const ChangePassword: React.FC<ChangePasswordProps> = ({ onClick }) => {
           id="edit-name"
           type="text"
           name="name"
-          defaultValue="Petr"
+          defaultValue={user?.first_name}
           ref={register({
             required: true,
           })}
@@ -71,7 +76,7 @@ const ChangePassword: React.FC<ChangePasswordProps> = ({ onClick }) => {
           id="edit-surname"
           type="text"
           name="surname"
-          defaultValue="Novák"
+          defaultValue={user?.last_name}
           ref={register({
             required: true,
           })}
@@ -83,7 +88,7 @@ const ChangePassword: React.FC<ChangePasswordProps> = ({ onClick }) => {
           id="edit-email"
           type="text"
           name="email"
-          defaultValue="petr.novak@gmail.com"
+          defaultValue={user?.email}
           ref={register({
             required: true,
             pattern: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,

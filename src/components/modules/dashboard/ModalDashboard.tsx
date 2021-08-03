@@ -14,10 +14,9 @@ import "../../../i18n/i18n";
 import { useTranslation } from "react-i18next";
 
 import Subheading from "../../elements/Subheading";
-import BasicText from "../../elements/BasicText";
 
 import { Icon } from "ts-react-feather-icons";
-import DeviceData from "../../../types/DeviceData";
+import { SchemaObjectTypes } from "../../../gqless";
 
 const Background = styled.div`
   width: 100%;
@@ -66,7 +65,7 @@ const CloseIcon = styled.p`
 `;
 
 interface ModalDashboardProps {
-  data: DeviceData | null;
+  data: SchemaObjectTypes["DeviceData"] | null;
   handleClose: () => void;
 }
 
@@ -74,6 +73,21 @@ const ModalDashboard: React.FC<ModalDashboardProps> = ({ data, handleClose }) =>
   const { t } = useTranslation();
   const modalRef = useRef<any>();
   const showModal = data != null;
+
+  const getTitle = (type: string) => {
+    if (type === "score") {
+      return t("dashboard_score");
+    } else if (type === "CO2") {
+      return t("CO2");
+    } else if (type === "temperature") {
+      return t("dashboard_temperature");
+    } else if (type === "pressure") {
+      return t("dashboard_pressure");
+    } else if (type === "humidity") {
+      return t("dashboard_humidity");
+    }
+    return type;
+  };
 
   const animation = useSpring<any>({
     config: {
@@ -93,13 +107,13 @@ const ModalDashboard: React.FC<ModalDashboardProps> = ({ data, handleClose }) =>
 
   return (
     <>
-      {showModal && data != null ? (
+      {showModal && data != null && data.type != null ? (
         <Background onClick={closeModal} ref={modalRef}>
           <animated.div style={animation}>
             <Div>
               <ModalWrapper>
                 <TopRow>
-                  <Subheading dashboard>{data.title}</Subheading>
+                  <Subheading dashboard>{getTitle(data.type)}</Subheading>
                   <CloseIcon onClick={() => handleClose()}>
                     <Icon name="x" size="22" color="#838C97" />
                   </CloseIcon>
@@ -124,8 +138,8 @@ const ModalDashboard: React.FC<ModalDashboardProps> = ({ data, handleClose }) =>
                       data: { stroke: "#031846" },
                     }}
                     data={data.values}
-                    interpolation="natural"
-                    x="ts"
+                    interpolation="step"
+                    x={(it) => new Date(it.ts)}
                     y="value"
                   />
                 </VictoryChart>
@@ -148,7 +162,7 @@ const ModalDashboard: React.FC<ModalDashboardProps> = ({ data, handleClose }) =>
                       data: { stroke: "#031846" },
                     }}
                     data={data.values}
-                    x="ts"
+                    x={(it) => new Date(it.ts)}
                     y="value"
                   />
                 </VictoryChart>

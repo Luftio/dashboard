@@ -27,7 +27,12 @@ const Navigation = styled.div`
   }
 `;
 
-const EventsNav: React.FC = () => {
+type EventsNavProps = {
+  events_from_measure_unread_count?: number;
+  events_from_employees_unread_count?: number;
+};
+
+const EventsNav: React.FC<EventsNavProps> = (props) => {
   const { t } = useTranslation();
   const router = useRouter();
 
@@ -39,13 +44,14 @@ const EventsNav: React.FC = () => {
         <Button data-cy="button-from-measurement" nav active={url === "from-measurement" && true}>
           <Icon name="activity" size="22" color={url === "from-measurement" ? "#031946" : "#838C97"} />
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{t("events_page_nav_measure")}
-          <Notifications amount={2} />
+          <Notifications amount={props.events_from_measure_unread_count} />
         </Button>
       </Link>
       <Link href="/events/from-employees">
         <Button data-cy="button-from-employees" nav active={url === "from-employees" && true}>
           <Icon name="briefcase" size="22" color={url === "from-employees" ? "#031946" : "#838C97"} />
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{t("events_page_nav_employees")}
+          <Notifications amount={props.events_from_employees_unread_count} />
         </Button>
       </Link>
     </Navigation>

@@ -43,8 +43,24 @@ const HapinessChart: React.FC = () => {
           },
         }}
       />
-      <VictoryLabel textAnchor="middle" verticalAnchor="middle" x={200} y={185} text={`${percent} %`} style={{ fontSize: 45, fontFamily: "Montserrat", fontWeight: 600 }} />;
-      <VictoryLabel textAnchor="middle" verticalAnchor="start" x={200} y={215} text={`${t("dashboard_feedback_chart_label")}`} style={{ fontSize: 25, fontFamily: "Montserrat" }} />;
+      <VictoryLabel
+        textAnchor="middle"
+        verticalAnchor="middle"
+        x={200}
+        y={185}
+        text={`${percent} %`}
+        style={{ fontSize: 45, fontFamily: "Montserrat", fontWeight: 600 }}
+      />
+      ;
+      <VictoryLabel
+        textAnchor="middle"
+        verticalAnchor="start"
+        x={200}
+        y={215}
+        text={`${t("dashboard_feedback_chart_label")}`}
+        style={{ fontSize: 25, fontFamily: "Montserrat" }}
+      />
+      ;
     </svg>
   );
 };

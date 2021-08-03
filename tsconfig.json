@@ -16,6 +16,7 @@
     "sourceMap": true,
     "inlineSources": true,
     "sourceRoot": "/",
+    "allowSyntheticDefaultImports": true,
     "types": ["cypress"]
   },
   "exclude": ["node_modules"],

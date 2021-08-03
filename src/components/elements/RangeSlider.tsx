@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
-const Slider = styled.input`
+const Slider = styled.input<{ percent?: number }>`
   -webkit-appearance: none;
-  height: 2.5px;
+  height: 3.5px;
   border-radius: 100px;
-  background: linear-gradient(90deg, #031946, 67%, #e1e6ea 67%);
+  background: linear-gradient(90deg, #031946, ${(props) => props.percent}%, #e1e6ea ${(props) => props.percent}%);
   outline: none;
   padding: 0;
   margin: 0;
@@ -36,8 +36,12 @@ const Slider = styled.input`
   }
 `;
 
-const RangeSlider: React.FC = () => {
-  return <Slider id="slider" type="range" min="1" max="100" value="67" />;
+interface RangeSliderProps {
+  value: number;
+}
+
+const RangeSlider: React.FC<RangeSliderProps> = ({ value }) => {
+  return <Slider id="slider" type="range" min="1" max="100" value={value} percent={value} />;
 };
 
 export default RangeSlider;

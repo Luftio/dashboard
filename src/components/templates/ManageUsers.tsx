@@ -14,7 +14,10 @@ import Button from "../elements/Button";
 import BasicText from "../elements/BasicText";
 import Tooltip from "../elements/Tooltip";
 import UserRow from "../elements/UserRow";
+import Loader from "../elements/Loader";
 import Modal from "../modules/Modal";
+
+import { useQuery } from "../../gqless/";
 
 const Users = styled.div`
   display: flex;
@@ -48,10 +51,19 @@ const Div = styled.div`
   position: relative;
 `;
 
+const LoadingWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  height: 80%;
+  justify-content: center;
+  align-items: center;
+  margin: 100px 0;
+`;
+
 const ManageUsers: React.FC = () => {
   const { t } = useTranslation();
 
-  const [showTooltip, setShowTooltip] = useState<Boolean>(false);
+  const [showTooltip, setShowTooltip] = useState<boolean>(false);
   const [showModal, setShowModal] = useState<boolean>(false);
   const [showAddModal, setShowAddModal] = useState<boolean>(false);
 
@@ -62,6 +74,15 @@ const ManageUsers: React.FC = () => {
   const openAddModal = () => {
     setShowAddModal((prev) => !prev);
   };
+
+  const query = useQuery();
+  const manageUsers: {
+    id: string;
+    full_name: string;
+    email: string;
+    role: string;
+    pending_invitation: boolean;
+  }[] = []; // TODO: use query
 
   return (
     <>
@@ -96,9 +117,22 @@ const ManageUsers: React.FC = () => {
             )}
           </Div>
         </TopRowManageUsers>
-        <UserRow name="Petr Novák" email="petr@novak.cz" onClick={openModal} />
-        <UserRow name="Petr Novák" email="petr@novak.cz" onClick={openModal} />
-        <UserRow name="Petr Novák" email="petr@novak.cz" onClick={openModal} isPending />
+        {query.$state.isLoading ? (
+          <LoadingWrapper>
+            <Loader />
+          </LoadingWrapper>
+        ) : (
+          manageUsers?.map((user) => (
+            <UserRow
+              key={user.id}
+              name={user.full_name}
+              email={user.email}
+              onClick={openModal}
+              role={user.role}
+              isPending={user.pending_invitation}
+            />
+          ))
+        )}
       </ContentBlock>
       <Modal
         href=""

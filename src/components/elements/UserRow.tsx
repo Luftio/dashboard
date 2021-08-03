@@ -90,8 +90,8 @@ const NotAccepted = styled.p`
 interface UserRowProps {
   name: string;
   email: string;
-  role?: string;
-  isPending?: boolean;
+  role: string;
+  isPending: boolean;
   onClick: () => void;
 }
 
@@ -104,12 +104,12 @@ const UserRow: React.FC<UserRowProps> = ({ name, email, role, isPending, onClick
         <Name isPeding={isPending}>{name}</Name>
         <Email isPeding={isPending}>{email}</Email>
         <SelectItem isPending={isPending}>
-          <select>
-            <option value="manager">{t("manage_users_user_heading")}</option>
-            <option value="user">{t("manage_users_manager_heading")}</option>
+          <select value={role}>
+            <option value="user">{t("manage_users_user_heading")}</option>
+            <option value="manager">{t("manage_users_manager_heading")}</option>
           </select>
         </SelectItem>
-        {isPending && <NotAccepted>{t("manage_users_peding")}</NotAccepted>}
+        {isPending && <NotAccepted>{t("manage_users_pending")}</NotAccepted>}
         <IconSpan onClick={onClick}>
           <Icon name="x-circle" size="18px" color="#F36A66" />
         </IconSpan>

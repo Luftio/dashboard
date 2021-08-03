@@ -1,12 +1,15 @@
 import React from "react";
+import Link from "next/link";
 import styled from "styled-components";
-import BasicText from "../../elements/BasicText";
 
 import "../../../i18n/i18n";
 import { useTranslation } from "react-i18next";
 
+import BasicText from "../../elements/BasicText";
 import HapinessChart from "./FeedbackChart";
 import EventsChart from "./EventsChart";
+
+import { useQuery } from "../../../gqless";
 
 const Card = styled.div`
   width: 48.5%;
@@ -35,6 +38,7 @@ const Notification = styled.div`
   width: 100%;
   align-items: center;
   margin-top: 10px;
+  cursor: pointer;
 `;
 
 const ChartDiv = styled.div`
@@ -44,28 +48,22 @@ const ChartDiv = styled.div`
 
 interface BottomRowCardProps {
   subheading: string;
-  message1: string;
-  date1: string;
-  message2: string;
-  date2: string;
-  message3: string;
-  date3: string;
   feedback?: boolean;
   onClick?: React.MouseEventHandler<HTMLDivElement>;
 }
 
-const BottomRowCard: React.FC<BottomRowCardProps> = ({
-  subheading,
-  onClick,
-  message1,
-  date1,
-  message2,
-  date2,
-  message3,
-  date3,
-  feedback,
-}) => {
+interface NotificationType {
+  id: string;
+  title: string;
+  date: string;
+}
+
+const BottomRowCard: React.FC<BottomRowCardProps> = ({ subheading, onClick, feedback }) => {
   const { t } = useTranslation();
+
+  // const query = useQuery(); TODO: use query
+  const feedbackNotifications: NotificationType[] = [];
+  const eventsNotifications: NotificationType[] = [];
 
   return (
     <>
@@ -73,18 +71,23 @@ const BottomRowCard: React.FC<BottomRowCardProps> = ({
         <BasicText name>{subheading}</BasicText>
         <ChartDiv>{feedback ? <HapinessChart /> : <EventsChart />}</ChartDiv>
         <BasicText bottomRowProcentsName>{t("dashboard_bottomcard_last")}</BasicText>
-        <Notification>
-          <BasicText notifications>{message1}</BasicText>
-          <BasicText dateDashboard>{date1}</BasicText>
-        </Notification>
-        <Notification>
-          <BasicText notifications>{message2}</BasicText>
-          <BasicText dateDashboard>{date2}</BasicText>
-        </Notification>
-        <Notification>
-          <BasicText notifications>{message3}</BasicText>
-          <BasicText dateDashboard>{date3}</BasicText>
-        </Notification>
+        {feedback
+          ? feedbackNotifications?.map((notification) => (
+              <Link href="/feedback/detail" key={notification.id}>
+                <Notification>
+                  <BasicText notifications>{notification.title}</BasicText>
+                  <BasicText dateDashboard>{notification.date}</BasicText>
+                </Notification>
+              </Link>
+            ))
+          : eventsNotifications?.map((notification) => (
+              <Link href="/events/from-measurement/detail" key={notification.id}>
+                <Notification>
+                  <BasicText notifications>{notification.title}</BasicText>
+                  <BasicText dateDashboard>{notification.date}</BasicText>
+                </Notification>
+              </Link>
+            ))}
       </Card>
     </>
   );

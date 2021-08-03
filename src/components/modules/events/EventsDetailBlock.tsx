@@ -36,30 +36,33 @@ const BottomRow = styled.div`
   margin-bottom: 50px;
 `;
 
-const EventsDetailBlock: React.FC = () => {
+interface EventsDetailBlockProps {
+  title: string;
+  date: string;
+  place: string;
+  threat: number;
+  justification: string;
+}
+
+const EventsDetailBlock: React.FC<EventsDetailBlockProps> = ({ title, date, place, threat, justification }) => {
   const { t } = useTranslation<string>();
 
   return (
     <Card>
       <TopRow>
-        <Subheading contentBlockItem>Stoupá hodnota CO2</Subheading>
+        <Subheading contentBlockItem>{title}</Subheading>
         <Link href="/events/from-measurement">
           <Button>{t("detail_close")}</Button>
         </Link>
       </TopRow>
       <BottomRow>
         <Icon name="clock" size="16" color="#838C97" />
-        <BasicText events>12/2/2021 v 16.20</BasicText>
+        <BasicText events>{date}</BasicText>
         <Icon name="map-pin" size="16" color="#838C97" />
-        <BasicText events>Kuchyně</BasicText>
+        <BasicText events>{place}</BasicText>
       </BottomRow>
-      <DetailRowText type="bar" subheading={t("detail_events_threat")} value={25} />
-      <DetailRowText
-        type="text"
-        subheading={t("detail_events_justify")}
-        text="Zaznamenali jsme mírný vzrůst hodnoty CO2. Bylo to dost možná způsobeno nepravidelným větráním. Tento trend jsme zaznameli již podruhé tento den."
-        value={0}
-      />
+      <DetailRowText type="bar" subheading={t("detail_events_threat")} value={threat} />
+      <DetailRowText type="text" subheading={t("detail_events_justify")} text={justification} value={0} />
     </Card>
   );
 };

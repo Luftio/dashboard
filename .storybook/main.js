@@ -7,4 +7,7 @@ module.exports = {
     "@storybook/addon-viewport",
     "@storybook/addon-essentials",
   ],
+  typescript: {
+    reactDocgen: "none",
+  },
 };

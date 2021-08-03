@@ -36,40 +36,47 @@ const BottomRow = styled.div`
   margin-bottom: 50px;
 `;
 
-const SuggestionsDetailBlock: React.FC = () => {
+interface SuggestionsDetailBlockProps {
+  title: string;
+  level?: number;
+  date: string;
+  description: string;
+  howSolve: string;
+  whyImportant: string;
+}
+
+const SuggestionsDetailBlock: React.FC<SuggestionsDetailBlockProps> = ({
+  title,
+  level,
+  date,
+  description,
+  howSolve,
+  whyImportant,
+}) => {
   const { t } = useTranslation<string>();
 
   return (
     <Card>
       <TopRow>
-        <Subheading contentBlockItem>Kupte zvlhčovač vzduchu</Subheading>
+        <Subheading contentBlockItem>{title}</Subheading>
         <Link href="/suggestions">
           <Button>{t("detail_close")}</Button>
         </Link>
       </TopRow>
       <BottomRow>
         <Icon name="clock" size="16" color="#838C97" />
-        <BasicText events>14/3/2021</BasicText>
+        <BasicText events>{date}</BasicText>
       </BottomRow>
-      <DetailRowText type="importance" subheading={t("detail_suggestions_importance")} high value={0} />
+      <DetailRowText type="importance" subheading={t("detail_suggestions_importance")} level={level} value={0} />
       <DetailRowText
         type="text"
         subheading={t("detail_suggestions_description")}
-        text="Na základě dlouhodobého trendu snížené hodnoty vlhkosti ve vašich kancelářích jsme vyhodnotili, že by jste zlepšili podmínky koupí zvlhčovače vzduchu."
+        level={0}
+        text={description}
         value={0}
       />
-      <DetailRowText
-        type="text"
-        subheading={t("detail_suggestions_solve")}
-        text="Zakupte zvhlčovač vzduchu. Nejlépe by se mělo jednat o produkt chytré domácnosti, který můžete napojit na Luftio systém. My ho pak budeme automatiky nastavovat aby byl co nejvíce užitečný."
-        value={0}
-      />
-      <DetailRowText
-        type="text"
-        subheading={t("detail_suggestions_matter")}
-        text="Při nízké vlhkosti dochází k víření prachu a nečistot do vzduchu. Lidské tělo začne rychleji ztrácet vodu, což vede k vysychání sliznice dýchacích cest. To má za následek oslabení organismu a jeho obranyschopnosti."
-        value={0}
-      />
+      <DetailRowText type="text" subheading={t("detail_suggestions_solve")} level={0} text={howSolve} value={0} />
+      <DetailRowText type="text" subheading={t("detail_suggestions_matter")} level={0} text={whyImportant} value={0} />
     </Card>
   );
 };

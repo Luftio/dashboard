@@ -30,7 +30,12 @@ const Row = styled.div`
   position: relative;
 `;
 
-const EventsHover: React.FC = () => {
+type EventsHoverProps = {
+  events_from_measure_unread_count?: number;
+  events_from_employees_unread_count?: number;
+};
+
+const EventsHover: React.FC<EventsHoverProps> = (props) => {
   const { t } = useTranslation<string>();
   const router = useRouter();
 
@@ -44,9 +49,8 @@ const EventsHover: React.FC = () => {
           url="/events/from-measurement"
           active={url === "from-measurement" && true}
           icon="activity"
-          text={t("events_page_nav_measure")}
-        />
-        <Notifications type amount={2} />
+          text={t("events_page_nav_measure")}></SidebarItem>
+        <Notifications type amount={props.events_from_measure_unread_count} />
       </Row>
       <Row>
         <SidebarItem
@@ -54,8 +58,8 @@ const EventsHover: React.FC = () => {
           url="/events/from-employees"
           active={url === "from-employees" && true}
           icon="briefcase"
-          text={t("events_page_nav_employees")}
-        />
+          text={t("events_page_nav_employees")}></SidebarItem>
+        <Notifications type amount={props.events_from_employees_unread_count} />
       </Row>
     </Div>
   );

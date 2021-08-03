@@ -14,7 +14,10 @@ import ContentBlockItem from "../modules/ContentBlockItem";
 import Modal from "../modules/Modal";
 import DeviceCard from "../modules/DeviceCard";
 import DevicesForm from "../modules/DevicesForm";
+import Loader from "../elements/Loader";
 import Integration from "../modules/Integration";
+
+import { useQuery } from "../../gqless/";
 
 const Devices = styled.div`
   display: flex;
@@ -37,7 +40,6 @@ const Expand = styled.form<{ integrations?: boolean }>`
   width: 85%;
   flex-direction: column;
   margin: -10px auto 0 auto;
-  border-bottom: ${(props) => props.theme.divider};
   margin: -70px auto 0 auto;
   padding-bottom: 45px;
 
@@ -53,6 +55,15 @@ const Cards = styled.div`
   margin-top: 40px;
   display: flex;
   flex-wrap: wrap;
+`;
+
+const LoadingWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  height: 80%;
+  justify-content: center;
+  align-items: center;
+  margin: 50px 0;
 `;
 
 const Wrapper = styled.div`
@@ -87,6 +98,9 @@ const Settings: React.FC = () => {
     setShowModal((prev) => !prev);
   };
 
+  const query = useQuery();
+  const manageDevices = query.devices;
+
   return (
     <>
       <Head>
@@ -107,17 +121,23 @@ const Settings: React.FC = () => {
           <BasicText contentBlockItem>{t("profile_devices_text")}</BasicText>
         </Devices>
         {editDevices ? (
-          <DevicesForm onClick={() => setEditDevices(false)} edit={editDevices} />
+          <DevicesForm handleClose={() => setEditDevices(false)} edit={editDevices} />
         ) : (
           <Expand>
             <Cards>
-              <DeviceCard nameDevice="Zasedačka" label="L0135C1L" />
-              <DeviceCard nameDevice="Chodba" label="T1605C1A" />
-              <DeviceCard nameDevice="Kuchyně" label="B0105U7K" />
+              {query.$state.isLoading ? (
+                <LoadingWrapper>
+                  <Loader />
+                </LoadingWrapper>
+              ) : (
+                manageDevices?.map((device) => {
+                  if (device.label == null) return null;
+                  return <DeviceCard key={device.id} nameDevice={device.title} label={device.label} />;
+                })
+              )}
             </Cards>
           </Expand>
         )}
-
         <Wrapper>
           <TopRow selectForm>
             <Subheading dashboard>{t("integration_heading")}</Subheading>
@@ -146,22 +166,25 @@ const Settings: React.FC = () => {
             isAdded={false}
           />
         </Expand>
-        <ContentBlockItem
+        {/* Automatic account deletion shoudn't be enabled by default */}
+
+        {/*<ContentBlockItem
           subheading={t("settings_delete_subheading")}
           buttonText={t("settings_delete_button_text")}
           text={t("settings_delete_text")}
           url=""
           onClick={openModal}
-        />
+        />*/}
       </ContentBlock>
-      <Modal
+
+      {/*<Modal
         href="/after-delete"
         showModal={showModal}
         setShowModal={setShowModal}
         subheading={t("modal_subheading")}
         text={t("modal_text")}
         buttonText={t("modal_button_text")}
-      />
+     />*/}
     </>
   );
 };

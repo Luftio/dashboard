@@ -8,7 +8,6 @@ import { useTranslation } from "react-i18next";
 
 import InputItem from "../elements/InputItem";
 import Button from "../elements/Button";
-import HaveAccount from "../elements/HaveAccount";
 import Error from "../elements/Error";
 import ForgotPassword from "../elements/ForgotPassword";
 
@@ -31,10 +30,10 @@ const SignUpForm: React.FC = () => {
   const onSubmit = handleSubmit(({ email, password }) => {
     ThingsboardService.getInstance()
       .loginEmail(email, password)
-      .then((success) => {
-        router.replace("/dashboard");
+      .then(() => {
+        router.replace("/dashboard/all");
       })
-      .catch((error) => {
+      .catch(() => {
         setLogInError(true);
       });
   });
@@ -91,12 +90,6 @@ const SignUpForm: React.FC = () => {
           {t("sign_in")}
         </Button>
       </form>
-      <HaveAccount>
-        <p>{t("dont_have_account")}&nbsp;</p>
-        <Link href="/register">
-          <a data-cy="sign-up">{t("create_account")}</a>
-        </Link>
-      </HaveAccount>
     </div>
   );
 };
