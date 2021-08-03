@@ -70,6 +70,7 @@ const Suggestions: React.FC = () => {
         <EmptyState message={t("suggestions_page_empty_state")} />
       ) : (
         suggestions.map((suggestion) => {
+          [suggestion.id, suggestion.title, suggestion.date, suggestion.importance, suggestion.is_unread];
           if (
             suggestion.title == null ||
             suggestion.importance == null ||

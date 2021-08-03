@@ -34,21 +34,30 @@ const mockQueryFetcher: QueryFetcher = async function (query, variables) {
   });
 };*/
 
+const currentlyFetching: string[] = [];
+
 const serverQueryFetcher: QueryFetcher = async function (query, variables) {
+  const requestBody = JSON.stringify({
+    query,
+    variables,
+  });
+  if (currentlyFetching.includes(requestBody)) return { data: null };
+  const id = currentlyFetching.push(requestBody);
+  console.log("fetched " + requestBody);
+
   const response = await fetch(process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT || "", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       ...ThingsboardService.getInstance().getAuthHeader(),
     },
-    body: JSON.stringify({
-      query,
-      variables,
-    }),
+    body: requestBody,
     mode: "cors",
   });
 
   const json = await response.json();
+
+  currentlyFetching.splice(id);
   return json;
 };
 

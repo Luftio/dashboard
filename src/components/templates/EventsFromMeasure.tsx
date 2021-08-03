@@ -75,6 +75,7 @@ const EventsFromMeasure: React.FC = () => {
         <EmptyState message={t("events_page_measure_empty_state")} />
       ) : (
         eventsFromMeasure.map((event) => {
+          [event.id, event.title, event.date, event.place, event.threat, event.is_unread];
           if (event.title == null || event.date == null || event.place == null || event.threat == null) return null;
           return (
             <EventsCard

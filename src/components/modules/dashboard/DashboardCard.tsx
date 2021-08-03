@@ -73,6 +73,15 @@ interface DashboardCardProps {
 const DashboardCard: React.FC<DashboardCardProps> = ({ data, onClick }) => {
   const { t } = useTranslation();
 
+  [
+    data.type,
+    data.value,
+    data.maxValue,
+    data.minValue,
+    data.color,
+    data.change,
+    data.values.map((it) => [it.ts, it.value]),
+  ];
   if (data.type == null || data.value == null || data.maxValue == null || data.minValue == null) {
     return null;
   }

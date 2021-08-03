@@ -70,6 +70,7 @@ const Feedback: React.FC = () => {
         <EmptyState message={t("feedback_page_empty_state")} />
       ) : (
         feedbacks.map((feedback) => {
+          [feedback.id, feedback.name, feedback.total_score, feedback.date, feedback.is_unread];
           if (
             feedback == null ||
             feedback.id == null ||

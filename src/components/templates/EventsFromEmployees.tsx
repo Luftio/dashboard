@@ -74,6 +74,7 @@ const EventsFromEmployees: React.FC = () => {
         <EmptyState message={t("events_page_employees_empty_state")} />
       ) : (
         eventsFromEmployee.map((event) => {
+          [event.id, event.name, event.date, event.place, event.threat, event.is_unread];
           if (event.name == null || event.date == null || event.place == null || event.threat == null) {
             return null;
           }
