@@ -20,7 +20,7 @@ const LoadingWrapper = styled.div`
   height: 80%;
   justify-content: center;
   align-items: center;
-`;  
+`;
 
 const HeadingDiv = styled.div`
   width: 95%;

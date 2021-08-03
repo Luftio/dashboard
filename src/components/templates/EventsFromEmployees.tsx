@@ -5,14 +5,27 @@ import moment from "moment";
 
 import "../../i18n/i18n";
 import { useTranslation } from "react-i18next";
+import { useQuery } from "../../gqless";
 
 import Heading from "../elements/Heading";
 import Loader from "../elements/Loader";
 import EventsNav from "../modules/events/EventsNav";
 import EventsCard from "../modules/events/EventsCard";
 import EmptyState from "../modules/EmptyState";
+import Filter from "../elements/Filter";
 
-import { useQuery } from "../../gqless";
+const HeadingDiv = styled.div`
+  width: 95%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  @media only screen and (max-width: 500px) {
+    flex-direction: column;
+    margin-bottom: 30px;
+    align-items: flex-start;
+  }
+`;
 
 const LoadingWrapper = styled.div`
   display: flex;
@@ -38,7 +51,17 @@ const EventsFromEmployees: React.FC = () => {
       <Head>
         <title>{t("title_feedback_page")}</title>
       </Head>
-      <Heading dashboard>{t("events_page_heading")}</Heading>
+      <HeadingDiv>
+        <Heading dashboard>{t("events_page_heading")}</Heading>
+        <Filter
+          filterOptions={[
+            { value: "latest", label: t("filter_latest") },
+            { value: "oldest", label: t("filter_oldest") },
+            { value: "high-threat", label: t("filter_high_threat") },
+            { value: "low-threat", label: t("filter_low_threat") },
+          ]}
+        />
+      </HeadingDiv>
       <EventsNav
         events_from_employees_unread_count={query.events_from_employees_unread_count}
         events_from_measure_unread_count={query.events_from_measure_unread_count}

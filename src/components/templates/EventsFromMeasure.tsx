@@ -11,6 +11,7 @@ import Loader from "../elements/Loader";
 import EventsNav from "../modules/events/EventsNav";
 import EventsCard from "../modules/events/EventsCard";
 import EmptyState from "../modules/EmptyState";
+import Filter from "../elements/Filter";
 
 import { useQuery } from "../../gqless";
 
@@ -20,6 +21,19 @@ const LoadingWrapper = styled.div`
   height: 80%;
   justify-content: center;
   align-items: center;
+`;
+
+const HeadingDiv = styled.div`
+  width: 95%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  @media only screen and (max-width: 500px) {
+    flex-direction: column;
+    margin-bottom: 30px;
+    align-items: flex-start;
+  }
 `;
 
 const EventsFromMeasure: React.FC = () => {
@@ -38,7 +52,17 @@ const EventsFromMeasure: React.FC = () => {
       <Head>
         <title>{t("title_feedback_page")}</title>
       </Head>
-      <Heading dashboard>{t("events_page_heading")}</Heading>
+      <HeadingDiv>
+        <Heading dashboard>{t("events_page_heading")}</Heading>
+        <Filter
+          filterOptions={[
+            { value: "latest", label: t("filter_latest") },
+            { value: "oldest", label: t("filter_oldest") },
+            { value: "high-threat", label: t("filter_high_threat") },
+            { value: "low-threat", label: t("filter_low_threat") },
+          ]}
+        />
+      </HeadingDiv>
       <EventsNav
         events_from_employees_unread_count={query.events_from_employees_unread_count}
         events_from_measure_unread_count={query.events_from_measure_unread_count}

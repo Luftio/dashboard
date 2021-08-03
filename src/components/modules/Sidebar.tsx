@@ -98,19 +98,12 @@ const Sidebar: React.FC = ({}) => {
         url="/dashboard/all"
         active={url === "dashboard" && true}
         icon="pie-chart"
-<<<<<<< HEAD
         text={t("sidebar_menu_item_1")}></SidebarItem>
-      <Wrapper onMouseEnter={() => setShow(true)} onMouseLeave={() => setShow(false)}>
-=======
-        text={t("sidebar_menu_item_1")}
-      />
-      <Events data-tour="event" onMouseEnter={() => setShow(true)} onMouseLeave={() => setShow(false)}>
->>>>>>> master
+      <Wrapper data-tour="event" onMouseEnter={() => setShow(true)} onMouseLeave={() => setShow(false)}>
         <SidebarItem
           url="/events/from-measurement"
           active={url === "events" && true}
           icon="bell"
-<<<<<<< HEAD
           text={t("sidebar_menu_item_2")}></SidebarItem>
         <Notifications sidebar amount={query.events_unread_count} />
         {show && (
@@ -136,19 +129,6 @@ const Sidebar: React.FC = ({}) => {
           text={t("sidebar_menu_item_4")}></SidebarItem>
         <Notifications sidebar amount={query.feedback_unread_count} />
       </Wrapper>
-=======
-          text={t("sidebar_menu_item_2")}
-        />
-        {show && <EventsHover />}
-      </Events>
-      <SidebarItem
-        url="/suggestions"
-        active={url === "suggestions" && true}
-        icon="file"
-        text={t("sidebar_menu_item_3")}
-      />
-      <SidebarItem url="/feedback" active={url === "feedback" && true} icon="archive" text={t("sidebar_menu_item_4")} />
->>>>>>> master
       <Heading sidebar>{t("sidebar_account_heading")}</Heading>
       <SidebarItem url="/profile" active={url === "profile" && true} icon="user" text={t("sidebar_account_item_1")} />
       <SidebarItem

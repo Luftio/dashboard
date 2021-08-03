@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Head from "next/head";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 import "../../i18n/i18n";
 import { useTranslation } from "react-i18next";

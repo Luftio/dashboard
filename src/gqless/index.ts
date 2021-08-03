@@ -35,7 +35,7 @@ const mockQueryFetcher: QueryFetcher = async function (query, variables) {
 };*/
 
 const serverQueryFetcher: QueryFetcher = async function (query, variables) {
-  const response = await fetch(process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT, {
+  const response = await fetch(process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT || "", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
