@@ -13,7 +13,7 @@
     "start": "next start",
     "export": "npm run build && next export",
     "storybook": "start-storybook -s ./public -p 6006",
-    "build-storybook": "build-storybook",
+    "build-storybook": "npm run generate && build-storybook",
     "chromatic": "chromatic --project-token abde2b2ec12c --exit-zero-on-changes",
     "generate": "gqless generate && rm -rf ./node_modules/.cache/babel-loader",
     "cypress:open": "cypress open",
