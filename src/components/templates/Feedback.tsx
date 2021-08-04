@@ -65,11 +65,11 @@ const Feedback: React.FC = () => {
         setData(sorted);
       } else if (type === "latest") {
         //@ts-ignore
-        const sorted = [...feedbacks].sort((a, b) => new Date(a.date) - new Date(b.date));
+        const sorted = [...feedbacks].sort((a, b) => new Date(b.date) - new Date(a.date));
         setData(sorted);
       } else if (type === "oldest") {
         //@ts-ignore
-        const sorted = [...feedbacks].sort((a, b) => new Date(b.date) - new Date(a.date));
+        const sorted = [...feedbacks].sort((a, b) => new Date(a.date) - new Date(b.date));
         setData(sorted);
       }
     };
