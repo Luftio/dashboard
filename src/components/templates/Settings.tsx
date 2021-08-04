@@ -130,7 +130,7 @@ const Settings: React.FC = () => {
                   <Loader />
                 </LoadingWrapper>
               ) : (
-                manageDevices?.map((device) => {
+                manageDevices?.map((device: any) => {
                   if (device.label == null) return null;
                   return <DeviceCard key={device.id} nameDevice={device.title} label={device.label} />;
                 })
@@ -138,13 +138,13 @@ const Settings: React.FC = () => {
             </Cards>
           </Expand>
         )}
-        <Wrapper>
+        {/* <Wrapper>
           <TopRow selectForm>
             <Subheading dashboard>{t("integration_heading")}</Subheading>
           </TopRow>
           <BasicText contentBlockItem>{t("integration_text")}</BasicText>
-        </Wrapper>
-        <Expand integrations>
+        </Wrapper> */}
+        {/* <Expand integrations>
           <Integration
             logo="/static/slack-new-logo.svg"
             title="Slack"
@@ -165,7 +165,7 @@ const Settings: React.FC = () => {
             description={t("integration_slack_trello")}
             isAdded={false}
           />
-        </Expand>
+        </Expand> */}
         {/* Automatic account deletion shoudn't be enabled by default */}
 
         {/*<ContentBlockItem

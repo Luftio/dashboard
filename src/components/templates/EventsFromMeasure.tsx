@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import styled from "styled-components";
 import moment from "moment";
@@ -14,6 +14,9 @@ import EmptyState from "../modules/EmptyState";
 import Filter from "../elements/Filter";
 
 import { useQuery } from "../../gqless";
+
+import useEventsFromMeasureFilterStore from "../../stores/eventsFromMeasureFilterStore";
+import { classNames } from "react-select/src/utils";
 
 const LoadingWrapper = styled.div`
   display: flex;
@@ -39,6 +42,8 @@ const HeadingDiv = styled.div`
 const EventsFromMeasure: React.FC = () => {
   const { t } = useTranslation();
 
+  const [data, setData] = useState<any>([]);
+
   const query = useQuery();
   const eventsFromMeasure = query.events_from_measure;
 
@@ -46,6 +51,33 @@ const EventsFromMeasure: React.FC = () => {
     const dateJs = new Date(date);
     return moment(dateJs).format("DD/MM/YYYY") + t("date_at") + moment(dateJs).format("HH:mm");
   };
+
+  const filter = useEventsFromMeasureFilterStore((state) => state.filter);
+  const setFilter = useEventsFromMeasureFilterStore((state) => state.setFilter);
+
+  useEffect(() => {
+    const sortArray = (type: string | undefined) => {
+      if (type === "high-threat") {
+        //@ts-ignore
+        const sorted = [...eventsFromMeasure].sort((a, b) => b.threat - a.threat);
+        setData(sorted);
+      } else if (type === "low-threat") {
+        //@ts-ignore
+        const sorted = [...eventsFromMeasure].sort((a, b) => a.threat - b.threat);
+        setData(sorted);
+      } else if (type === "latest") {
+        //@ts-ignore
+        const sorted = [...eventsFromMeasure].sort((a, b) => new Date(a.date) - new Date(b.date));
+        setData(sorted);
+      } else if (type === "oldest") {
+        //@ts-ignore
+        const sorted = [...eventsFromMeasure].sort((a, b) => new Date(b.date) - new Date(a.date));
+        setData(sorted);
+      }
+    };
+
+    sortArray(filter?.value);
+  }, [filter]);
 
   return (
     <>
@@ -61,6 +93,8 @@ const EventsFromMeasure: React.FC = () => {
             { value: "high-threat", label: t("filter_high_threat") },
             { value: "low-threat", label: t("filter_low_threat") },
           ]}
+          onChange={(value) => setFilter(value)}
+          filterValue={filter}
         />
       </HeadingDiv>
       <EventsNav
@@ -74,21 +108,41 @@ const EventsFromMeasure: React.FC = () => {
       ) : eventsFromMeasure == null || eventsFromMeasure.length == 0 ? (
         <EmptyState message={t("events_page_measure_empty_state")} />
       ) : (
-        eventsFromMeasure.map((event) => {
-          [event.id, event.title, event.date, event.place, event.threat, event.is_unread];
-          if (event.title == null || event.date == null || event.place == null || event.threat == null) return null;
-          return (
-            <EventsCard
-              key={event.id}
-              name={event.title}
-              time={formatDate(event.date)}
-              location={event.place}
-              threat={event.threat}
-              unread={event.is_unread}
-              href={"/events/from-measurement/" + event.id}
-            />
-          );
-        })
+        <div>
+          {filter === null
+            ? eventsFromMeasure.map((event: any) => {
+                [event.id, event.title, event.date, event.place, event.threat, event.is_unread];
+                if (event.title == null || event.date == null || event.place == null || event.threat == null)
+                  return null;
+                return (
+                  <EventsCard
+                    key={event.id}
+                    name={event.title}
+                    time={formatDate(event.date)}
+                    location={event.place}
+                    threat={event.threat}
+                    unread={event.is_unread}
+                    href={"/events/from-measurement/" + event.id}
+                  />
+                );
+              })
+            : data.map((event: any) => {
+                [event.id, event.title, event.date, event.place, event.threat, event.is_unread];
+                if (event.title == null || event.date == null || event.place == null || event.threat == null)
+                  return null;
+                return (
+                  <EventsCard
+                    key={event.id}
+                    name={event.title}
+                    time={formatDate(event.date)}
+                    location={event.place}
+                    threat={event.threat}
+                    unread={event.is_unread}
+                    href={"/events/from-measurement/" + event.id}
+                  />
+                );
+              })}
+        </div>
       )}
     </>
   );

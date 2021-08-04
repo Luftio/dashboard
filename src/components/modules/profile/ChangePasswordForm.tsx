@@ -14,7 +14,7 @@ const Expand = styled.form`
   width: 85%;
   flex-direction: column;
   margin: -10px auto 0 auto;
-  border-bottom: ${(props) => props.theme.divider};
+  // border-bottom: ${(props) => props.theme.divider};
   background: #fff;
 `;
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import styled from "styled-components";
 import moment from "moment";
@@ -13,6 +13,8 @@ import EmptyState from "../modules/EmptyState";
 import Filter from "../elements/Filter";
 
 import { useQuery } from "../../gqless/";
+
+import useSuggestionsFilterStore from "../../stores/suggestionsFilterStore";
 
 const LoadingWrapper = styled.div`
   display: flex;
@@ -38,6 +40,8 @@ const HeadingDiv = styled.div`
 const Suggestions: React.FC = () => {
   const { t } = useTranslation();
 
+  const [data, setData] = useState<any>([]);
+
   const query = useQuery();
   const suggestions = query.suggestions;
 
@@ -45,6 +49,33 @@ const Suggestions: React.FC = () => {
     const dateJs = new Date(date);
     return moment(dateJs).format("DD/MM/YYYY");
   };
+
+  const filter = useSuggestionsFilterStore((state) => state.filter);
+  const setFilter = useSuggestionsFilterStore((state) => state.setFilter);
+
+  useEffect(() => {
+    const sortArray = (type: string | undefined) => {
+      if (type === "high-importance") {
+        //@ts-ignore
+        const sorted = [...suggestions].sort((a, b) => b.importance - a.importance);
+        setData(sorted);
+      } else if (type === "low-importance") {
+        //@ts-ignore
+        const sorted = [...suggestions].sort((a, b) => a.importance - b.importance);
+        setData(sorted);
+      } else if (type === "latest") {
+        //@ts-ignore
+        const sorted = [...suggestions].sort((a, b) => new Date(a.date) - new Date(b.date));
+        setData(sorted);
+      } else if (type === "oldest") {
+        //@ts-ignore
+        const sorted = [...suggestions].sort((a, b) => new Date(b.date) - new Date(a.date));
+        setData(sorted);
+      }
+    };
+
+    sortArray(filter?.value);
+  }, [filter]);
 
   return (
     <>
@@ -60,6 +91,8 @@ const Suggestions: React.FC = () => {
             { value: "high-importance", label: t("filter_high_importance") },
             { value: "low-importance", label: t("filter_low_importance") },
           ]}
+          onChange={(value) => setFilter(value)}
+          filterValue={filter}
         />
       </HeadingDiv>
       {query.$state.isLoading ? (
@@ -69,28 +102,53 @@ const Suggestions: React.FC = () => {
       ) : suggestions == null || suggestions.length == 0 ? (
         <EmptyState message={t("suggestions_page_empty_state")} />
       ) : (
-        suggestions.map((suggestion) => {
-          [suggestion.id, suggestion.title, suggestion.date, suggestion.importance, suggestion.is_unread];
-          if (
-            suggestion.title == null ||
-            suggestion.importance == null ||
-            suggestion.date == null ||
-            suggestion.is_unread == null
-          )
-            return null;
-          return (
-            <MessageCard
-              key={suggestion.id}
-              suggestion
-              level={suggestion.importance}
-              name={suggestion.title}
-              procents={0}
-              date={formatDate(suggestion.date)}
-              href={"/suggestions/" + suggestion.id}
-              unread={suggestion.is_unread}
-            />
-          );
-        })
+        <div>
+          {filter === null
+            ? suggestions.map((suggestion: any) => {
+                [suggestion.id, suggestion.title, suggestion.date, suggestion.importance, suggestion.is_unread];
+                if (
+                  suggestion.title == null ||
+                  suggestion.importance == null ||
+                  suggestion.date == null ||
+                  suggestion.is_unread == null
+                )
+                  return null;
+                return (
+                  <MessageCard
+                    key={suggestion.id}
+                    suggestion
+                    level={suggestion.importance}
+                    name={suggestion.title}
+                    procents={0}
+                    date={formatDate(suggestion.date)}
+                    href={"/suggestions/" + suggestion.id}
+                    unread={suggestion.is_unread}
+                  />
+                );
+              })
+            : data.map((suggestion: any) => {
+                [suggestion.id, suggestion.title, suggestion.date, suggestion.importance, suggestion.is_unread];
+                if (
+                  suggestion.title == null ||
+                  suggestion.importance == null ||
+                  suggestion.date == null ||
+                  suggestion.is_unread == null
+                )
+                  return null;
+                return (
+                  <MessageCard
+                    key={suggestion.id}
+                    suggestion
+                    level={suggestion.importance}
+                    name={suggestion.title}
+                    procents={0}
+                    date={formatDate(suggestion.date)}
+                    href={"/suggestions/" + suggestion.id}
+                    unread={suggestion.is_unread}
+                  />
+                );
+              })}
+        </div>
       )}
     </>
   );

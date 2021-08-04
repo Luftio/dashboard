@@ -15,8 +15,9 @@ const Card = styled.div`
   border-bottom: ${(props) => props.theme.divider};
   align-items: center;
   cursor: pointer;
+  border-radius: ${(props) => props.theme.border_radius_primary};
 
-  &:first-child {
+  &:first-of-type {
     border-radius: ${(props) => props.theme.border_radius_primary} ${(props) => props.theme.border_radius_primary} 0 0;
   }
 
@@ -24,6 +25,10 @@ const Card = styled.div`
     border-bottom: none;
     border-radius: 0 0 ${(props) => props.theme.border_radius_primary} ${(props) => props.theme.border_radius_primary};
     margin-bottom: 20px;
+  }
+
+  &:only-child {
+    border-radius: ${(props) => props.theme.border_radius_primary};
   }
 
   &:hover {

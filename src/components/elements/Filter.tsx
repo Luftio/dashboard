@@ -8,12 +8,12 @@ import { Icon } from "ts-react-feather-icons";
 
 interface FilterProps {
   filterOptions: any;
+  onChange?: (value: any) => void;
+  filterValue?: any;
 }
 
-const Filter: React.FC<FilterProps> = ({ filterOptions }) => {
+const Filter: React.FC<FilterProps> = ({ filterOptions, onChange, filterValue }) => {
   const { t } = useTranslation();
-
-  const [filterValue, setFilterValue] = useState<any>(null);
 
   const options = filterOptions;
 
@@ -101,7 +101,7 @@ const Filter: React.FC<FilterProps> = ({ filterOptions }) => {
       components={{ DropdownIndicator, ClearIndicator }}
       placeholder={t("filter_placeholder")}
       value={filterValue}
-      onChange={(value) => setFilterValue(value)}
+      onChange={onChange}
       noOptionsMessage={() => t("filter_no_options_msg")}
     />
   );
