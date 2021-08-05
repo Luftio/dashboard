@@ -2,7 +2,7 @@ import React from "react";
 import Default from "../../components/layouts/Default";
 import GetStarted from "../../components/templates/GetStarted";
 
-const SignUpPage: React.FC = () => {
+const GetStartedPage: React.FC = () => {
   return (
     <Default>
       <GetStarted />
@@ -10,4 +10,4 @@ const SignUpPage: React.FC = () => {
   );
 };
 
-export default SignUpPage;
+export default GetStartedPage;

@@ -4,7 +4,7 @@ import "../../i18n/i18n";
 import { useTranslation } from "react-i18next";
 
 import Header from "../modules/Header";
-import SignUpForm from "../modules/SignUpForm";
+import GetStartedForm from "../modules/GetStartedForm";
 
 const SignUp: React.FC = () => {
   const { t } = useTranslation();
@@ -12,7 +12,7 @@ const SignUp: React.FC = () => {
   return (
     <>
       <Header heading={t("sign_up_heading")} subheading={t("sign_up_subheading")} />
-      <SignUpForm />
+      <GetStartedForm />
     </>
   );
 };

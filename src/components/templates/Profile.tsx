@@ -20,6 +20,7 @@ import OnboardingFormResult from "../modules/profile/OnboardingFormResults";
 import ShimmerItem from "../elements/ShimmerItem";
 
 import { useQuery } from "../../gqless";
+import EmailVerifyCard from "../modules/profile/EmailVerifyCard";
 
 const Expand = styled.form<{ profile?: boolean }>`
   display: flex;
@@ -111,6 +112,7 @@ const Settings: React.FC = () => {
                 </InputItem>
               </>
             )}
+            {/* <EmailVerifyCard />*/}
           </Expand>
         )}
         <ContentBlockItem

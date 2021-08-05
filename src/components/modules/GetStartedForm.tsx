@@ -31,7 +31,7 @@ const SignUpForm: React.FC = () => {
   const { register, handleSubmit, errors } = useForm<Formdata>();
   const onSubmit = handleSubmit(({ name, surname, email, password, check }) => {
     console.log(name, surname, email, password, check);
-    router.replace("/register/verify-email");
+    router.replace("/dashboard");
   });
 
   return (
@@ -65,26 +65,6 @@ const SignUpForm: React.FC = () => {
         {errors.surname && errors.surname.type === "required" && (
           <Error data-cy="last-name-required">{t("msg_required")}</Error>
         )}
-        <InputItem fail={errors.email && true}>
-          <label htmlFor="email">{t("email_input_label")}</label>
-          <input
-            data-cy="email"
-            id="email"
-            type="text"
-            placeholder={t("email_input_placeholder")}
-            name="email"
-            ref={register({
-              required: true,
-              pattern: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
-            })}
-          />
-        </InputItem>
-        {errors.email && errors.email.type === "required" && (
-          <Error data-cy="email-required">{t("msg_required")}</Error>
-        )}
-        {errors.email && errors.email.type === "pattern" && (
-          <Error data-cy="email-invalid">{t("msg_invalid_email")}</Error>
-        )}
         <InputItem fail={errors.password && true}>
           <label htmlFor="new-password">{t("pass_input_label")}</label>
           <input
@@ -109,33 +89,11 @@ const SignUpForm: React.FC = () => {
         {errors.password && errors.password.type === "pattern" && (
           <Error data-cy="password-invalid">{t("msg_invalid_password")}</Error>
         )}
-        <Checkbox>
-          <input
-            data-cy="checkbox"
-            id="checkbox"
-            aria-label="checkbox"
-            type="checkbox"
-            name="check"
-            ref={register({
-              required: true,
-            })}
-          />
-          <label htmlFor="checkbox">{t("agree_with")}&nbsp;</label>
-          <a href={t("terms_url")} target="_blank">
-            {t("terms")}
-          </a>
-        </Checkbox>
         {errors.check && <Error data-cy="terms-required">{t("msg_required")}</Error>}
         <Button primary type="submit" data-cy="submit">
           {t("create_account")}
         </Button>
       </form>
-      <HaveAccount>
-        <p>{t("have_account")}&nbsp;</p>
-        <Link href="/">
-          <a data-cy="sign-in">{t("sign_in")}</a>
-        </Link>
-      </HaveAccount>
     </div>
   );
 };

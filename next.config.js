@@ -32,6 +32,16 @@ module.exports = {
         destination: "/",
         permanent: true,
       },
+      {
+        source: "/register/onboarding",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/register/verify-email",
+        destination: "/",
+        permanent: true,
+      },
     ];
   },
   target: "serverless",
