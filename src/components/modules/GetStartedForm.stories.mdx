@@ -1,16 +1,14 @@
 import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
-import SignUpForm from "./SignUpForm";
+import GetStartedForm from "./GetStartedForm";
 
-<Meta title="Modules/Sign up form" component={SignUpForm} />
+<Meta title="Modules/Get started form" component={GetStartedForm} />
 
-# Sign Up form
+# Get started form
 
-This is our Sign Up form. At this stage, our onboarding process starts. After a user fills this form, they get a verify-email page, which is a sign of successfully filled form and also they are provided with most used e-mail clients so they can jump right in.
+This is our get started form. At this stage, our onboarding process starts.
 
-If they find out that they have Luftio account already, they can go to Sign In page.
-
-export const Component = () => <SignUpForm />;
+export const Component = () => <GetStartedForm />;
 
 <Canvas>
-  <Story name="Sign up form">{Component}</Story>
+  <Story name="Get started form">{Component}</Story>
 </Canvas>

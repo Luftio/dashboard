@@ -13,14 +13,14 @@ import Subheading from "../elements/Subheading";
 import InputItem from "../elements/InputItem";
 import Button from "../elements/Button";
 import BasicText from "../elements/BasicText";
+import ShimmerItem from "../elements/ShimmerItem";
 import ProfileForm from "../modules/profile/ProfileForm";
 import ContentBlockItem from "../modules/ContentBlockItem";
 import ChangePassword from "../modules/profile/ChangePasswordForm";
 import OnboardingFormResult from "../modules/profile/OnboardingFormResults";
-import ShimmerItem from "../elements/ShimmerItem";
+import EmailVerifyCard from "../modules/profile/EmailVerifyCard";
 
 import { useQuery } from "../../gqless";
-import EmailVerifyCard from "../modules/profile/EmailVerifyCard";
 
 const Expand = styled.form<{ profile?: boolean }>`
   display: flex;
