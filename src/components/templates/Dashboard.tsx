@@ -42,10 +42,10 @@ const DashboardContent: React.FC<DashboardContentProps> = ({ activeDeviceId }) =
   };
 
   const query = useQuery();
-  const devices = query.devices_data;
+  const devices = query.devices_data();
 
   let activeDevice = null;
-  if (devices.some((it: any) => it.id === activeDeviceId)) {
+  if (devices?.some((it: any) => it.id === activeDeviceId)) {
     activeDevice = devices.find((it) => it.id === activeDeviceId);
   } else if (devices.length > 0) {
     activeDevice = devices[0];

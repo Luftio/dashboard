@@ -8,6 +8,8 @@ import { useTranslation } from "react-i18next";
 import InputItem from "../../elements/InputItem";
 import Button from "../../elements/Button";
 import Success from "../../elements/Success";
+import Error from "../../elements/Error";
+import { mutate } from "../../../gqless";
 
 const Expand = styled.form`
   display: flex;
@@ -37,12 +39,21 @@ type Formdata = {
 const ChangePassword: React.FC<ChangePasswordProps> = ({ onClick }) => {
   const { t } = useTranslation<string>();
 
-  const [showSuccessMsg, setshowSuccessMsg] = useState<boolean>(false);
+  const [showSuccessMsg, setShowSuccessMsg] = useState<boolean>(false);
+  const [showErrorMsg, setShowErrorMsg] = useState<string>();
 
   const { register, handleSubmit, errors, formState, reset, watch } = useForm<Formdata>();
   const onSubmit = handleSubmit(({ password, newPassword, repeatNewPassword }) => {
-    console.log(password, newPassword, repeatNewPassword);
-    setshowSuccessMsg(true);
+    mutate((mutation) => mutation.changePassword({ currentPassword: password, newPassword }))
+      .then(() => {
+        setShowSuccessMsg(true);
+      })
+      .catch((error) => {
+        console.log(error);
+        if (error.message == 'Unexpected error value: "invalid_password"')
+          setShowErrorMsg(t("profile_expand_password_incorrect"));
+        else setShowErrorMsg(error.message);
+      });
     reset();
   });
 
@@ -93,6 +104,7 @@ const ChangePassword: React.FC<ChangePasswordProps> = ({ onClick }) => {
         />
       </InputItem>
       {showSuccessMsg && <Success>{t("profile_expand_password_success")}</Success>}
+      {showErrorMsg && <Error style={{ position: "relative", left: 125 }}>{showErrorMsg}</Error>}
       <Buttons>
         <Button
           type="submit"

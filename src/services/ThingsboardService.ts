@@ -4,6 +4,7 @@ import jwt_decode from "jwt-decode";
 import IAuthService from "./IAuthService";
 
 const THINGSBOARD_SERVER = "https://app.luftio.com/tb/";
+const APP_BACKEND_SERVER = "https://app.luftio.com/backend/";
 
 export default class ThingsboardService implements IAuthService {
   isLoggedIn() {
@@ -18,6 +19,7 @@ export default class ThingsboardService implements IAuthService {
       email: decoded.email,
       fullName: decoded.email,
       scopes: decoded.scopes,
+      userId: decoded.userId,
       customerId: decoded.customerId,
     };
   }
@@ -25,6 +27,16 @@ export default class ThingsboardService implements IAuthService {
   async loginEmail(email: string, password: string) {
     const response = await axios.post(THINGSBOARD_SERVER + "api/auth/login", {
       username: email,
+      password,
+    });
+    localStorage.setItem("token", response.data.token);
+  }
+
+  async acceptInvite(token: string, firstName: string, lastName: string, password: string) {
+    const response = await axios.post(APP_BACKEND_SERVER + "account/acceptInvite", {
+      token,
+      firstName,
+      lastName,
       password,
     });
     localStorage.setItem("token", response.data.token);

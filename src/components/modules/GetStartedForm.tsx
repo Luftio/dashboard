@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 
 import "../../i18n/i18n";
@@ -13,25 +12,38 @@ import Error from "../elements/Error";
 import Checkbox from "../elements/Checkbox";
 
 import { Icon } from "ts-react-feather-icons";
+import ThingsboardService from "../../services/ThingsboardService";
+import { useRouter } from "next/router";
 
 type Formdata = {
   name: string;
   surname: string;
-  email: string;
   password: string;
   check: boolean;
 };
 
-const SignUpForm: React.FC = () => {
+export interface SignUpFormProps {
+  id: string;
+}
+
+const SignUpForm: React.FC<SignUpFormProps> = ({ id }) => {
   const { t } = useTranslation<string>();
   const router = useRouter();
 
   const [visibility, setVisibility] = useState<boolean>(false);
+  const [logInError, setLogInError] = useState<boolean>(false);
 
   const { register, handleSubmit, errors } = useForm<Formdata>();
-  const onSubmit = handleSubmit(({ name, surname, email, password, check }) => {
-    console.log(name, surname, email, password, check);
-    router.replace("/dashboard");
+
+  const onSubmit = handleSubmit(({ name, surname, password, check }) => {
+    ThingsboardService.getInstance()
+      .acceptInvite(id, name, surname, password)
+      .then(() => {
+        router.replace("/dashboard/all");
+      })
+      .catch(() => {
+        setLogInError(true);
+      });
   });
 
   return (
@@ -90,6 +102,7 @@ const SignUpForm: React.FC = () => {
           <Error data-cy="password-invalid">{t("msg_invalid_password")}</Error>
         )}
         {errors.check && <Error data-cy="terms-required">{t("msg_required")}</Error>}
+        {logInError && <Error data-cy="invalid-user">{t("msg_login_error")}</Error>}
         <Button primary type="submit" data-cy="submit">
           {t("create_account")}
         </Button>

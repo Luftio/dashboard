@@ -35,7 +35,7 @@ const Tooltip = styled.p<{ manageUsers?: boolean }>`
       padding: 10px 20px;
       text-align: left;
       left: -99px;
-      bottom: -150px;
+      bottom: -180px;
 
       &::before {
         content: "";

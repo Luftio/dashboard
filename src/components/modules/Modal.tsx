@@ -2,7 +2,6 @@ import React, { useRef, MouseEvent } from "react";
 import Link from "next/link";
 import { useSpring, animated } from "react-spring";
 import styled from "styled-components";
-import { useForm } from "react-hook-form";
 
 import "../../i18n/i18n";
 import { useTranslation } from "react-i18next";
@@ -10,11 +9,8 @@ import { useTranslation } from "react-i18next";
 import Subheading from "../elements/Subheading";
 import BasicText from "../elements/BasicText";
 import Button from "../elements/Button";
-import InputItem from "../elements/InputItem";
-import Error from "../elements/Error";
 
 import { Icon } from "ts-react-feather-icons";
-import SelectItem from "../elements/SelectItem";
 
 const Background = styled.div`
   width: 100%;
@@ -64,24 +60,15 @@ const CloseIcon = styled.p`
   cursor: pointer;
 `;
 
-const Form = styled.form`
-  margin-top: 20px;
-`;
-
-type Formdata = {
-  email: string;
-  role: string;
-};
-
 interface ModalProps {
   showModal: boolean;
   setShowModal: any;
   subheading: string;
-  text: string;
-  href: string;
+  text?: string;
+  href?: string;
+  buttonText?: string;
   onClick?: () => void;
-  buttonText: string;
-  addModal?: boolean;
+  renderModal?: (handleClose: () => void) => React.ReactNode;
 }
 
 const Modal: React.FC<ModalProps> = ({
@@ -90,18 +77,10 @@ const Modal: React.FC<ModalProps> = ({
   subheading,
   text,
   buttonText,
-  addModal,
+  renderModal,
   href,
   onClick,
 }) => {
-  const { t } = useTranslation<string>();
-
-  const { register, handleSubmit, errors } = useForm<Formdata>({ mode: "onSubmit" });
-  const onSubmit = handleSubmit(({ email, role }) => {
-    console.log(email, role);
-    setShowModal(false);
-  });
-
   const modalRef = useRef<any>();
 
   const animation = useSpring<any>({
@@ -132,41 +111,12 @@ const Modal: React.FC<ModalProps> = ({
                       <Icon name="x" size="22" color="#838C97" />
                     </CloseIcon>
                   </TopRow>
-                  {addModal ? (
-                    <>
-                      <BasicText>{text}</BasicText>
-                      <Form onSubmit={onSubmit}>
-                        <InputItem modal>
-                          <label htmlFor="email">{t("email_input_label")}</label>
-                          <input
-                            id="email"
-                            type="text"
-                            placeholder={t("email_input_placeholder")}
-                            name="email"
-                            ref={register({
-                              required: true,
-                              pattern: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
-                            })}
-                          />
-                        </InputItem>
-                        {errors.email && errors.email.type === "required" && <Error>{t("msg_required")}</Error>}
-                        {errors.email && errors.email.type === "pattern" && <Error>{t("msg_invalid_email")}</Error>}
-                        <SelectItem modal>
-                          <label htmlFor="role">Role</label>
-                          <select name="role" ref={register}>
-                            <option value="user">{t("manage_users_user_heading")}</option>
-                            <option value="manager">{t("manage_users_manager_heading")}</option>
-                          </select>
-                        </SelectItem>
-                        <Button modal type="submit">
-                          {buttonText}
-                        </Button>
-                      </Form>
-                    </>
+                  {renderModal ? (
+                    renderModal(() => setShowModal(false))
                   ) : (
                     <>
                       <BasicText>{text}</BasicText>
-                      <Link href={href}>
+                      <Link href={href || ""}>
                         <Button modal onClick={onClick}>
                           {buttonText}
                         </Button>
