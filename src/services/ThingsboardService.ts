@@ -42,6 +42,21 @@ export default class ThingsboardService implements IAuthService {
     localStorage.setItem("token", response.data.token);
   }
 
+  async forgetPasswordRequest(email: string) {
+    const response = await axios.post(THINGSBOARD_SERVER + "api/noauth/resetPasswordByEmail", {
+      email,
+    });
+    return response;
+  }
+
+  async forgetPasswordReset(resetToken: string, password: string) {
+    const response = await axios.post(THINGSBOARD_SERVER + "api/noauth/resetPassword", {
+      resetToken,
+      password,
+    });
+    localStorage.setItem("token", response.data.token);
+  }
+
   async logout() {
     localStorage.removeItem("token");
   }

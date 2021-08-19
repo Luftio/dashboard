@@ -8,6 +8,7 @@ import { useTranslation } from "react-i18next";
 import InputItem from "../elements/InputItem";
 import Button from "../elements/Button";
 import Error from "../elements/Error";
+import ThingsboardService from "../../services/ThingsboardService";
 
 type Formdata = {
   email: string;
@@ -19,8 +20,14 @@ const SendIntructions: React.FC = () => {
 
   const { register, handleSubmit, errors } = useForm<Formdata>();
   const onSubmit = handleSubmit(({ email }) => {
-    console.log(email);
-    router.replace("/password/send-instructions");
+    ThingsboardService.getInstance()
+      .forgetPasswordRequest(email)
+      .then(() => {
+        router.replace("/password/send-instructions");
+      })
+      .catch((error) => {
+        alert(t("msg_invalid_email"));
+      });
   });
 
   return (

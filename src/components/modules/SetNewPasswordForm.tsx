@@ -10,6 +10,7 @@ import Button from "../elements/Button";
 import Error from "../elements/Error";
 
 import { Icon } from "ts-react-feather-icons";
+import ThingsboardService from "../../services/ThingsboardService";
 
 type Formdata = {
   password: string;
@@ -19,13 +20,25 @@ type Formdata = {
 const SetNewPassword: React.FC = () => {
   const { t } = useTranslation<string>();
   const router = useRouter();
+  const id: string = typeof router.query.id === "string" ? router.query.id : "";
   const [visibility, setVisibility] = useState<boolean>(false);
   const [visibilityRepeat, setVisibilityRepeat] = useState<boolean>(false);
 
   const { register, handleSubmit, errors, watch } = useForm<Formdata>();
   const onSubmit = handleSubmit(({ password, repeat }) => {
-    console.log(password, repeat);
-    router.replace("/");
+    console.log(id, password, repeat);
+    ThingsboardService.getInstance()
+      .forgetPasswordReset(id, password)
+      .then(() => {
+        router.replace("/dashboard/all");
+      })
+      .catch((error) => {
+        console.log(error);
+        // TODO proper messages
+        // Invalid token
+        // Bad new password
+        alert(error.message);
+      });
   });
 
   const password = useRef({});
