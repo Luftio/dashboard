@@ -6,19 +6,15 @@ import { useTranslation } from "react-i18next";
 import Header from "../modules/Header";
 import GetStartedForm from "../modules/GetStartedForm";
 
-export interface SignUpProps {
-  id: string;
-}
-
-const SignUp: React.FC<SignUpProps> = ({ id }) => {
+const GetStarted: React.FC = () => {
   const { t } = useTranslation();
 
   return (
     <>
       <Header heading={t("sign_up_heading")} subheading={t("sign_up_subheading")} />
-      <GetStartedForm id={id} />
+      <GetStartedForm />
     </>
   );
 };
 
-export default SignUp;
+export default GetStarted;

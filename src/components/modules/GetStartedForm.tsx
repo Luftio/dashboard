@@ -22,13 +22,10 @@ type Formdata = {
   check: boolean;
 };
 
-export interface SignUpFormProps {
-  id: string;
-}
-
-const SignUpForm: React.FC<SignUpFormProps> = ({ id }) => {
+const SignUpForm: React.FC = () => {
   const { t } = useTranslation<string>();
   const router = useRouter();
+  const id: string = typeof router.query.id === "string" ? router.query.id : "";
 
   const [visibility, setVisibility] = useState<boolean>(false);
   const [logInError, setLogInError] = useState<boolean>(false);

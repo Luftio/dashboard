@@ -86,12 +86,14 @@ const ManageUsers: React.FC = () => {
     setDeleteModalTarget(userId);
   };
   const handleDelete = () => {
+    if (deleteModalTarget === undefined) return;
     mutate((mutation) => mutation.deleteUser({ userId: deleteModalTarget })).then(() => {
       handleRefetch();
     });
     setShowDeleteModal(false);
   };
   const handleChangeRole = (userId?: string) => (role: string) => {
+    if (userId === undefined) return;
     mutate((mutation) => mutation.changeRole({ userId: userId, role })).then(() => {
       handleRefetch();
     });
