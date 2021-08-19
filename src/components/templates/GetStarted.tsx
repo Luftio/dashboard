@@ -4,7 +4,7 @@ import "../../i18n/i18n";
 import { useTranslation } from "react-i18next";
 
 import Header from "../modules/Header";
-import GetStartedForm from "../modules/GetStartedForm";
+import GetStartedForm from "../modules/forms/GetStartedForm";
 
 const GetStarted: React.FC = () => {
   const { t } = useTranslation();

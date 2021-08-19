@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useMediaQuery } from "react-responsive";
 import Router from "next/router";
+import { useRouter } from "next/router";
 
 import MobileMenu from "../modules/MobileMenu";
 import Sidebar from "../modules/Sidebar";
 import ThingsboardService from "../../services/ThingsboardService";
+
+import { useQuery } from "../../gqless";
 
 const Layout = styled.div`
   display: flex;
@@ -44,6 +47,11 @@ interface DashboardProps {
 const Dashboard: React.FC<DashboardProps> = ({ children }) => {
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 850px)" });
 
+  const router = useRouter();
+
+  const query = useQuery();
+  const user = query.account;
+
   if (typeof window === "undefined") {
     return null;
   }
@@ -52,6 +60,12 @@ const Dashboard: React.FC<DashboardProps> = ({ children }) => {
     Router.push("/");
     return null;
   }
+
+  useEffect(() => {
+    if (user.role !== "manager") {
+      router.replace("/invite/download-app");
+    }
+  }, []);
 
   return (
     <Layout>

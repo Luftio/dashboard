@@ -3,13 +3,13 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 
-import "../../i18n/i18n";
+import "../../../i18n/i18n";
 import { useTranslation } from "react-i18next";
 
-import BasicText from "../elements/BasicText";
-import Button from "../elements/Button";
-import HaveAccount from "../elements/HaveAccount";
-import SelectBlock from "../elements/SelectBlock";
+import BasicText from "../../elements/BasicText";
+import Button from "../../elements/Button";
+import HaveAccount from "../../elements/HaveAccount";
+import SelectBlock from "../../elements/SelectBlock";
 
 const Blocks = styled.div`
   display: flex;

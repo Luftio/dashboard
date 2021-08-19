@@ -4,7 +4,7 @@ import "../../i18n/i18n";
 import { useTranslation } from "react-i18next";
 
 import Header from "../modules/Header";
-import RequestChangeForm from "../../components/modules/RequestChangeForm";
+import RequestChangeForm from "../modules/forms/RequestChangeForm";
 
 const SignIn: React.FC = () => {
   const { t } = useTranslation();

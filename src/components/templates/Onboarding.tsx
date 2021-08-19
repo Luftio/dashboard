@@ -4,7 +4,7 @@ import "../../i18n/i18n";
 import { useTranslation } from "react-i18next";
 
 import Header from "../modules/Header";
-import OnboardingForm from "../modules/OnboardingForm";
+import OnboardingForm from "../modules/forms/OnboardingForm";
 
 const Onboarding: React.FC = () => {
   const { t } = useTranslation();

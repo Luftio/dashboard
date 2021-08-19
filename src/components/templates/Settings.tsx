@@ -13,7 +13,7 @@ import BasicText from "../elements/BasicText";
 import ContentBlockItem from "../modules/ContentBlockItem";
 import Modal from "../modules/Modal";
 import DeviceCard from "../modules/DeviceCard";
-import DevicesForm from "../modules/DevicesForm";
+import DevicesForm from "../modules/forms/DevicesForm";
 import Loader from "../elements/Loader";
 import Integration from "../modules/Integration";
 

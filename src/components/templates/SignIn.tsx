@@ -4,7 +4,7 @@ import "../../i18n/i18n";
 import { useTranslation } from "react-i18next";
 
 import Header from "../modules/Header";
-import SignInForm from "../modules/SignInForm";
+import SignInForm from "../modules/forms/SignInForm";
 
 const SignIn: React.FC = () => {
   const { t } = useTranslation();

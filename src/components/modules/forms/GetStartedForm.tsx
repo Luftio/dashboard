@@ -1,19 +1,22 @@
 import React, { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 
-import "../../i18n/i18n";
+import "../../../i18n/i18n";
 import { useTranslation } from "react-i18next";
 
-import InputItem from "../elements/InputItem";
-import Button from "../elements/Button";
-import HaveAccount from "../elements/HaveAccount";
-import Error from "../elements/Error";
-import Checkbox from "../elements/Checkbox";
+import InputItem from "../../elements/InputItem";
+import Button from "../../elements/Button";
+import HaveAccount from "../../elements/HaveAccount";
+import Error from "../../elements/Error";
+import Checkbox from "../../elements/Checkbox";
+import Modal from "../Modal";
 
 import { Icon } from "ts-react-feather-icons";
-import ThingsboardService from "../../services/ThingsboardService";
-import { useRouter } from "next/router";
+import ThingsboardService from "../../../services/ThingsboardService";
+
+import { resolved, query } from "../../../gqless";
 
 type Formdata = {
   name: string;
@@ -36,7 +39,13 @@ const SignUpForm: React.FC = () => {
     ThingsboardService.getInstance()
       .acceptInvite(id, name, surname, password)
       .then(() => {
-        router.replace("/dashboard/all");
+        resolved(() => query.account).then((user) => {
+          if (user.role === "manager") {
+            router.replace("/dashboard/all");
+          } else {
+            router.replace("/invite/download-app");
+          }
+        });
       })
       .catch(() => {
         setLogInError(true);

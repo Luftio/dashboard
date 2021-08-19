@@ -2,13 +2,13 @@ import React, { useMemo } from "react";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
 
-import "../../i18n/i18n";
+import "../../../i18n/i18n";
 import { useTranslation } from "react-i18next";
 
-import Button from "../elements/Button";
-import InputItem from "../elements/InputItem";
+import Button from "../../elements/Button";
+import InputItem from "../../elements/InputItem";
 
-import { useQuery, useMutation } from "../../gqless";
+import { useQuery, useMutation } from "../../../gqless";
 
 const Expand = styled.form`
   display: flex;

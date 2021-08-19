@@ -2,15 +2,16 @@ import React, { useState, useRef } from "react";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 
-import "../../i18n/i18n";
+import "../../../i18n/i18n";
 import { useTranslation } from "react-i18next";
 
-import InputItem from "../elements/InputItem";
-import Button from "../elements/Button";
-import Error from "../elements/Error";
+import InputItem from "../../elements/InputItem";
+import Button from "../../elements/Button";
+import Error from "../../elements/Error";
 
 import { Icon } from "ts-react-feather-icons";
-import ThingsboardService from "../../services/ThingsboardService";
+import ThingsboardService from "../../../services/ThingsboardService";
+import Alert from "../../elements/Alert";
 
 type Formdata = {
   password: string;
@@ -21,8 +22,10 @@ const SetNewPassword: React.FC = () => {
   const { t } = useTranslation<string>();
   const router = useRouter();
   const id: string = typeof router.query.id === "string" ? router.query.id : "";
+
   const [visibility, setVisibility] = useState<boolean>(false);
   const [visibilityRepeat, setVisibilityRepeat] = useState<boolean>(false);
+  const [invalidTokenError, setInvalidTokenError] = useState<boolean>(false);
 
   const { register, handleSubmit, errors, watch } = useForm<Formdata>();
   const onSubmit = handleSubmit(({ password, repeat }) => {
@@ -33,11 +36,9 @@ const SetNewPassword: React.FC = () => {
         router.replace("/dashboard/all");
       })
       .catch((error) => {
-        console.log(error);
-        // TODO proper messages
-        // Invalid token
-        // Bad new password
-        alert(error.message);
+        if (error.response.status === 400) {
+          setInvalidTokenError(true);
+        }
       });
   });
 
@@ -46,6 +47,7 @@ const SetNewPassword: React.FC = () => {
 
   return (
     <div>
+      {invalidTokenError && <Alert alertText={t("msg_invalid_token")} />}
       <form onSubmit={onSubmit}>
         <InputItem fail={errors.password && true}>
           <label htmlFor="new-password">{t("new_pass_input_label")}</label>

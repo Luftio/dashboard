@@ -4,7 +4,7 @@ import "../../i18n/i18n";
 import { useTranslation } from "react-i18next";
 
 import Header from "../modules/Header";
-import SetNewPassword from "../modules/SetNewPasswordForm";
+import SetNewPassword from "../modules/forms/SetNewPasswordForm";
 
 const SetNew: React.FC = () => {
   const { t } = useTranslation();
