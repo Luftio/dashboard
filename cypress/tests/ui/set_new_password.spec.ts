@@ -1,6 +1,6 @@
 describe("Set New Password", () => {
   beforeEach(() => {
-    cy.visit("password/set-new");
+    cy.visit("password/reset/token");
   });
 
   it("User can set new password", function () {
