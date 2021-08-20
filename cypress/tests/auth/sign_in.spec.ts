@@ -10,11 +10,19 @@ describe("Sign in", () => {
     cy.visualSnapshot("Redirect to Sign In");
   });
 
-  it("User can sign in", () => {
-    cy.signIn("adam@luftio.cz", "LuftioVyhrajeSaP2021");
+  it("User with role manager can sign in", () => {
+    cy.signIn("schinzel.adam@gmail.com", "iGj5Rax1vcU8");
     cy.wait(5000);
 
     cy.location("pathname").should("eq", "/dashboard/all");
+    cy.visualSnapshot("Page Is Loading");
+  });
+
+  it("User with role manager can sign in", () => {
+    cy.signIn("adam@luftio.cz", "j4X31POkpJ9r");
+    cy.wait(5000);
+
+    cy.location("pathname").should("eq", "/invite/download-app");
     cy.visualSnapshot("Page Is Loading");
   });
 

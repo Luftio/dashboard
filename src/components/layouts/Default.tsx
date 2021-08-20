@@ -6,6 +6,8 @@ import styled from "styled-components";
 import "../../i18n/i18n";
 import { useTranslation } from "react-i18next";
 
+import { useQuery } from "../../gqless";
+
 const Layout = styled.div`
   display: flex;
   height: 100vh;
@@ -77,6 +79,9 @@ interface DefaultProps {
 
 const Default: React.FC<DefaultProps> = ({ children }) => {
   const { t } = useTranslation();
+
+  const query = useQuery();
+  const user = query.account;
 
   return (
     <>

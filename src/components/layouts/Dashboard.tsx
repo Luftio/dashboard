@@ -62,10 +62,10 @@ const Dashboard: React.FC<DashboardProps> = ({ children }) => {
   }
 
   useEffect(() => {
-    if (user.role !== "manager") {
-      router.replace("/invite/download-app");
+    if (user.role === "user") {
+      Router.push("/invite/download-app");
     }
-  }, []);
+  });
 
   return (
     <Layout>

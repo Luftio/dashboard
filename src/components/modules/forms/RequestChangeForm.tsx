@@ -27,7 +27,7 @@ const SendIntructions: React.FC = () => {
       .then(() => {
         router.replace("/password/send-instructions");
       })
-      .catch((error) => {
+      .catch(() => {
         setEmailNotExists(true);
       });
   });

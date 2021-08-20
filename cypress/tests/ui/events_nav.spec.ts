@@ -1,6 +1,6 @@
 describe("Events navigation", () => {
   beforeEach(() => {
-    cy.signIn("adam@luftio.cz", "LuftioVyhrajeSaP2021");
+    cy.signIn("schinzel.adam@gmail.com", "iGj5Rax1vcU8");
     cy.wait(5000);
   });
 
