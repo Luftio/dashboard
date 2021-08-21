@@ -18,7 +18,7 @@ describe("Sign in", () => {
     cy.visualSnapshot("Page Is Loading");
   });
 
-  it("User with role manager can sign in", () => {
+  it("User with role user can sign in", () => {
     cy.signIn("adam@luftio.cz", "j4X31POkpJ9r");
     cy.wait(5000);
 
