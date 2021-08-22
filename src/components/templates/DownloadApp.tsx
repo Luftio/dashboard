@@ -38,7 +38,7 @@ const DownloadApp: React.FC = () => {
 
   const userAgent = navigator.userAgent || navigator.vendor;
 
-  window.location.href = "luftio://loginWithToken/" + ThingsboardService.getInstance().getToken();
+  window.location.href = "luftioapp://loginWithToken/" + ThingsboardService.getInstance().getToken();
   setTimeout(() => {
     if (document.visibilityState != "visible") return;
     if (/android/i.test(userAgent)) {
