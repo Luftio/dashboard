@@ -142,12 +142,12 @@ const ManageUsers: React.FC = () => {
           query.accounts?.map((user) => (
             <UserRow
               key={user.id}
-              name={(user.first_name || "") + " " + (user.last_name || "")}
+              name={(user.first_name || "") + " " + (user.last_name || "---")}
               email={user.email || ""}
               onDeleteClick={openDeleteModal(user.id)}
               role={user.role || ""}
               onChangeRole={handleChangeRole(user.id)}
-              isPending={user.pending_invitation || false}
+              isPending={user.first_name === "" ? true : false}
               locked={user.id == myUserId}
             />
           ))
