@@ -39,8 +39,9 @@ const SignUpForm: React.FC = () => {
     ThingsboardService.getInstance()
       .acceptInvite(id, name, surname, password)
       .then(() => {
-        resolved(() => query.account).then((user) => {
-          if (user.role === "manager") {
+        resolved(() => query.account.role).then((role) => {
+          [role];
+          if (role === "manager") {
             router.replace("/dashboard/all");
           } else {
             router.replace("/invite/download-app");

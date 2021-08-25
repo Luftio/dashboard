@@ -61,6 +61,10 @@ export default class ThingsboardService implements IAuthService {
     localStorage.removeItem("token");
   }
 
+  getToken() {
+    return localStorage.getItem("token");
+  }
+
   getAuthHeader() {
     const token = localStorage.getItem("token");
     return { "X-Authorization": "Bearer " + token };

@@ -7,6 +7,7 @@ import "../../i18n/i18n";
 import { useTranslation } from "react-i18next";
 
 import Header from "../modules/Header";
+import ThingsboardService from "../../services/ThingsboardService";
 
 const Badges = styled.div`
   display: flex;
@@ -37,13 +38,17 @@ const DownloadApp: React.FC = () => {
 
   const userAgent = navigator.userAgent || navigator.vendor;
 
-  if (/android/i.test(userAgent)) {
-    window.location.href = "https://play.google.com/store/apps/details?id=com.luftio.app";
-  }
+  window.location.href = "luftioapp://loginWithToken/" + ThingsboardService.getInstance().getToken();
+  setTimeout(() => {
+    if (document.visibilityState != "visible") return;
+    if (/android/i.test(userAgent)) {
+      window.location.href = "https://play.google.com/store/apps/details?id=com.luftio.app";
+    }
 
-  if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-    window.location.href = "https://apps.apple.com/us/app/luftio/id1551174582";
-  }
+    if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+      window.location.href = "https://apps.apple.com/us/app/luftio/id1551174582";
+    }
+  }, 1000);
 
   return (
     <>
