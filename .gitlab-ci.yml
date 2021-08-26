@@ -65,13 +65,13 @@ cypress-e2e-chrome:
 
 # Installs the dependencies
 
-# Chromatic
-chromatic_publish:
-  before_script:
-    - yarn install --frozen-lockfile --prefer-offline --cache-folder .yarn
-  stage: test
-  script:
-    - yarn chromatic --project-token=abde2b2ec12c --exit-once-uploaded
+# # Chromatic
+# chromatic_publish:
+#   before_script:
+#     - yarn install --frozen-lockfile --prefer-offline --cache-folder .yarn
+#   stage: test
+#   script:
+#     - yarn chromatic --project-token=abde2b2ec12c --exit-once-uploaded
 
 # Deploy via Dokku
 deploy:
