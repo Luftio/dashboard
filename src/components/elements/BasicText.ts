@@ -6,6 +6,7 @@ const BasicText = styled.p<{
   procents?: boolean;
   color?: string;
   emptystate?: boolean;
+  emptycard?: boolean;
   events?: boolean;
   bottomRowProcents?: boolean;
   bottomRowProcentsName?: boolean;
@@ -87,6 +88,18 @@ const BasicText = styled.p<{
       position: relative;
       bottom: 30px;
     `}
+
+    ${(props) =>
+    props.emptycard &&
+    css`
+      font-size: ${(props) => props.theme.font_size_secondary};
+      font-size: ${(props) => props.theme.font_weight_secondary};
+      text-align: center;
+      color: ${(props) => props.theme.color_primary};
+      position: relative;
+      bottom: 30px;
+    `}
+
 
     ${(props) =>
     props.events &&

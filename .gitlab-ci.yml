@@ -66,10 +66,8 @@ cypress-e2e-chrome:
 # Chromatic
 chromatic_publish:
   stage: test
-  before_script:
-    - yarn install --frozen-lockfile --prefer-offline --cache-folder .yarn
   script:
-    - yarn chromatic --project-token=abde2b2ec12c
+    - yarn chromatic --project-token=abde2b2ec12c --exit-once-uploaded
 
 # Deploy via Dokku
 deploy:

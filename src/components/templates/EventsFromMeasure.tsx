@@ -16,7 +16,6 @@ import Filter from "../elements/Filter";
 import { useQuery } from "../../gqless";
 
 import useEventsFromMeasureFilterStore from "../../stores/eventsFromMeasureFilterStore";
-import { classNames } from "react-select/src/utils";
 
 const LoadingWrapper = styled.div`
   display: flex;
@@ -105,7 +104,7 @@ const EventsFromMeasure: React.FC = () => {
         <LoadingWrapper>
           <Loader />
         </LoadingWrapper>
-      ) : eventsFromMeasure == null || eventsFromMeasure.length == 0 ? (
+      ) : eventsFromMeasure == null || eventsFromMeasure.length === 0 ? (
         <EmptyState message={t("events_page_measure_empty_state")} />
       ) : (
         <div>

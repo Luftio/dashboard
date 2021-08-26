@@ -1,0 +1,26 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import EventsCard from "./EventsCard";
+
+<Meta title="Modules/Bottom row card" component={EventsCard} />
+
+# Events Card
+
+Events card has chart and last 3 notification from page events.
+
+export const Component = (args) => <EventsCard {...args} />;
+
+<Canvas>
+  <Story
+    name="Events"
+    args={{
+      subheading: "Events",
+      message1: "CO2 is really high",
+      date1: "13/2/2021",
+      message2: "Increased humidity",
+      date2: "12/2/2021",
+      message3: "Low pressure",
+      date3: "12/2/2021",
+    }}>
+    {Component.bind({})}
+  </Story>
+</Canvas>

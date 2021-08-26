@@ -10,7 +10,8 @@ import Loader from "../elements/Loader";
 import DashboardNav from "../modules/dashboard/DashboardNav";
 import DashboardCard from "../modules/dashboard/DashboardCard";
 import ModalDashboard from "../modules/dashboard/ModalDashboard";
-import BottomRowCard from "../modules/dashboard/BottomRowCard";
+import EventsCard from "../modules/dashboard/EventsCard";
+import FeedbackCard from "../modules/dashboard/FeedbackCard";
 
 import { useQuery, SchemaObjectTypes } from "../../gqless";
 
@@ -69,14 +70,13 @@ const DashboardContent: React.FC<DashboardContentProps> = ({ activeDeviceId }) =
               <DashboardCard data={data} onClick={() => openModal(data)} />
             ))}
           </Cards>
+          <Cards>
+            <EventsCard subheading={t("dashboard_events_card_subheading")} />
+            <FeedbackCard subheading={t("dashboard_feedback_card_subheading")} />
+          </Cards>
         </>
       )}
-      {/*activeDevice?.data != null && (
-        <Cards>
-          <BottomRowCard subheading={t("dashboard_events_card_subheading")} />
-          <BottomRowCard feedback subheading={t("dashboard_feedback_card_subheading")} />
-        </Cards>
-      )*/}
+
       <ModalDashboard data={showModalData} handleClose={() => setShowModalData(null)} />
     </>
   );

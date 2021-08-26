@@ -1,0 +1,20 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import EmptyCard from "./EmptyCard";
+
+<Meta title="Modules/Empty card" component={EmptyCard} />
+
+# Empty card
+
+Simple empty card components which is used when user has empty bottom card on dashboard.
+
+export const Component = (args) => <EmptyCard {...args} />;
+
+<Canvas>
+  <Story
+    name="Empty card"
+    args={{
+      message: "Waiting for first feedback",
+    }}>
+    {Component.bind({})}
+  </Story>
+</Canvas>

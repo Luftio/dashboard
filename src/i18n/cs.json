@@ -140,6 +140,8 @@
   "feedback_page_heading": "Zpětná vazba",
   "feedback_score_text": "celkové hodnocení:",
   "feedback_page_empty_state": "Zatím jste nedostali žádný feedback",
+  "dashboard_card_events_empty_state": "Zatím jste nedostali žádný feedback",
+  "dashboard_card_feedback_empty_state": "Zatím nemáte žádnou událost",
   "suggestions_page_heading": "Doporučení",
   "suggestion_score_text": "důležitost:",
   "suggestions_page_empty_state": "Zatím jste nedostali žádné doporučení",

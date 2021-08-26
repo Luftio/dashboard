@@ -140,6 +140,8 @@
   "feedback_page_heading": "Feedback",
   "feedback_score_text": "total score:",
   "feedback_page_empty_state": "You have not recieved any feedback yet",
+  "dashboard_card_events_empty_state": "You have not recieved any event yet",
+  "dashboard_card_feedback_empty_state": "You have not recieved any event yet",
   "suggestions_page_heading": "Suggestions",
   "suggestion_score_text": "importance:",
   "suggestions_page_empty_state": "You have not recieved any suggestion yet",
