@@ -63,6 +63,10 @@ cypress-e2e-chrome:
       - cypress/screenshots
       - cypress/videos
 
+# Installs the dependencies
+before_script:
+  - yarn install --frozen-lockfile --prefer-offline --cache-folder .yarn
+
 # Chromatic
 chromatic_publish:
   stage: test
