@@ -10,4 +10,7 @@ module.exports = {
   typescript: {
     reactDocgen: "none",
   },
+  features: {
+    postcss: false,
+  },
 };
