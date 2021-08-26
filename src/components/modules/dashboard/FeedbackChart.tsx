@@ -16,6 +16,7 @@ const HapinessChart: React.FC = () => {
   let averageScore = 0;
 
   for (let i = 0; i < eventsFromEmployee.length; i++) {
+    //@ts-ignore
     score = score + eventsFromEmployee[i].threat;
   }
 

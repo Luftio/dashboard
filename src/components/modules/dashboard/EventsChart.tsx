@@ -12,8 +12,11 @@ const EventsChart: React.FC = () => {
   const query = useQuery();
   const eventsFromMeasure = query.events_from_measure;
 
+  //@ts-ignore
   const badCount = eventsFromMeasure.filter((event) => event.threat > 75).length;
+  //@ts-ignore
   const mediumCount = eventsFromMeasure.filter((event) => 75 > event.threat && 40 < event.threat).length;
+  //@ts-ignore
   const goodCount = eventsFromMeasure.filter((event) => 40 > event.threat).length;
 
   const colors = [];
