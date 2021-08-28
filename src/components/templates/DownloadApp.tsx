@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Image from "next/image";
-import Router from "next/router";
+import Head from "next/head";
 
 import "../../i18n/i18n";
 import { useTranslation } from "react-i18next";
@@ -39,6 +39,7 @@ const DownloadApp: React.FC = () => {
   const userAgent = navigator.userAgent || navigator.vendor;
 
   window.location.href = "luftioapp://loginWithToken/" + ThingsboardService.getInstance().getToken();
+
   setTimeout(() => {
     if (document.visibilityState != "visible") return;
     if (/android/i.test(userAgent)) {
@@ -52,6 +53,10 @@ const DownloadApp: React.FC = () => {
 
   return (
     <>
+      <Head>
+        <title>{t("title_download_app")}</title>
+        <meta name="apple-itunes-app" content="app-id=1551174582" />
+      </Head>
       <Header heading={t("download_heading")} subheading={t("download_subheading")} />
       <Badges>
         <a href="https://apps.apple.com/us/app/luftio/id1551174582">
