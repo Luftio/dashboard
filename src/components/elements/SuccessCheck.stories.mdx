@@ -1,0 +1,14 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import SuccessCheck from "./SuccessCheck";
+
+<Meta title="Elements/Success check" component={SuccessCheck} />
+
+# Success check
+
+UX element for confirmation of some eevents in the dashboard.
+
+export const Component = () => <SuccessCheck />;
+
+<Canvas>
+  <Story name="Success Check">{Component.bind({})}</Story>
+</Canvas>

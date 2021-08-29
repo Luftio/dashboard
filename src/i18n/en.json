@@ -195,6 +195,7 @@
   "manage_users_delete_text": "To confirm this action, press the delete button. The user deletes all his data. But you can invite him back to the organization at any time.",
   "manage_users_modal_add_heading": "Add a new user",
   "manage_users_modal_add_text": "Add a new member to your organization via email and assign them the appropriate role. Then the user must accept the invitation sent by e-mail.",
+  "manage_user_success": "Invitation was succesfully sent",
   "date_at": " at ",
   "filter_placeholder": "Sort by",
   "filter_no_options_msg": "Not found 🧐",

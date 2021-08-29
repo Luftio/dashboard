@@ -24,6 +24,7 @@ const BasicText = styled.p<{
   tag?: boolean;
   integrationTitle?: boolean;
   welcomeModalHeading?: boolean;
+  successCheck?: boolean;
 }>`
   font-size: ${(props) => props.theme.font_size_secondary};
 
@@ -82,7 +83,6 @@ const BasicText = styled.p<{
     props.emptystate &&
     css`
       font-size: ${(props) => props.theme.font_size_sidebar_heading};
-      font-size: ${(props) => props.theme.font_weight_secondary};
       text-align: center;
       color: ${(props) => props.theme.color_primary};
       position: relative;
@@ -93,7 +93,6 @@ const BasicText = styled.p<{
     props.emptycard &&
     css`
       font-size: ${(props) => props.theme.font_size_secondary};
-      font-size: ${(props) => props.theme.font_weight_secondary};
       text-align: center;
       color: ${(props) => props.theme.color_primary};
       position: relative;
@@ -220,6 +219,14 @@ const BasicText = styled.p<{
       font-weight: ${(props) => props.theme.font_weight_primary};
       font-size: ${(props) => props.theme.font_size_primary};
       margin-bottom: 25px;
+    `}
+
+    ${(props) =>
+    props.successCheck &&
+    css`
+      font-weight: ${(props) => props.theme.font_weight_primary};
+      font-size: ${(props) => props.theme.font_size_primary};
+      text-align: center;
     `}
 `;
 
