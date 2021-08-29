@@ -55,7 +55,7 @@ const FeedbackCard: React.FC<FeedbackCardProps> = ({ subheading }) => {
   const { t } = useTranslation();
 
   const query = useQuery();
-  const eventsFromEmployee = query.events_from_employee;
+  const feedback = query.feedbacks;
 
   const formatDate = (date: any) => {
     const dateJs = new Date(date);
@@ -65,7 +65,7 @@ const FeedbackCard: React.FC<FeedbackCardProps> = ({ subheading }) => {
   return (
     <Card>
       <BasicText name>{subheading}</BasicText>
-      {eventsFromEmployee === null || eventsFromEmployee.length === 0 ? (
+      {feedback === null || feedback.length === 0 ? (
         <EmptyCard message={t("dashboard_card_feedback_empty_state")} />
       ) : (
         <>
@@ -73,11 +73,11 @@ const FeedbackCard: React.FC<FeedbackCardProps> = ({ subheading }) => {
             <HapinessChart />
           </ChartDiv>
           <BasicText bottomRowProcentsName>{t("dashboard_bottomcard_last")}</BasicText>
-          {eventsFromEmployee?.slice(0, 2).map((notification: any) => {
+          {feedback?.slice(0, 2).map((notification: any) => {
             [notification.id, notification.title, notification.date];
             if (notification.name == null || notification.date == null) return null;
             return (
-              <Link href={"/events/from-employees/" + notification.id} key={notification.id}>
+              <Link href={"/feedback/" + notification.id} key={notification.id}>
                 <Notification>
                   <BasicText notifications>{notification.name}</BasicText>
                   <BasicText dateDashboard>{formatDate(notification.date)}</BasicText>
