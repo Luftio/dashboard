@@ -29,7 +29,6 @@ const SetNewPassword: React.FC = () => {
 
   const { register, handleSubmit, errors, watch } = useForm<Formdata>();
   const onSubmit = handleSubmit(({ password, repeat }) => {
-    console.log(id, password, repeat);
     ThingsboardService.getInstance()
       .forgetPasswordReset(id, password)
       .then(() => {

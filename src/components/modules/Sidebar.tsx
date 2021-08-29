@@ -78,7 +78,7 @@ const Sidebar: React.FC = ({}) => {
   const router = useRouter();
   const url = router.pathname.split("/")[1];
 
-  const [show, setShow] = useState<boolean>(false);
+  // const [show, setShow] = useState<boolean>(false);
   const [showMessage, setShowMessage] = useState<boolean>(false);
 
   const query = useQuery();
@@ -99,20 +99,18 @@ const Sidebar: React.FC = ({}) => {
         active={url === "dashboard" && true}
         icon="pie-chart"
         text={t("sidebar_menu_item_1")}></SidebarItem>
-      <Wrapper data-tour="event" onMouseEnter={() => setShow(true)} onMouseLeave={() => setShow(false)}>
-        <SidebarItem
-          url="/events/from-measurement"
-          active={url === "events" && true}
-          icon="bell"
-          text={t("sidebar_menu_item_2")}></SidebarItem>
-        <Notifications sidebar amount={query.events_unread_count} />
-        {show && (
+      <SidebarItem
+        url="/events"
+        active={url === "events" && true}
+        icon="bell"
+        text={t("sidebar_menu_item_2")}></SidebarItem>
+      <Notifications sidebar amount={query.events_unread_count} />
+      {/* {show && (
           <EventsHover
             events_from_employees_unread_count={query.events_from_employees_unread_count}
             events_from_measure_unread_count={query.events_from_measure_unread_count}
           />
-        )}
-      </Wrapper>
+        )} */}
       <Wrapper>
         <SidebarItem
           url="/suggestions"

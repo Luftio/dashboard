@@ -77,7 +77,7 @@ const EventsCard: React.FC<EventsCardProps> = ({ subheading }) => {
             [notification.id, notification.title, notification.date];
             if (notification.title == null || notification.date == null) return null;
             return (
-              <Link href={"/events/from-employees/" + notification.id} key={notification.id}>
+              <Link href={"/events/" + notification.id} key={notification.id}>
                 <Notification>
                   <BasicText notifications>{notification.title}</BasicText>
                   <BasicText dateDashboard>{formatDate(notification.date)}</BasicText>

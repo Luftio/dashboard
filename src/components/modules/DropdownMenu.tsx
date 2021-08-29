@@ -69,7 +69,7 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({ onClick }) => {
             text={t("sidebar_menu_item_1")}></SidebarItem>
           <SidebarItem
             dropdown
-            url="/events/from-measurement"
+            url="/events"
             active={url === "events" && true}
             icon="bell"
             text={t("sidebar_menu_item_2")}></SidebarItem>

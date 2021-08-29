@@ -23,11 +23,6 @@ module.exports = {
         permanent: true,
       },
       {
-        source: "/events",
-        destination: "/events/from-measurement",
-        permanent: true,
-      },
-      {
         source: "/register",
         destination: "/",
         permanent: true,
@@ -40,6 +35,11 @@ module.exports = {
       {
         source: "/register/verify-email",
         destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/events/from-employees",
+        destination: "/events",
         permanent: true,
       },
     ];

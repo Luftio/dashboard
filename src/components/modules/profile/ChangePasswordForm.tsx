@@ -49,7 +49,6 @@ const ChangePassword: React.FC<ChangePasswordProps> = ({ onClick }) => {
         setShowSuccessMsg(true);
       })
       .catch((error) => {
-        console.log(error);
         if (error.message == 'Unexpected error value: "invalid_password"')
           setShowErrorMsg(t("profile_expand_password_incorrect"));
         else setShowErrorMsg(error.message);

@@ -49,13 +49,11 @@ const ChangePassword: React.FC<ChangePasswordProps> = ({ onClick }) => {
 
   const { register, handleSubmit, errors, formState } = useForm<Formdata>();
   const onSubmit = handleSubmit(({ name, surname, email }) => {
-    console.log(name, surname, email);
     mutate((mutation) => mutation.changeAccountDetails({ firstName: name, lastName: surname, email }))
       .then(() => {
         setShowSuccessMsg(true);
       })
       .catch((error) => {
-        console.log(error);
         setShowErrorMsg(error.message);
       });
     // formState.dirtyFields.email && setVerifyEmail(true);

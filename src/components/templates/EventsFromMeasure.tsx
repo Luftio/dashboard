@@ -81,7 +81,7 @@ const EventsFromMeasure: React.FC = () => {
   return (
     <>
       <Head>
-        <title>{t("title_feedback_page")}</title>
+        <title>{t("title_events_page")}</title>
       </Head>
       <HeadingDiv>
         <Heading dashboard>{t("events_page_heading")}</Heading>
@@ -96,10 +96,6 @@ const EventsFromMeasure: React.FC = () => {
           filterValue={filter}
         />
       </HeadingDiv>
-      <EventsNav
-        events_from_employees_unread_count={query.events_from_employees_unread_count}
-        events_from_measure_unread_count={query.events_from_measure_unread_count}
-      />
       {query.$state.isLoading ? (
         <LoadingWrapper>
           <Loader />
@@ -121,7 +117,7 @@ const EventsFromMeasure: React.FC = () => {
                     location={event.place}
                     threat={event.threat}
                     unread={event.is_unread}
-                    href={"/events/from-measurement/" + event.id}
+                    href={"/events/" + event.id}
                   />
                 );
               })

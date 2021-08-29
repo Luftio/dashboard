@@ -25,7 +25,6 @@ const OnboardingForm: React.FC = () => {
   const [feedback, setFeedback] = useState<string>("");
 
   const onSubmit = () => {
-    console.log(productivity, energy, feedback);
     router.replace("/dashboard/all");
   };
 

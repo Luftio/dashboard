@@ -51,7 +51,7 @@ const EventsDetailBlock: React.FC<EventsDetailBlockProps> = ({ title, date, plac
     <Card>
       <TopRow>
         <Subheading contentBlockItem>{title}</Subheading>
-        <Link href="/events/from-measurement">
+        <Link href="/events">
           <Button>{t("detail_close")}</Button>
         </Link>
       </TopRow>

@@ -38,7 +38,7 @@ const WelcomeTour: React.FC = () => {
       ),
     },
     {
-      selector: '[data-tour="event"]',
+      selector: '[data-tour="bell"]',
       content: () => (
         <WelcomeModalContent
           heading={t("welcome_tour_3_heading")}

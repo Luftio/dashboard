@@ -1,7 +1,7 @@
 import React from "react";
 import { useRouter } from "next/router";
-import Dashboard from "../../../components/layouts/Dashboard";
-import EventsFromMeasureDetail from "../../../components/templates/EventsFromMeasureDetail";
+import Dashboard from "../../components/layouts/Dashboard";
+import EventsFromMeasureDetail from "../../components/templates/EventsFromMeasureDetail";
 
 const EventsFromMeasurePageDetail: React.FC = () => {
   const router = useRouter();
