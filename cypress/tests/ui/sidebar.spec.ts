@@ -4,28 +4,6 @@ describe("Sidebar", () => {
     cy.wait(5000);
   });
 
-  it("Events hover card is functional", function () {
-    cy.visit("/events/from-measurement");
-
-    cy.getBySel("bell").trigger("mouseover");
-    cy.getBySel("events-hover-card").should("be.visible");
-    cy.getBySel("activity").should("have.css", "color", "rgb(3, 25, 70)");
-
-    cy.getBySel("briefcase").click();
-    cy.location("pathname").should("eq", "/events/from-employees");
-    cy.getBySel("bell").should("have.css", "color", "rgb(3, 25, 70)");
-    cy.visualSnapshot("User is on Events From Employees page");
-
-    cy.getBySel("bell").trigger("mouseover");
-    cy.getBySel("events-hover-card").should("be.visible");
-    cy.getBySel("briefcase").should("have.css", "color", "rgb(3, 25, 70)");
-
-    cy.getBySel("activity").click();
-    cy.location("pathname").should("eq", "/events/from-measurement");
-    cy.getBySel("bell").should("have.css", "color", "rgb(3, 25, 70)");
-    cy.visualSnapshot("User is on Events From Measurement page");
-  });
-
   it("Sidebar links are functional", function () {
     cy.getBySel("pie-chart").click({ force: true });
     cy.location("pathname").should("eq", "/dashboard/all");
@@ -33,7 +11,7 @@ describe("Sidebar", () => {
     cy.visualSnapshot("User is on Dashboard page");
 
     cy.getBySel("bell").click({ force: true });
-    cy.location("pathname").should("eq", "/events/from-measurement");
+    cy.location("pathname").should("eq", "/events");
     cy.getBySel("bell").should("have.css", "color", "rgb(3, 25, 70)");
     cy.visualSnapshot("User is on Events From Measurement page");
 
