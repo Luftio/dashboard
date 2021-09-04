@@ -106,6 +106,8 @@ const DashboardCard: React.FC<DashboardCardProps> = ({ data, onClick }) => {
       return t("CO2");
     } else if (type === "temperature") {
       return t("dashboard_temperature");
+    } else if (type === "siaq") {
+      return t("dashboard_siaq");
     } else if (type === "pressure") {
       return t("dashboard_pressure");
     } else if (type === "humidity") {

@@ -227,5 +227,6 @@
   "welcome_tour_5_heading": "Feedback from employees",
   "welcome_tour_5_text": "This is where the regular feedback from employees on the working environment is stored. Employees fill out a short form in the mobile app. Here you will find its evaluation and specific answers to questions.",
   "welcome_tour_6_heading": "User management",
-  "welcome_tour_6_text": "Here you see all employees who use Luftio. You can invite new or remove old ones."
+  "welcome_tour_6_text": "Here you see all employees who use Luftio. You can invite new or remove old ones.",
+  "dashboard_siaq": "VOC index"
 }
