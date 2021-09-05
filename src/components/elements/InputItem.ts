@@ -21,7 +21,7 @@ const InputItem = styled.div<{
   > p {
     position: absolute;
     left: 355px;
-    bottom: 10px;
+    bottom: 25px;
     background: transparent;
     width: 30px;
     display: flex;
