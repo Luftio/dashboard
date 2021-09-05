@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import Head from "next/head";
 import styled, { css } from "styled-components";
+
+import Avatar from "react-avatar";
+
 //@ts-ignore
 import Shimmer from "react-shimmer-effect";
 
@@ -22,7 +25,7 @@ import EmailVerifyCard from "../modules/profile/EmailVerifyCard";
 
 import { useQuery } from "../../gqless";
 
-const Expand = styled.form<{ profile?: boolean }>`
+const Expand = styled.form<{ profile?: boolean; edit?: boolean }>`
   display: flex;
   width: 85%;
   flex-direction: column;
@@ -34,6 +37,13 @@ const Expand = styled.form<{ profile?: boolean }>`
       border-bottom: ${(props) => props.theme.divider};
       margin: -70px auto 0 auto;
       padding-bottom: 45px;
+    `};
+
+  ${(props) =>
+    props.edit &&
+    css`
+      margin: -70px auto 50px auto;
+      padding-bottom: 20px;
     `};
 `;
 
@@ -87,7 +97,22 @@ const Settings: React.FC = () => {
           </TopRow>
         </Wrapper>
         {editProfile ? (
-          <ProfileForm onClick={() => setEditProfile(false)} />
+          <>
+            <Expand edit>
+              <InputItem profile avatar>
+                <label htmlFor="name">Avatar</label>
+                <Avatar
+                  name={user?.first_name + " " + user?.last_name}
+                  round={true}
+                  size="75"
+                  color="#E1E6EA"
+                  style={{ fontFamily: "inherit", fontWeight: "600", letterSpacing: "1px", marginLeft: "15px" }}
+                  textSizeRatio={4}
+                />
+              </InputItem>
+            </Expand>
+            <ProfileForm onClick={() => setEditProfile(false)} />
+          </>
         ) : (
           <Expand profile>
             {query.$state.isLoading ? (
@@ -98,6 +123,17 @@ const Settings: React.FC = () => {
               </Shimmer>
             ) : (
               <>
+                <InputItem profile avatar>
+                  <label htmlFor="name">Avatar</label>
+                  <Avatar
+                    name={user?.first_name + " " + user?.last_name}
+                    round={true}
+                    size="75"
+                    color="#E1E6EA"
+                    style={{ fontFamily: "inherit", fontWeight: "600", letterSpacing: "1px", marginLeft: "15px" }}
+                    textSizeRatio={4}
+                  />
+                </InputItem>
                 <InputItem profile>
                   <label htmlFor="name">{t("profile_expand_name")}</label>
                   <input id="name" type="text" defaultValue={user?.first_name} />
