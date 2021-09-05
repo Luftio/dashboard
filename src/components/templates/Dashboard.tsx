@@ -14,6 +14,7 @@ import EventsCard from "../modules/dashboard/EventsCard";
 import FeedbackCard from "../modules/dashboard/FeedbackCard";
 
 import { useQuery, SchemaObjectTypes } from "../../gqless";
+import EmptyState from "../modules/EmptyState";
 
 const Cards = styled.div`
   display: flex;
@@ -65,6 +66,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({ activeDeviceId }) =
       ) : (
         <>
           <DashboardNav devices={devices} activeDeviceId={activeDevice?.id || "all"} />
+          {devices.length === 0 && <EmptyState message={t("dashboard_empty_devices")} />}
           <Cards>
             {activeDevice?.data?.map((data: SchemaObjectTypes["DeviceData"]) => (
               <DashboardCard data={data} onClick={() => openModal(data)} />

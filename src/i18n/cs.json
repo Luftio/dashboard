@@ -141,6 +141,7 @@
   "profile_onboarding_form_results_text": "Pomožte nám upravit prostředí aplikace přímo Vám na míru.",
   "feedback_page_heading": "Zpětná vazba",
   "feedback_score_text": "celkové hodnocení:",
+  "dashboard_empty_devices": "Nemáte ještě žádné aktivní zařízení...",
   "feedback_page_empty_state": "Zatím jste nedostali žádný feedback",
   "dashboard_card_events_empty_state": "Zatím jste nedostali žádnou událost",
   "dashboard_card_feedback_empty_state": "Zatím nemáte žádnou zpětnou vazbu",

@@ -139,6 +139,7 @@
   "profile_verify_email_text": "We have sent a confirmation email to your new address. Once you have confirmed your changes, you are done.",
   "profile_onboarding_form_results_heading": "Questionnaire",
   "profile_onboarding_form_results_text": "Help us to customize your workspace just for you.",
+  "dashboard_empty_devices": "You have no active devices...",
   "feedback_page_heading": "Feedback",
   "feedback_score_text": "total score:",
   "feedback_page_empty_state": "You have not recieved any feedback yet",
