@@ -9,6 +9,7 @@ import Button from "../elements/Button";
 import Subheading from "../elements/Subheading";
 import BasicText from "../elements/BasicText";
 import DetailRowText from "../elements/DetailRow";
+import IconCircle from "../elements/IconCircle";
 
 import { Icon } from "ts-react-feather-icons";
 
@@ -23,6 +24,18 @@ const Card = styled.div`
   flex-direction: column;
 `;
 
+const Top = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 50px;
+`;
+
+const Row = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+`;
+
 const TopRow = styled.div`
   display: flex;
   justify-content: space-between;
@@ -33,7 +46,6 @@ const TopRow = styled.div`
 const BottomRow = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 50px;
 `;
 
 interface SuggestionsDetailBlockProps {
@@ -57,16 +69,22 @@ const SuggestionsDetailBlock: React.FC<SuggestionsDetailBlockProps> = ({
 
   return (
     <Card>
-      <TopRow>
-        <Subheading contentBlockItem>{title}</Subheading>
-        <Link href="/suggestions">
-          <Button>{t("detail_close")}</Button>
-        </Link>
-      </TopRow>
-      <BottomRow>
-        <Icon name="clock" size="16" color="#838C97" />
-        <BasicText events>{date}</BasicText>
-      </BottomRow>
+      <Top>
+        <IconCircle detail backgroundColor="#F65656" iconColor="#fff" iconName="box" />
+        <Row>
+          <TopRow>
+            <Subheading contentBlockItem>{title}</Subheading>
+            <Link href="/suggestions">
+              <Button>{t("detail_close")}</Button>
+            </Link>
+          </TopRow>
+          <BottomRow>
+            <Icon name="clock" size="16" color="#838C97" />
+            <BasicText events>{date}</BasicText>
+          </BottomRow>
+        </Row>
+      </Top>
+
       <DetailRowText type="importance" subheading={t("detail_suggestions_importance")} level={level} value={0} />
       <DetailRowText
         type="text"

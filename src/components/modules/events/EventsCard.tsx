@@ -96,7 +96,7 @@ const EventsCard: React.FC<EventsCardProps> = ({ name, threat, time, location, u
     <Link href={href}>
       <Card>
         <Event>
-          {/* <IconCircle backgroundColor="#E1E6EA" iconColor="#fff" iconName="cloud" /> */}
+          <IconCircle backgroundColor="#E1E6EA" iconColor="#031846" iconName="cloud" />
           <Main>
             <BasicText name>{name}</BasicText>
             <BottomRow>
