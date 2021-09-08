@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -50,16 +50,22 @@ const SignUpForm: React.FC = () => {
   const [logInError, setLogInError] = useState<boolean>(false);
 
   // Check if already logged in
-  if (
-    typeof window !== "undefined" &&
-    localStorage.getItem("rememberMe") === "true" &&
-    ThingsboardService.getInstance().isLoggedIn()
-  ) {
-    router.replace("/dashboard/all");
-    return null;
-  }
+  useEffect(() => {
+    if (
+      typeof window !== "undefined" &&
+      localStorage.getItem("rememberMe") === "true" &&
+      ThingsboardService.getInstance().isLoggedIn()
+    ) {
+      router.replace("/dashboard/all");
+    }
+  });
 
-  const { register, handleSubmit, errors } = useForm<Formdata>({ mode: "onSubmit" });
+  const { register, handleSubmit, errors } = useForm<Formdata>({
+    mode: "onSubmit",
+    defaultValues: {
+      rememberMe: false,
+    },
+  });
   const onSubmit = handleSubmit(({ email, password, rememberMe }) => {
     localStorage.setItem("rememberMe", rememberMe.toString());
     ThingsboardService.getInstance()
@@ -122,9 +128,7 @@ const SignUpForm: React.FC = () => {
                 aria-label="checkbox"
                 type="checkbox"
                 name="rememberMe"
-                ref={register({
-                  required: true,
-                })}
+                ref={register()}
               />
               <label htmlFor="checkbox">Remember me</label>
             </Checkbox>

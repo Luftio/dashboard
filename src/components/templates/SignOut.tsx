@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import Head from "next/head";
 import Link from "next/link";
@@ -11,6 +11,7 @@ import Heading from "../elements/Heading";
 import Subheading from "../elements/Subheading";
 import Button from "../elements/Button";
 import Copyright from "../elements/Copyright";
+import ThingsboardService from "../../services/ThingsboardService";
 
 const Div = styled.div`
   padding: 50px 0 0 70px;
@@ -22,6 +23,9 @@ const Div = styled.div`
 
 const SignOut: React.FC = () => {
   const { t } = useTranslation();
+  useEffect(() => {
+    ThingsboardService.getInstance().logout();
+  }, []);
 
   return (
     <>
