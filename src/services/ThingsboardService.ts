@@ -7,6 +7,16 @@ const THINGSBOARD_SERVER = "https://app.luftio.com/tb/";
 const APP_BACKEND_SERVER = "https://app.luftio.com/backend/";
 
 export default class ThingsboardService implements IAuthService {
+  private hostAccess = false;
+
+  isHostAccess() {
+    return this.hostAccess;
+  }
+
+  setHostAccess(hostAccess: boolean) {
+    this.hostAccess = hostAccess;
+  }
+
   isLoggedIn() {
     return localStorage.getItem("token") != null;
   }
