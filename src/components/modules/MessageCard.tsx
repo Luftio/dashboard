@@ -2,11 +2,22 @@ import React from "react";
 import Link from "next/link";
 import styled from "styled-components";
 
+import Avatar from "react-avatar";
+
 import "../../i18n/i18n";
 import { useTranslation } from "react-i18next";
 
 import BasicText from "../elements/BasicText";
 import ImportanceBlocks from "../elements/ImportanceBlocks";
+import IconCircle from "../elements/IconCircle";
+
+const Wrapper = styled.div`
+  margin-right: 5%;
+
+  @media only screen and (max-width: 750px) {
+    display: none;
+  }
+`;
 
 const Card = styled.div`
   background: #fff;
@@ -93,6 +104,19 @@ const MessageCard: React.FC<MessageCardProps> = ({ name, procents, date, suggest
     <Link href={href}>
       <Card>
         <Message>
+          {suggestion ? (
+            <IconCircle backgroundColor="#F65656" iconColor="#fff" iconName="box" />
+          ) : (
+            <Wrapper>
+              <Avatar
+                name={name}
+                round={true}
+                size="50"
+                color="#E1E6EA"
+                style={{ fontFamily: "inherit", fontWeight: "600", letterSpacing: "1px" }}
+              />
+            </Wrapper>
+          )}
           <BasicText name>{name}</BasicText>
           {suggestion ? (
             <Score>

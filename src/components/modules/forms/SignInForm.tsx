@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
@@ -13,10 +14,32 @@ import ForgotPassword from "../../elements/ForgotPassword";
 
 import { Icon } from "ts-react-feather-icons";
 import ThingsboardService from "../../../services/ThingsboardService";
+import Checkbox from "../../elements/Checkbox";
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+
+  @media only screen and (max-width: 970px) {
+    width: 450px;
+  }
+
+  @media only screen and (max-width: 570px) {
+    width: 100%;
+  }
+`;
+
+const BottomRow = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
 
 type Formdata = {
   email: string;
   password: string;
+  rememberMe: boolean;
 };
 
 const SignUpForm: React.FC = () => {
@@ -26,8 +49,25 @@ const SignUpForm: React.FC = () => {
   const [visibility, setVisibility] = useState<boolean>(false);
   const [logInError, setLogInError] = useState<boolean>(false);
 
-  const { register, handleSubmit, errors } = useForm<Formdata>({ mode: "onSubmit" });
-  const onSubmit = handleSubmit(({ email, password }) => {
+  // Check if already logged in
+  useEffect(() => {
+    if (
+      typeof window !== "undefined" &&
+      localStorage.getItem("rememberMe") === "true" &&
+      ThingsboardService.getInstance().isLoggedIn()
+    ) {
+      router.replace("/dashboard/all");
+    }
+  });
+
+  const { register, handleSubmit, errors } = useForm<Formdata>({
+    mode: "onSubmit",
+    defaultValues: {
+      rememberMe: false,
+    },
+  });
+  const onSubmit = handleSubmit(({ email, password, rememberMe }) => {
+    localStorage.setItem("rememberMe", rememberMe.toString());
     ThingsboardService.getInstance()
       .loginEmail(email, password)
       .then(() => {
@@ -62,26 +102,42 @@ const SignUpForm: React.FC = () => {
         {errors.email && errors.email.type === "pattern" && (
           <Error data-cy="email-invalid">{t("msg_invalid_email")}</Error>
         )}
-        <InputItem fail={errors.password && true}>
-          <label htmlFor="current-password">{t("pass_input_label")}</label>
-          <input
-            data-cy="password"
-            id="current-password"
-            type={visibility ? "text" : "password"}
-            autoComplete="current-password"
-            placeholder={t("pass_input_placeholder")}
-            name="password"
-            ref={register({
-              required: true,
-            })}
-          />
-          <p data-cy="eye" onClick={() => setVisibility(!visibility)}>
-            <Icon data-cy="eye-icon" name={visibility ? "eye-off" : "eye"} size="22" color="#E1E6EA" />
-          </p>
-        </InputItem>
-        <Link href="/password/request-change">
-          <ForgotPassword data-cy="forgot-password">{t("forgot_password")}</ForgotPassword>
-        </Link>
+        <Wrapper>
+          <InputItem fail={errors.password && true}>
+            <label htmlFor="current-password">{t("pass_input_label")}</label>
+            <input
+              data-cy="password"
+              id="current-password"
+              type={visibility ? "text" : "password"}
+              autoComplete="current-password"
+              placeholder={t("pass_input_placeholder")}
+              name="password"
+              ref={register({
+                required: true,
+              })}
+            />
+            <p data-cy="eye" onClick={() => setVisibility(!visibility)}>
+              <Icon data-cy="eye-icon" name={visibility ? "eye-off" : "eye"} size="22" color="#E1E6EA" />
+            </p>
+          </InputItem>
+          <BottomRow>
+            <Checkbox>
+              <input
+                data-cy="checkbox"
+                id="checkbox"
+                aria-label="checkbox"
+                type="checkbox"
+                name="rememberMe"
+                ref={register()}
+              />
+              <label htmlFor="checkbox">Remember me</label>
+            </Checkbox>
+            <Link href="/password/request-change">
+              <ForgotPassword data-cy="forgot-password">{t("forgot_password")}</ForgotPassword>
+            </Link>
+          </BottomRow>
+        </Wrapper>
+
         {errors.password && errors.password.type === "required" && (
           <Error data-cy="password-required">{t("msg_required")}</Error>
         )}

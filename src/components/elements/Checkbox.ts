@@ -20,7 +20,7 @@ const Checkbox = styled.div`
       content: "";
       display: block;
       top: 2px;
-      left: 4.62px;
+      left: 4.9px;
       width: 5px;
       height: 8px;
       border-style: solid;
@@ -43,7 +43,7 @@ const Checkbox = styled.div`
   > label {
     color: ${(props) => props.theme.color_secondary};
     font-size: ${(props) => props.theme.font_size_secondary};
-    margin: 0 0 0 15px;
+    margin: 0 0 0 7px;
     position: relative;
   }
 

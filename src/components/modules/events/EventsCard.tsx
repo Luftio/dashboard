@@ -9,6 +9,7 @@ import BasicText from "../../elements/BasicText";
 import ThreatBar from "../../elements/ThreatBar";
 
 import { Icon } from "ts-react-feather-icons";
+import IconCircle from "../../elements/IconCircle";
 
 const Card = styled.div`
   background: #fff;
@@ -95,6 +96,7 @@ const EventsCard: React.FC<EventsCardProps> = ({ name, threat, time, location, u
     <Link href={href}>
       <Card>
         <Event>
+          <IconCircle backgroundColor="#E1E6EA" iconColor="#fff" iconName="cloud" />
           <Main>
             <BasicText name>{name}</BasicText>
             <BottomRow>

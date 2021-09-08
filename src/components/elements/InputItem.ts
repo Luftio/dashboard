@@ -7,6 +7,7 @@ const InputItem = styled.div<{
   device?: boolean;
   failDashboard?: boolean;
   modal?: boolean;
+  avatar?: boolean;
 }>`
   position: relative;
 
@@ -20,7 +21,7 @@ const InputItem = styled.div<{
   > p {
     position: absolute;
     left: 355px;
-    bottom: 10px;
+    bottom: 25px;
     background: transparent;
     width: 30px;
     display: flex;
@@ -156,6 +157,12 @@ const InputItem = styled.div<{
       > input {
         width: 100%;
       }
+    `}
+
+    ${(props) =>
+    props.avatar &&
+    css`
+      margin-bottom: 20px;
     `}
 `;
 
