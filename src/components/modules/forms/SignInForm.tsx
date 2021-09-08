@@ -49,8 +49,19 @@ const SignUpForm: React.FC = () => {
   const [visibility, setVisibility] = useState<boolean>(false);
   const [logInError, setLogInError] = useState<boolean>(false);
 
+  // Check if already logged in
+  if (
+    typeof window !== "undefined" &&
+    localStorage.getItem("rememberMe") === "true" &&
+    ThingsboardService.getInstance().isLoggedIn()
+  ) {
+    router.replace("/dashboard/all");
+    return null;
+  }
+
   const { register, handleSubmit, errors } = useForm<Formdata>({ mode: "onSubmit" });
   const onSubmit = handleSubmit(({ email, password, rememberMe }) => {
+    localStorage.setItem("rememberMe", rememberMe.toString());
     ThingsboardService.getInstance()
       .loginEmail(email, password)
       .then(() => {
