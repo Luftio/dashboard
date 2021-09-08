@@ -49,20 +49,6 @@ cypress-e2e:
       - cypress/screenshots
       - cypress/videos
 
-cypress-e2e-chrome:
-  image: cypress/browsers:node14.16.0-chrome90-ff88
-  stage: test
-  script:
-    - npm run build
-    - npm start & npx wait-on http://localhost:3000
-    - $(npm bin)/cypress run --browser chrome
-  artifacts:
-    expire_in: 1 week
-    when: always
-    paths:
-      - cypress/screenshots
-      - cypress/videos
-
 # Installs the dependencies
 
 # # Chromatic

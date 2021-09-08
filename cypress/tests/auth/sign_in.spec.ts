@@ -45,7 +45,7 @@ describe("Sign in", () => {
     cy.getBySel("forgot-password").click();
 
     cy.location("pathname").should("eq", "/password/request-change");
-    cy.getBySel("email").type("adam@luftio.cz");
+    cy.getBySel("email").type("demo.eit@luftio.cz");
     cy.getBySel("submit").click();
 
     cy.location("pathname").should("eq", "/password/send-instructions");
