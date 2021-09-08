@@ -27,7 +27,7 @@ const DashboardPage: React.FC = () => {
   return (
     <Dashboard>
       {!viewedOnboarding && !isTabletOrMobile && <WelcomeTour />}
-      <DashboardContent activeDeviceId={id} />
+      <DashboardContent activeDeviceId={id} hostAccess={false} />
     </Dashboard>
   );
 };

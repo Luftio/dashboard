@@ -56,6 +56,13 @@ const serverQueryFetcher: QueryFetcher = async function (query, variables) {
   });
 
   const json = await response.json();
+  if (json.errors?.some((error: any) => error.message === "Forbidden resource")) {
+    ThingsboardService.getInstance().logout();
+    if (typeof window !== "undefined") {
+      window.location.reload();
+    }
+    return null;
+  }
 
   currentlyFetching.splice(id);
   return json;
