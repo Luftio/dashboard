@@ -32,9 +32,10 @@ const LoadingWrapper = styled.div`
 
 interface DashboardContentProps {
   activeDeviceId: string;
+  hostAccess: boolean;
 }
 
-const DashboardContent: React.FC<DashboardContentProps> = ({ activeDeviceId }) => {
+const DashboardContent: React.FC<DashboardContentProps> = ({ activeDeviceId, hostAccess }) => {
   const { t } = useTranslation();
 
   const [showModalData, setShowModalData] = useState<SchemaObjectTypes["DeviceData"] | null>(null);
@@ -65,17 +66,19 @@ const DashboardContent: React.FC<DashboardContentProps> = ({ activeDeviceId }) =
         </LoadingWrapper>
       ) : (
         <>
-          <DashboardNav devices={devices} activeDeviceId={activeDevice?.id || "all"} />
+          <DashboardNav devices={devices} activeDeviceId={activeDevice?.id || "all"} hostAccess={hostAccess} />
           {devices.length === 0 && <EmptyState message={t("dashboard_empty_devices")} />}
           <Cards>
             {activeDevice?.data?.map((data: SchemaObjectTypes["DeviceData"]) => (
               <DashboardCard data={data} onClick={() => openModal(data)} />
             ))}
           </Cards>
-          <Cards>
-            <EventsCard subheading={t("dashboard_events_card_subheading")} />
-            <FeedbackCard subheading={t("dashboard_feedback_card_subheading")} />
-          </Cards>
+          {hostAccess === false && (
+            <Cards>
+              <EventsCard subheading={t("dashboard_events_card_subheading")} />
+              <FeedbackCard subheading={t("dashboard_feedback_card_subheading")} />
+            </Cards>
+          )}
         </>
       )}
 
