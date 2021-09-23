@@ -29,5 +29,5 @@ addDecorator(
     asPath: "/",
     query: {},
     push() {},
-  }),
+  })
 );
