@@ -95,8 +95,8 @@ interface MessageCardProps {
   level?: number;
   href: string;
   unread: boolean;
-  iconName: string;
-  iconBgColor: string;
+  iconName?: string;
+  iconBgColor?: string;
 }
 
 const MessageCard: React.FC<MessageCardProps> = ({

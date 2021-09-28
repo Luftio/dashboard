@@ -87,7 +87,7 @@ interface EventsCardProps {
   location: string;
   unread?: boolean;
   href: string;
-  iconName: string;
+  iconName?: string;
 }
 
 const EventsCard: React.FC<EventsCardProps> = ({ name, threat, time, location, unread, href, iconName }) => {
