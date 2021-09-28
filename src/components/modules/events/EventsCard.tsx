@@ -87,16 +87,17 @@ interface EventsCardProps {
   location: string;
   unread?: boolean;
   href: string;
+  iconName: string;
 }
 
-const EventsCard: React.FC<EventsCardProps> = ({ name, threat, time, location, unread, href }) => {
+const EventsCard: React.FC<EventsCardProps> = ({ name, threat, time, location, unread, href, iconName }) => {
   const { t } = useTranslation<string>();
 
   return (
     <Link href={href}>
       <Card>
         <Event>
-          {/* <IconCircle backgroundColor="#E1E6EA" iconColor="#fff" iconName="cloud" /> */}
+          <IconCircle backgroundColor="#E1E6EA" iconColor="#031846" iconName={iconName} />
           <Main>
             <BasicText name>{name}</BasicText>
             <BottomRow>

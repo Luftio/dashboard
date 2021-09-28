@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 
 import { Icon } from "ts-react-feather-icons";
 
-const Circle = styled.div<{ background?: string }>`
+const Circle = styled.div<{ background?: string; detail?: boolean }>`
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -16,17 +16,26 @@ const Circle = styled.div<{ background?: string }>`
   @media only screen and (max-width: 750px) {
     display: none;
   }
+
+  ${(props) =>
+    props.detail &&
+    css`
+      margin-right: 25px;
+      position: relative;
+      top: 7px;
+    `}
 `;
 
 interface IconCircleProps {
   iconName: any;
   iconColor: string;
   backgroundColor: string;
+  detail?: boolean;
 }
 
-const IconCircle: React.FC<IconCircleProps> = ({ iconColor, iconName, backgroundColor }) => {
+const IconCircle: React.FC<IconCircleProps> = ({ iconColor, iconName, backgroundColor, detail }) => {
   return (
-    <Circle background={backgroundColor}>
+    <Circle detail={detail} background={backgroundColor}>
       <Icon name={iconName} color={iconColor} />
     </Circle>
   );
