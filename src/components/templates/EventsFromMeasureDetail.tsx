@@ -36,12 +36,14 @@ const EventsFromMeasureDetail: React.FC<EventsFromMeasureDetailProps> = (props) 
       event.date == null ||
       event.place == null ||
       event.threat == null ||
-      event.justification == null ? (
+      event.justification == null ||
+      event.icon_name == null ? (
         <ShimmerBlock event={true} />
       ) : (
         <EventsDetailBlock
           title={event?.title}
           date={formatDate(event?.date)}
+          iconName={event?.icon_name}
           place={event?.place}
           threat={event?.threat}
           justification={event?.justification}

@@ -107,13 +107,20 @@ const EventsFromMeasure: React.FC = () => {
           {filter === null
             ? eventsFromMeasure.map((event: any) => {
                 [event.id, event.title, event.date, event.place, event.threat, event.is_unread];
-                if (event.title == null || event.date == null || event.place == null || event.threat == null)
+                if (
+                  event.title == null ||
+                  event.date == null ||
+                  event.place == null ||
+                  event.threat == null ||
+                  event.icon_name == null
+                )
                   return null;
                 return (
                   <EventsCard
                     key={event.id}
                     name={event.title}
                     time={formatDate(event.date)}
+                    iconName={event.icon_name}
                     location={event.place}
                     threat={event.threat}
                     unread={event.is_unread}
@@ -123,12 +130,19 @@ const EventsFromMeasure: React.FC = () => {
               })
             : data.map((event: any) => {
                 [event.id, event.title, event.date, event.place, event.threat, event.is_unread];
-                if (event.title == null || event.date == null || event.place == null || event.threat == null)
+                if (
+                  event.title == null ||
+                  event.date == null ||
+                  event.place == null ||
+                  event.threat == null ||
+                  event.icon_name == null
+                )
                   return null;
                 return (
                   <EventsCard
                     key={event.id}
                     name={event.title}
+                    iconName={event.icon_name}
                     time={formatDate(event.date)}
                     location={event.place}
                     threat={event.threat}

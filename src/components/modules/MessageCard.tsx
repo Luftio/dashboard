@@ -95,9 +95,21 @@ interface MessageCardProps {
   level?: number;
   href: string;
   unread: boolean;
+  iconName: string;
+  iconBgColor: string;
 }
 
-const MessageCard: React.FC<MessageCardProps> = ({ name, procents, date, suggestion, level, href, unread }) => {
+const MessageCard: React.FC<MessageCardProps> = ({
+  name,
+  procents,
+  date,
+  suggestion,
+  level,
+  href,
+  unread,
+  iconName,
+  iconBgColor,
+}) => {
   const { t } = useTranslation<string>();
 
   return (
@@ -105,7 +117,7 @@ const MessageCard: React.FC<MessageCardProps> = ({ name, procents, date, suggest
       <Card>
         <Message>
           {suggestion ? (
-            <IconCircle backgroundColor="#F65656" iconColor="#fff" iconName="box" />
+            <IconCircle backgroundColor={iconBgColor} iconColor="#fff" iconName={iconName} />
           ) : (
             <Wrapper>
               <Avatar

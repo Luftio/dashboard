@@ -110,7 +110,8 @@ const Suggestions: React.FC = () => {
                   suggestion.title == null ||
                   suggestion.importance == null ||
                   suggestion.date == null ||
-                  suggestion.is_unread == null
+                  suggestion.is_unread == null ||
+                  suggestion.icon_name == null
                 )
                   return null;
                 return (
@@ -119,6 +120,14 @@ const Suggestions: React.FC = () => {
                     suggestion
                     level={suggestion.importance}
                     name={suggestion.title}
+                    iconName={suggestion.icon_name}
+                    iconBgColor={
+                      suggestion.icon_name === "box"
+                        ? "#F65656"
+                        : suggestion.icon_name === "shield"
+                        ? "#3F74F9"
+                        : "#FFDB63"
+                    }
                     procents={0}
                     date={formatDate(suggestion.date)}
                     href={"/suggestions/" + suggestion.id}
@@ -132,7 +141,8 @@ const Suggestions: React.FC = () => {
                   suggestion.title == null ||
                   suggestion.importance == null ||
                   suggestion.date == null ||
-                  suggestion.is_unread == null
+                  suggestion.is_unread == null ||
+                  suggestion.icon_name == null
                 )
                   return null;
                 return (
@@ -141,6 +151,14 @@ const Suggestions: React.FC = () => {
                     suggestion
                     level={suggestion.importance}
                     name={suggestion.title}
+                    iconName={suggestion.icon_name}
+                    iconBgColor={
+                      suggestion.icon_name === "box"
+                        ? "#F65656"
+                        : suggestion.icon_name === "shield"
+                        ? "#3F74F9"
+                        : "#FFDB63"
+                    }
                     procents={0}
                     date={formatDate(suggestion.date)}
                     href={"/suggestions/" + suggestion.id}

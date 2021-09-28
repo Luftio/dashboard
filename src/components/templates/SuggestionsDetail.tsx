@@ -38,6 +38,7 @@ const SuggestionsDetail: React.FC<SuggestionsDetailProps> = (props) => {
       suggestion.description == null ||
       suggestion.how_solve == null ||
       suggestion.why_important == null ||
+      suggestion.icon_name == null ||
       suggestion.is_unread == null ? (
         <ShimmerBlock suggestion={true} />
       ) : (
@@ -45,6 +46,10 @@ const SuggestionsDetail: React.FC<SuggestionsDetailProps> = (props) => {
           title={suggestion?.title}
           date={formatDate(suggestion?.date)}
           description={suggestion?.description}
+          iconBgColor={
+            suggestion.icon_name === "box" ? "#F65656" : suggestion.icon_name === "shield" ? "#3F74F9" : "#FFDB63"
+          }
+          iconName={suggestion?.icon_name}
           howSolve={suggestion?.how_solve}
           whyImportant={suggestion?.why_important}
           level={suggestion?.importance}

@@ -55,6 +55,8 @@ interface SuggestionsDetailBlockProps {
   description: string;
   howSolve: string;
   whyImportant: string;
+  iconName: string;
+  iconBgColor: string;
 }
 
 const SuggestionsDetailBlock: React.FC<SuggestionsDetailBlockProps> = ({
@@ -64,13 +66,15 @@ const SuggestionsDetailBlock: React.FC<SuggestionsDetailBlockProps> = ({
   description,
   howSolve,
   whyImportant,
+  iconName,
+  iconBgColor,
 }) => {
   const { t } = useTranslation<string>();
 
   return (
     <Card>
       <Top>
-        <IconCircle detail backgroundColor="#F65656" iconColor="#fff" iconName="box" />
+        <IconCircle detail backgroundColor={iconBgColor} iconColor="#fff" iconName={iconName} />
         <Row>
           <TopRow>
             <Subheading contentBlockItem>{title}</Subheading>

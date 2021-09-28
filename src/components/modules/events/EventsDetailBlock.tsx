@@ -54,15 +54,23 @@ interface EventsDetailBlockProps {
   place: string;
   threat: number;
   justification: string;
+  iconName: string;
 }
 
-const EventsDetailBlock: React.FC<EventsDetailBlockProps> = ({ title, date, place, threat, justification }) => {
+const EventsDetailBlock: React.FC<EventsDetailBlockProps> = ({
+  title,
+  date,
+  place,
+  threat,
+  justification,
+  iconName,
+}) => {
   const { t } = useTranslation<string>();
 
   return (
     <Card>
       <Top>
-        <IconCircle detail backgroundColor="#E1E6EA" iconColor="#031846" iconName="cloud" />
+        <IconCircle detail backgroundColor="#E1E6EA" iconColor="#031846" iconName={iconName} />
         <Row>
           <TopRow>
             <Subheading contentBlockItem>{title}</Subheading>
