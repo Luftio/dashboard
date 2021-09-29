@@ -23,7 +23,7 @@ import ChangePassword from "../modules/profile/ChangePasswordForm";
 import OnboardingFormResult from "../modules/profile/OnboardingFormResults";
 import EmailVerifyCard from "../modules/profile/EmailVerifyCard";
 
-import { useQuery } from "../../gqless";
+import { useGetAccountQuery } from "../../graphql";
 
 const Expand = styled.form<{ profile?: boolean; edit?: boolean }>`
   display: flex;
@@ -75,8 +75,8 @@ const Settings: React.FC = () => {
   const [editPassword, setEditPassword] = useState<boolean>(false);
   const [editProfile, setEditProfile] = useState<boolean>(false);
 
-  const query = useQuery();
-  const user = query.account;
+  const query = useGetAccountQuery();
+  const user = query.data?.account;
 
   return (
     <>
@@ -115,7 +115,7 @@ const Settings: React.FC = () => {
           </>
         ) : (
           <Expand profile>
-            {query.$state.isLoading ? (
+            {query.loading ? (
               <Shimmer>
                 <ShimmerItem width={50} marginBottom={20}></ShimmerItem>
                 <ShimmerItem width={50} marginBottom={20}></ShimmerItem>

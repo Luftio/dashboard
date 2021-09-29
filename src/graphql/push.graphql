@@ -1,0 +1,3 @@
+mutation UpdateToken($token: String!) {
+  updateToken(token: $token)
+}

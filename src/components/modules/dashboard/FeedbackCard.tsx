@@ -10,7 +10,7 @@ import BasicText from "../../elements/BasicText";
 import HapinessChart from "./FeedbackChart";
 import EmptyCard from "./EmptyCard";
 
-import { useQuery } from "../../../gqless";
+import { useGetFeedbacksQuery } from "../../../graphql";
 
 const Card = styled.div`
   width: 48.5%;
@@ -54,8 +54,8 @@ interface FeedbackCardProps {
 const FeedbackCard: React.FC<FeedbackCardProps> = ({ subheading }) => {
   const { t } = useTranslation();
 
-  const query = useQuery();
-  const feedback = query.feedbacks;
+  const query = useGetFeedbacksQuery();
+  const feedback = query.data?.feedbacks ?? [];
 
   const formatDate = (date: any) => {
     const dateJs = new Date(date);
@@ -74,7 +74,6 @@ const FeedbackCard: React.FC<FeedbackCardProps> = ({ subheading }) => {
           </ChartDiv>
           <BasicText bottomRowProcentsName>{t("dashboard_bottomcard_last")}</BasicText>
           {feedback?.slice(0, 2).map((notification: any) => {
-            [notification.id, notification.title, notification.date];
             if (notification.name == null || notification.date == null) return null;
             return (
               <Link href={"/feedback/" + notification.id} key={notification.id}>

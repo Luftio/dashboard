@@ -1,0 +1,21 @@
+query GetAccounts {
+  accounts {
+    id
+    first_name
+    last_name
+    email
+    role
+  }
+}
+
+mutation InviteUser($email: String!, $role: String!) {
+  inviteUser(email: $email, role: $role)
+}
+
+mutation ChangeRole($userId: String!, $role: String!) {
+  changeRole(userId: $userId, role: $role)
+}
+
+mutation DeleteUser($userId: String!) {
+  deleteUser(userId: $userId)
+}

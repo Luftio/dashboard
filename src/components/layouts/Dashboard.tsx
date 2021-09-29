@@ -1,14 +1,13 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useMediaQuery } from "react-responsive";
-import Router from "next/router";
 import { useRouter } from "next/router";
 
 import MobileMenu from "../modules/MobileMenu";
 import Sidebar from "../modules/Sidebar";
 import ThingsboardService from "../../services/ThingsboardService";
 
-import { useQuery } from "../../gqless";
+import { useGetAccountQuery } from "../../graphql";
 
 const Layout = styled.div`
   display: flex;
@@ -49,21 +48,21 @@ const Dashboard: React.FC<DashboardProps> = ({ children }) => {
 
   const router = useRouter();
 
-  const query = useQuery();
-  const user = query.account;
+  const query = useGetAccountQuery();
+  const user = query.data?.account;
 
   if (typeof window === "undefined") {
     return null;
   }
 
   if (!ThingsboardService.getInstance().isLoggedIn()) {
-    Router.push("/");
+    router.push("/");
     return null;
   }
 
   useEffect(() => {
-    if (user.role === "user") {
-      Router.push("/invite/download-app");
+    if (user?.role === "user") {
+      router.push("/invite/download-app");
     }
   });
 

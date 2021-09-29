@@ -7,7 +7,7 @@ import "../../../i18n/i18n";
 import Button from "../../elements/Button";
 import PulseEffect from "../../elements/PulseEffect";
 
-import { SchemaObjectTypes } from "../../../gqless";
+import { Device } from "../../../graphql";
 
 const Navigation = styled.div`
   display: flex;
@@ -37,7 +37,7 @@ const Navigation = styled.div`
 `;
 
 interface DashboardNavProps {
-  devices: SchemaObjectTypes["Device"][];
+  devices: Device[];
   activeDeviceId?: string;
   hostAccess: boolean;
 }

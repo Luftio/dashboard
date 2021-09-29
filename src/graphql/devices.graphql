@@ -1,0 +1,87 @@
+query GetDevices {
+  devices {
+    id
+    title
+    label
+  }
+}
+
+query GetDeviceData($id: String!, $startTs: String, $endTs: String, $interval: Int) {
+  device_data(id: $id, startTs: $startTs, endTs: $endTs, interval: $interval) {
+    id
+    title
+    label
+    color
+    data {
+      type
+      unit
+      value
+      change
+      color
+      maxValue
+      minValue
+      values {
+        ts
+        value
+      }
+    }
+  }
+}
+query GetDevicesData($startTs: String, $endTs: String, $interval: Int) {
+  devices_data(startTs: $startTs, endTs: $endTs, interval: $interval) {
+    id
+    title
+    label
+    color
+    data {
+      type
+      unit
+      value
+      change
+      color
+      maxValue
+      minValue
+      values {
+        ts
+        value
+      }
+    }
+  }
+}
+
+query GetDeviceAttributes($id: String!) {
+  deviceAttributes(id: $id) {
+    id
+    attributes
+  }
+}
+
+query GetBrightness($id: String!) {
+  brightness(id: $id) {
+    id
+    brightness
+    light
+  }
+}
+
+mutation SetBrightness($input: SetBrightnessInput!) {
+  setBrightness(input: $input) {
+    id
+    brightness
+    light
+  }
+}
+
+mutation SaveDeviceAttributes($id: String!, $data: String!) {
+  saveDeviceAttributes(id: $id, data: $data) {
+    id
+    attributes
+  }
+}
+
+mutation RenameDevice($input: RenameDeviceInput!) {
+  renameDevice(input: $input) {
+    id
+    title
+  }
+}

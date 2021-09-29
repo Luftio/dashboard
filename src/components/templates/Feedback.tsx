@@ -12,7 +12,7 @@ import Loader from "../elements/Loader";
 import MessageCard from "../modules/MessageCard";
 import Filter from "../elements/Filter";
 
-import { useQuery } from "../../gqless";
+import { useGetFeedbacksQuery } from "../../graphql";
 
 import useFeedbackFilterStore from "../../stores/feedbackFilterStore";
 
@@ -42,8 +42,8 @@ const Feedback: React.FC = () => {
 
   const [data, setData] = useState<any>([]);
 
-  const query = useQuery();
-  const feedbacks = query.feedbacks;
+  const query = useGetFeedbacksQuery();
+  const feedbacks = query.data?.feedbacks;
 
   const formatDate = (date: any) => {
     const dateJs = new Date(date);
@@ -95,7 +95,7 @@ const Feedback: React.FC = () => {
           filterValue={filter}
         />
       </HeadingDiv>
-      {query.$state.isLoading ? (
+      {query.loading ? (
         <LoadingWrapper>
           <Loader />
         </LoadingWrapper>
@@ -105,16 +105,7 @@ const Feedback: React.FC = () => {
         <div>
           {filter === null
             ? feedbacks.map((feedback: any) => {
-                [feedback.id, feedback.name, feedback.total_score, feedback.date, feedback.is_unread];
-                if (
-                  feedback == null ||
-                  feedback.id == null ||
-                  feedback.name == null ||
-                  feedback.total_score == null ||
-                  feedback.date == null ||
-                  feedback.is_unread == null
-                )
-                  return null;
+                if (feedback == null) return null;
                 return (
                   <MessageCard
                     key={feedback.id}
@@ -127,16 +118,7 @@ const Feedback: React.FC = () => {
                 );
               })
             : data.map((feedback: any) => {
-                [feedback.id, feedback.name, feedback.total_score, feedback.date, feedback.is_unread];
-                if (
-                  feedback == null ||
-                  feedback.id == null ||
-                  feedback.name == null ||
-                  feedback.total_score == null ||
-                  feedback.date == null ||
-                  feedback.is_unread == null
-                )
-                  return null;
+                if (feedback == null) return null;
                 return (
                   <MessageCard
                     key={feedback.id}

@@ -18,7 +18,7 @@ import Loader from "../elements/Loader";
 import Modal from "../modules/Modal";
 import InviteUserForm from "../modules/forms/InviteUserForm";
 
-import { mutate, useQuery, useRefetch } from "../../gqless/";
+import { useChangeRoleMutation, useDeleteUserMutation, useGetAccountsQuery } from "../../graphql";
 import ThingsboardService from "../../services/ThingsboardService";
 
 const Users = styled.div`
@@ -70,13 +70,11 @@ const ManageUsers: React.FC = () => {
   const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);
   const [deleteModalTarget, setDeleteModalTarget] = useState<string>();
 
-  const refetch = useRefetch();
-  const query = useQuery();
+  const accountsQuery = useGetAccountsQuery();
+  const [deleteUser] = useDeleteUserMutation();
+  const [changeRole] = useChangeRoleMutation();
 
-  // Gqless problem here, refetch only works once
-  const handleRefetch = () =>
-    refetch(() => query.accounts.map((it) => [it.id, it.email, it.first_name, it.last_name, it.role]));
-
+  const handleRefetch = () => accountsQuery.refetch();
   const openAddModal = () => {
     handleRefetch();
     setShowAddModal((prev) => !prev);
@@ -87,14 +85,14 @@ const ManageUsers: React.FC = () => {
   };
   const handleDelete = () => {
     if (deleteModalTarget === undefined) return;
-    mutate((mutation) => mutation.deleteUser({ userId: deleteModalTarget })).then(() => {
+    deleteUser({ variables: { userId: deleteModalTarget } }).then(() => {
       handleRefetch();
     });
     setShowDeleteModal(false);
   };
   const handleChangeRole = (userId?: string) => (role: string) => {
     if (userId === undefined) return;
-    mutate((mutation) => mutation.changeRole({ userId: userId, role })).then(() => {
+    changeRole({ variables: { userId: userId, role } }).then(() => {
       handleRefetch();
     });
   };
@@ -134,12 +132,12 @@ const ManageUsers: React.FC = () => {
             )}
           </Div>
         </TopRowManageUsers>
-        {query.$state.isLoading ? (
+        {accountsQuery.loading ? (
           <LoadingWrapper>
             <Loader />
           </LoadingWrapper>
         ) : (
-          query.accounts?.map((user) => (
+          accountsQuery.data?.accounts?.map((user) => (
             <UserRow
               key={user.id}
               name={(user.first_name || "") + " " + (user.last_name || "---")}

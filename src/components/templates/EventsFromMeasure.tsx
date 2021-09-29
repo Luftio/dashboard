@@ -13,7 +13,7 @@ import EventsCard from "../modules/events/EventsCard";
 import EmptyState from "../modules/EmptyState";
 import Filter from "../elements/Filter";
 
-import { useQuery } from "../../gqless";
+import { useGetEventsFromMeasureQuery } from "../../graphql";
 
 import useEventsFromMeasureFilterStore from "../../stores/eventsFromMeasureFilterStore";
 
@@ -43,8 +43,8 @@ const EventsFromMeasure: React.FC = () => {
 
   const [data, setData] = useState<any>([]);
 
-  const query = useQuery();
-  const eventsFromMeasure = query.events_from_measure;
+  const query = useGetEventsFromMeasureQuery();
+  const eventsFromMeasure = query.data?.events_from_measure ?? [];
 
   const formatDate = (date: any) => {
     const dateJs = new Date(date);
@@ -76,7 +76,7 @@ const EventsFromMeasure: React.FC = () => {
     };
 
     sortArray(filter?.value);
-  }, [filter]);
+  }, [filter, eventsFromMeasure]);
 
   return (
     <>
@@ -96,7 +96,7 @@ const EventsFromMeasure: React.FC = () => {
           filterValue={filter}
         />
       </HeadingDiv>
-      {query.$state.isLoading ? (
+      {query.loading ? (
         <LoadingWrapper>
           <Loader />
         </LoadingWrapper>
@@ -104,53 +104,20 @@ const EventsFromMeasure: React.FC = () => {
         <EmptyState message={t("events_page_measure_empty_state")} />
       ) : (
         <div>
-          {filter === null
-            ? eventsFromMeasure.map((event: any) => {
-                [event.id, event.title, event.date, event.place, event.threat, event.is_unread];
-                if (
-                  event.title == null ||
-                  event.date == null ||
-                  event.place == null ||
-                  event.threat == null ||
-                  event.icon_name == null
-                )
-                  return null;
-                return (
-                  <EventsCard
-                    key={event.id}
-                    name={event.title}
-                    time={formatDate(event.date)}
-                    iconName={event.icon_name}
-                    location={event.place}
-                    threat={event.threat}
-                    unread={event.is_unread}
-                    href={"/events/" + event.id}
-                  />
-                );
-              })
-            : data.map((event: any) => {
-                [event.id, event.title, event.date, event.place, event.threat, event.is_unread];
-                if (
-                  event.title == null ||
-                  event.date == null ||
-                  event.place == null ||
-                  event.threat == null ||
-                  event.icon_name == null
-                )
-                  return null;
-                return (
-                  <EventsCard
-                    key={event.id}
-                    name={event.title}
-                    iconName={event.icon_name}
-                    time={formatDate(event.date)}
-                    location={event.place}
-                    threat={event.threat}
-                    unread={event.is_unread}
-                    href={"/events/from-measurement/" + event.id}
-                  />
-                );
-              })}
+          {(filter === null ? eventsFromMeasure : data).map((event: any) => {
+            return (
+              <EventsCard
+                key={event.id}
+                name={event.title}
+                time={formatDate(event.date)}
+                location={event.place}
+                threat={event.threat}
+                unread={event.is_unread}
+                iconName={event.icon_name}
+                href={"/events/" + event.id}
+              />
+            );
+          })}
         </div>
       )}
     </>

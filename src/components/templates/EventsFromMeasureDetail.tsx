@@ -9,7 +9,7 @@ import Heading from "../elements/Heading";
 import EventsDetailBlock from "../modules/events/EventsDetailBlock";
 import ShimmerBlock from "../modules/Shimmer/ShimmerBlock";
 
-import { useQuery } from "../../gqless";
+import { useGetEventFromMeasureByIdQuery } from "../../graphql";
 
 type EventsFromMeasureDetailProps = {
   id: string;
@@ -18,8 +18,8 @@ type EventsFromMeasureDetailProps = {
 const EventsFromMeasureDetail: React.FC<EventsFromMeasureDetailProps> = (props) => {
   const { t } = useTranslation<string>();
 
-  const query = useQuery();
-  const event = query.event_from_measure({ id: props.id });
+  const query = useGetEventFromMeasureByIdQuery({ variables: { id: props.id } });
+  const event = query.data?.event_from_measure;
 
   const formatDate = (date: any) => {
     const dateJs = new Date(date);
@@ -32,12 +32,7 @@ const EventsFromMeasureDetail: React.FC<EventsFromMeasureDetailProps> = (props) 
         <title>{t("title_events_detail_page")}</title>
       </Head>
       <Heading dashboard>{t("detail_events_heading")}</Heading>
-      {event.title == null ||
-      event.date == null ||
-      event.place == null ||
-      event.threat == null ||
-      event.justification == null ||
-      event.icon_name == null ? (
+      {event == null ? (
         <ShimmerBlock event={true} />
       ) : (
         <EventsDetailBlock
