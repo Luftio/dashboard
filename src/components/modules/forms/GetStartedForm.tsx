@@ -16,7 +16,7 @@ import Modal from "../Modal";
 import { Icon } from "ts-react-feather-icons";
 import ThingsboardService from "../../../services/ThingsboardService";
 
-import { resolved, query } from "../../../gqless";
+import { useGetAccountQuery } from "../../../graphql";
 
 type Formdata = {
   name: string;
@@ -35,13 +35,14 @@ const SignUpForm: React.FC = () => {
 
   const { register, handleSubmit, errors } = useForm<Formdata>();
 
+  const getAccount = useGetAccountQuery({ skip: true });
+
   const onSubmit = handleSubmit(({ name, surname, password, check }) => {
     ThingsboardService.getInstance()
       .acceptInvite(id, name, surname, password)
       .then(() => {
-        resolved(() => query.account.role).then((role) => {
-          [role];
-          if (role === "manager") {
+        getAccount.refetch().then((query) => {
+          if (query.data?.account.role === "manager") {
             router.replace("/dashboard/all");
           } else {
             router.replace("/invite/download-app");

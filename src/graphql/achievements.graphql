@@ -1,0 +1,5 @@
+query GetAchievements {
+  achievements {
+    name
+  }
+}

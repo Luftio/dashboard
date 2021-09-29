@@ -9,7 +9,7 @@ import Heading from "../elements/Heading";
 import SuggestionsDetailBlock from "../modules/SuggestionsDetailBlock";
 import ShimmerBlock from "../modules/Shimmer/ShimmerBlock";
 
-import { useQuery } from "../../gqless/";
+import { useGetSuggestionByIdQuery } from "../../graphql";
 
 type SuggestionsDetailProps = {
   id: string;
@@ -18,8 +18,8 @@ type SuggestionsDetailProps = {
 const SuggestionsDetail: React.FC<SuggestionsDetailProps> = (props) => {
   const { t } = useTranslation<string>();
 
-  const query = useQuery();
-  const suggestion = query.suggestion({ id: props.id });
+  const query = useGetSuggestionByIdQuery({ variables: { id: props.id } });
+  const suggestion = query.data?.suggestion;
 
   const formatDate = (date: any) => {
     const dateJs = new Date(date);
@@ -32,14 +32,7 @@ const SuggestionsDetail: React.FC<SuggestionsDetailProps> = (props) => {
         <title>{t("title_suggestion_detail_page")}</title>
       </Head>
       <Heading dashboard>{t("detail_suggestions_heading")}</Heading>
-      {suggestion.title == null ||
-      suggestion.importance == null ||
-      suggestion.date == null ||
-      suggestion.description == null ||
-      suggestion.how_solve == null ||
-      suggestion.why_important == null ||
-      suggestion.icon_name == null ||
-      suggestion.is_unread == null ? (
+      {suggestion == null ? (
         <ShimmerBlock suggestion={true} />
       ) : (
         <SuggestionsDetailBlock

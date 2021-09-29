@@ -10,7 +10,7 @@ import Button from "../../elements/Button";
 import EmailVerifyCard from "./EmailVerifyCard";
 import Success from "../../elements/Success";
 
-import { mutate, useQuery } from "../../../gqless";
+import { useGetAccountQuery, useChangeAccountDetailsMutation } from "../../../graphql";
 
 const Expand = styled.form`
   display: flex;
@@ -47,9 +47,11 @@ const ChangePassword: React.FC<ChangePasswordProps> = ({ onClick }) => {
   const [showSuccessMsg, setShowSuccessMsg] = useState<boolean>(false);
   const [showErrorMsg, setShowErrorMsg] = useState<boolean>(false);
 
+  const [changeAccountDetails] = useChangeAccountDetailsMutation();
+
   const { register, handleSubmit, errors, formState } = useForm<Formdata>();
   const onSubmit = handleSubmit(({ name, surname, email }) => {
-    mutate((mutation) => mutation.changeAccountDetails({ firstName: name, lastName: surname, email }))
+    changeAccountDetails({ variables: { firstName: name, lastName: surname, email } })
       .then(() => {
         setShowSuccessMsg(true);
       })
@@ -59,8 +61,8 @@ const ChangePassword: React.FC<ChangePasswordProps> = ({ onClick }) => {
     // formState.dirtyFields.email && setVerifyEmail(true);
   });
 
-  const query = useQuery();
-  const user = query.account;
+  const query = useGetAccountQuery();
+  const user = query.data?.account;
 
   return (
     <Expand onSubmit={onSubmit}>

@@ -10,7 +10,7 @@ import BasicText from "../../elements/BasicText";
 import EventsChart from "./EventsChart";
 import EmptyCard from "./EmptyCard";
 
-import { useQuery } from "../../../gqless";
+import { useGetEventsFromMeasureQuery } from "../../../graphql";
 
 const Card = styled.div`
   width: 48.5%;
@@ -54,8 +54,8 @@ interface EventsCardProps {
 const EventsCard: React.FC<EventsCardProps> = ({ subheading }) => {
   const { t } = useTranslation();
 
-  const query = useQuery();
-  const eventsFromMeasure = query.events_from_measure;
+  const query = useGetEventsFromMeasureQuery();
+  const eventsFromMeasure = query.data?.events_from_measure ?? [];
 
   const formatDate = (date: any) => {
     const dateJs = new Date(date);
@@ -74,7 +74,6 @@ const EventsCard: React.FC<EventsCardProps> = ({ subheading }) => {
           </ChartDiv>
           <BasicText bottomRowProcentsName>{t("dashboard_bottomcard_last")}</BasicText>
           {eventsFromMeasure?.slice(0, 2).map((notification: any) => {
-            [notification.id, notification.title, notification.date];
             if (notification.title == null || notification.date == null) return null;
             return (
               <Link href={"/events/" + notification.id} key={notification.id}>

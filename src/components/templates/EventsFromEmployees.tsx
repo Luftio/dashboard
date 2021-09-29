@@ -13,7 +13,7 @@ import EventsCard from "../modules/events/EventsCard";
 import EmptyState from "../modules/EmptyState";
 import Filter from "../elements/Filter";
 
-import { useQuery } from "../../gqless";
+import { useGetEventsFromEmployeesQuery, useGetUnreadCountsQuery } from "../../graphql";
 
 import useEventsFromEmployeesFilterStore from "../../stores/eventsFromEmployeesFilterStore";
 
@@ -43,8 +43,9 @@ const EventsFromEmployees: React.FC = () => {
 
   const [data, setData] = useState<any>([]);
 
-  const query = useQuery();
-  const eventsFromEmployee = query.events_from_employee;
+  const query = useGetEventsFromEmployeesQuery();
+  const unreadQuery = useGetUnreadCountsQuery();
+  const eventsFromEmployee = query.data?.events_from_employee ?? [];
 
   const formatDate = (date: any) => {
     const dateJs = new Date(date);
@@ -96,11 +97,11 @@ const EventsFromEmployees: React.FC = () => {
           filterValue={filter}
         />
       </HeadingDiv>
-      <EventsNav
-        events_from_employees_unread_count={query.events_from_employees_unread_count}
-        events_from_measure_unread_count={query.events_from_measure_unread_count}
-      />
-      {query.$state.isLoading ? (
+      {/*<EventsNav
+        events_from_employees_unread_count={unreadQuery.data?.events_from_employees_unread_count}
+        events_from_measure_unread_count={unreadQuery.data?.events_from_measure_unread_count}
+      />*/}
+      {query.loading ? (
         <LoadingWrapper>
           <Loader />
         </LoadingWrapper>

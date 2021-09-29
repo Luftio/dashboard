@@ -12,7 +12,7 @@ import MessageCard from "../modules/MessageCard";
 import EmptyState from "../modules/EmptyState";
 import Filter from "../elements/Filter";
 
-import { useQuery } from "../../gqless/";
+import { useGetSuggestionsQuery } from "../../graphql";
 
 import useSuggestionsFilterStore from "../../stores/suggestionsFilterStore";
 
@@ -42,8 +42,8 @@ const Suggestions: React.FC = () => {
 
   const [data, setData] = useState<any>([]);
 
-  const query = useQuery();
-  const suggestions = query.suggestions;
+  const query = useGetSuggestionsQuery();
+  const suggestions = query.data?.suggestions;
 
   const formatDate = (date: any) => {
     const dateJs = new Date(date);
@@ -95,7 +95,7 @@ const Suggestions: React.FC = () => {
           filterValue={filter}
         />
       </HeadingDiv>
-      {query.$state.isLoading ? (
+      {query.loading ? (
         <LoadingWrapper>
           <Loader />
         </LoadingWrapper>

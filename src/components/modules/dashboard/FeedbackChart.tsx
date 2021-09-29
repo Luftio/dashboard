@@ -4,13 +4,13 @@ import { VictoryPie, VictoryLabel } from "victory";
 import "../../../i18n/i18n";
 import { useTranslation } from "react-i18next";
 
-import { useQuery } from "../../../gqless";
+import { useGetFeedbacksQuery } from "../../../graphql";
 
 const HapinessChart: React.FC = () => {
   const { t } = useTranslation<string>();
 
-  const query = useQuery();
-  const feedback = query.feedbacks;
+  const query = useGetFeedbacksQuery();
+  const feedback = query.data?.feedbacks ?? [];
 
   let score = 0;
   let averageScore = 0;

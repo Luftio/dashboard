@@ -1,0 +1,25 @@
+query GetFeedbacks {
+  feedbacks {
+    id
+    name
+    date
+    total_score
+    is_unread
+    how_feel
+    breath
+    temperature
+  }
+}
+
+query GetFeedbackById($id: ID!) {
+  feedback(id: $id) {
+    id
+    name
+    date
+    total_score
+    is_unread
+    how_feel
+    breath
+    temperature
+  }
+}

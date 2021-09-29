@@ -3,7 +3,6 @@ import React from "react";
 import "../../../i18n/i18n";
 import { useTranslation } from "react-i18next";
 
-import { useQuery } from "../../../gqless";
 import OnboardingFormResultRow from "./OnboardingFormResultRow";
 
 const OnboardingFormResult: React.FC = () => {

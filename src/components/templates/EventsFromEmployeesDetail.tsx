@@ -9,7 +9,7 @@ import Heading from "../elements/Heading";
 import FeedbackDetailBlock from "../modules/FeedbackDetailBlock";
 import ShimmerBlock from "../modules/Shimmer/ShimmerBlock";
 
-import { useQuery } from "../../gqless";
+import { useGetEventFromEmployeeByIdQuery } from "../../graphql";
 
 type EventsFromEmployeesDetailProps = {
   id: string;
@@ -18,8 +18,8 @@ type EventsFromEmployeesDetailProps = {
 const EventsFromEmployeesDetail: React.FC<EventsFromEmployeesDetailProps> = (props) => {
   const { t } = useTranslation<string>();
 
-  const query = useQuery();
-  const event = query.event_from_employee({ id: props.id });
+  const query = useGetEventFromEmployeeByIdQuery({ variables: { id: props.id } });
+  const event = query.data?.event_from_employee;
 
   const formatDate = (date: any) => {
     const dateJs = new Date(date);
@@ -32,12 +32,7 @@ const EventsFromEmployeesDetail: React.FC<EventsFromEmployeesDetailProps> = (pro
         <title>{t("title_events_detail_page")}</title>
       </Head>
       <Heading dashboard>{t("detail_events_heading")}</Heading>
-      {event.name == null ||
-      event.date == null ||
-      event.how_feel == null ||
-      event.place == null ||
-      event.breath == null ||
-      event.temperature == null ? (
+      {event == null ? (
         <ShimmerBlock feedback={true} />
       ) : (
         <FeedbackDetailBlock

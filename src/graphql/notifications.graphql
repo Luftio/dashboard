@@ -1,0 +1,25 @@
+query GetNotifications {
+  notifications {
+    ... on EventFromMeasure {
+      __typename
+      id
+      title
+      justification
+      place
+      date
+    }
+    ... on GenericNotification {
+      __typename
+      id
+      title
+      text
+      date
+    }
+  }
+}
+
+query GetUnreadCounts {
+  events_unread_count
+  suggestions_unread_count
+  feedback_unread_count
+}

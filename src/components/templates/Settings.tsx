@@ -17,7 +17,7 @@ import DevicesForm from "../modules/forms/DevicesForm";
 import Loader from "../elements/Loader";
 import Integration from "../modules/Integration";
 
-import { useQuery } from "../../gqless/";
+import { useGetDevicesQuery } from "../../graphql";
 
 const Devices = styled.div`
   display: flex;
@@ -98,8 +98,8 @@ const Settings: React.FC = () => {
     setShowModal((prev) => !prev);
   };
 
-  const query = useQuery();
-  const manageDevices = query.devices;
+  const query = useGetDevicesQuery();
+  const manageDevices = query.data?.devices || [];
 
   return (
     <>
@@ -125,7 +125,7 @@ const Settings: React.FC = () => {
         ) : (
           <Expand>
             <Cards>
-              {query.$state.isLoading ? (
+              {query.loading ? (
                 <LoadingWrapper>
                   <Loader />
                 </LoadingWrapper>

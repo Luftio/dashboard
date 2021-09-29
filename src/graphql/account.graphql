@@ -1,0 +1,17 @@
+query GetAccount {
+  account {
+    id
+    first_name
+    last_name
+    email
+    role
+  }
+}
+
+mutation ChangePassword($currentPassword: String!, $newPassword: String!) {
+  changePassword(currentPassword: $currentPassword, newPassword: $newPassword)
+}
+
+mutation ChangeAccountDetails($firstName: String!, $lastName: String!, $email: String!) {
+  changeAccountDetails(firstName: $firstName, lastName: $lastName, email: $email)
+}

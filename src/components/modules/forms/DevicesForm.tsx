@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 import Button from "../../elements/Button";
 import InputItem from "../../elements/InputItem";
 
-import { useQuery, useMutation } from "../../../gqless";
+import { useGetDevicesQuery, useRenameDeviceMutation } from "../../../graphql";
 
 const Expand = styled.form`
   display: flex;
@@ -55,19 +55,10 @@ type Formdata = {
 const DevicesForm: React.FC<DevicesFormProps> = ({ handleClose, edit }) => {
   const { t } = useTranslation<string>();
 
-  const query = useQuery();
-  const [renameDevice] = useMutation((mutation, args: { id: string; title: string }) => {
-    return (
-      mutation.renameDevice({ input: args }),
-      {
-        onError: (error: any) => {
-          console.error(error);
-        },
-      }
-    );
-  });
+  const query = useGetDevicesQuery();
+  const [renameDevice] = useRenameDeviceMutation();
 
-  const manageDevices = query.devices;
+  const manageDevices = query.data?.devices || [];
   const { register, handleSubmit, formState } = useForm<Formdata>({
     defaultValues: { deviceTitles: Object.fromEntries(manageDevices.map((it) => [it.id, it.title])) },
   });
@@ -81,9 +72,7 @@ const DevicesForm: React.FC<DevicesFormProps> = ({ handleClose, edit }) => {
           const title = deviceTitles[device.id];
           if (title && title != device.title) {
             console.log("renaming device", { id: device.id, title });
-            const response = await renameDevice({ args: { id: device.id, title } });
-            // @ts-ignore
-            console.log(response.title);
+            await renameDevice({ variables: { input: { id: device.id, title } } });
           }
         }
         if (handleClose) handleClose();

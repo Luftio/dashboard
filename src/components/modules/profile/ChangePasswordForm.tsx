@@ -9,7 +9,7 @@ import InputItem from "../../elements/InputItem";
 import Button from "../../elements/Button";
 import Success from "../../elements/Success";
 import Error from "../../elements/Error";
-import { mutate } from "../../../gqless";
+import { useChangePasswordMutation } from "../../../graphql";
 
 const Expand = styled.form`
   display: flex;
@@ -41,10 +41,11 @@ const ChangePassword: React.FC<ChangePasswordProps> = ({ onClick }) => {
 
   const [showSuccessMsg, setShowSuccessMsg] = useState<boolean>(false);
   const [showErrorMsg, setShowErrorMsg] = useState<string>();
+  const [changePassword] = useChangePasswordMutation();
 
   const { register, handleSubmit, errors, formState, reset, watch } = useForm<Formdata>();
   const onSubmit = handleSubmit(({ password, newPassword, repeatNewPassword }) => {
-    mutate((mutation) => mutation.changePassword({ currentPassword: password, newPassword }))
+    changePassword({ variables: { currentPassword: password, newPassword } })
       .then(() => {
         setShowSuccessMsg(true);
       })

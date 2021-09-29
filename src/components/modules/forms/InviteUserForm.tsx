@@ -12,7 +12,7 @@ import Button from "../../elements/Button";
 import SuccessCheck from "../../elements/SuccessCheck";
 
 import { useForm } from "react-hook-form";
-import { mutate, refetch } from "../../../gqless";
+import { useInviteUserMutation } from "../../../graphql";
 
 const Form = styled.form`
   margin-top: 20px;
@@ -67,10 +67,11 @@ export const InviteUserForm: React.FC<InviteUserFormProps> = ({ handleClose, han
   const { t } = useTranslation<string>();
 
   const [showConfirm, setShowConfirm] = useState<boolean>(false);
+  const [inviteUser] = useInviteUserMutation();
 
   const { register, handleSubmit, errors } = useForm<Formdata>({ mode: "onSubmit" });
   const onSubmit = handleSubmit(({ email, role }) => {
-    mutate((mutation) => mutation.inviteUser({ email, role })).then(() => {
+    inviteUser({ variables: { email, role } }).then(() => {
       handleRefetch();
     });
     setShowConfirm(true);

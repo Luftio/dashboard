@@ -7,7 +7,7 @@ import BasicText from "../../elements/BasicText";
 import "../../../i18n/i18n";
 import { useTranslation } from "react-i18next";
 
-import { SchemaObjectTypes } from "../../../gqless";
+import { DeviceData } from "../../../graphql";
 
 const Card = styled.div`
   width: 31.5%;
@@ -66,7 +66,7 @@ const BottomRowItem = styled.div`
 `;
 
 interface DashboardCardProps {
-  data: SchemaObjectTypes["DeviceData"];
+  data: DeviceData;
   onClick?: React.MouseEventHandler<HTMLDivElement>;
 }
 

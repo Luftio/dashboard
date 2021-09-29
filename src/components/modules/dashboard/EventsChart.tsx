@@ -4,13 +4,13 @@ import { VictoryPie, VictoryLabel, VictoryTooltip } from "victory";
 import "../../../i18n/i18n";
 import { useTranslation } from "react-i18next";
 
-import { useQuery } from "../../../gqless";
+import { useGetEventsFromMeasureQuery } from "../../../graphql";
 
 const EventsChart: React.FC = () => {
   const { t } = useTranslation<string>();
 
-  const query = useQuery();
-  const eventsFromMeasure = query.events_from_measure;
+  const query = useGetEventsFromMeasureQuery();
+  const eventsFromMeasure = query.data?.events_from_measure ?? [];
 
   //@ts-ignore
   const badCount = eventsFromMeasure.filter((event) => event.threat > 75).length;

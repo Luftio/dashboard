@@ -13,7 +13,7 @@ import Tooltip from "../elements/Tooltip";
 import Notifications from "../elements/Notifications";
 import EventsHover from "./events/EventsHover";
 
-import { useQuery } from "../../gqless";
+import { useGetUnreadCountsQuery } from "../../graphql";
 
 const SidebarBlock = styled.div`
   display: flex;
@@ -81,7 +81,7 @@ const Sidebar: React.FC = ({}) => {
   // const [show, setShow] = useState<boolean>(false);
   const [showMessage, setShowMessage] = useState<boolean>(false);
 
-  const query = useQuery();
+  const query = useGetUnreadCountsQuery();
 
   return (
     <SidebarBlock>
@@ -104,11 +104,11 @@ const Sidebar: React.FC = ({}) => {
         active={url === "events" && true}
         icon="bell"
         text={t("sidebar_menu_item_2")}></SidebarItem>
-      <Notifications sidebar amount={query.events_unread_count} />
+      <Notifications sidebar amount={query.data?.events_unread_count} />
       {/* {show && (
           <EventsHover
-            events_from_employees_unread_count={query.events_from_employees_unread_count}
-            events_from_measure_unread_count={query.events_from_measure_unread_count}
+            events_from_employees_unread_count={query.data?.events_from_employees_unread_count}
+            events_from_measure_unread_count={query.data?.events_from_measure_unread_count}
           />
         )} */}
       <Wrapper>
@@ -117,7 +117,7 @@ const Sidebar: React.FC = ({}) => {
           active={url === "suggestions" && true}
           icon="file"
           text={t("sidebar_menu_item_3")}></SidebarItem>
-        <Notifications sidebar amount={query.suggestions_unread_count} />
+        <Notifications sidebar amount={query.data?.suggestions_unread_count} />
       </Wrapper>
       <Wrapper>
         <SidebarItem
@@ -125,7 +125,7 @@ const Sidebar: React.FC = ({}) => {
           active={url === "feedback" && true}
           icon="archive"
           text={t("sidebar_menu_item_4")}></SidebarItem>
-        <Notifications sidebar amount={query.feedback_unread_count} />
+        <Notifications sidebar amount={query.data?.feedback_unread_count} />
       </Wrapper>
       <Heading sidebar>{t("sidebar_account_heading")}</Heading>
       <SidebarItem url="/profile" active={url === "profile" && true} icon="user" text={t("sidebar_account_item_1")} />

@@ -13,7 +13,7 @@ import ModalDashboard from "../modules/dashboard/ModalDashboard";
 import EventsCard from "../modules/dashboard/EventsCard";
 import FeedbackCard from "../modules/dashboard/FeedbackCard";
 
-import { useQuery, SchemaObjectTypes } from "../../gqless";
+import { useGetDevicesDataQuery, DeviceData } from "../../graphql";
 import EmptyState from "../modules/EmptyState";
 
 const Cards = styled.div`
@@ -38,14 +38,14 @@ interface DashboardContentProps {
 const DashboardContent: React.FC<DashboardContentProps> = ({ activeDeviceId, hostAccess }) => {
   const { t } = useTranslation();
 
-  const [showModalData, setShowModalData] = useState<SchemaObjectTypes["DeviceData"] | null>(null);
+  const [showModalData, setShowModalData] = useState<DeviceData | null>(null);
 
-  const openModal = (data: SchemaObjectTypes["DeviceData"]) => {
+  const openModal = (data: DeviceData) => {
     setShowModalData(data);
   };
 
-  const query = useQuery();
-  const devices = query.devices_data();
+  const query = useGetDevicesDataQuery();
+  const devices = query.data?.devices_data ?? [];
 
   let activeDevice = null;
   if (devices?.some((it: any) => it.id === activeDeviceId)) {
@@ -60,7 +60,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({ activeDeviceId, hos
         <title>{t("title_dashboard_page")}</title>
       </Head>
       <Heading dashboard>{t("dashboard_page_heading")}</Heading>
-      {query.$state.isLoading ? (
+      {query.loading ? (
         <LoadingWrapper>
           <Loader />
         </LoadingWrapper>
@@ -69,7 +69,7 @@ const DashboardContent: React.FC<DashboardContentProps> = ({ activeDeviceId, hos
           <DashboardNav devices={devices} activeDeviceId={activeDevice?.id || "all"} hostAccess={hostAccess} />
           {devices.length === 0 && <EmptyState message={t("dashboard_empty_devices")} />}
           <Cards>
-            {activeDevice?.data?.map((data: SchemaObjectTypes["DeviceData"]) => (
+            {activeDevice?.data?.map((data: DeviceData) => (
               <DashboardCard data={data} onClick={() => openModal(data)} />
             ))}
           </Cards>

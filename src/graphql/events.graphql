@@ -1,0 +1,80 @@
+query GetEventsFromMeasure {
+  events_from_measure {
+    id
+    title
+    date
+    threat
+    is_unread
+    place
+    justification
+    icon_name
+  }
+}
+
+query GetEventFromMeasureById($id: ID!) {
+  event_from_measure(id: $id) {
+    id
+    title
+    date
+    threat
+    is_unread
+    place
+    justification
+    icon_name
+  }
+}
+
+query GetEventsFromEmployees {
+  events_from_employee {
+    id
+    date
+    threat
+    is_unread
+    name
+    how_feel
+    breath
+    place
+  }
+}
+
+query GetEventFromEmployeeById($id: ID!) {
+  event_from_employee(id: $id) {
+    id
+    date
+    threat
+    is_unread
+    name
+    how_feel
+    breath
+    temperature
+    place
+  }
+}
+
+query GetSuggestions {
+  suggestions {
+    id
+    title
+    date
+    importance
+    is_unread
+    description
+    how_solve
+    why_important
+    icon_name
+  }
+}
+
+query GetSuggestionById($id: ID!) {
+  suggestion(id: $id) {
+    id
+    title
+    date
+    importance
+    is_unread
+    description
+    how_solve
+    why_important
+    icon_name
+  }
+}

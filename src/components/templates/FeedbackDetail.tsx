@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 import Heading from "../elements/Heading";
 import FeedbackDetailBlock from "../modules/FeedbackDetailBlock";
 
-import { useQuery } from "../../gqless/";
+import { useGetFeedbackByIdQuery } from "../../graphql";
 import ShimmerBlock from "../modules/Shimmer/ShimmerBlock";
 
 type FeedbackDetailProps = {
@@ -18,8 +18,8 @@ type FeedbackDetailProps = {
 const FeedbackDetail: React.FC<FeedbackDetailProps> = (props) => {
   const { t } = useTranslation<string>();
 
-  const query = useQuery();
-  const feedback = query.feedback({ id: props.id });
+  const query = useGetFeedbackByIdQuery({ variables: { id: props.id } });
+  const feedback = query.data?.feedback;
 
   const formatDate = (date: any) => {
     const dateJs = new Date(date);
@@ -32,14 +32,7 @@ const FeedbackDetail: React.FC<FeedbackDetailProps> = (props) => {
         <title>{t("title_feedback_detail_page")}</title>
       </Head>
       <Heading dashboard>{t("detail_feedback_heading")}</Heading>
-      {feedback.id == null ||
-      feedback.name == null ||
-      feedback.total_score == null ||
-      feedback.date == null ||
-      feedback.how_feel == null ||
-      feedback.breath == null ||
-      feedback.temperature == null ||
-      feedback.is_unread == null ? (
+      {feedback == null ? (
         <ShimmerBlock feedback={true} />
       ) : (
         <FeedbackDetailBlock

@@ -6,6 +6,9 @@ import { ThemeProvider } from "styled-components";
 import * as Sentry from "@sentry/react";
 import { Integrations } from "@sentry/tracing";
 
+import { ApolloProvider } from "@apollo/client";
+import { client } from "../services/ApolloClient";
+
 import GlobalStyle from "../../shared/Global";
 import theme from "../../config/theme";
 
@@ -53,7 +56,9 @@ const App = ({ Component, pageProps }: AppProps) => (
     </Head>
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <Component {...pageProps} />
+      <ApolloProvider client={client}>
+        <Component {...pageProps} />
+      </ApolloProvider>
     </ThemeProvider>
   </>
 );

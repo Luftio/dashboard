@@ -16,7 +16,7 @@ import { useTranslation } from "react-i18next";
 import Subheading from "../../elements/Subheading";
 
 import { Icon } from "ts-react-feather-icons";
-import { SchemaObjectTypes } from "../../../gqless";
+import { DeviceData } from "../../../graphql";
 
 const Background = styled.div`
   width: 100%;
@@ -65,7 +65,7 @@ const CloseIcon = styled.p`
 `;
 
 interface ModalDashboardProps {
-  data: SchemaObjectTypes["DeviceData"] | null;
+  data: DeviceData | null;
   handleClose: () => void;
 }
 
