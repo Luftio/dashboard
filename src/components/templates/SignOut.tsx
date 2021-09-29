@@ -12,6 +12,7 @@ import Subheading from "../elements/Subheading";
 import Button from "../elements/Button";
 import Copyright from "../elements/Copyright";
 import ThingsboardService from "../../services/ThingsboardService";
+import { useApolloClient } from "@apollo/client";
 
 const Div = styled.div`
   padding: 50px 0 0 70px;
@@ -23,7 +24,9 @@ const Div = styled.div`
 
 const SignOut: React.FC = () => {
   const { t } = useTranslation();
+  const client = useApolloClient();
   useEffect(() => {
+    client.cache.reset();
     ThingsboardService.getInstance().logout();
   }, []);
 
