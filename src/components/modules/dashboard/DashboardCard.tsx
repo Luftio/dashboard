@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { VictoryChart, VictoryTheme, VictoryLine, VictoryAxis } from "victory";
+import { VictoryChart, VictoryTheme, VictoryLine, VictoryAxis, VictoryVoronoiContainer, VictoryTooltip } from "victory";
 
 import BasicText from "../../elements/BasicText";
 
@@ -47,6 +47,7 @@ const ChartRow = styled.div`
   width: 100%;
   height: auto;
   justify-content: center;
+  z-index: 1000000;
 `;
 
 const BottomRow = styled.div`
@@ -157,7 +158,25 @@ const DashboardCard: React.FC<DashboardCardProps> = ({ data, onClick }) => {
           </BasicText>
         </TopRow>
         <ChartRow>
-          <VictoryChart theme={VictoryTheme.material} height={250} padding={{ left: 45, top: 20, bottom: 50 }}>
+          <VictoryChart
+            theme={VictoryTheme.material}
+            height={250}
+            padding={{ left: 45, top: 35, bottom: 50 }}
+            containerComponent={
+              <VictoryVoronoiContainer
+                voronoiDimension="x"
+                labels={({ datum }) => `${datum.value}${data.unit}`}
+                labelComponent={
+                  <VictoryTooltip
+                    pointerLength={6}
+                    active={true}
+                    cornerRadius={4}
+                    flyoutStyle={{ stroke: "#e1e6ea", strokeWidth: 1, fill: "#fff", padding: 60 }}
+                    style={{ fontSize: "14px" }}
+                  />
+                }
+              />
+            }>
             <VictoryAxis dependentAxis fixLabelOverlap={true} scale={{ x: "time" }} />
             <VictoryAxis fixLabelOverlap={true} scale={{ x: "time" }} />
             <VictoryLine

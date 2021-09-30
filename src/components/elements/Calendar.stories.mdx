@@ -1,0 +1,14 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import Calendar from "./Calendar";
+
+<Meta title="Elements/Calendar" component={Calendar} />
+
+# Calendar
+
+Calendar component for picking days.
+
+export const Component = (args) => <Calendar />;
+
+<Canvas>
+  <Story name="Calendar">{Component.bind({})}</Story>
+</Canvas>

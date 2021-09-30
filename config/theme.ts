@@ -5,6 +5,7 @@ export default {
   color_primary: "#838C97",
   color_secondary: "#AFB8BF",
   color_brand: "#031946",
+  color_brand_hover_light: "#F0F5FF",
   color_brand_hover: "#06225f",
   color_button_hover: "#fafafa",
   color_date: "#ccc",
