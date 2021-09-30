@@ -182,8 +182,10 @@ const ModalDashboard: React.FC<ModalDashboardProps> = ({ deviceId, originalData,
       yesterday: [+new Date() - 48 * 3600000, +(+new Date() - 24 * 3600000), 300000, 6],
       week: [+new Date() - 7 * 24 * 3600000, +new Date(), 2 * 3600000, 7],
       month: [+new Date() - 30 * 24 * 3600000, +new Date(), 24 * 3600000, 10],
+      // @ts-ignore
       custom: [+new Date(+customRange), +new Date(+customRange) + 24 * 3600000, 2 * 3600000, 8],
     };
+    // @ts-ignore
     const timing = timeScales[chartScale];
 
     deviceDataQuery({
