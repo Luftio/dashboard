@@ -69,8 +69,8 @@ const DashboardContent: React.FC<DashboardContentProps> = ({ activeDeviceId, hos
           <DashboardNav devices={devices} activeDeviceId={activeDevice?.id || "all"} hostAccess={hostAccess} />
           {devices.length === 0 && <EmptyState message={t("dashboard_empty_devices")} />}
           <Cards>
-            {activeDevice?.data?.map((data: DeviceData) => (
-              <DashboardCard data={data} onClick={() => openModal(data)} />
+            {activeDevice?.data?.map((data: DeviceData, i: number) => (
+              <DashboardCard key={i} data={data} onClick={() => openModal(data)} />
             ))}
           </Cards>
           {hostAccess === false && (
@@ -81,8 +81,11 @@ const DashboardContent: React.FC<DashboardContentProps> = ({ activeDeviceId, hos
           )}
         </>
       )}
-
-      <ModalDashboard data={showModalData} handleClose={() => setShowModalData(null)} />
+      <ModalDashboard
+        originalData={showModalData}
+        deviceId={activeDevice?.id ?? activeDeviceId}
+        handleClose={() => setShowModalData(null)}
+      />
     </>
   );
 };

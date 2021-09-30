@@ -12,6 +12,9 @@ const Button = styled.button<{
   active?: boolean;
   modal?: boolean;
   welcomeModal?: boolean;
+  dashboardModal?: boolean;
+  dashboardCustom?: boolean;
+  dashboardModalActive?: boolean;
 }>`
   font-family: inherit;
   border: none;
@@ -214,6 +217,48 @@ const Button = styled.button<{
       &:active {
         background: ${(props) => props.theme.color_brand};
         border: none;
+      }
+    `}
+
+    ${(props) =>
+    props.dashboardModal &&
+    css`
+      margin-right: 20px;
+      margin-bottom: 10px;
+      white-space: nowrap;
+
+      &:active {
+        border: ${(props) => props.theme.border_primary};
+        background: ${(props) => props.theme.color_button_hover};
+        position: relative;
+        top: 1px;
+      }
+    `}
+
+    ${(props) =>
+    props.dashboardCustom &&
+    css`
+      @media only screen and (max-width: 1000px) {
+        display: none;
+      }
+    `}
+
+    ${(props) =>
+    props.dashboardModalActive &&
+    css`
+      border: 1px solid ${(props) => props.theme.color_brand};
+      color: ${(props) => props.theme.color_brand};
+
+      &:hover {
+        background: ${(props) => props.theme.color_brand_hover_light};
+        transition: ${(props) => props.theme.transition_primary};
+      }
+
+      &:active {
+        border: 1px solid ${(props) => props.theme.color_brand};
+        background: ${(props) => props.theme.color_brand_hover_light};
+        position: relative;
+        top: 1px;
       }
     `}
 `;

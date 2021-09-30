@@ -45,8 +45,8 @@ interface DashboardNavProps {
 const DashboardNav: React.FC<DashboardNavProps> = ({ devices, activeDeviceId, hostAccess }) => {
   return (
     <Navigation>
-      {devices.map((device) => (
-        <Link href={hostAccess ? "#id=" + device.id : "/dashboard/" + device.id}>
+      {devices.map((device, i) => (
+        <Link key={i} href={hostAccess ? "#id=" + device.id : "/dashboard/" + device.id}>
           <Button nav active={device.id === activeDeviceId}>
             {device.title}
             {device.color == "green" && <PulseEffect green></PulseEffect>}
