@@ -96,7 +96,7 @@ const SignUpForm: React.FC = () => {
             autoComplete="new-password"
             ref={register({
               required: true,
-              pattern: /(?=.*[a-z])(?=.*[A-Z]).{12,}/,
+              pattern: /(?=.*[a-z])(?=.*[A-Z]).{8,}/,
             })}
           />
           <p data-cy="eye" onClick={() => setVisibility(!visibility)}>

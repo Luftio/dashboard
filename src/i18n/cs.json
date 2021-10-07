@@ -65,7 +65,7 @@
   "change_password": "Změnit a přihlásit se",
   "msg_required": "Toto je pole je povinné",
   "msg_invalid_email": "E-mail je neplatný",
-  "msg_invalid_password": "Heslo musí obsahovat alespoň 12 znaků, malé a jedno velké písmeno",
+  "msg_invalid_password": "Heslo musí obsahovat alespoň 8 znaků, malé a jedno velké písmeno",
   "msg_passwords_not_match": "Hesla se sobě nerovnají",
   "msg_login_error": "Uživatelské jméno nebo heslo je nesprávné",
   "msg_email_not_exist": "K e-mailu,na který chcete poslat instrukce, není veden žádný účet",
