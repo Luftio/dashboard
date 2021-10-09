@@ -138,53 +138,7 @@ const Settings: React.FC = () => {
             </Cards>
           </Expand>
         )}
-        {/* <Wrapper>
-          <TopRow selectForm>
-            <Subheading dashboard>{t("integration_heading")}</Subheading>
-          </TopRow>
-          <BasicText contentBlockItem>{t("integration_text")}</BasicText>
-        </Wrapper> */}
-        {/* <Expand integrations>
-          <Integration
-            logo="/static/slack-new-logo.svg"
-            title="Slack"
-            tagTitle1="Chat"
-            tagBgColor1="#3F74F9"
-            tagTitle2={t("integration_tag_notifications")}
-            tagBgColor2="#FFDB63"
-            description={t("integration_slack_description")}
-            isAdded={true}
-          />
-          <Integration
-            logo="/static/trello.svg"
-            title="Trello"
-            tagTitle1={t("integration_tag_project_mang")}
-            tagBgColor1="#F65656"
-            tagTitle2={t("integration_tag_notifications")}
-            tagBgColor2="#FFDB63"
-            description={t("integration_slack_trello")}
-            isAdded={false}
-          />
-        </Expand> */}
-        {/* Automatic account deletion shoudn't be enabled by default */}
-
-        {/*<ContentBlockItem
-          subheading={t("settings_delete_subheading")}
-          buttonText={t("settings_delete_button_text")}
-          text={t("settings_delete_text")}
-          url=""
-          onClick={openModal}
-        />*/}
       </ContentBlock>
-
-      {/*<Modal
-        href="/after-delete"
-        showModal={showModal}
-        setShowModal={setShowModal}
-        subheading={t("modal_subheading")}
-        text={t("modal_text")}
-        buttonText={t("modal_button_text")}
-     />*/}
     </>
   );
 };

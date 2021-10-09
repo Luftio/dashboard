@@ -21,7 +21,7 @@ describe("Set New Password", () => {
     cy.getBySel("new-password").type("123456{enter}");
     cy.getBySel("new-password-invalid")
       .should("be.visible")
-      .and("contain", "Password must be at least 12 characters long and contain a lowercase and an uppercase letter")
+      .and("contain", "Password must be at least 8 characters long and contain a lowercase and an uppercase letter")
       .should("have.css", "color", "rgb(240, 70, 64)");
     cy.visualSnapshot("Display New Password is Invalid Error");
 
