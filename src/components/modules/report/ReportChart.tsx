@@ -1,7 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 
-import { VictoryChart, VictoryTheme, VictoryLine, VictoryAxis, VictoryVoronoiContainer, VictoryTooltip } from "victory";
+import {
+  VictoryChart,
+  VictoryContainer,
+  VictoryTheme,
+  VictoryLine,
+  VictoryAxis,
+  VictoryVoronoiContainer,
+  VictoryTooltip,
+} from "victory";
 
 import { DeviceData } from "../../../graphql";
 
@@ -32,6 +40,7 @@ const ReportChart: React.FC<ReportChartProps> = ({ data }) => {
     <ChartRow>
       <VictoryChart
         theme={VictoryTheme.material}
+        width={900}
         height={300}
         padding={{ left: 45, top: 35, bottom: 50 }}
         containerComponent={

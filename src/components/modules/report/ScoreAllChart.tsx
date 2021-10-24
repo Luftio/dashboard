@@ -1,28 +1,16 @@
 import React from "react";
-import { VictoryPie, VictoryLabel } from "victory";
+import { VictoryContainer, VictoryPie, VictoryLabel, VictoryChart } from "victory";
 
 import "../../../i18n/i18n";
 import { useTranslation } from "react-i18next";
 
-import { useGetFeedbacksQuery } from "../../../graphql";
+interface ScoreAllChartProps {
+  averageScore: number;
+}
 
-const ScoreAllChart: React.FC = () => {
+const ScoreAllChart: React.FC<ScoreAllChartProps> = ({ averageScore }) => {
   const { t } = useTranslation<string>();
 
-  const query = useGetFeedbacksQuery();
-  const feedback = query.data?.feedbacks ?? [];
-
-  let score = 0;
-  let averageScore = 0;
-
-  for (let i = 0; i < feedback.length; i++) {
-    //@ts-ignore
-    score = score + feedback[i].total_score;
-  }
-
-  if (feedback.length > 0) {
-    averageScore = score / feedback.length;
-  }
   const data = [];
 
   data.push({ x: 1, y: averageScore });
@@ -30,7 +18,7 @@ const ScoreAllChart: React.FC = () => {
 
   return (
     <>
-      <svg viewBox="0 0 400 400" width="190px" height="190px">
+      <VictoryContainer width={400} height={400} style={{ width: "400px" }}>
         <VictoryPie
           standalone={false}
           animate={{ duration: 1000 }}
@@ -54,10 +42,9 @@ const ScoreAllChart: React.FC = () => {
           verticalAnchor="middle"
           x={200}
           y={185}
-          text={`${averageScore !== undefined ? averageScore : score} %`}
+          text={`${averageScore} %`}
           style={{ fontSize: 45, fontFamily: "Montserrat", fontWeight: 600 }}
         />
-        ;
         <VictoryLabel
           textAnchor="middle"
           verticalAnchor="start"
@@ -66,8 +53,7 @@ const ScoreAllChart: React.FC = () => {
           text={`${t("dashboard_score")}`}
           style={{ fontSize: 25, fontFamily: "Montserrat" }}
         />
-        ;
-      </svg>
+      </VictoryContainer>
     </>
   );
 };

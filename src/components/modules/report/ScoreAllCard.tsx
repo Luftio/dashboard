@@ -8,11 +8,8 @@ import BasicText from "../../elements/BasicText";
 import ScoreAllChart from "./ScoreAllChart";
 import EmptyCard from "../dashboard/EmptyCard";
 
-import { useGetFeedbacksQuery } from "../../../graphql";
-
 const Card = styled.div`
   width: 100%;
-  height: 350px;
   border-radius: ${(props) => props.theme.border_radius_primary};
   background-color: #fff;
   box-shadow: ${(props) => props.theme.color_block_box_shadow};
@@ -38,23 +35,21 @@ const ChartDiv = styled.div`
 
 interface ScoreAllCardProps {
   subheading: string;
+  score?: number;
 }
 
-const ScoreAllCard: React.FC<ScoreAllCardProps> = ({ subheading }) => {
+const ScoreAllCard: React.FC<ScoreAllCardProps> = ({ subheading, score }) => {
   const { t } = useTranslation();
-
-  const query = useGetFeedbacksQuery();
-  const feedback = query.data?.feedbacks ?? [];
 
   return (
     <Card>
       <BasicText name>{subheading}</BasicText>
-      {feedback === null || feedback.length === 0 ? (
-        <EmptyCard message={t("dashboard_empty_data")} />
-      ) : (
+      {score ? (
         <ChartDiv>
-          <ScoreAllChart />
+          <ScoreAllChart averageScore={score} />
         </ChartDiv>
+      ) : (
+        <EmptyCard message={t("dashboard_empty_data")} />
       )}
     </Card>
   );
