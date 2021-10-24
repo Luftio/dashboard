@@ -86,6 +86,7 @@ const EventsFromMeasure: React.FC = () => {
       <HeadingDiv>
         <Heading dashboard>{t("events_page_heading")}</Heading>
         <Filter
+          isClearable
           filterOptions={[
             { value: "latest", label: t("filter_latest") },
             { value: "oldest", label: t("filter_oldest") },

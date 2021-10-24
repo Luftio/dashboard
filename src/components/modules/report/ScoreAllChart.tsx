@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 
 import { useGetFeedbacksQuery } from "../../../graphql";
 
-const HapinessChart: React.FC = () => {
+const ScoreAllChart: React.FC = () => {
   const { t } = useTranslation<string>();
 
   const query = useGetFeedbacksQuery();
@@ -43,7 +43,7 @@ const HapinessChart: React.FC = () => {
           style={{
             data: {
               fill: ({ datum }) => {
-                const color = datum.y > 75 ? "#23A454" : datum.y > 40 ? "#FFB951" : "#E55B5B";
+                const color = datum.y > 75 ? "#23A454" : datum.y > 50 ? "#FFB951" : "#E55B5B";
                 return datum.x === 1 ? color : "transparent";
               },
             },
@@ -63,7 +63,7 @@ const HapinessChart: React.FC = () => {
           verticalAnchor="start"
           x={200}
           y={215}
-          text={`${t("dashboard_feedback_chart_label")}`}
+          text={`${t("dashboard_score")}`}
           style={{ fontSize: 25, fontFamily: "Montserrat" }}
         />
         ;
@@ -72,4 +72,4 @@ const HapinessChart: React.FC = () => {
   );
 };
 
-export default HapinessChart;
+export default ScoreAllChart;
