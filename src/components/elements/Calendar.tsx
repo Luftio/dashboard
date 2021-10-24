@@ -26,7 +26,7 @@ const CalendarDiv = styled.div`
 
 interface CalendarProps {
   onDayClick: (day: Date) => void;
-  onSubmit: () => void;
+  onSubmit?: () => void;
   customRange?: Date | null;
   isRange?: boolean;
   selectedDays?: any;
