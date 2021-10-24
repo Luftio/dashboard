@@ -15,6 +15,7 @@ import ReportCard from "../modules/report/ReportCard";
 import { DateUtils } from "react-day-picker";
 import Button from "../elements/Button";
 import Calendar from "../elements/Calendar";
+import moment from "moment";
 
 const Cards = styled.div`
   display: flex;
@@ -22,11 +23,16 @@ const Cards = styled.div`
   flex-wrap: wrap;
 `;
 
+const FilterDiv = styled.div`
+  margin-right: 20px;
+`;
+
 const HeadingDiv = styled.div`
   width: 95%;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
 
   @media only screen and (max-width: 500px) {
     flex-direction: column;
@@ -82,7 +88,7 @@ const ReportData: React.FC = () => {
           id: selectedDevice.value,
           startTs: customRange.from,
           endTs: customRange.to,
-          interval: 60 * 60 * 1000,
+          interval: 24 * 3600000,
         },
       });
     }
@@ -96,6 +102,11 @@ const ReportData: React.FC = () => {
     return sum / scores?.length;
   }, [scores]);
 
+  const formatDate = (date: any) => {
+    const dateJs = new Date(date);
+    return moment(dateJs).format("DD/MM/YYYY");
+  };
+
   return (
     <>
       <Head>
@@ -103,19 +114,20 @@ const ReportData: React.FC = () => {
       </Head>
       <HeadingDiv>
         <Heading dashboard>{t("report_data_heading")}</Heading>
-        <Filter
-          filterOptions={devices?.devices.map((device) => ({ value: device.id, label: device.title }))}
-          onChange={(value) => setSelectedDevice(value)}
-          filterValue={selectedDevice}
-          isLoading={devicesLoading}
-        />
+        <FilterDiv>
+          <Filter
+            filterOptions={devices?.devices.map((device) => ({ value: device.id, label: device.title }))}
+            onChange={(value) => setSelectedDevice(value)}
+            filterValue={selectedDevice}
+            isLoading={devicesLoading}
+          />
+        </FilterDiv>
         <Button onClick={() => setCustomOpen(true)}>
           {customRange?.from
-            ? (customRange?.from?.toLocaleString() ?? "x") + "-" + (customRange?.to?.toLocaleString() ?? "x")
+            ? (formatDate(customRange?.from) ?? "x") + " - " + (formatDate(customRange?.to) ?? "x")
             : "Nastavit datum"}
         </Button>
       </HeadingDiv>
-      {devicesDataLoading && "Loading..."}
       {customOpen && (
         <div ref={calendarRef}>
           <Calendar
@@ -127,12 +139,21 @@ const ReportData: React.FC = () => {
         </div>
       )}
       <Cards>
-        <ReportCard subheading="CO2" data={devicesData?.device_data?.data?.find((it) => it.type == "CO2")} />
         <ReportCard
+          loading={devicesDataLoading}
+          subheading="CO2"
+          data={devicesData?.device_data?.data?.find((it) => it.type == "CO2")}
+        />
+        <ReportCard
+          loading={devicesDataLoading}
           subheading={t("dashboard_temperature")}
           data={devicesData?.device_data?.data?.find((it) => it.type == "temperature")}
         />
-        <ScoreAllCard subheading={t("report_data_score_all")} score={Math.round(scoreAvg)} />
+        <ScoreAllCard
+          loading={devicesDataLoading}
+          subheading={t("report_data_score_all")}
+          score={Math.round(scoreAvg)}
+        />
       </Cards>
     </>
   );

@@ -29,6 +29,7 @@ const Button = styled.button<{
   padding: 10px 25px;
   opacity: ${(props) => props.opacity || 1};
   pointer-events: ${(props) => props.cursor};
+  white-space: nowrap;
 
   &:hover {
     background: ${(props) => props.theme.color_button_hover};

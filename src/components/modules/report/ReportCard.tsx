@@ -1,8 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 
+import "../../../i18n/i18n";
+import { useTranslation } from "react-i18next";
+
 import BasicText from "../../elements/BasicText";
+import EmptyCard from "../dashboard/EmptyCard";
 import ReportChart from "./ReportChart";
+import Loader from "../../elements/Loader";
 
 const Card = styled.div`
   width: 100%;
@@ -36,19 +41,39 @@ const Main = styled.div`
   position: relative;
 `;
 
+const LoadingWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  height: 340px;
+
+  justify-content: center;
+  align-items: center;
+`;
+
 interface ReportCardProps {
   data?: any;
   subheading: string;
+  loading: boolean;
 }
 
-const ReportCard: React.FC<ReportCardProps> = ({ data, subheading }) => {
+const ReportCard: React.FC<ReportCardProps> = ({ data, subheading, loading }) => {
+  const { t } = useTranslation();
+
   return (
     <Card>
       <Main>
         <TopRow>
           <BasicText name>{subheading}</BasicText>
         </TopRow>
-        {data != null && <ReportChart data={data} />}
+        {data != null ? (
+          <ReportChart data={data} />
+        ) : loading ? (
+          <LoadingWrapper>
+            <Loader />
+          </LoadingWrapper>
+        ) : (
+          <EmptyCard message={t("dashboard_empty_data")} />
+        )}
       </Main>
     </Card>
   );

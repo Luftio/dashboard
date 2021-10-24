@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 import BasicText from "../../elements/BasicText";
 import ScoreAllChart from "./ScoreAllChart";
 import EmptyCard from "../dashboard/EmptyCard";
+import Loader from "../../elements/Loader";
 
 const Card = styled.div`
   width: 100%;
@@ -36,9 +37,18 @@ const ChartDiv = styled.div`
 interface ScoreAllCardProps {
   subheading: string;
   score?: number;
+  loading: boolean;
 }
 
-const ScoreAllCard: React.FC<ScoreAllCardProps> = ({ subheading, score }) => {
+const LoadingWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  height: 405px;
+  justify-content: center;
+  align-items: center;
+`;
+
+const ScoreAllCard: React.FC<ScoreAllCardProps> = ({ subheading, score, loading }) => {
   const { t } = useTranslation();
 
   return (
@@ -48,6 +58,10 @@ const ScoreAllCard: React.FC<ScoreAllCardProps> = ({ subheading, score }) => {
         <ChartDiv>
           <ScoreAllChart averageScore={score} />
         </ChartDiv>
+      ) : loading ? (
+        <LoadingWrapper>
+          <Loader />
+        </LoadingWrapper>
       ) : (
         <EmptyCard message={t("dashboard_empty_data")} />
       )}
