@@ -54,7 +54,7 @@ const DownloadApp: React.FC = () => {
   return (
     <>
       <Head>
-        <title>{t("title_download_app")}</title>
+        <title>{t("title_download_app_page")}</title>
         <meta name="apple-itunes-app" content="app-id=1551174582" />
       </Head>
       <Header heading={t("download_heading")} subheading={t("download_subheading")} />

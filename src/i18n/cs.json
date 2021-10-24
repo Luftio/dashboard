@@ -18,7 +18,8 @@
   "title_suggestion_detail_page": "Detail doporučení | Luftio",
   "title_feedback_detail_page": "Detail zpězné vazby | Luftio",
   "title_manage_users_page": "Správa uživatelů | Luftio",
-  "title_download_app": "Stáhnětě si aplikaci | Luftio",
+  "title_download_app_page": "Stáhnětě si aplikaci | Luftio",
+  "title_report_data_page": "Report | Luftio",
   "sign_up_heading": "Buďte v práci produktivnější!",
   "sign_up_subheading": "Join other employees who care about efficiency and their health.",
   "sign_in_heading": "Vítejte zpět!",
@@ -40,6 +41,7 @@
   "deleted_account_subheading": "Doufáme, že se Vám bude ve všem dařit.",
   "download_heading": "Pro přístup si stáhněte naší aplikaci",
   "download_subheading": "V naší aplikaci můžete sledovat kvalitu vzduchu a mnoho dalšího!",
+  "report_data_heading": "Data pro report",
   "copyright": "Všechna práva vyhrazena.",
   "full_name": "Jméno",
   "name_input_label": "Jméno",
@@ -255,5 +257,6 @@
   "fri": "Pá",
   "sat": "So",
   "sun": "Ne",
-  "dashboard_empty_data": "Pro toto období nejsou žádná data"
+  "dashboard_empty_data": "Pro toto období nejsou žádná data",
+  "report_data_score_all": "Průměrné skóre ze všech Luftio"
 }

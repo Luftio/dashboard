@@ -15,6 +15,7 @@ const Button = styled.button<{
   dashboardModal?: boolean;
   dashboardCustom?: boolean;
   dashboardModalActive?: boolean;
+  primaryFullWidth?: boolean;
 }>`
   font-family: inherit;
   border: none;
@@ -28,6 +29,7 @@ const Button = styled.button<{
   padding: 10px 25px;
   opacity: ${(props) => props.opacity || 1};
   pointer-events: ${(props) => props.cursor};
+  white-space: nowrap;
 
   &:hover {
     background: ${(props) => props.theme.color_button_hover};
@@ -68,6 +70,28 @@ const Button = styled.button<{
 
       @media only screen and (max-width: 570px) {
         width: 100%;
+      }
+    `}
+
+  ${(props) =>
+    props.primaryFullWidth &&
+    css`
+      background: ${(props) => props.theme.color_brand};
+      display: block;
+      font-size: ${(props) => props.theme.font_size_primary};
+      height: 45px;
+      width: 100%;
+      color: #fff;
+      border: none;
+
+      &:hover {
+        background: ${(props) => props.theme.color_brand_hover};
+        transition: ${(props) => props.theme.transition_primary};
+      }
+
+      &:active {
+        background: ${(props) => props.theme.color_brand};
+        border: none;
       }
     `}
 

@@ -1,28 +1,16 @@
 import React from "react";
-import { VictoryPie, VictoryLabel } from "victory";
+import { VictoryContainer, VictoryPie, VictoryLabel, VictoryChart } from "victory";
 
 import "../../../i18n/i18n";
 import { useTranslation } from "react-i18next";
 
-import { useGetFeedbacksQuery } from "../../../graphql";
+interface ScoreAllChartProps {
+  averageScore: number;
+}
 
-const HapinessChart: React.FC = () => {
+const ScoreAllChart: React.FC<ScoreAllChartProps> = ({ averageScore }) => {
   const { t } = useTranslation<string>();
 
-  const query = useGetFeedbacksQuery();
-  const feedback = query.data?.feedbacks ?? [];
-
-  let score = 0;
-  let averageScore = 0;
-
-  for (let i = 0; i < feedback.length; i++) {
-    //@ts-ignore
-    score = score + feedback[i].total_score;
-  }
-
-  if (feedback.length > 0) {
-    averageScore = score / feedback.length;
-  }
   const data = [];
 
   data.push({ x: 1, y: averageScore });
@@ -30,7 +18,7 @@ const HapinessChart: React.FC = () => {
 
   return (
     <>
-      <svg viewBox="0 0 400 400" width="190px" height="190px">
+      <VictoryContainer width={400} height={400} style={{ width: "400px" }}>
         <VictoryPie
           standalone={false}
           animate={{ duration: 1000 }}
@@ -43,7 +31,7 @@ const HapinessChart: React.FC = () => {
           style={{
             data: {
               fill: ({ datum }) => {
-                const color = datum.y > 75 ? "#23A454" : datum.y > 40 ? "#FFB951" : "#E55B5B";
+                const color = datum.y > 75 ? "#23A454" : datum.y > 50 ? "#FFB951" : "#E55B5B";
                 return datum.x === 1 ? color : "transparent";
               },
             },
@@ -54,22 +42,20 @@ const HapinessChart: React.FC = () => {
           verticalAnchor="middle"
           x={200}
           y={185}
-          text={`${averageScore !== undefined ? averageScore : score} %`}
+          text={`${averageScore} %`}
           style={{ fontSize: 45, fontFamily: "Montserrat", fontWeight: 600 }}
         />
-        ;
         <VictoryLabel
           textAnchor="middle"
           verticalAnchor="start"
           x={200}
           y={215}
-          text={`${t("dashboard_feedback_chart_label")}`}
+          text={`${t("dashboard_score")}`}
           style={{ fontSize: 25, fontFamily: "Montserrat" }}
         />
-        ;
-      </svg>
+      </VictoryContainer>
     </>
   );
 };
 
-export default HapinessChart;
+export default ScoreAllChart;

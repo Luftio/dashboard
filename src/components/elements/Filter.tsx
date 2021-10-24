@@ -10,9 +10,19 @@ interface FilterProps {
   filterOptions: any;
   onChange?: (value: any) => void;
   filterValue?: any;
+  isClearable?: boolean;
+  isLoading?: boolean;
+  defaultValue?: string;
 }
 
-const Filter: React.FC<FilterProps> = ({ filterOptions, onChange, filterValue }) => {
+const Filter: React.FC<FilterProps> = ({
+  filterOptions,
+  onChange,
+  filterValue,
+  isClearable,
+  isLoading,
+  defaultValue,
+}) => {
   const { t } = useTranslation();
 
   const options = filterOptions;
@@ -97,12 +107,14 @@ const Filter: React.FC<FilterProps> = ({ filterOptions, onChange, filterValue })
     <Select
       options={options}
       styles={customStyles}
-      isClearable={true}
+      isClearable={isClearable && true}
       components={{ DropdownIndicator, ClearIndicator }}
       placeholder={t("filter_placeholder")}
       value={filterValue}
       onChange={onChange}
       noOptionsMessage={() => t("filter_no_options_msg")}
+      isLoading={isLoading}
+      defaultInputValue={defaultValue}
     />
   );
 };
