@@ -1,0 +1,14 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs/blocks";
+import ReportsHover from "./ReportsHover";
+
+<Meta title="Modules/Reports hover" component={EventsHover} />
+
+# Reports hover
+
+Submenu that is shown when user hovers over the reports sidebar item.
+
+export const Component = () => <ReportsHover />;
+
+<Canvas>
+  <Story name="Reports hover">{Component.bind({})}</Story>
+</Canvas>
