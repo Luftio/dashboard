@@ -11,7 +11,7 @@ const AlertSign = styled.div`
   border-radius: ${(props) => props.theme.border_radius_primary};
   padding: 15px;
   margin-bottom: 30px;
-  width: 775px;
+  width: 100%;
 
   > p {
     color: ${(props) => props.theme.color_alert_text};

@@ -54,8 +54,6 @@ const Calendar: React.FC<CalendarProps> = ({ onDayClick, customRange, isRange, s
   const modifiers = {
     today: new Date(),
     selectedDate: customRange,
-    start: selectedDays.from,
-    end: selectedDays.to,
     selectedRange: selectedDays,
   };
 
