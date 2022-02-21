@@ -76,11 +76,15 @@ const OpenAccessPage: React.FC = () => {
 
   const id: string = router.query.id;
   useEffect(() => {
-    if (id === "hubhub") {
-      setCustomerName("at HubHub Prague");
+    const accesses = {
+      hubhub: { name: "at HubHub Prague", email: "hubhub.public@luftio.cz", password: "0S9fYKOgKGvPfoGPZondaPGce910YY2l" },
+      pic: { name: "PIC", email: "pic.public@luftio.cz", password: "0S9fYKOgKGvPfoGPZondaPGce910YY2l" },
+    }
+    if (accesses[id]) {
+      setCustomerName(accesses[id].name);
       localStorage.setItem("rememberMe", "false");
       ThingsboardService.getInstance()
-        .loginEmail("hubhub.public@luftio.cz", "0S9fYKOgKGvPfoGPZondaPGce910YY2l")
+        .loginEmail(accesses[id].email, accesses[id].password)
         .then(() => {
           setLoaded(true);
         })
