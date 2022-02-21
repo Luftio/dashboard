@@ -68,18 +68,20 @@ const LogInButton = styled.div`
   }
 `;
 
+const accesses = {
+  hubhub: { name: "at HubHub Prague", email: "hubhub.public@luftio.cz", password: "0S9fYKOgKGvPfoGPZondaPGce910YY2l" },
+  pic: { name: "PIC", email: "pic.public@luftio.cz", password: "0S9fYKOgKGvPfoGPZondaPGce910YY2l" },
+};
+
 const OpenAccessPage: React.FC = () => {
   const router = useRouter();
   if (typeof router.query.id !== "string") return null;
   const [loaded, setLoaded] = useState<boolean>(false);
   const [customerName, setCustomerName] = useState<string>();
 
-  const id: string = router.query.id;
+  // @ts-ignore
+  const id: keyof typeof accesses = router.query.id;
   useEffect(() => {
-    const accesses = {
-      hubhub: { name: "at HubHub Prague", email: "hubhub.public@luftio.cz", password: "0S9fYKOgKGvPfoGPZondaPGce910YY2l" },
-      pic: { name: "PIC", email: "pic.public@luftio.cz", password: "0S9fYKOgKGvPfoGPZondaPGce910YY2l" },
-    }
     if (accesses[id]) {
       setCustomerName(accesses[id].name);
       localStorage.setItem("rememberMe", "false");
