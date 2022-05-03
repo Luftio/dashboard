@@ -25,7 +25,7 @@ const Navigation = styled.div`
     content: "";
     width: 20px;
     background: linear-gradient(90deg, transparent, #fafafa);
-    position: absolute;
+    position: fixed;
     right: 0;
     top: 0;
     bottom: 0;
