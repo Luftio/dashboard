@@ -13,6 +13,8 @@ query GetDeviceData($id: String!, $startTs: String, $endTs: String, $interval: I
     label
     color
     lastActivityTime
+    lastConnectTime
+    lastDisconnectTime
     data {
       type
       unit
@@ -35,6 +37,8 @@ query GetDevicesData($startTs: String, $endTs: String, $interval: Int) {
     label
     color
     lastActivityTime
+    lastConnectTime
+    lastDisconnectTime
     data {
       type
       unit
