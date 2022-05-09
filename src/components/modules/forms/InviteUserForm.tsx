@@ -90,6 +90,12 @@ export const InviteUserForm: React.FC<InviteUserFormProps> = ({ handleClose, han
       )}
       <Div hide={showConfirm ? true : false}>
         <BasicText>{t("manage_users_modal_add_text")}</BasicText>
+        <BasicText>
+          <b>Role {t("manage_users_user_heading")}</b> - {t("manage_users_user_text")}
+        </BasicText>
+        <BasicText>
+          <b>Role {t("manage_users_manager_heading")}</b> - {t("manage_users_manager_text")}
+        </BasicText>
         <Form onSubmit={onSubmit}>
           <InputItem modal>
             <label htmlFor="email">{t("email_input_label")}</label>
