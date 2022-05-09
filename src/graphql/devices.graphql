@@ -12,6 +12,7 @@ query GetDeviceData($id: String!, $startTs: String, $endTs: String, $interval: I
     title
     label
     color
+    lastActivityTime
     data {
       type
       unit
@@ -33,6 +34,7 @@ query GetDevicesData($startTs: String, $endTs: String, $interval: Int) {
     title
     label
     color
+    lastActivityTime
     data {
       type
       unit

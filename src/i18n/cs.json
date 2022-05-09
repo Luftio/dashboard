@@ -258,5 +258,7 @@
   "sat": "So",
   "sun": "Ne",
   "dashboard_empty_data": "Pro toto období nejsou žádná data",
-  "report_data_score_all": "Průměrné skóre ze všech Luftio"
+  "report_data_score_all": "Průměrné skóre ze všech Luftio",
+  "dashboard_disconnected_warning_title": "Zařízení není připojeno",
+  "dashboard_disconnected_warning_text": "Naposledy připojeno: "
 }

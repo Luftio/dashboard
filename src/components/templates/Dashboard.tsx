@@ -30,6 +30,16 @@ const LoadingWrapper = styled.div`
   align-items: center;
 `;
 
+const CardWarning = styled.div`
+  width: 100%;
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: white;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  border-left: 4px solid #ffc107;
+  border-radius: ${(props) => props.theme.border_radius_primary};
+`;
+
 interface DashboardContentProps {
   activeDeviceId: string;
   hostAccess: boolean;
@@ -68,6 +78,16 @@ const DashboardContent: React.FC<DashboardContentProps> = ({ activeDeviceId, hos
         <>
           <DashboardNav devices={devices} activeDeviceId={activeDevice?.id || "all"} hostAccess={hostAccess} />
           {devices.length === 0 && <EmptyState message={t("dashboard_empty_devices")} />}
+          {activeDevice && +new Date(activeDevice.lastActivityTime) < Date.now() - 180000 && (
+            <CardWarning>
+              <h3>{t("dashboard_disconnected_warning_title")}</h3>
+              <p>
+                {t("dashboard_disconnected_warning_text") +
+                  " " +
+                  new Date(activeDevice.lastActivityTime).toLocaleString()}
+              </p>
+            </CardWarning>
+          )}
           <Cards>
             {activeDevice?.data?.map((data: DeviceData, i: number) => (
               <DashboardCard key={i} data={data} onClick={() => openModal(data)} />

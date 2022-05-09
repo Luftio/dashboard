@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import styled from "styled-components";
+import { Icon } from "ts-react-feather-icons";
 
 import "../../../i18n/i18n";
 
@@ -49,9 +50,17 @@ const DashboardNav: React.FC<DashboardNavProps> = ({ devices, activeDeviceId, ho
         <Link key={i} href={hostAccess ? "#id=" + device.id : "/dashboard/" + device.id}>
           <Button nav active={device.id === activeDeviceId}>
             {device.title}
-            {device.color == "green" && <PulseEffect green></PulseEffect>}
-            {device.color == "yellow" && <PulseEffect yellow></PulseEffect>}
-            {device.color == "red" && <PulseEffect red></PulseEffect>}
+            {+new Date(device.lastActivityTime) < Date.now() - 180000 ? (
+              <div style={{ marginLeft: "30px" }}>
+                <Icon name="wifi-off" size={24} />
+              </div>
+            ) : (
+              <>
+                {device.color == "green" && <PulseEffect green></PulseEffect>}
+                {device.color == "yellow" && <PulseEffect yellow></PulseEffect>}
+                {device.color == "red" && <PulseEffect red></PulseEffect>}
+              </>
+            )}
           </Button>
         </Link>
       ))}

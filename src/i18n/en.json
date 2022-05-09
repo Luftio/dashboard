@@ -258,5 +258,7 @@
   "sat": "Sa",
   "sun": "Su",
   "dashboard_empty_data": "There are no data for this period",
-  "report_data_score_all": "Average score from all Luftio"
+  "report_data_score_all": "Average score from all Luftio",
+  "dashboard_disconnected_warning_title": "Device not connected",
+  "dashboard_disconnected_warning_text": "Last connection time: "
 }
