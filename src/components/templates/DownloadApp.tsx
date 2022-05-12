@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import Image from "next/image";
 import Head from "next/head";
@@ -8,10 +8,13 @@ import { useTranslation } from "react-i18next";
 
 import Header from "../modules/Header";
 import ThingsboardService from "../../services/ThingsboardService";
+import Button from "../elements/Button";
+import Link from "next/link";
 
 const Badges = styled.div`
   display: flex;
   align-items: center;
+  margin-bottom: 30px;
 
   @media only screen and (max-width: 390px) {
     flex-direction: column;
@@ -36,20 +39,23 @@ const DownloadApp: React.FC = () => {
     return null;
   }
 
-  const userAgent = navigator.userAgent || navigator.vendor;
+  useEffect(() => {
+    const userAgent = navigator.userAgent || navigator.vendor;
 
-  window.location.href = "luftioapp://loginWithToken/" + ThingsboardService.getInstance().getToken();
+    window.location.href = "luftioapp://loginWithToken/" + ThingsboardService.getInstance().getToken();
 
-  setTimeout(() => {
-    if (document.visibilityState != "visible") return;
-    if (/android/i.test(userAgent)) {
-      window.location.href = "https://play.google.com/store/apps/details?id=com.luftio.app";
-    }
+    setTimeout(() => {
+      if (document.visibilityState != "visible") return;
+      if (/android/i.test(userAgent)) {
+        window.location.href = "https://play.google.com/store/apps/details?id=com.luftio.app";
+      }
 
-    if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-      window.location.href = "https://apps.apple.com/us/app/luftio/id1551174582";
-    }
-  }, 1000);
+      if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        window.location.href = "https://apps.apple.com/us/app/luftio/id1551174582";
+      }
+      localStorage.removeItem("rememberMe");
+    }, 1000);
+  }, []);
 
   return (
     <>
@@ -66,6 +72,9 @@ const DownloadApp: React.FC = () => {
           <Image src="/static/google-play-badge.svg" alt="Google play badge" width={176} height={52} />
         </a>
       </Badges>
+      <Link href="/">
+        <Button primary>Back to Login</Button>
+      </Link>
     </>
   );
 };
