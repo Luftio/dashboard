@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import styled from "styled-components";
 
@@ -63,6 +63,14 @@ const DashboardContent: React.FC<DashboardContentProps> = ({ activeDeviceId, hos
   } else if (devices.length > 0) {
     activeDevice = devices[0];
   }
+
+  // Refetch every 60s
+  useEffect(() => {
+    const interval = setInterval(() => {
+      query.refetch();
+    }, 60000);
+    return () => clearInterval(interval);
+  }, [query]);
 
   return (
     <>
