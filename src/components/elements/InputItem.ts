@@ -10,6 +10,15 @@ const InputItem = styled.div<{
   avatar?: boolean;
 }>`
   position: relative;
+  width: 400px;
+
+  @media only screen and (max-width: 970px) {
+    width: 450px;
+  }
+
+  @media only screen and (max-width: 570px) {
+    width: 100%;
+  }
 
   > label {
     display: flex;
@@ -20,27 +29,19 @@ const InputItem = styled.div<{
 
   > p {
     position: absolute;
-    left: 355px;
-    bottom: 25px;
+    right: 8px;
+    top: 34px;
     background: transparent;
     width: 30px;
     display: flex;
     justify-content: center;
     cursor: pointer;
-
-    @media only screen and (max-width: 970px) {
-      left: 405px;
-    }
-
-    @media only screen and (max-width: 570px) {
-      left: 90%;
-    }
   }
 
   > input {
     -webkit-appearance: none;
     display: flex;
-    width: 400px;
+    width: 100%;
     height: 45px;
     padding: 15px;
     margin: 5px 0 15px 0;
@@ -66,14 +67,6 @@ const InputItem = styled.div<{
 
     ::-ms-input-placeholder {
       color: ${(props) => props.theme.color_placeholder};
-    }
-
-    @media only screen and (max-width: 970px) {
-      width: 450px;
-    }
-
-    @media only screen and (max-width: 570px) {
-      width: 100%;
     }
   }
 
@@ -132,10 +125,8 @@ const InputItem = styled.div<{
     ${(props) =>
     props.device &&
     css`
-      > input {
-        width: 175px;
-        height: 35px;
-      }
+      width: 175px;
+      height: 35px;
     `}
 
     ${(props) =>
@@ -154,9 +145,7 @@ const InputItem = styled.div<{
     ${(props) =>
     props.modal &&
     css`
-      > input {
-        width: 100%;
-      }
+      width: 100%;
     `}
 
     ${(props) =>
