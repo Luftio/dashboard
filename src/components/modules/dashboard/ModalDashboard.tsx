@@ -176,10 +176,13 @@ const ModalDashboard: React.FC<ModalDashboardProps> = ({ deviceId, originalData,
 
   useEffect(() => {
     if (deviceDataQueryData == null && chartScale == "day") return;
+    // Today 00:00
+    const todayStart = new Date();
+    todayStart.setHours(0, 0, 0, 0);
     const timeScales = {
       "6h": [+new Date() - 6 * 3600000, +new Date(), 300000, 6],
-      day: [+new Date() - 24 * 3600000, +new Date(), 300000, 8],
-      yesterday: [+new Date() - 48 * 3600000, +(+new Date() - 24 * 3600000), 300000, 6],
+      day: [+todayStart, +new Date(), 300000, 8],
+      yesterday: [+todayStart - 24 * 3600000, +todayStart, 300000, 6],
       week: [+new Date() - 7 * 24 * 3600000, +new Date(), 2 * 3600000, 7],
       month: [+new Date() - 30 * 24 * 3600000, +new Date(), 24 * 3600000, 10],
       // @ts-ignore
